@@ -1,0 +1,2453 @@
+[
+  {
+    "accession": "SRP291607",
+    "bioproject": "PRJNA674948",
+    "title": "Microbial community in hyporheic zone sediment incubation experiments",
+    "abstract": "Determination of response of HZ microbial communities towards antibiotic exposure.",
+    "study_type": "Other",
+    "published": "2020-11-08 15:37:18",
+    "record_count": 309,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP471952",
+    "bioproject": "PRJNA1040490",
+    "title": "Gut microbiota and metabolome profile in UC patients with remission and exacerbation.",
+    "abstract": "Goal of the study was to find differences in gut microbial composition and metabolic profile between patients with remission, exacerbation and healthy controls.",
+    "study_type": "Other",
+    "published": "2023-11-15 09:52:21",
+    "record_count": 65,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP463662",
+    "bioproject": "PRJNA1021963",
+    "title": "Soil and root-associated microbial communities under widespread trees across Europe",
+    "abstract": "This is a large-scale field study dataset of 16S and ITS2 DNA meta-barcoding of soil and root-associated bacteria and fungi from the root and soil microbiomes of forest trees from 3 different broadleaf genera (Alnus, Betula, and Sorbus) from 18 forest sites across a European latitudinal gradient. The first part of the sample ID e.g. 'AUD' refers to the site, the second part e.g. 'SA5' refers to the tree species and individual tree replicate per site, and the third part e.g. 'BR' refers to the sample type (roots or soil and bacteria or fungi), BR = bacteria from roots, FR = fungi from roots, BS = bacteria from soil, and FS = fungi from soil.",
+    "study_type": "Other",
+    "published": "2023-11-27 00:12:20",
+    "record_count": 1222,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP386083",
+    "bioproject": "PRJNA858046",
+    "title": "Trypanosoma brucei VSG and gene expression in extravascular spaces",
+    "abstract": "Analysis using VSG-seq and single-cell RNA sequencing to evaluate VSG and gene expression in extravascular T. brucei propulations in multiple organs",
+    "study_type": "Other",
+    "published": "2022-12-25 00:01:11",
+    "record_count": 3101,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP386081",
+    "bioproject": "PRJNA824309",
+    "title": "Leishmania amazonensis strain:PH8 | isolate:Promastigote cultures Genome sequencing and assembly",
+    "abstract": "Leishmania amazonensis is one of the etiological agents of cutaneous leishmaniasis, a disease that has 21,000 cases/year in Brazil. Different parasite molecules have been studied, as they play a crucial role in establishing the infection in the mammalian host. To understand the role of these virulence factors, it is important to obtain a fully assembled and fully annotated genome of different parasite strains. Once you have your genome complete, you can perform gene manipulation using the highly efficient CRISPR-Cas9 technology. Despite having been described in 2013, the genome of L. amazonensis has not yet been fully assembled and annotated. Thus, our main objective was to obtain and characterize the complete genome sequence of the PH8 strain of L. amazonensis, perform in silico analyzes of the main virulence factors involved in the parasite-host interaction and test CRISPR-Cas9 gene editing protocols.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2022-08-17 09:07:14",
+    "record_count": 2,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37263313",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP386078",
+    "bioproject": "PRJNA858071",
+    "title": "Transcriptome in murine surgical chronic wound infection",
+    "abstract": "P. aeruginosa PA14 in mono- and co-infection with S. aureus LAC in a murine surgical chronic wound infection",
+    "study_type": "Other",
+    "published": "2022-11-27 13:42:59",
+    "record_count": 4,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP386076",
+    "bioproject": "PRJNA858005",
+    "title": "sugarcane root rot rhizosphere bacteria",
+    "abstract": "Sugarcane root rot is a soil-borne disease caused by fusarium sp. In recent years, with the rise of the concept of biological control, the method of using bacteria to antagonize pathogen to control diseases has attracted more and more attention. In this study, root and soil samples of healthy sugarcane, root rot diseased sugarcane and resistant sugarcane were collected, the damage characteristics of sugarcane root caused by root rot to sugarcane root were clarified. Through soil total DNA extraction, high-throughput sequencing and microbiome analysis, the influence of root rot on the rhizosphere soil microbial community structure of Dahuizhong and the difference between Dahuizhong and Datianxuezhe in rhizosphere soil microbial community structure were studied. Finally, seven strains of antagonistic bacteria were screened, their species were identified, and their antagonistic effect against Fusarium shared which caused sugarcane root rot was evaluated.",
+    "study_type": "Other",
+    "published": "2022-07-13 01:26:29",
+    "record_count": 33,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP386075",
+    "bioproject": "PRJNA857875",
+    "title": "Metabarcoding of natural whey starter communities in Parmigiano Reggiano cheese-making",
+    "abstract": "This study used 16S rRNA metabarcoding to assess prokaryotic biodiversity in natural whey starter community from Parmigiano Reggiano cheese.",
+    "study_type": "Other",
+    "published": "2022-07-21 00:10:06",
+    "record_count": 50,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP318512",
+    "bioproject": "PRJNA727446",
+    "title": "Gut microbiome of Spodoptera exempta Walker and its relation to baculovirus resistance",
+    "abstract": "Microbiomic manipulation of lab stocks of S. exempta (african armyworm) and its effects on susceptibility to a naturally occuring baculovirus.",
+    "study_type": "Other",
+    "published": "2022-06-05 02:10:03",
+    "record_count": 231,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP318511",
+    "bioproject": "PRJNA726928",
+    "title": "Candida theae strain:CBS 12239 Genome sequencing and assembly",
+    "abstract": "Candida theae Genome sequencing and assembly",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2022-04-19 17:51:09",
+    "record_count": 2,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "35438177",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP318510",
+    "bioproject": "PRJNA726037",
+    "title": "Rattus norvegicus Raw sequence reads",
+    "abstract": "Rat RNA-seq reads",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2021-05-06 00:01:23",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP318509",
+    "bioproject": "PRJNA726917",
+    "title": "Gut microbiota dynamics during chemotherapy in epithelial ovarian cancer patients are related to therapeutic outcome",
+    "abstract": "Epithelial ovarian cancer (EOC) is one of the most lethal and silent gynecological tumors. Despite appropriate surgery and chemotherapy, relapse occurs in over half of patients with a poor prognosis. Recently, the gut microbiota (GM) has been hypothesized to influence the efficacy of anticancer therapies, but no data are available in EOC. Here, by 16S rDNA sequencing and inferred metagenomics, we profiled the GM of EOC patients at diagnosis and reconstructed its trajectory, along the course of neoadjuvant or adjuvant chemotherapy up to follow-up. Compared to healthy subjects, the GM of EOC patients was dysbiotic and severely affected by chemotherapy. Strikingly, discriminating patterns were identified in relation to the therapeutic response. Platinum-resistant patients showed a marked temporal reduction in GM diversity and increased instability, with loss of health-associated taxa and increased proportions of Coriobacteriaceae and Bifidobacterium. Notably, most of these microorganisms are lactate producers, suggesting increased lactate production, as supported by inferred metagenomics. In contrast, the GM of platinum-sensitive patients appeared overall more diverse and stable, and enriched in lactate utilizers from the Veillonellaceae family. In conclusion, we identified potential GM signatures of therapeutic outcome in EOC patients, which could open up new opportunities for cancer prognosis and treatment.",
+    "study_type": "Other",
+    "published": "2021-08-07 06:29:12",
+    "record_count": 406,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP361737",
+    "bioproject": "PRJNA810017",
+    "title": "Rice root fungal metagenome Raw sequence reads",
+    "abstract": "Root associated fungal community in a set of 296 rice cultivars (Oryza sativa L. subsp. indica), cultivated in the field under water sufficient (control) and limiting conditions (drought), was characterized.",
+    "study_type": "Metagenomics",
+    "published": "2022-02-28 05:13:20",
+    "record_count": 592,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP132614",
+    "bioproject": "PRJEB48268",
+    "title": "NORKAB",
+    "abstract": null,
+    "study_type": "Other",
+    "published": "2022-11-02 05:24:15",
+    "record_count": 1279,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP462070",
+    "bioproject": "PRJNA1018879",
+    "title": "Dietary assessment of Wadi Ashar reptile community",
+    "abstract": "In this work, a non-invasive approach using DNA metabarcoding of faecal pellets was implemented to investigate the diet composition of the reptile community of Wadi Ashar, in AlUla County, north-western Saudi Arabia Kingdom.",
+    "study_type": "Other",
+    "published": "2023-11-16 09:42:54",
+    "record_count": 55,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP400953",
+    "bioproject": "PRJNA887026",
+    "title": "Chromatin accessibility and pioneer factor FOXA1 restrict glucocorticoid receptor action in prostate cancer (ChIP-Seq)",
+    "abstract": "Treatment of prostate cancer relies predominantly on the inhibition of androgen receptor (AR) signaling. Despite the initial effectiveness of the AR-targeted therapies, the cancer often develops resistance to the AR blockade. One mechanism of the resistance is glucocorticoid receptor (GR)-mediated replacement of AR. Nevertheless, the mechanistic ways and means how the GR-mediated antiandrogen resistance occurs has remained elusive. Here, we have discovered several crucial features of GR action in prostate cancer cells through genome-wide techniques. We detected that the replacement of AR by GR in antiandrogen-exposed prostate cancer cells occurs almost exclusively at pre-accessible chromatin sites displaying FOXA1 occupancy. Counterintuitively to the classical pioneer factor model, silencing of FOXA1 potentiated the chromatin binding and transcriptional activity of GR. This was attributed to FOXA1-mediated repression of the NR3C1 (gene encoding GR) expression via the corepressor TLE3. In comparison to FOXA1, inhibition of coregulator activity efficiently restricted GR-mediated gene regulation and cell proliferation. Overall, we identified chromatin pre-accessibility and FOXA1-mediated repression as important regulators of GR action in prostate cancer, pointing out new avenues to oppose steroid receptor-mediated drug resistance. Overall design: Examination of AR, GR, and FOXA1 chromatin binding by ChIP-seq from VCaP and 22Rv1 prostate cancer cells grown in the presence or absence of ENZ. Examination of H3K27ac chromatin occurrence by ChIP-seq from 22Rv1 prostate cancer cells grown in the presence or absence of ENZ. Examination of GR and TLE3 chromatin binding before and after FOXA1 depletion by ChIP-seq from VCaP prostate cancer cells grown in the presence or absence of ENZ.  Examination of GR chromatin binding before and after AR-V7 depletion by ChIP-seq from 22Rv1 prostate cancer cells grown in the presence or absence of ENZ. All sequencing was done with Illumina NextSeq 500 or Illumine NextSeq 2000.",
+    "study_type": "Other",
+    "published": "2023-11-07 11:44:26",
+    "record_count": 97,
+    "external_ids": {
+      "GEO": "GSE214754"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "38015476",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "40456604",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "DRP007252",
+    "bioproject": "PRJDB8316",
+    "title": "wetland fungal community",
+    "abstract": "Dynamics of fungal community in wetland soil was analyzed using next generation sequencing technique.",
+    "study_type": "Other",
+    "published": "2021-05-06 17:08:58",
+    "record_count": 90,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "DRP007251",
+    "bioproject": "PRJDB8315",
+    "title": "wetland bacterial community",
+    "abstract": "Dynamics of bacterial community in wetland soil was analyzed using next generation sequencing technique.",
+    "study_type": "Other",
+    "published": "2021-05-06 17:08:57",
+    "record_count": 90,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP215189",
+    "bioproject": "PRJNA548074",
+    "title": "RAD Sequencing of 15 fish species to look for sex markers Raw sequence reads",
+    "abstract": "This project regroups demultiplexed RAD reads from male and female individuals for 15 fish species. These reads were used to look for sex markers in each species.",
+    "study_type": "Other",
+    "published": "2020-03-15 12:39:46",
+    "record_count": 915,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP215190",
+    "bioproject": "PRJNA555187",
+    "title": "Construction of Human Primary Epidermal Organoids and Modeling of Dermatophyte Infection",
+    "abstract": "Despite the strong need for the large-scale generation of human epidermal cells for cell therapy of extensive and severe skin injury, tissue-engineered skin construction and dermatological investigation, the effectiveness of current culture methods is limited and have yet to meet the huge demands sufficiently. Here, we report the establishment of a simple and robust 3D culture system using chemical defined, serum-free medium supplemented with small molecules and growth factors, tailored for human epidermal organoids generation and expansion. The conditions allowed 10,000-fold expansion of the primary epidermal cells within 6 weeks, with the cell architecture and gene expression preserved. We further noticed that only Integrin a6-positive basal stem cells freshly isolated from human epidermis could form expandable epidermal organoids. The epidermal cells inside of the organoids also have the potential to reconstruct multi-layered human epidermis equivalents under classical air-liquid interface condition. Remarkably, the epidermal organoids enable to model the anthropophilic and epidermis-restricted Trichophyton Rubrum infection. This model faithfully mimics and reflects the clinical pathological reactions of reinforced physical barrier by promoting keratinocytes differentiation and accelerated formation of the stratum corneum for adaptation and resistance to infection. Furthermore, the infection model also suggested that constraining host IL-1 signaling may underline the high degree of adaptation of Trichophyton Rubrum to human skin, and the tendency to be chronic and recurrent infection. Thus, human epidermal organoids present a powerful platform for modeling human dermatology, skin tissue engineering and cell therapy. Overall design: Evaluation of whole transcriptome of cells in 2 groups, each of them include 2 replication",
+    "study_type": "Transcriptome Analysis",
+    "published": "2020-03-02 17:21:05",
+    "record_count": 4,
+    "external_ids": {
+      "GEO": "GSE134403"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "33414472",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP215416",
+    "bioproject": "PRJNA555411",
+    "title": "Hippocampal gene expression profiling in mice treated with stigmasterol",
+    "abstract": "Anxiety and stress-related conditions represent a significant health burden in modern society. Unfortunately, most of the drugs currently used in the clinic modulate neurotransmission and are prone to side effects, limiting their long-term use. We used bioinformatics screening to find small molecules mimicking the transcriptional profile recently reported in hippocampi of importin a5 mutant anxiolytic mice, identifying the plant sterol Ã-sitosterol as a top candidate. Behavioral analyses confirmed anxiolytic properties of Ã-sitosterol, but did not show anxiolytic activity for stigmasterol, a related plant sterol. The present RNA-seq experiment characterizes the hippocampal transcriptome in mice 1 hr and 6 hrs after after intraperitoneal injection of 100 mg/kg stigmasterol or vehicle. Overall design: RNA-seq performed on: 2 treatment groups (stigmasterol; vehicle), 2 time points per treatment (1hr; 6hrs), 3 animals per each group and replicate",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-05-19 18:24:19",
+    "record_count": 12,
+    "external_ids": {
+      "GEO": "GSE134460"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34095883",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP215187",
+    "bioproject": "PRJNA555182",
+    "title": "Adult granulosa cell tumor (AGCT) RNA-seq",
+    "abstract": "Gene expression analysis of adult granulosa cell tumor (AGCT). RNA samples were obtained from formalin-fixed paraffin-embedded (FFPE) block sections of AGCT specimens from patients.",
+    "study_type": "Other",
+    "published": "2020-08-27 23:32:27",
+    "record_count": 20,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP267708",
+    "bioproject": "PRJNA639863",
+    "title": "Activated sludge and foams in aerobic tanks of WWTPs",
+    "abstract": "Bacterial communities of activated sludge and foams in aerobic tanks of municipal WWTPs",
+    "study_type": "Other",
+    "published": "2020-06-17 15:22:16",
+    "record_count": 52,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP267707",
+    "bioproject": "PRJNA639856",
+    "title": "Murine cecal microbiome",
+    "abstract": "Dietary Wild-Type or Linoleic Acids Overproductive Probiotics Daily Intervention on Murine Cecal Microbiota",
+    "study_type": "Other",
+    "published": "2020-06-17 15:22:16",
+    "record_count": 15,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP267706",
+    "bioproject": "PRJNA639916",
+    "title": "Bacterial Community Diversity of Sour Meat",
+    "abstract": "In order to clarify the diversity and dynamics of the bacterial communities in samples during the sour meat fermentation, we extracted the bacterial DNAs from sour meat sampled on the first day to the thirteenth day of fermentation, and amplified the V3-V4 regions in 16S rRNA genes by PCR.",
+    "study_type": "Other",
+    "published": "2020-06-17 15:22:16",
+    "record_count": 12,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP267705",
+    "bioproject": "PRJNA639900",
+    "title": "Fungi, Friend or Foe? A Mycobiome Evaluation in Children with Autism and Gastrointestinal Symptoms",
+    "abstract": "Examining fungi in the guts of children with autism",
+    "study_type": "Other",
+    "published": "2021-06-01 00:23:07",
+    "record_count": 50,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP267704",
+    "bioproject": "PRJNA639951",
+    "title": "methanotrophic microbial community diversity",
+    "abstract": "To investigate methanotrophs in urban water cycle system",
+    "study_type": "Other",
+    "published": "2020-12-31 00:03:56",
+    "record_count": 20,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP124699",
+    "bioproject": "PRJEB40980",
+    "title": "Microbiota-root-shoot axis modulation by MYC2 alleviates light 1limitation stress in Arabidopsis, Bacterial Data",
+    "abstract": "Bidirectional  communication  mechanisms  between  root  and  shoot  organs  are  likely  key  to  orchestrate  stress responses  and  ensure  plant  survival.  Here  we  show  that Arabidopsis  thalianaresponses  to  microbial  root commensals  and  light  are  interconnected  along a  microbiota-root-shoot  axis.  Microbiota  and  light  manipulation experiments in a gnotobiotic system revealed that low photosynthetically active radiations (LP) perceived by leaves induce host-dependent and long-distance modulation of root bacterial, but not fungal or oomycetal communities.",
+    "study_type": "Other",
+    "published": "2020-10-30 15:48:53",
+    "record_count": 704,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP447399",
+    "bioproject": "PRJNA991282",
+    "title": "Target capture sequencing for T-DNA insertion characterization in potato",
+    "abstract": null,
+    "study_type": "Other",
+    "published": "2023-07-05 11:34:27",
+    "record_count": 34,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP443083",
+    "bioproject": "PRJNA973008",
+    "title": "Biomphalaria glabrata strain:Brazilian strain Raw sequence reads",
+    "abstract": "DNA methylation variation may play a role in phenotypic variation as it can be directly affected by the environment and be inherited. DNA methylation variations were introduced into the parasite vector snail Biomphalaria glabrata with low genetic diversity by chemical treatment in F0 and followed over 3 generations using epigenetical recombinant inbred lines (epiRILs). We observed phenotypic variation in complex traits such as fecundity and susceptibility to infestation by Schistosoma mansoni and DNA methylation differences in F3. Both, increase and decrease of infestation success indicated variation in complex resistance/compatibility trait.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2023-07-05 11:23:41",
+    "record_count": 25,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP447402",
+    "bioproject": "PRJNA991510",
+    "title": "Microbial communities in sediment core GS13-CC2 on the west flank of the central Mohns Ridge",
+    "abstract": "This project studies the archaeal and bacterial communities in 24 selected sediment layers in a 21-m long core (GS13-CC2) retrieved from the west flank of the central Mohns Ridge. The extracted DNA were amplified using universal primers targeting the 16S rRNA genes of both archaeal and bacterial domains, and the libraries were sequenced using the IonTorrent platform.",
+    "study_type": "Other",
+    "published": "2023-07-05 11:42:57",
+    "record_count": 24,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "10.1128/aem.00800-23",
+        "type": "eDOI",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP447401",
+    "bioproject": "PRJNA991497",
+    "title": "Daphnia magna genome paper - epigenomics component",
+    "abstract": "Data used for the epigenetic component of the Daphnia magna LRV_0_1 genome paper.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2023-07-05 11:41:40",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP447400",
+    "bioproject": "PRJNA990356",
+    "title": "Delayed collagen production contributes to scarless healing of adult skin micro-wounds without myofibroblast formation",
+    "abstract": "Bulk RNA-seq for scarless wound healing with fractional photothermolysis",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2023-07-05 11:41:40",
+    "record_count": 10,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP447397",
+    "bioproject": "PRJNA990928",
+    "title": "Staphylococcus aureus Raw sequence reads",
+    "abstract": "Normal transcriptome analysis of Staphylococcus aureus.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2023-09-14 00:06:06",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP447396",
+    "bioproject": "PRJNA990652",
+    "title": "Rice rhizosphere of different phase of growth Metagenome",
+    "abstract": "Rice rhizosphere metagenome of three different phases of growth to evaluate community dynamics and alteration",
+    "study_type": "Metagenomics",
+    "published": "2023-07-05 11:34:27",
+    "record_count": 10,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP447393",
+    "bioproject": "PRJNA972834",
+    "title": "Homo sapiens Targeted Locus (Loci)",
+    "abstract": "CRISPR-mediated prime editing in the genome for oncogenic KRAS mutations",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2023-07-05 11:34:25",
+    "record_count": 90,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP474177",
+    "bioproject": "PRJNA1045078",
+    "title": "NK soil",
+    "abstract": "16s data of soil bacteria with different nitrogen and potassium fertilizers for 6 consecutive years",
+    "study_type": "Other",
+    "published": "2023-11-26 02:30:42",
+    "record_count": 72,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP474178",
+    "bioproject": "PRJNA1045077",
+    "title": "Bacterial community structure of saline-alkali soils",
+    "abstract": "Halophilic heterotrophic sludge (HHS) recovers phosphorus (P) from saline wastewater as biomass, which could potentially be applied as P-rich fertilizers in saline-alkali areas. However, the effectiveness of P in the recycled biomass is constrained by the inherently low microbial activity of the soil. In this project, we put forward the cooperation of HHS with halotolerant phosphate-solubilizing bacteria (PSB) as a promising P biofertilizer for saline-alkali soils. We demonstrated the effectiveness of the strategy through a microcosm experiment, with an in-depth assessment of underlying mechanisms, including shifts in soil P speciation, enzyme activities, microbial community characteristics, and soil metabolome alterations.The bacterial community of the soil samples was characterized by the high-throughput sequencing of 16S rRNA amplicons. It was used to analyze the influence of the treatments on soil microbial community structure.",
+    "study_type": "Other",
+    "published": "2023-11-26 02:28:23",
+    "record_count": 18,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP474174",
+    "bioproject": "PRJNA1045074",
+    "title": "Fungi ITS RNA",
+    "abstract": "Soil fungi sequence",
+    "study_type": "Other",
+    "published": "2023-11-26 01:49:36",
+    "record_count": 24,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP474172",
+    "bioproject": "PRJNA1045072",
+    "title": "Bacteria 16sRNA",
+    "abstract": "Soil bacteria sequence",
+    "study_type": "Other",
+    "published": "2023-11-26 01:21:21",
+    "record_count": 24,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP474170",
+    "bioproject": "PRJNA1045050",
+    "title": "Jia straing of brain tissue",
+    "abstract": "Analysis of the effects of Jia straing of brain tissue.",
+    "study_type": "Other",
+    "published": "2023-11-26 00:58:22",
+    "record_count": 15,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP474169",
+    "bioproject": "PRJNA1045069",
+    "title": "opportunistic pathogen from cow mastitis",
+    "abstract": "Holstein cow, 1 lactation, lactation 156 days, teats red and swollen, sensitive milk area, a small amount of flocculent precipitate in milk, and somatic cell count of 1.15 x 10*7/mL. Isolation and treatment for 4 days (kanamycin udder instillation in conjunction with systemic injection of cefquinome), continued to be observed for 1 week and released back to the original pens until the milk returned to normal. After 1 month, it was determined to be subclinical mastitis by the California Mastitis Test Reagent during routine on-farm testing,",
+    "study_type": "Other",
+    "published": "2023-11-26 00:54:20",
+    "record_count": 2,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP150569",
+    "bioproject": "PRJEB65448",
+    "title": "Comparative genetic and demographic responses to climate change in three peatland butterflies in the Jura massif",
+    "abstract": "Climate is a main driver of species distributions, but all species are not equally affected by climate change, and their differential responses to similar climatic constraints might dramatically affect the local species composition. In the context of climate warming, a better knowledge of the ability of dispersal-limited and habitat-specialist species to track climate change at local scale is urgently needed. Comparing the population genetic and demographic impacts of past climate cycles in multiple co-distributed species with similar ecological requirements can help predicting their future response to climate warming, but such comparative studies remain rare. Here, we studied the relationship between demographic history and past changes in spatial distribution of three protected peatland butterfly species (Boloria aquilonaris, Coenonympha tullia, Lycaena helle) in the Jura massif (France), using a genomic approach (ddRAD sequencing) and species distribution modeling (SDM). We found that these species have a similar and narrow thermal niche, and share a common demographic history of recent post-glacial decline and fragmentation of populations. Each species functions as a single metapopulation more or less structured at the regional scale, with a North- South gradient of decreasing genetic diversity that fits the local dynamics of the ice cover overtime. However, we found no correlation between changes in the quantity or quality of suitable areas and effective population size over time, suggesting that species ranges moved beyond the Jura massif during the less favorable climatic periods, and that other factors than climate are at play in the dramatic decline currently observed in the three species.",
+    "study_type": "Other",
+    "published": "2023-11-26 00:22:00",
+    "record_count": 369,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP372334",
+    "bioproject": "PRJNA832259",
+    "title": "RNAseq of livers from High Fat Diet and Low Fat Diet fed mice, sampled every 4 hours over one full cycle, living in either short light, long light, or equal light photoperiods",
+    "abstract": "RNAseq of livers from High Fat Diet and Low Fat Diet fed mice, sampled every 4 hours over one full cycle, living in either short light, long light, or equal light photoperiods Overall design: RNAseq of livers from High Fat Diet and Low Fat Diet fed mice, sampled every 4 hours over one full cycle, living in either short light, long light, or equal light photoperiods",
+    "study_type": "Transcriptome Analysis",
+    "published": "2023-09-10 00:51:58",
+    "record_count": 123,
+    "external_ids": {
+      "GEO": "GSE201584"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37689069",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP364452",
+    "bioproject": "PRJNA816894",
+    "title": "SARS-CoV-2 whole genome sequencing from large-scale campus testing and state-wide communities in NH",
+    "abstract": null,
+    "study_type": "Other",
+    "published": "2022-03-21 18:31:53",
+    "record_count": 1822,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP372339",
+    "bioproject": "PRJNA832269",
+    "title": "An efficacious and safe rescue of GM3 synthase deficiency in mice by spatially regulated AAV-mediated ST3GAL5 delivery",
+    "abstract": "The first-generation rAAV-ST3GAL5 replacement vector employing a ubiquitous promoter led to hepatic injury and death caused by high off-target ST3GAL5 expression when administered systemically. In contract, a seconed-geneeration vector optimized for CNS-restricted expression of ST3GAL5 eliminated liver toxicity while preserving neurotherapeutic effects. Overall design: Comparative gene expression profiling analysis of RNA-seq data for wildtype mouse livers treated with PBS, or AAV9.empty, or AAV9.CB.EGFP, or AAV9.CB.hST3GAL5, or AAV9.CB.hST3GAL5_E332K or AAV9.Syn1.hST3GAL5.miR122BS vectors",
+    "study_type": "Transcriptome Analysis",
+    "published": "2023-01-01 00:05:56",
+    "record_count": 22,
+    "external_ids": {
+      "GEO": "GSE201587"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37014712",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP346022",
+    "bioproject": "PRJNA780310",
+    "title": "Multiplex genomic recording of enhancer and  signal transduction activity in mammalian cells",
+    "abstract": "Sequencing and processed data related to ENGRAM",
+    "study_type": "Other",
+    "published": "2023-12-02 00:00:09",
+    "record_count": 1784,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "39020177",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP094905",
+    "bioproject": "PRJNA356989",
+    "title": "Whole genome sequences of Juglandaceae species",
+    "abstract": null,
+    "study_type": "Other",
+    "published": "2017-12-18 11:43:33",
+    "record_count": 1800,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "29178135",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "10.1093/molbev/msz112",
+        "type": "eDOI",
+        "accessibility_type": null
+      },
+      {
+        "id": "34687315",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "10.1093/molbev/msad121",
+        "type": "eDOI",
+        "accessibility_type": null
+      },
+      {
+        "id": "37325551",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP367896",
+    "bioproject": "PRJNA824072",
+    "title": "A dicentric bacterial chromosome requires XerC/D site-specific recombinases for resolution",
+    "abstract": "Unlike eukaryotes and archaea, which have multiple replication origins on their chromosomes, bacterial chromosomes usually contain a single replication origin. Here, we discovered a dicentric bacterial chromosome with two replication origins, which has resulted from the fusion of the circular and linear chromosomes in Agrobacterium tumefaciens. The fused chromosome is well tolerated, stably maintained, and retains similar subcellular organization and genome-wide DNA interactions found for the bipartite chromosomes. Strikingly, the two replication origins and their partitioning systems are both functional and necessary for cell survival. Finally, we discovered that the site-specific recombinases XerC and XerD are essential in cells harboring the fused chromosome but not in cells with bipartite chromosomes. Analysis of actively dividing cells suggests a model in which XerC/D are required to recombine the sister fusion chromosomes when the two centromeres on the same chromosome are segregated to opposite cell poles. Thus, faithful segregation of dicentric chromosomes in bacteria can occur because of site-specific recombination between the sister chromatids during chromosome partitioning. Our study provides a natural comparative platform to examine a bacterial chromosome with multiple origins and a possible explanation for the fundamental difference in bacterial genome architecture relative to eukaryotes and archaea.",
+    "study_type": "Other",
+    "published": "2022-07-05 00:01:22",
+    "record_count": 20,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP331936",
+    "bioproject": "PRJNA753511",
+    "title": "The NF?B pathway promotes endocrine therapy tolerance through activation of integrated stress response in ER positive breast cancer",
+    "abstract": "While estrogen receptor positive breast tumors generally respond well to endocrine therapy (ET), up to 40% of patients will experience relapse, either while on endocrine therapy or after ET is completed. We have previously shown that the selective pressure of tamoxifen activates the pro-survival NFkB pathway in patient tumors, breast cancer cell lines, and breast cancer xenograft tumors, and that this activation allows for survival of a population of ET-tolerant cells, which can contribute to relapse after ET withdrawal. Here, we utilized single cell RNA-sequencing to characterize survival pathways in NFkB+, ET-tolerant cells and identified activation of the integrated stress response as a critical survival mechanism. Moreover, we found key players in this pathway are regulated by ET in patient derived organoids. In addition, we developed an ET-tolerant gene signature that can be found in metastatic cell populations and that predicts poor outcome to ET. Our findings suggest that co-targeting of ER and key players in the integrated stress response may be a viable therapeutic strategy to eliminate cells that survive the selective pressure of ET. Overall design: scRNA-seq (OneCellBio)",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-03-18 13:06:13",
+    "record_count": 3,
+    "external_ids": {
+      "GEO": "GSE181812"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "35264224",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP367892",
+    "bioproject": "PRJNA824068",
+    "title": "A wipe-based stool collection and preservation kit for microbiome community profiling",
+    "abstract": "While a range of methods for stool collection exist, many require complicated, self-directed protocols and stool transfer. In this study, we introduce and validate a novel, wipe-based approach to fecal sample collection and stabilization for metagenomics analysis. A total of 72 samples were collected across four different preservation types: freezing at -20 degree C, room temperature storage, a commercial DNA preservation kit, and a dissolvable wipe used with DESS (dimethyl sulfoxide, ethylenediaminetetraacetic acid, sodium chloride) solution. These samples were sequenced and analyzed for taxonomic abundance metrics, bacterial metabolic pathway classification, and diversity analysis. Overall, the DESS wipe results validated the use of a wipe-based capture method to collect stool samples for microbiome analysis, showing an R2 of 0.96 for species across all kingdoms, as well as exhibiting a maintenance of Shannon diversity (3.1-3.3) and species richness (151-159) compared to frozen samples. Moreover, DESS showed comparable performance to the commercially available preservation kit (R2 of 0.98), and samples consistently clustered by subject across each method. These data support that the DESS wipe method can be used for stable, room temperature collection and transport of human stool specimens.",
+    "study_type": "Other",
+    "published": "2022-05-25 12:15:01",
+    "record_count": 71,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP354453",
+    "bioproject": "PRJNA796193",
+    "title": "Standardization of sample collection methods for the respiratory and gut microbiome in commercial turkeys",
+    "abstract": "Results of a turkey gut microbiome sampling workshop conducted jointly by researchers from the Ohio State University and the University of Minnesota. Over the course of two days, both sets of researchers collected gut samples using their preferred techniques for comparisons of relative sampling efficiency. Respiratory microbiome data were also collected using methods devised by OSU.",
+    "study_type": "Other",
+    "published": "2022-01-11 12:17:13",
+    "record_count": 642,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP309201",
+    "bioproject": "PRJNA704031",
+    "title": "Louisiana salt marsh soil 18S SRS barcoding project",
+    "abstract": "This project investigates salt marsh health through 18s metabarcoding. Primary goals include the investigation of biodiversity of sheared marsh margins and generation of baseline data for future identification of effects of planned freshwater diversions on marsh health. The sheared marsh margins collected from in this study are those identified by Rangoonwala et al. 2016 in Barataria Bay, which were caused by Hurricane Issac damaging marshes previously weakened by the 2010 Deepwater Horizon Oil Spill. Sediment diversions in Barataria Bay proposed in the 2012 Louisiana Coastal Master Plan, with the aim of rebuilding marsh by using river sediment, will have massive effects on the local environment. To prepare for this, baseline data is required. Further documentation of this project will be available on the Gulf of Mexico Research Initiative Information and Data Cooperative (GRIIDC).",
+    "study_type": "Other",
+    "published": "2021-03-03 23:47:45",
+    "record_count": 292,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP309200",
+    "bioproject": "PRJNA705737",
+    "title": "Agave amaniensis Raw sequence reads",
+    "abstract": "chloroplast assembly",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2021-03-03 23:58:26",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "10.1080/23802359.2022.2109440",
+        "type": "eDOI",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP309199",
+    "bioproject": "PRJNA706503",
+    "title": "genome skimming of Damnacanthus indicus",
+    "abstract": "We gained the chloroplast genome sequence of Damnacanthus indicus for further research.",
+    "study_type": "Other",
+    "published": "2021-03-03 23:54:14",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP307481",
+    "bioproject": "PRJNA703772",
+    "title": "Genome Sequencing of Mangrove trees",
+    "abstract": "Epigenome and Transcriptome study of Bruguiera gymnorhiza",
+    "study_type": "Other",
+    "published": "2021-11-17 21:20:14",
+    "record_count": 38,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34532854",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP309198",
+    "bioproject": "PRJNA706475",
+    "title": "Genome-wide analyses of light-regulated genes in Aspergillus nidulans to reveal the interplay between different photoreceptors",
+    "abstract": "Aspergillus nidulans responds to different wavelengths of light through red- and blue-light receptors. The blue light receptors are the 'white collar' protein LreA and the cryptochrome CryA. Red light is sensed by phytochrome FphA, which integrates the light signal into MAPK HogA/SakA pathway. To identify light-regulated genes under different light conditions and to investigate the interplay between different photoreceptors, we conducted RNA sequencing with the wild type strain (SJR2), the fphA-deletion strain (SJR10), the lreA-deletion strain (SSR56) and the sakA-deletion strain (SZY31). Before RNA isolation, A. nidulans strains were cultured for 18 hours in the dark and then illuminated with red, blue or far-red light for 15 minutes.",
+    "study_type": "Other",
+    "published": "2021-09-29 09:18:35",
+    "record_count": 39,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP309197",
+    "bioproject": "PRJNA706474",
+    "title": "Dosage-dependent differential transcriptomic changes in the prefrontal cortex of heterozygous and homozygous Shank2-mutant mice",
+    "abstract": "Shank2 is an abundant postsynaptic scaffolding protein known to regulate excitatory synaptic assembly and function and is implicated in autism spectrum disorders (ASD). Whereas patient Shank2 mutations in autistic individuals are heterozygous, Shank2 functions studied in mice have mainly relied on the results from homozygous mutant mice, largely because of relatively strong synaptic and behavioral phenotypes. Moreover, although synaptic changes at juvenile and adult Shank2-mutant mice seem to be largely similar, it remains unclear whether there are any age-dependent changes across these stages at the molecular level. To address these questions, we attempted RNA-Seq analyses of the transcriptomes in the prefrontal cortex of both heterozygous and homozygous Shank2-mutant mice lacking exons 6 and 7 at juvenile and adult stages. The results indicate that heterozygous, but not homozygous, juvenile Shank2-mutant mice show strong transcriptomic changes that promote excitatory synaptic transmission and suppress ASD-related gene expressions. In contrast, adult Shank2-mutant mice show largely similar and dosage-dependent transcriptomic changes. Overall design: Transcriptome analysis of Shank2 heterozygote and homozygous mutant and wild-type mice at ages of 3 week and 12 week",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-05-27 19:11:12",
+    "record_count": 27,
+    "external_ids": {
+      "GEO": "GSE168211"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34177464",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP398458",
+    "bioproject": "PRJNA879758",
+    "title": "Species' attributes predict the relative magnitude of ecological and genetic recovery following mass mortality",
+    "abstract": "Theoretically, species' characteristics should allow estimation of dispersal potential and, in turn, explain levels of population genetic differentiation. However, a mismatch between traits and genetic patterns is often reported in marine species, and interpreted as evidence that life-history traits do not influence dispersal. Here, we couple ecological and genomic methods to test the hypothesis that species with attributes favoring greater dispersal potential -- e.g. longer pelagic duration, higher fecundity, and larger population size -- have greater realized dispersal overall. We used a natural experiment created by a large-scale and multi-species mortality event which created a 'clean slate' on which to study recruitment dynamics, thus simplifying a usually complex problem. We surveyed four species of differing dispersal potential to quantify the abundance and distribution of recruits and to genetically assign these recruits to likely parental sources. Species with higher dispersal potential re-colonized a broader extent of the impacted range, did so more quickly, and recovered more genetic diversity than species with lower dispersal potential. Moreover, populations of taxa with higher dispersal potential exhibited more immigration (71-92% of recruits) than taxa with lower dispersal potential (17-44% of recruits). By linking ecological with genomic perspectives, we demonstrate that a suite of interacting life history and demographic attributes do influence species' realized dispersal and genetic neighborhoods. To better understand species' resilience and recovery in this time of global change, integrative eco-evolutionary approaches are needed to more rigorously evaluate the effect of dispersal-linked attributes on realized dispersal and population genetic differentiation.",
+    "study_type": "Other",
+    "published": "2022-10-01 00:12:01",
+    "record_count": 1165,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP110462",
+    "bioproject": "PRJEB28278",
+    "title": "Foetal_Cell_Atlas",
+    "abstract": "Single cells and single nuclei are isolated from human fetal leg muscles and purified with percoll gradient centrifugation.  The goal of this study is to understand the molecuar regulation of human skeletaml muscle development and maintainance.  This data is part of a pre-publication release. For information on the proper use of pre-publication data shared by the Wellcome Trust Sanger Institute (including details of any publication moratoria), please see http://www.sanger.ac.uk/datasharing/",
+    "study_type": "Transcriptome Analysis",
+    "published": "2020-02-28 07:16:53",
+    "record_count": 4971,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP264869",
+    "bioproject": "PRJNA635239",
+    "title": "Arrhythmic gut microbiome signatures predict risk of Type 2 Diabetes",
+    "abstract": "Lifestyle, obesity and the gut microbiome are important risk factors for metabolic disorders. We demonstrate in 1,976 subjects of a German population cohort (KORA) that specific microbiota members show 24-hour oscillations in their relative abundance and identified 13 taxa with disrupted rhythmicity in Type 2 Diabetes (T2D). Cross-validated prediction models based on this signature similarly classified T2D. In an independent cohort (FoCus), disruption of microbial oscillation and the model for T2D classification was confirmed in 1,363 subjects. This arrhythmic risk signature was able to predict T2D in 699 KORA subjects five years after initial sampling, being most effective in combination with BMI. Shotgun metagenomics analysis functionally linked 26 metabolic pathways to the diurnal oscillation of gut bacteria. Thus a cohort-specific risk pattern of arrhythmic taxa enables classification and prediction of T2D, suggesting a functional link between circadian rhythms and the microbiome in metabolic diseases.",
+    "study_type": "Other",
+    "published": "2020-06-06 15:37:40",
+    "record_count": 417,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP307695",
+    "bioproject": "PRJNA704193",
+    "title": "Sedimentary ancient DNA reveals fungal diversity and environmental drivers of community changes throughout the Holocene in the lake Lielais Svetinu (eastern Latvia)",
+    "abstract": "We determined the composition of past fungal communities using ancient DNA from lake Lielais Svetinu sediment throughout the Holocene (10.5 kyr).",
+    "study_type": "Other",
+    "published": "2021-02-23 09:12:12",
+    "record_count": 162,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP307694",
+    "bioproject": "PRJNA704103",
+    "title": "NaCl treat maize sample sequencing",
+    "abstract": "NaCl treat maize roots",
+    "study_type": "Other",
+    "published": "2021-02-23 09:16:32",
+    "record_count": 12,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP307693",
+    "bioproject": "PRJNA704268",
+    "title": "T follicular helper 17 (Tfh17) cells are superior for immunological memory maintenance",
+    "abstract": "A defining feature of successful vaccination is the ability to induce long-lived antigen-specific memory cells. T follicular helper (Tfh) cells specialize in providing help to B cells in mounting protective humoral immunity in infection and after vaccination. Memory Tfh cells that retain the CXCR5 expression can confer protection through enhancing humoral response upon antigen re-exposure but how they are maintained is poorly understood. CXCR5+ memory Tfh cells in human blood are divided into Tfh1, Tfh2 and Tfh17 cells by the expression of chemokine receptors CXCR3 and CCR6 associated with Th1 and Th17 respectively. Here, we developed a new method to induce Tfh1, Tfh2 and Tfh17-like (iTfh1, iTfh2 and iTfh17) mouse cells in vitro. Although all three iTfh subsets efficiently support antibody responses in recipient mice with immediate immunization, iTfh17 cells are superior to iTfh1 and iTfh2 cells in supporting antibody response to a later immunization after extended resting in vivo to mimic memory maintenance. Notably, the counterpart human Tfh17 cells are selectively enriched in CCR7+ central memory Tfh cells with survival and proliferative advantages. Furthermore, the analysis of multiple human cohorts that received different vaccines for HBV, influenza virus, tetanus toxin or measles revealed that vaccine-specific Tfh17 cells outcompete Tfh1 or Tfh2 cells for the persistence in memory phase. Therefore, the complementary mouse and human results showing the advantage of Tfh17 cells in maintenance and memory function supports the notion that Tfh17-induced immunization might be preferable in vaccine development to confer long-term protection. Overall design: NaÃ¯ve, TCM, TEM, TfhCM, TfhEM CD4 subsets were FACS purified from 2 healthy blood donors to perform total RNA extraction and RNA-Seq",
+    "study_type": "Transcriptome Analysis",
+    "published": "2023-01-20 15:56:21",
+    "record_count": 10,
+    "external_ids": {
+      "GEO": "GSE167309"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36655976",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP307692",
+    "bioproject": "PRJNA704277",
+    "title": "PHAROH lncRNA regulates c-Myc translation in hepatocellular carcinoma via sequestering TIAR",
+    "abstract": "Hepatocellular carcinoma, the most common type of liver malignancy, is one of the most lethal forms of cancer. We identified a long non-coding RNA, Gm19705, that is over-expressed in hepatocellular carcinoma and mouse embryonic stem cells. We named this RNA Pluripotency and Hepatocyte Associated RNA Overexpressed in HCC, or PHAROH. Depletion of PHAROH impacts cell proliferation and migration, which can be rescued by ectopic expression of PHAROH. RNA-seq analysis of PHAROH knockouts revealed that a large number of genes with decreased expression contain a c-Myc motif in their promoter. C-MYC is decreased at the protein level, but not the mRNA level. RNA-antisense pulldown identified nucleolysin TIAR, a translational repressor, to bind to a 71-nt hairpin within PHAROH, sequestration of which increases c-MYC translation. In summary, our data suggest that PHAROH regulates c-MYC translation by sequestering TIAR and as such represents a potentially exciting diagnostic or therapeutic target in hepatocellular carcinoma. Overall design: RNA-seq: Transcriptome profiles of sgRenilla control and PHAROH KO cells",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-05-10 18:07:25",
+    "record_count": 4,
+    "external_ids": {
+      "GEO": "GSE167316"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP307689",
+    "bioproject": "PRJNA704270",
+    "title": "Multimeric nanobodies from camelid mice and llamas neutralize SARS-CoV-2 variants",
+    "abstract": "Since the start of the coronavirus disease-2019 (COVID-19) pandemic, severe acute respiratory syndrome coronavirus-2 (SARS-CoV-2) has caused more than 2 million deaths worldwide. Many vaccines have been deployed to date; however, the continual evolution of the viral receptor binding domain (RBD) has recently challenged their efficacy. In particular, SARS-CoV-2 variants originating in South Africa (B.1.351) and the U.K. (B.1.1.7) have reduced plasma neutralization activity and crippled antibody cocktails that received emergency use authorization1-3. Whereas vaccines can be updated periodically to account for emerging variants, complementary strategies are urgently needed to overcome viral escape. One potential alternative are camelid VHHs (also known as nanobodies), which can access conserved epitopes often hidden to conventional antibodies4-6. We here isolate anti-RBD nanobodies from llamas and mice engineered to produce VHHs from alpacas, dromedaries and camels. Through neutralization assays and cryo-electron microscopy we identify two ânanomouseâ VHHs that circumvent RBD antigenic drift by recognizing a domain conserved in coronaviruses, away from the ACE2 binding motif. Conversely, llama nanobodies recognize the RBD-ACE2 interphase and as monomers they are ineffective against E484K or N501Y substitutions. Notably, as homotrimers those same VHHs neutralize RBD variants with ultrahigh (pM) affinity, rivaling the most potent antibodies produced to date against SARS-CoV-2. We conclude that multivalent nanobodies can avert SARS-CoV-2 escape mutants and thus they represent promising tools to prevent COVID-19 mortality when vaccines are compromised. Overall design: VHH gene sequence from llamas and camelid mice",
+    "study_type": "Other",
+    "published": "2021-05-18 17:11:15",
+    "record_count": 11,
+    "external_ids": {
+      "GEO": "GSE167310"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34098567",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP307688",
+    "bioproject": "PRJNA703752",
+    "title": "Homo sapiens Transcriptome or Gene expression",
+    "abstract": "we collected and profiled PBMCs of healthy adults by carefully matching the ages of Asian donors. Computational pipelines for WGCNA analysis, differentially expressed genes (DEGs) and functional enrichments analyses revealed immune system aging signatures in Asian. These findings uncovered in which ways aging differentially affects the immune systems between Asian populations and discovered a common genetic variant that greatly impacts normal PBMC aging.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-07-01 00:13:07",
+    "record_count": 19,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP307687",
+    "bioproject": "PRJNA704264",
+    "title": "Establishment of Transposase-assisted Low-input m6A Sequencing Technique",
+    "abstract": "As the most abundant and best-characterized internal mRNA modification, N6-methyladenosine (m6A) emerges to play a critical regulatory role in wide range of physiological and pathological processes, including gametogenesis, neuronal development, obesity and tumorigenesis. Methylated RNA immunoprecipitation coupled with next-generation sequencing (MeRIP-seq) facilitates transcriptome-wide m6A profiling, also is the most widely used technique to understand the biological significance of m6A. However, it typically requires over 100 Âµg of total RNA or 107 cells as input materials, hampering its application in limited samples. Here, we develop tMeRIP-seq, a transposase assisted MeRIP-seq method to achieve m6A profiling using ultra-low amount of input RNA. By marrying Tn5 tagmentation to m6A-specific immunoprecipitation, tMeRIP-seq largely improves the efficiency of library construction and reduces the input materials to as little as 60 ng total RNA or 103 cells. We apply this method on a small droplet of human blood and recapitulate the m6A profile previously reported using conventional protocol. We find tMeRIP-seq is a convenient and powerful method to examine m6A in ultra-low input material, potentially providing m6A as a new layer of bio-marker for liquid biopsy. Overall design: The profiles of mRNA m6A modifications from ultra-low input materials including HEK293T total RNA, HEK293T cells and human peripheral blood.",
+    "study_type": "Other",
+    "published": "2021-09-08 12:05:51",
+    "record_count": 43,
+    "external_ids": {
+      "GEO": "GSE167307"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34474182",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP217713",
+    "bioproject": "PRJNA559157",
+    "title": "Epigenomic Landscape of Mouse Brain by Single Nucleus Methylation Sequencing [CEMBA190212_9J]",
+    "abstract": "Illustrating the cellular architecture of the mammalian brain is critical to understanding its diverse functions and complex animal behaviors. With support from NIMH and NINDS as part of the BRAIN Initiative Cell Census Network (BICCN), the Center for Epigenomics of the Mouse Brain Atlas (CEMBA) applied single nucleus methylation sequencing in 118 brain funtional regions across the whole adult male P56 C57BL/6J mouse brain. In each major brain regions, we identified distinct cell clusters and formed them in a hierarchical taxonomy. These clusters include known primary brain cell types and possible sub-types. We use these data to identify the epigenomic characteristics and to define specific regulatory elements for each cell cluster. We integrate the single cell methylome with single cell gene expression and chromatin accessibility profiles from the same brain region to further identify potential enhancers and their corresponding genes for several neuronal cell types. By brain region spacial comparisons, we found spatial specificity among excitatory neuronal clusters within the same cortical layer. We identify brain-region-specific transcription factors that may regulate cortical region development of excitatory neurons. These data define the landscape of cell type and spatial heterogeneity in the mouse brain and the underlining regulatory epigenomic basis. Overall design: Apply snmC-seq2 to 118 brain functional regions to identify epigenomic landcape of the adult mouse brain, this subseries consists of one single nucleus methylation sequencing experiment of brain region (DG).",
+    "study_type": "Other",
+    "published": "2020-10-02 17:45:48",
+    "record_count": 1385,
+    "external_ids": {
+      "GEO": "GSE135484"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34616061",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP467923",
+    "bioproject": "PRJNA887893",
+    "title": "Retinoblastoma Aqueous Humor Liquid Biopsy Repository",
+    "abstract": "This study involves the use of the aqueous humor (AH, the clear fluid in the front of the eye) as an organ specific liquid biopsy for retinoblastoma. This relatively new liquid biopsy platform was started at CHLA/USC and was developed to overcome the lack of tumor tissue -- due to contraindication to biopsy -- for this cancer. We have demonstrated that the aqueous humor is an enriched source of tumor DNA. Previously tumoral information was only available after the eye was removed for treatment failure. Due to the AH liquid biopsy, we are now able to assay tumor derived molecular information from these eyes at diagnosis and longitudinally during treatment -- as opposed to only eyes that have failed therapy. We have demonstrated that using the platform we can identify the specific... (for more see dbGaP study page.)",
+    "study_type": "Other",
+    "published": "2023-11-18 03:23:08",
+    "record_count": 263,
+    "external_ids": {
+      "dbGaP": "phs003077"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP135445",
+    "bioproject": "PRJEB50837",
+    "title": "Genomic approach to transmission and compartmentalization of extended-spectrum cephalosporin resistance (ESC-R) in Enterobacterales of animal and human origin from North America and Europe",
+    "abstract": "The emergence and persistence of extended-spectrum cephalosporin resistance (ESC-R) is a major public health problem worldwide. This study aimed to investigate the distribution and the temporal dynamics of ESC-R genes in Enterobacterales isolates of human and animal origin from North America and Europe, including Escherichia coli (n=1,377), Klebsiella pneumoniae (n=46), Enterobacter hormaechei (n=11), Salmonella enterica (n=3), Klebsiella oxytoca (n=3), Proteus mirabilis (n=3), Klebsiella michiganensis (n=2), Raoultella ornithinolytica (n=1), Citrobacter freundii (n=1) and Citrobacter europaeus (n=1). All isolates were sequenced on an Illumina MiSeq or HiSeq or NextSeq instrument.",
+    "study_type": "Other",
+    "published": "2022-07-29 06:24:47",
+    "record_count": 1448,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP255270",
+    "bioproject": "PRJNA622888",
+    "title": "A non-canonical function of Arabidopsis Dicer-Like proteins in shaping the root microbiota assembly",
+    "abstract": "Plants are naturally associated with a diverse community of soil microbes. Potential linkages between the assembly of root-associated microbiota and key cellular processes in plants remain to be explored. DNA methylation is an epigenetic mark important to many fundamental biological processes; however, it is unclear whether the establishment of DNA methylation in plants influences the associated microbiota. In this study we investigated the root-associated microbiota of Arabidopsis mutants defective in the canonical RNA-directed DNA methylation (RdDM) pathway. The microbiota was not altered in the examined RdDM mutants except for dcl234, which is defective in the Dicer-like proteins 2, 3, and 4 that are key to the biogenesis of small interfering RNAs. Subsequently metagenome sequencing identified higher abundance of drug resistance genes in microbes associated dcl234 than Col-0.",
+    "study_type": "Other",
+    "published": "2023-04-30 00:02:45",
+    "record_count": 60,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP013707",
+    "bioproject": "PRJNA168337",
+    "title": "Whole genome sequencing of mutation accumulation lines of Escherichia coli K-12 MG1655 M2",
+    "abstract": "Whole genome sequencing of mutation accumulation lines of Escherichia coli K-12 MG1655 M2.  There is VCF data available on the Provisional side of SRA.  Provisional Data for SRA054030 : ftp://ftp.ncbi.nlm.nih.gov/sra/Submissions/SRA054/SRA054030 Provisional Data for SRA054031 : ftp://ftp.ncbi.nlm.nih.gov/sra/Submissions/SRA054/SRA054031",
+    "study_type": "Other",
+    "published": "2012-09-20 00:00:00",
+    "record_count": 2695,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP458508",
+    "bioproject": "PRJNA1010779",
+    "title": "United States Veteran Microbiome Project",
+    "abstract": "Gut microbiome of US Veterans",
+    "study_type": "Other",
+    "published": "2023-09-05 11:06:23",
+    "record_count": 730,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP372756",
+    "bioproject": "PRJNA833140",
+    "title": "Genome-Wide CRISPR Screen Identifies Pharmacogenomic Determinants of Blinatumomab Resistance in Acute Lymphoblastic Leukemia [RNA-seq]",
+    "abstract": "Blinatumomab is an efficacious immunotherapeutic agent in B-cell acute lymphoblastic leukemia (ALL). However, pharmacogenomic basis of leukemia response to blinatumomab is unclear. Using genome-wide CRISPR, we comprehensively identified leukemia intrinsic factors of blinatumomab sensitivity, i.e., the loss of CD58 as a top driver for resistance, in addition to CD19. CD58 expression varied across 20 ALL moleuclar subtypes, with marked downregulation linked to PAX5 P80R mutation in leukemia. Genome editing confirmed the effects of this mutation on CD58 expression and blinatumomab sensitivity in B-ALL, with validation in patient leukemic blasts. We described a PAX5-driven enhancer at the CD58 locus, which was disrupted by PAX5 P80R. Without CD58 in B-ALL, blinatumomab-induced T cell activation was abolished with transcriptomic/ epigenomic reprogramming. Finally, we screened 1,639 transcription factor genes to systematically identify regulators of CD58/CD19 expression. In conclusion, we identified novel genetic mechanisms of blinatumomab resistance in B-ALL, suggesting strategies for genomics-guided treatment individualization. Overall design: Total RNA was purified from human pan T cells that were incubated with leukemia cells (Parental, CD58 knock out, or CD19 knock out Nalm6 cells) with or without blinatumomab treatment by using Qiagen Rneasy Mini Kit and subsquently used for RNA-sequencing.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-12-21 10:01:26",
+    "record_count": 12,
+    "external_ids": {
+      "GEO": "GSE201831"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36516256",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP255181",
+    "bioproject": "PRJNA622986",
+    "title": "Systematic analysis of imprinting defects in female and male mouse iPSCs",
+    "abstract": "Reprogramming of somatic cells into Induced Pluripotent Stem Cells (iPSCs) provided a major leap towards more personalized cellular models for disease modelling and offers great prospects for regenerative medicine. Despite their considerable success, we still lack the ability to control the state of iPSCs fully, especially at the epigenetic level. This can be appreciated at chromosomal regions regulated by genomic imprinting which provides a good read-out for epigenetic fidelity in iPSCs. Indeed, imprinting defects have already been reported in both mouse and human iPSCs. However, the extent, nature, causes and consequences of these defects still remain to be analysed in a systematic manner. To fill this gap in knowledge, we used a controlled secondary reprogramming system whereby the donor mouse embryonic fibroblasts (MEFs) contain a doxycycline (DOX)-inducible Yamanaka cassette and also Single Nucleotide Polymorphisms (SNPs) to distinguish between the two parental alleles. Several female and male isogenic mouse iPSCs (miPSCs) were obtained using independent culture conditions (defined versus serum) and screened by allelic-specific IMPLICON, a targeted next-generation method to measure DNA methylation at imprinted regions with unprecedented genomic coverage of 1000-fold. Our results showed that imprinting defects are remarkably common in miPSCs. Interestingly, we found important differences in gender responses to culture conditions. In particular, female iPSCs exhibit widespread hypomethylation defects regardless of culture conditions, while male miPSCs show tendency for hypomethylation defects under defined conditions, and hypermethylation defects under serum conditions in particular loci. As expected, methylation defects at imprinted regions resulted in dysregulation of monoallelic expression of imprinted genes. Our results are of utmost importance to devise future reprogramming strategies to generate epigenetic error-free iPSCs Overall design: RNA profiles of parental MEFs, female and male miPSCs, and mESCs were generated by deep sequencing, in triplicates, using Illumina HiSeq platform. Methylation profile of specific genomic regions in female and male miPSCs generated in two different culture conditions, parental MEFs and mESCs, using Illumina MiSeq platform.",
+    "study_type": "Other",
+    "published": "2022-07-18 00:47:12",
+    "record_count": 100,
+    "external_ids": {
+      "GEO": "GSE148067"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36114205",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP372755",
+    "bioproject": "PRJNA833141",
+    "title": "Heliocidaris erythrogramma blastula single cell mRNA",
+    "abstract": "Single cell mRNA sequencing of blastula stage embryo of the sea urchin Heliocidaris erythrogramma",
+    "study_type": "Other",
+    "published": "2022-09-07 00:06:30",
+    "record_count": 5,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP372754",
+    "bioproject": "PRJNA833126",
+    "title": "Soybean soil bacterial community in soybean-corn rotation and soybean-wheat-corn rotation",
+    "abstract": "Soybean soil microbiome plays important roles in soybean production and this study aims to determine the impact of soybean-wheat-corn rotation in soil bacterial community in soybean production compared to soybean-corn rotation.",
+    "study_type": "Other",
+    "published": "2022-12-01 00:02:51",
+    "record_count": 288,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP067728",
+    "bioproject": "PRJNA306542",
+    "title": "Oryza sativa Transcriptome or Gene expression",
+    "abstract": "A set of rice landraces or varieties were collected by Shanghai Agrobiological Gene Center (SAGC) as a natural population in the breeding program of drought resistant rice. The experimental fields for each rice species were split into three replication plots. Both the well-irrigated and drought plot are watered, until the plant size is uniform and the plant number of tiller of rice is more than 50% plants. Leafs of the main tillers were collected for total RNA isolation, and then performed mRNA-seq by HiSeq 2500 according to Illumina's standard instructions. Paired-end reads were obtained and the raw sequences were further processed to remove adapter pollutions and low quality reads (base quality of more than 50% bases<=5), Clean reads were mapped to the reference genome ( Nipponbare, msu7.0) by Tophat, with no more than two base mismatches allowed in the alignment.",
+    "study_type": "Other",
+    "published": "2017-06-08 15:41:27",
+    "record_count": 433,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP421903",
+    "bioproject": "PRJNA933708",
+    "title": "2bRAD sequencing of Anthopleura elegantissima and ITS2 sequencing of its dinoflagellate symbiont, Breviolum muscatinei, across the intertidal",
+    "abstract": "2bRAD sequencing for host genotyping of the anemone Anthopleura elegantissima and ITS2 amplicon sequencing for profiling anemone symbionts across an intertidal site on Catalina Island, CA. Host genotyping and symbiont profiling were used to evaluate how physiological baselines and thermal tolerance vary across fine-scale environmental gradients including within anemone aggregations and across aggregations acclimatized to different tidal heights.",
+    "study_type": "Other",
+    "published": "2023-02-10 21:26:54",
+    "record_count": 188,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP337072",
+    "bioproject": "PRJNA763231",
+    "title": "Single dose of a VSV-based vaccine rapidly protects macaques from Marburg virus disease",
+    "abstract": "Marburg virus (MARV) is a member of the filovirus family that causes hemorrhagic disease with high case fatality rates. MARV is on the priority list of the World Health Organization for countermeasure development highlighting its potential impact on global public health. We developed a vesicular stomatitis virus (VSV)-based vaccine expressing the MARV glycoprotein (VSV-MARV) and previously demonstrated uniform protection of nonhuman primates (NHPs) with a single dose. Here, we investigated the fast-acting potential of this vaccine by challenging NHPs with MARV 14, 7 or 3 days respectively after a single dose vaccination with VSV-MARV. We found that 100% of the animals survived when vaccinated 7 or 14 days and 75% of the animal survived when vaccinated 3 days prior to lethal MARV challenge. Transcriptional analysis of whole blood samples indicated activation of B cells and antiviral defense after VSV-MARV vaccination. In the day -14 and -7 groups, limited transcriptional changes after challenge were observed with the exception of day 9 post-challenge in the day -7 group when we detected gene expression profiles indicative of a recall response. In the day -3 group, transcriptional analysis of samples from surviving NHPs revealed strong innate immune activation. In contrast, the animal that succumbed to disease in this group lacked signatures of antiviral immunity. In summary, our data demonstrate that the VSV-MARV is a fast-acting vaccine suitable for the use in emergency situations like disease outbreaks in Africa.",
+    "study_type": "Other",
+    "published": "2021-09-15 04:28:14",
+    "record_count": 128,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP358245",
+    "bioproject": "PRJNA803355",
+    "title": "An epigenetic barrier sets the timing of human neuronal maturation",
+    "abstract": "A challenge for understanding the development of brain circuits is to identify the factors that instruct neurons to accomplish each developmental step at the appropriate stage. Neuronal maturation follows an intrinsic species-specific developmental pace that is extremely protracted in humans and that is retained during human pluripotent stem cells (hPSCs) differentiations. Using a novel platform that synchronized the generation of cortical neurons from hPSC, we established morphological, functional, and molecular roadmaps of maturation. We found that the temporal unfolding of maturation programs proceeds gradually and is limited by the retention of complex epigenetic signatures. Loss-of-function of multiple such epigenetic factors at the neuron stage triggered precocious molecular and functional maturation. Remarkably, transient pharmacological manipulation of a subset of epigenetic factors, including EZH2, EHMT1/2 and DOT1L, at the progenitor cell stage can prime precursors to reach enhanced molecular and functional signatures of maturity as neurons. Our results indicate that the rate at which neurons mature is set well before neurogenesis through the establishment of an âepigenetic barrierâ in progenitor cells that gets slowly erased in neurons, allowing the gradual onset of maturation programs. Overall design: Cleavage Under Targets and Release Using Nuclease (CUT&RUN) enriching for histone modifications in human pluripotent stem cell (hPSC)-derived neural progenitor cells and neurons. Cleavage Under Targets and Release Using Nuclease (CUT&RUN) enriching for histone modifications in human pluripotent stem cell (hPSC)-derived neural progenitor cells treated with DMSO or inhibitors of chromatin modifiers. RNA sequencing of WA09 (H9) human pluripotent stem cell (hPSC)-derived neurons at different stages of differentiation and treated with DMSO or inhibitors of chromatin modifiers. RNA sequencing of MSK_SRF001 induced human pluripotent stem cell (hPSC)-derived neurons at day 37 of differentiation and treated with DMSO or inhibitors of chromatin modifiers. RNA sequencing of induced human pluripotent stem cell (hPSC)-derived neurons at day 38 of differentiation and treated with DMSO or inhibitors of chromatin modifiers.",
+    "study_type": "Other",
+    "published": "2023-11-09 18:57:27",
+    "record_count": 125,
+    "external_ids": {
+      "GEO": "GSE196109"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "38297124",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP430320",
+    "bioproject": "PRJNA949653",
+    "title": "SC PHL pathogens isolated from wastewater samples that are not routine GenomeTrakr enteric or ESKAPE organisms.",
+    "abstract": "Whole genome sequencing of wastewater isolates that do not fall into GenomeTrakr enteric or ESKAPE organisms.",
+    "study_type": "Other",
+    "published": "2023-03-31 12:31:36",
+    "record_count": 704,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP353063",
+    "bioproject": "PRJNA793460",
+    "title": "Soil microbiome from the prairie pothole region of Saskatchewan",
+    "abstract": "Examining the effects of land use and topography on the soil microbiome in the prairie pothole region of Saskatchewan",
+    "study_type": "Other",
+    "published": "2022-01-04 14:20:10",
+    "record_count": 360,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP120514",
+    "bioproject": "PRJEB37211",
+    "title": "Mouse_POT1_WGS",
+    "abstract": "Mouse CLL tumours were generated by crossing Pot1-mutant strains onto a CLL-prone background. CLL tumour DNA was extracted in each case. Matched germline DNA was avaiable in nine cases.",
+    "study_type": "Cancer Genomics",
+    "published": "2021-09-25 16:53:11",
+    "record_count": 24,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP118965",
+    "bioproject": "PRJEB35846",
+    "title": "CMS1_Mouse_Model_Development",
+    "abstract": "Within the Sansom lab we are developing a suite of mouse models of colorectal cancer which we are positioning against patient samples and molecular subtypes (CMS and CRIS subtypes). This specific sub-strand of work is aiming to develop CMS1 like mouse models. CMS1 tumours are associated with Braf mutation, mismatch repair deficiency and microsatellite instability (commonly secondary to MLH1 methylation). As a result of susceptibility because of the presence of a microsatellite in their DNA sequence a number of other mutations are commonly associated with mismatch repair deficient tumours also, particularly TGFbR2. A further mutation associated with CMS1, mismatch repair deficient tumours is HUWE which we believe synergises in this context due to the induction of DNA damage.  We have developed models that show that the specific combination of Braf and TGFbR mutations drive tumours in the proximal colon of mice, the equivalent of right-sided tumours in patients, for which CMS1 tumours are overrepresented. Interestingly these tumours are microbiome dependent and express a fetal signature. We have also developed the first conditional MLH1 knockout mouse which in combination with VillinCreER drives intestinal tumours with profound T cell infiltration. Because the mouse lacks a microsatellite in its' TGFBR2 gene we have also developed mouse models in which we combine combinations of Braf, MLH1-/-, and TGFbR2-/-. Furthermore due to the synergy between HUWE mutation and mismatch repair deficiency we have also developed combinations of Braf, MLH1-/-, HUWE-/- models, all of which develop tumours with significantly shortened latency than MLH1-/- alone.",
+    "study_type": "Cancer Genomics",
+    "published": "2021-09-25 16:53:09",
+    "record_count": 129,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244468",
+    "bioproject": "PRJNA601241",
+    "title": "blood metagenome Raw sequence reads",
+    "abstract": "Results of an NGS-based metabarcoding study exploring the diversity of vector-borne pathogens in Cambodian canines across sites throughout the country. Our protocol targets the 16S rRNA gene of bacteria and the 18S rRNA gene of Apicomplexans and Kinetoplastids to provide a comprehensive characterisation of the principal blood-borne pathogens. This BioProject also includes optimisation data testing out blocking primer functionality to improve the sensitivity of bacterial 16S rRNA targeting as well as a comparison of DNA extraction kits for pathogen detection. This research is relevant as canines in regions of the tropics frequently succumb to vector-borne diseases with many of these also being zoonotic, posing a public-health risk.",
+    "study_type": "Other",
+    "published": "2020-01-24 05:01:12",
+    "record_count": 1750,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "31395073",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "31477800",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP375102",
+    "bioproject": "PRJNA837862",
+    "title": "Epigenetic landscape of Human Brains by Single Nucleus DNA Methylation and Chromatin Conformation Profiling - pool83_h1930001_A38",
+    "abstract": "Illustrating the cellular architecture of the human brain is critical to understanding its diverse functions and complex animal behaviors. Single nucleus methylation sequencing was applied to regions of human brains. we identified distinct cell clusters and formed them in a hierarchical taxonomy. These clusters include known primary brain cell types and possible sub-types. We use these data to identify the epigenomic characteristics and to define specific regulatory elements for each cell cluster. Overall design: Apply snmC-seq3 to brain regions to identify epigenomic landcape of the adult human brains",
+    "study_type": "Other",
+    "published": "2023-07-06 18:53:21",
+    "record_count": 3022,
+    "external_ids": {
+      "GEO": "GSE202908"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP302220",
+    "bioproject": "PRJNA472127",
+    "title": "NHLBI TOPMed: Whole Genome Sequencing in Familial and Sporadic Idiopathic Pulmonary Fibrosis",
+    "abstract": "This is a set of cases diagnosed with idiopathic pulmonary fibrosis, a fatal interstitial lung disease. These cases were included in the TOPMed phase three studies. The planned study will compare these cases to within-TOPMed controls for genome-wide association studies.",
+    "study_type": "Other",
+    "published": "2021-01-20 02:16:56",
+    "record_count": 2637,
+    "external_ids": {
+      "dbGaP": "phs001607"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP302219",
+    "bioproject": "PRJNA414681",
+    "title": "NHLBI TOPMed: Evaluation of COPD Longitudinally to Identify Predictive Surrogate Endpoints (ECLIPSE)",
+    "abstract": "ECLIPSE was a longitudinal observational study of 2164 COPD subjects and a smaller number of smoking controls (337) and nonsmoking controls (245) followed regularly for three years, with three chest CT scans (at baseline, one year, and three years) (Vestbo et al., 2008, PMID: 18216052). Subjects were enrolled at clinical centers in the US, Canada, Europe, and New Zealand. Inclusion criteria included subjects ages 40-75, at least 10 pack-years of smoking, and spirometry in GOLD grades 2-4 (COPD cases) or normal spirometry with post-bronchodilator FEV1 >85% (predicted) and FEV1/FVC>0.7 (controls). Study visits were performed at enrollment, three months, and every six months thereafter with spirometry, questionnaires, and other clinical evaluations. The ECLIPSE CT scans have been analyzed... (for more see dbGaP study page.)",
+    "study_type": "Other",
+    "published": "2021-01-21 10:48:13",
+    "record_count": 2341,
+    "external_ids": {
+      "dbGaP": "phs001472"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP095707",
+    "bioproject": "PRJNA342063",
+    "title": "NHLBI TOPMed: African American Sarcoidosis Genetics Resource",
+    "abstract": "This study aims to comprehensively interrogate the genomes of African American sarcoidosis families. Sarcoidosis is characterized by a hyperimmune response resulting in granuloma formation in multiple organs. It affects African Americans (AAs) more frequently and more severely than whites. While previous linkage, admixture, candidate gene and genome-wide association (GWA) studies show statistically compelling effects, causal variants are still unknown and much of sarcoidosis heritability is yet to be explained. This \"missing\" heritability likely includes effects of both common (minor allele frequency (MAF)>5%) and rare variants (MAF<5%), since, in AAs, the former are inadequately represented and the latter are completely unexplored by commercial genotyping arrays. These facts,... (for more see dbGaP study page.)",
+    "study_type": "Other",
+    "published": "2018-11-16 10:05:13",
+    "record_count": 1324,
+    "external_ids": {
+      "dbGaP": "phs001207"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP302222",
+    "bioproject": "PRJNA485223",
+    "title": "NHLBI TOPMed: The Lung Tissue Research Consortium (LTRC)",
+    "abstract": "Chronic obstructive pulmonary disease (COPD), a disease state characterized by airflow limitation that is not fully reversible, is the third leading cause of death in the U.S. COPD is a heterogeneous syndrome, with affected individuals demonstrating marked differences in lung structure (emphysema vs. airway disease); physiology (airflow obstruction); and other clinical features (e.g., exacerbations, co-morbid illnesses). Multiple genomic regions influencing COPD susceptibility have been identified by genome-wide association studies (GWAS), and rare coding variants can also influence risk for COPD. However, only a small percentage of the estimated heritability for COPD risk can be explained by known genetic loci. Like most complex diseases, COPD is influenced by multiple genetic... (for more see dbGaP study page.)",
+    "study_type": "Other",
+    "published": "2021-01-21 01:27:20",
+    "record_count": 2952,
+    "external_ids": {
+      "dbGaP": "phs001662"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP306573",
+    "bioproject": "PRJNA702024",
+    "title": "Impact of tree mycorrhizal type and tree diversity in the forest tree species pair interaction zone soil microbiomes",
+    "abstract": "The project investigates the individual and interactive effects of tree mycorrhizal type and tree diversity on the forest soil soil microbial diversity and community composition. Specifically we test that mycorrhizal type of a tree species pair modulates the tree-tree local interaction zone rhizosphere soil microbiomes along tree species diversity levels",
+    "study_type": "Other",
+    "published": "2022-03-31 00:04:09",
+    "record_count": 126,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP117911",
+    "bioproject": "PRJEB34931",
+    "title": "The epigenetic landscape of human colorectal cancer",
+    "abstract": "We characterized the epigenetic landscape of human colorectal cancer (CRC). To this extent, we performed gene expression profiling using high throughput sequencing (RNA-seq) and genome wide binding/occupancy profiling (ChIP-seq) for histone modifications correlated to transcriptional activity, enhancers, elongation and repression (H3K4me3, H3K4me1, H3K27Ac, H3K36me3, H3K27me3) in patient-derived organoids (PDOs), and in normal and tumoral primary colon tissues. We also generated ChIP-seq data for transcription factors YAP/TAZ in human CRC PDOs.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-03-15 07:42:27",
+    "record_count": 44,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP117838",
+    "bioproject": "PRJEB34870",
+    "title": "Complete Genome Sequences of two Pseudomonas species isolated from marine environments of Pacific Ocean",
+    "abstract": "Pseudomonas marincola YsY11 and Pseudomonas oleovorans T9AD were both isolated from marine environments of Pacific Ocean. We report here the whole genome sequences of these two organisms. Pseudomonas marincola YsY11 consists of a single 4.81-Mb chromosome and Pseudomonas oleovorans T9AD of a 5.62-Mb chromosome and a 2.8-Kb plasmid.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2021-03-15 07:42:27",
+    "record_count": 4,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP117829",
+    "bioproject": "PRJEB34862",
+    "title": "Identification of chromatin interactions of 53 selected cellular loci prior to and post induction of BZFL1 in DG75 cells using the Capture-C technology.",
+    "abstract": "Identification of specific chromatin interactions of 53 selected genes with the Capture-C technique in DG75 iBZLF1 cells prior to and 15 h after expression of EBV's protein BZLF1. The experiments were performed as triplicates.",
+    "study_type": "Other",
+    "published": "2021-03-15 07:42:27",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP117828",
+    "bioproject": "PRJEB34861",
+    "title": "RNA-seq of in vitro reprogrammed mouse pericytes to oligodendrocytes",
+    "abstract": "Direct conversion of pericytes (PCs) or mouse embryonic fibroblasts (MEFs) into induced oligodendrocytes (iOPCs) by ectopic expression of Olig2, Sox10 and Nkx6.2 was assessed by transcriptome profiling (RNA-seq). Samples were collected before and after direct conversion (for PCs at 3 different time points/passages - p5, p15 and p25)",
+    "study_type": "Other",
+    "published": "2021-03-15 07:42:27",
+    "record_count": 27,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP117827",
+    "bioproject": "PRJEB34860",
+    "title": "RNA-seq data from DG75 cells with inducible BZLF1 prior to and after induction of EBV's lytic cycle by doxycycline.",
+    "abstract": "(i) Transcripts of DG75 iBZLF1 cells were analyzed comparing non-induced cells and cells induced with doxycycline (100 ng/ ml) for 6 h. Doxycycline induces the expression of the full length viral transcription factor BZLF1. (ii) For control purposes, the transcripts of DG75 cells equipped with a doxycycline-regulated truncated BZLF1 allele lacking its transactivation domain (DG75 iBZLF1 AD-truncated) were analyzed prior to and after induction with doxycycline for 6 h. (iii) For an additional control, the transcripts of parental, unmodified DG75 cells were analyzed prior to and after adding doxycycline for 6 h.  All experiments were performed as triplicates. The analysis is based on Homo sapiens (human) genome assembly GRCh37 (hg19) from Genome Reference Consortium. Artificial ERCC Spike-in RNAs (Thermo Scientific) were added as external controls.",
+    "study_type": "Other",
+    "published": "2021-03-15 07:42:26",
+    "record_count": 18,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP117826",
+    "bioproject": "PRJEB34859",
+    "title": "ATAC-seq of in vitro reprogrammed mouse pericytes to oligodendrocytes",
+    "abstract": "Direct conversion of pericytes (PCs) into induced oligodendrocytes (iOPCs) by ectopic expression of Olig2 and Sox10 (2F) was assessed by chromatin accessibility profiling (by ATAC-seq). Samples were collected before and after direct conversion (at 3 different time points/passages - p5, p15 and p25).",
+    "study_type": "Other",
+    "published": "2021-03-15 07:42:26",
+    "record_count": 10,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP117801",
+    "bioproject": "PRJEB34834",
+    "title": "ATAC-seq analyses with results from DG75 cells prior to and post induction of two versions of BZLF1.",
+    "abstract": "The aim of the experiment was to identify accessible (open) chromatin regions in the genome prior to and post induction of EBV's BZLF1 protein. Two versions of BZLF1 were employed: full-length and activation-domain (AD)-truncated BZLF1 non-induced and induced for 15 h. The experiments were performed as triplicates.",
+    "study_type": "Other",
+    "published": "2021-03-15 07:42:26",
+    "record_count": 12,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP117796",
+    "bioproject": "PRJEB34829",
+    "title": "ChIP-seq data from DG75 cells with the BZLF1 specific antibody BZ1",
+    "abstract": "ChIP-seq experiments with the antibody BZ1 directed against the EBV protein BZLF1 prior to and 15 hours post induction with doxycycline (100 ng/ml). The doxycycline regulated conditional BZLF1 allele is encoded by an inducible oriP plasmid vector stably introduced into DG75 cells. Experiments were performed as duplicates.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2021-03-15 07:42:26",
+    "record_count": 8,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP117738",
+    "bioproject": "PRJEB34779",
+    "title": "The epigenetic landscape of human colorectal cancer",
+    "abstract": "We characterized the epigenetic landscape of human colorectal cancer (CRC). To this extent, we performed gene expression profiling using high throughput sequencing (RNA-seq) and genome wide binding/occupancy profiling (ChIP-seq) for histone modifications correlated to transcriptional activity, enhancers, elongation and repression (H3K4me3, H3K4me1, H3K27Ac, H3K36me3, H3K27me3) in patient-derived organoids (PDOs), and in normal and tumoral primary colon tissues. We also generated ChIP-seq data for transcription factors YAP/TAZ in human CRC PDOs.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2021-03-15 07:42:24",
+    "record_count": 92,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP225739",
+    "bioproject": "PRJNA577376",
+    "title": "Local adaptation moderates the response of a cnidarian symbiosis to warming",
+    "abstract": "raw sequences of Symbiodiniaceae spp. extracted from the sea anemone Exaiptasia pallida",
+    "study_type": "Other",
+    "published": "2020-11-12 00:09:15",
+    "record_count": 223,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP344350",
+    "bioproject": "PRJNA777452",
+    "title": "Modelling pain states with hiPSC derived sensory neurons",
+    "abstract": "We report the development of a sensory neuron differentiation protocol which can be used to produce populations of nociceptive sensory neurons. Following transcriptomic and electrophysiological characterisation, we used cultures to investigate molecular pain pathways by exposing cells to three pain related stimuli: heat, cold and a migraine model. Samples were taken at four time points, up to 18 hours after stimulus exposure. Bulk RNA sequencing of samples showed that for temperature models, gene expression changes were dominated by those involved in cell stress and cell death mechanisms. For the migraine model, we obseved a complex pattern of exposure-associated gene expression changes, including the up-regulation of several genes and pathways involved in neuronal and synaptic function. Overall design: We processed 32 samples in total. Three replicates were taken for each treatment type at each exposure time point. Heat stimulus = 45degC; cold stimulus = 4degC; migraine stimulus = 10uM bradykinin, 1uM histamine, 1uM prostaglandin E2 and 500nM serotonin. Exposure times were Short = 20 mins, Mid = 50 mins, Long = 90 mins and Overnight = 18 hours.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-01-04 10:39:30",
+    "record_count": 32,
+    "external_ids": {
+      "GEO": "GSE187345"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36452863",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP344348",
+    "bioproject": "PRJNA776648",
+    "title": "Expression analysis of reciprocal grafted of near-isogenic soybean lines under iron stress",
+    "abstract": "Iron stress response signaling between roots and shoots is not well understood in soybean. While studies have identified early responses to iron stress (as early as 30 minutes) the signaling pathway has not been well documented. In this study we used near-isogenic lines (Clark [Clk] and IsoClark [Iso]) to create four types of grafts (scion/roots), two homografts (Clk/Clk and Iso/Iso) and two heterografts (Clk/Iso and Iso/Clk). In hydroponics we subjected half the grafted seedlings to iron stress and collected leaf and root tissue after 30 and 120 minutes after iron stress; we extracted and sequenced RNA from the tissue samples. We identified differentially expressed genes and differences in expression patterns between grafting combinations. These results support the hypothesis that the physiological and molecular iron stress response is determined by the root genotype.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-06-01 00:06:46",
+    "record_count": 192,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP352718",
+    "bioproject": "PRJNA789120",
+    "title": "Solanum commersonii genome sequencing and assembly",
+    "abstract": "Solanum commersonii genome sequencing and assembly. The genotype that was sequenced shows strong resistance to Alternaria solani and Colorado potato beetle, caused by tetraose steroidal glycoalkaloids (SGAs). The genome sequence was generated to understand how these SGAs are produced in S. commersonii.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2023-09-25 15:50:45",
+    "record_count": 2,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP352717",
+    "bioproject": "PRJNA791963",
+    "title": "Organ-specific transcriptome profiling of paprika (Capsicum annuum L.)",
+    "abstract": "We used the organ-specific transcriptome to identify gene expression profiles of paprika (Capsicum annuum L.) tissues. The seedling plants with two true leaves (10 days after seeding) were harvested and used as control samples, whereas the flowers and early, green, breaker, and mature fruits in mature plants (110 days after seeding) were used as organ-specific and fruit development analysis samples.",
+    "study_type": "Other",
+    "published": "2023-06-19 00:58:47",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "10.1007/s13580-023-00530-1",
+        "type": "eDOI",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP352716",
+    "bioproject": "PRJNA792047",
+    "title": "Distinct signatures of cutaneous microbiome associated with disease severity in Hailey-Hailey disease",
+    "abstract": "To explore the skin microbiome characteristics of Hailey-Hailey disease patients and the effect of doxycycline treatment on skin microbiome in Hailey-Hailey disease.",
+    "study_type": "Other",
+    "published": "2021-12-28 11:42:54",
+    "record_count": 65,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP260307",
+    "bioproject": "PRJNA565812",
+    "title": "NIAID Centralized Sequencing Initiative",
+    "abstract": "Investigators at the National Institute of Allergy and Infectious Diseases (NIAID) use next-generation sequencing technologies to help determine genetic contributions to immune diseases. These efforts have increased rates of molecular diagnosis for a subset of NIAID participants as well as uncovered fundamental insights into the cellular and signaling pathways in host defense and immune regulation. Despite these successes, analysis and interpretation of genomic data remain a substantial challenge. Simply, researchers do not understand the functional and clinical consequences of most human genetic variation. Making progress in this area requires a coordinated, systematic, and transparent approach to clinical genomics research. This protocol is specific to genetic testing and explicitly aims to both strengthen clinical care and enhance research. Probands provide biological specimens for genetic testing and primary clinical and research evaluations are... (for more see dbGaP study page.)",
+    "study_type": "Other",
+    "published": "2020-08-03 22:42:43",
+    "record_count": 1880,
+    "external_ids": {
+      "dbGaP": "phs001899"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP303558",
+    "bioproject": "PRJNA695356",
+    "title": "16S rRNA of petroleum contaminated and uncontaminated soils from the Kimberley Region, Australia",
+    "abstract": "The Kimberley region of Western Australia is a National Heritage listed region that is internationally recognized for its environmental and cultural significance. However, petroleum spills have been reported at a number of sites across the region. The region is also characterized as having low soil nutrients, high temperatures and monsoonal rain, all of which may limit its potential for natural biodegradation of petroleum to occur. Therefore, this work evaluated the effect of legacy petroleum hydrocarbons on the indigenous soil microbial community across three sites in the Kimberley region. At each site, soil cores were removed from contaminated and control areas and analyzed for total petroleum hydrocarbons, soil nutrients, pH and microbial community profiling.",
+    "study_type": "Other",
+    "published": "2021-01-27 23:51:44",
+    "record_count": 54,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP303557",
+    "bioproject": "PRJNA695355",
+    "title": "Transcriptome or Gene expression",
+    "abstract": "RNA-seq data of soybean during different growth stage.",
+    "study_type": "Other",
+    "published": "2021-07-30 00:01:40",
+    "record_count": 17,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP303556",
+    "bioproject": "PRJNA371529",
+    "title": "Salmonella enterica subsp. enterica; genome sequencing and assembly",
+    "abstract": "Genome sequencing of Salmonella isolates recovered from livestock in Australia.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2021-04-03 00:01:28",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "28818900",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP303555",
+    "bioproject": "PRJNA695353",
+    "title": "Rumen fungal community response to whole rumen contents exhange in dairy cattle",
+    "abstract": "This work seeks to expand on previous work which assessed the response of dairy cattle to a whole rumen contents exchange protocol. Three pairs of lactating dairy cows with disparate historic milk production efficiency were subjected to whole rumen contents exchange via the rumen cannula. Samples of rumen solids and liquids were collected before feeding at irregular intervals from 8 days prior to the exchange through 56 days following the exchange. Fungal amplicon libraries were generated using universal fungal primers flanking the ITS4 region and sequenced on the Illumina MiSeq, 2x300. This work seeks to elucidate the relationship between rumen fungal communities and animal productivity.",
+    "study_type": "Other",
+    "published": "2021-01-27 23:41:37",
+    "record_count": 214,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP146494",
+    "bioproject": "PRJEB61410",
+    "title": "GenomiCOM: ClimOliveMed Genomic resources for research on adaptation of olive tree to climate change",
+    "abstract": "To understand biological processes, genetic and molecular mechanisms involved in olive tree adaptation to climate change, especially to a deficit of winter cold temperature affecting flowering processes and to drought, ClimOliveMed project is aiming to develop a large panel of genomic resources on olive tree. Four types of genomic data will be developed and implemented within GenomicCOM database. I. Target sequencing data on wild and cultivated olive trees The cultivated Olea europaea var. europaea (cv. Farga) Oe9 genome assembly (Julca et al. 2020) was used as a reference to design target sequencing probes.Baits were designed according to the following parameters: place 80 bp probes with 0.5x tilling targeting the first 640 bp of each of the 55,595 annotated genes available. For each gene, 1 to 4 baits were designed depending on its length. Based on a total set of 210,367 baits representing 55,452 unique loci and a captured length of 16.8 Mb, target sequencing data have been obtained on 375 wild olive trees sampled in natural environment of 27 western (6 from South France, 4 from Corsica, 9 from Spain and 8 from Morocco) and one eastern (South Turkey). Using the identical methodology, target-sequencing data have been obtained on xxx accessions from the Worldwide Olive Germplasm Bank of Marrakech.  II. Long read sequencing to construct the reference olive genome for the dominant Moroccan cultivar âPicholine marocaineâ GenomCOM database will include genomic resources on a new assembly of the reference olive genome for âPicholine marocaineâ cultivar. This new reference olive genome will be assembled based on long-read sequencing using PacBio technologies. Based on RAD-seq data analysis, hybrids issued from crossing between Picholine marocaine (PM) as a female parent and Picholine du Langedoc (PL) as a male parent, have been genetically evidenced (El Bakkali et al, Unpublished). ClimOliveMed project is aiming to obtain long read sequencing on one hybrid issued from crossing PM x PL. As the whole genome of these two cultivars will be available through short-read sequencing using NovaSeq Illumina  technology, It will be possible to identify each of the two haplotypes of the new assembly reference olive genome.   III. Re-sequencing the whole genome of 200 olive accessions (50 wild olive trees and 150 olive cultivars) ClimOliveMed project is aiming to collect genomic data related to the whole genome of 200 accessions including 50 wild olive trees and 150 olive cultivars. These data will obtained by short-read resequencing using NovaSeq Illumina  technology  IV. RNA-seq of bud and leave samples collected on two olive cultivars under different temperature regimes To understand the relationships between the cold winter temperature and flowering and particularly to draw the gene pathways involved in these biological processes, ClimOliveMed project aims to investigate RNA-seq of bud and leave samples collected on two olive cultivars under different temperature regimes.",
+    "study_type": "Other",
+    "published": "2023-10-25 00:48:03",
+    "record_count": 754,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP152744",
+    "bioproject": "PRJEB67737",
+    "title": "Unraveling the Population Structure of Salmonella Minnesota Strains in Food Retail Outlets in the Kingdom of Saudi Arabia",
+    "abstract": "This comprehensive study aims to elucidate the intricate population structure of Salmonella Minnesota strains within the food retail landscape of the Kingdom of Saudi Arabia. By scrutinizing the genetic diversity of these strains, our research seeks to provide insights into the associated health risks and, in turn, contribute to the advancement of robust food safety protocols in the region.",
+    "study_type": "Other",
+    "published": "2023-10-25 01:42:03",
+    "record_count": 523,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP150996",
+    "bioproject": "PRJEB65903",
+    "title": "Impact of French Maritime Pine Bark Extract and Methylphenidate on the Gut Microbiota of paediatric Attention-Deficit Hyperactivity Disorder Patients",
+    "abstract": "The aim of this study is to explore a potential prebiotic effect of the polyphenol-rich French Maritime Pine Bark Extract (PBE) compared to MPH and placebo in Flemish paediatric ADHD patients by studying their impact on the gut microbiota via PacBio full-length 16S rRNA (V1-V9) sequencing.",
+    "study_type": "Other",
+    "published": "2023-10-25 01:03:39",
+    "record_count": 81,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP151147",
+    "bioproject": "PRJEB66075",
+    "title": "Population genomics in the Eurasian blackcap",
+    "abstract": "We re-sequenced genomes of 69 Eurasian blackcaps for population genomics analyses.",
+    "study_type": "Other",
+    "published": "2023-10-01 22:04:19",
+    "record_count": 83,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP147021",
+    "bioproject": "PRJEB61943",
+    "title": "Systematic monitoring of genetic diversity in wild brown trout",
+    "abstract": "Temporal assessment of brown trout inhabiting eight protected lakes in Sweden using whole-genome sequencing data of pooled and individual samples. Samples are taken 4 decades (c. 6 generations) apart.",
+    "study_type": "Other",
+    "published": "2023-10-21 00:14:49",
+    "record_count": 117,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP151552",
+    "bioproject": "PRJEB66498",
+    "title": "Comparison of human plasmacytoid dendritic cells and monocyte-derived dendritic cells",
+    "abstract": "Transcriptome analysis was conducted to investigate the gene expression profiles of pDCs using bulk RNA-sequencing (RNA-seq). Peripheral blood mononuclear cells (PBMCs) from healthy donors (n=3) were stained with lineage markers (CD3, CD14, CD16, CD19, and CD56), and pDCs were identified via flow cytometry (fluorescence-activated cell sorting [FACS]) based on the co-expression of IL-3R (CD123) and BDCA-2 (CD303). mDCs were identified using CD11c and sorted from the same PBMC donor as a control. After sorting, mRNA was extracted from the sorted cells, including mDCs and pDCs. The whole transcriptome profile was analyzed via RNA-seq.",
+    "study_type": "Other",
+    "published": "2023-10-25 01:11:09",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP152374",
+    "bioproject": "PRJEB67337",
+    "title": "First report on the Leptospira species isolated from patients in Slovenia",
+    "abstract": "First report on the Leptospira species isolated from patients in Slovenia. Whole genome sequencing of isolates was performed as well as different methods for identification of Leptospira species.",
+    "study_type": "Other",
+    "published": "2023-10-25 01:42:02",
+    "record_count": 9,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "38004750",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "ERP152611",
+    "bioproject": "PRJEB67584",
+    "title": "Human respiratory syncytial virus (RSV) sequencing",
+    "abstract": "Nanopore sequencing of RSV samples for typing",
+    "study_type": "Other",
+    "published": "2023-10-25 01:03:39",
+    "record_count": 45,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP146795",
+    "bioproject": "PRJEB61713",
+    "title": "Mapping of double-stranded DNA breaks in Trypanosoma brucei using BLISS",
+    "abstract": "RNA-DNA hybrids are epigenetic features of all genomes that intersect with many processes, including transcription, telomere homeostasis and centromere function. Increasing evidence suggests RNA-DNA hybrids can provide two conflicting roles in the maintenance and transmission of genomes: they can be the triggers of DNA damage, leading to genome change, or can aid the DNA repair processes needed to respond to DNA lesions. Evasion of host immunity by African trypanosomes, such as Trypanosoma brucei, relies on targeted recombination of silent Variant Surface Glycoprotein (VSG) genes into a specialised telomeric locus that directs transcription of just one VSG from thousands. How such VSG recombination is targeted and initiated is unclear. Here, we show that a key enzyme of T. brucei homologous recombination, RAD51, interacts with RNA-DNA hybrids. In addition, we show that RNA-DNA hybrids display a genome-wide co-localisation with DNA breaks, and that this relationship is impaired by mutation of RAD51. Finally, we show that RAD51 acts to repair highly abundant, localised DNA breaks at the single transcribed VSG, and that mutation of RAD51 alters RNA-DNA hybrid abundance both around the transcribed VSG and across the silent VSG archive. This work reveals a widespread, generalised role for RNA-DNA hybrids in directing RAD51 activity during recombination and uncovers a specialised application of this interplay during targeted DNA break repair needed for the critical T. brucei immune evasion reaction of antigenic variation.",
+    "study_type": "Other",
+    "published": "2023-10-25 01:42:02",
+    "record_count": 8,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP152713",
+    "bioproject": "PRJEB67700",
+    "title": "Experimental evolution of fused-chromosome S. cerevisiae strains",
+    "abstract": "WGS of evolved S. cerevisiae strains with different chromosome numbers: 16, 8, and 3 chromosomes. Strains were evolved for 150 generations.",
+    "study_type": "Other",
+    "published": "2023-10-25 01:03:39",
+    "record_count": 19,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP152629",
+    "bioproject": "PRJEB67610",
+    "title": "Eupithecia inturbata (maple pug), genomic and transcriptomic data",
+    "abstract": "This project collects the genomic and transcriptomic data generated for Eupithecia inturbata, common name maple pug, to facilitate genome assembly and annotation as part of the Darwin Tree of Life Project (https://www.darwintreeoflife.org/). The data under this project are made available subject to the Darwin Tree of Life Open Data Release Policy (https://www.darwintreeoflife.org/project-resources/).",
+    "study_type": "Other",
+    "published": "2023-10-25 09:55:07",
+    "record_count": 2,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP458111",
+    "bioproject": "PRJNA997461",
+    "title": "Diversity of bat viruses in China",
+    "abstract": "virome Profiling of bats from China by metagenomic reveals extensive infection of diverse viruses.",
+    "study_type": "Other",
+    "published": "2023-09-02 04:08:54",
+    "record_count": 353,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP127042",
+    "bioproject": "PRJEB43112",
+    "title": "RNA-Seq analysis of Bacillus methanolicus MGA3 grown with and without 5-aminovalerate to investigate the transcriptional response of Bacillus methanolicus to 5-aminovalerate.",
+    "abstract": "Bacillus methanolicus MGA3, which has a low tolerance for 5-aminovalerate. To investigate the transcriptional response of Bacillus methanolicus to 5-aminovalerate transcriptomic analysis by differential RNA-Seq in the presence and absence of 5AVA was perfromed. In detail: B. methanolicus cultures were grown in MVcM or MVcMY media containing 200 mM methanol supplemented with and without 50 mM 5AVA, respectively. Cells were harvested in the mid log phase at an OD600 of 0.6 and isolation of total RNA isolation was performed individually for each cultivation condition. Isolated RNA samples from B. methanolicus MGA3 were used in biological triplicates for the cDNA library preparation prior to sequencing. Ribo-Zero rRNA Removal Kit (Bacteria) from Illumina (San Diego, CA, USA) was used to remove the ribosomal RNA molecules from the isolated total RNA. Removal of rRNA was checked by Agilent RNA Pico 6000 kit on Agilent 2100 Bioanalyzer (Agilent Technologies, BÃ¶blingen, Germany). RNA was free of detectable rRNA. Preparation of cDNA libraries were performed according to the manufacturer's instructions of TruSeq stranded mRNA Kit (Illumina, San Diego, USA). Subsequently, each cDNA library was sequenced on a HiSeq1500 (2 x 75nt PE rapid v2) Sequencer system (Illumina, San Diego, USA).",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-03-17 06:10:47",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP122455",
+    "bioproject": "PRJEB38990",
+    "title": "Evaluating the Threat of Antimicrobial Resistance in Agricultural Manures and Slurries",
+    "abstract": "Our vision is to establish a strategic research programme in antimicrobial resistance (AMR) in waste from agricultural farm environments. Our aim is to quantify and mitigate the risks of emergence of resistant pathogens and AMR gene reservoirs associated with mixing antimicrobials with waste matter in these environments.The project is focussed on the University of Nottingham's (UoN) dairy and arable farm, which is typical of high performance UK dairy production, with ~200 high yielding cows. Slurry is stored in a 3M L slurry tank and subsequently spread on surrounding fields. We hypothesise that conditions in the slurry tank environment drive the evolution and acquisition of antimicrobial resistance, and the slurry acts as a reservoir for AMR that is regularly distributed into the environmentThe project consists of six integrated Research Questions:RQ1: What are the levels and nature of antimicrobial and virulence genes present in the slurry tank, their prevalence, carriage, and bacterial hosts?RQ2: What are the chemical agents in the tank? What is their persistence?RQ3: To what extent is resistance maintained after slurry application to soil?RQ4: How can we elicit culturally embedded ways in which scientists and stakeholders know AMR risks? How can we use narrative and visual methods of engaging across these ways of knowing to develop resources for deliberation on AMR risk management?RQ5: To what extent can we reduce resistance profiles through changes in slurry tank composition?RQ6: Can we quantify the risk of emergence of AMR pathogens and what factors are predicted to control this risk best?",
+    "study_type": "Other",
+    "published": "2020-08-23 06:20:59",
+    "record_count": 244,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP116435",
+    "bioproject": "PRJEB33627",
+    "title": "Genomics of pigmentation defect in cultivated gilthead seabream (Sparus aurata)",
+    "abstract": "We applied a whole genome resequencing approach to identify a genomic region affecting a pigmentation defect that occurred in a cultivated S. aurata population. Two equimolar DNA pools were constructed using DNA extracted from 30 normally colored and 21 non-pigmented fish collected from the same broodstock nucleus.",
+    "study_type": "Other",
+    "published": "2020-01-09 05:40:40",
+    "record_count": 9,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP127038",
+    "bioproject": "PRJEB43109",
+    "title": "RNA-seq of Actinosynnema mirum grown in GYM medium compared to growth in TB medium.",
+    "abstract": "Actinosynnema mirum cells were grown in 3 biological replicates and harvested in exponential growth phase either grown in terrific broth (TB) or in glucose-yeast-malt (GYM) medium to analyse the differential gene expression under different grwoth media. A preculture of A. mirum was grown in 20 mL NL148 medium in 100 mL shake flasks for 3 days at 28 Â°C and 180 rpm (2.5 cm shaking diameter). 1 mL of the preculture was transferred to 60 mL terrific broth (TB) or 60 mL glucose-yeast-malt (GYM) medium in 500 mL shake flasks cultivated for 20 h at 28 Â°C and 180 rpm (2.5 cm shaking diameter). Pre and main culture were cultivated in triplicates. 495 ÂµL of cultures was transferred to 96 well plates and 5 ÂµL ritonavir in a final concentration of 0.1 mg mL-1 was added. Samples were incubated at 28 Â°C, 200 rpm for 44 h. Samples were centrifuged at maximum speed for 30 s, the supernatant was removed, and samples were flash frozen in liquid nitrogen. Cells were mechanically homogenized in 1X DNA/RNA Shieldâ¢ using Bead Tubes Type B (Macherey-Nagel, DÃ¼ren, Germany) in a Bead Tube Holder at maximum speed for 20 min. RNA isolation was performed using the Quick-RNA Miniprep Plus (ZYMO research, Freiburg, Germany). An additional in-column DNase I treatment was performed. RNA pellets were eluted in 100 ÂµL DNase/RNase-free water. The purified RNA was quantified with a NanoDrop (Thermo Scientificâ¢, Waltham, USA). RNA quality was checked by Trinean Xpose (Gentbrugge, Belgium) and Agilent RNA Nano 6000 kit on Agilent 2100 Bioanalyzer (Agilent Technologies, BÃ¶blingen, Germany). RNA was stored at -80 Â°C. Total-RNA with an RNA integrity number (RIN) > 9 was used to prepare cDNA libraries. Ribo-Zero rRNA Removal Kit (Bacteria) from Illumina (San Diego, CA, USA) was used to remove the ribosomal RNA molecules from the isolated total RNA. Removal of rRNA was checked by Agilent RNA Pico 6000 kit on Agilent 2100 Bioanalyzer (Agilent Technologies, BÃ¶blingen, Germany). RNA was free of detectable rRNA. Preparation of cDNA libraries were performed according to the manufacturer's instructions of TruSeq stranded mRNA Kit (Illumina, San Diego, USA). Subsequently, each cDNA library was sequenced on a HiSeq1500 (2 x 75nt PE rapid v2) Sequencer system (Illumina, San Diego, USA).",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-03-17 06:10:47",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP111813",
+    "bioproject": "PRJEB29505",
+    "title": "WGS sequencing and Genome Assembly of the 16Gb Onion genome",
+    "abstract": "Onion Genome sequencing and assembly",
+    "study_type": "Other",
+    "published": "2021-03-16 02:24:53",
+    "record_count": 12,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP119410",
+    "bioproject": "PRJEB36247",
+    "title": "Gene expression during bacterivorous growth of a widespread marine heterotrophic flagellate",
+    "abstract": "Phagocytosis is very important in marine ecosystems and is one of the few purely eukaryotic processes with trophic relevance that can be addressed investigated by gene expression. These studies in free-living phagocytizing protists are scarce, in part due to the lack of useful ecological models. A recent protist diversity survey has unveiled that the cultured heterotrophic flagellate Cafeteria roenbergensis is widespread in the global ocean, and this prompted us to design a gene expression study with this species, grown in batch cultures with a cultured flavobacterium. We compared the gene expression between exponential and stationary phases, which were complemented with a starvation by dilution state that appeared between both phases. We showed contrasted functional expression profiles dynamics for each phase and pointed identified 1196 differentially expressed genes, 776 upregulated and 420 downregulated in the exponential phase. Genes highly expressed during the exponential phase were related to the translational machinery, protein remodeling, respiration and phagocytosis, while genes upregulated in the stationary phase were involved in lipid metabolism, cell signaling and cell adhesion.",
+    "study_type": "Other",
+    "published": "2021-03-17 06:10:47",
+    "record_count": 22,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "32920602",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "ERP125421",
+    "bioproject": "PRJEB41618",
+    "title": "The indoor environment - a potent source for intact human-associated anaerobes",
+    "abstract": "People in westernized countries spend most of their time indoors. As interaction and exchange of microbes between the human body and its environment is crucial for a healthy human microbiome, the build environment (BE) might represent a potent source for commensal microbes. Especially anaerobic microbes are of interest, as acquisition routes of oxygen-sensitive microbes such as obligate or facultative anaerobes to the human microbiome are not sufficiently clarified yet. We sampled a total of ten bathroom floors and used propidium monoazide (PMA) to assess the viability of the collected prokaryotes. Quantitative and qualitative analysis revealed that most of the microbial taxa are of human origin, but less than 25% of the prokaryotic signatures originate from intact, and thus potentially living, cells with an apparent survival advantage for aerobic and stress resistant taxa. We could verify the presence of strictly anaerobic taxa - including methanogenic archaea - in PMA-treated samples, indicating a limited, but substantial capability of those taxa to survive in the BE. As methanogens are regarded as highly sensitive to aerobic conditions, oxygen tolerance experiments were performed with human isolates to validate their survival. We could confirm that human-associated methanogens are capable of surviving oxic conditions for at least 6h. In conclusion, we collected strong evidence supporting the notion that obligate anaerobic taxa are capable of surviving in the BE for a limited amount of time and thus, making the BE a potential source for anaerobic human commensals.",
+    "study_type": "Other",
+    "published": "2020-12-18 15:40:03",
+    "record_count": 342,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "29358754",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "28725009",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP385285",
+    "bioproject": "PRJNA856638",
+    "title": "Bacterial communites of warmed arctic soils",
+    "abstract": "In this study we incubated 8 arctic soil types at 0, 5, 10, 15, 20, 25 and 30 C. We sampled the bacterial communities after 100 days (T100) and at respiration equivalent of the soils incubated at 30 C for 14 days (C15).",
+    "study_type": "Other",
+    "published": "2022-07-25 04:17:33",
+    "record_count": 329,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP385284",
+    "bioproject": "PRJNA856635",
+    "title": "Functional analysis across model systems implicates ribosomal proteins in growth and proliferation defects associated with hypoplastic left heart syndrome",
+    "abstract": "Hypoplastic left heart syndrome (HLHS) is the most lethal congenital heart disease (CHD). The pathogenesis of HLHS is poorly understood and due to the likely oligogenic complexity of the disease, definitive HLHS-causing genes have not yet been identified. Postulating that impaired cardiomyocyte proliferation as a likely important contributing mechanism to HLHS pathogenesis, and we conducted a genome-wide siRNA screen to identify genes affecting proliferation of human iPSC-derived cardiomyocytes (hPSC-CMs). This yielded ribosomal protein (RP) genes as the most prominent class of effectors of CM proliferation. In parallel, whole genome sequencing and rare variant filtering of a cohort of 25 HLHS proband-parent trios with poor clinical outcome revealed enrichment of rare variants of RP genes. In addition, in another familial CHD case of HLHS proband we identified a rare, predicted-damaging promoter variant affecting RPS15A that was shared between the proband and a distant relative with CHD. Functional testing with an integrated multi-model system approach reinforced the idea that RP genes are major regulators of cardiac growth and proliferation, thus potentially contributing to hypoplastic phenotype observed in HLHS patients. Cardiac knockdown (KD) of RP genes with promoter or coding variants (RPS15A, RPS17, RPL26L1, RPL39, RPS15) reduced proliferation in generic hPSC-CMs and caused malformed hearts, heart-loss or even lethality in Drosophila. In zebrafish, diminished rps15a function caused reduced CM numbers, heart looping defects, or weakened contractility, while reduced rps17 or rpl39 function caused reduced ventricular size or systolic atrial dysfunction, respectively. Importantly, genetic interactions between RPS15A and core cardiac transcription factors TBX5 in CMs, Drosocross, pannier and tinman in flies, and tbx5 and nkx2-7 (nkx2-5 paralog) in fish, support a specific role for RP genes in heart development. Furthermore, RPS15A KD-induced heart/CM proliferation defects were significantly attenuated by p53 KD in both hPSC-CMs and zebrafish, and by Hippo activation (YAP/yorkie overexpression) in developing fly hearts. Based on these findings, we conclude that RP genes play critical roles in cardiogenesis and constitute an emerging novel class of gene candidates likely involved in HLHS and other CHDs. Overall design: Comparative gene expression profiling analysis of RNA-seq data from human induced pluripotent stem cells (hPSCs) and hPSC-derived cardiomyocytes (hPSC-CMs) and its KD derivatives (siRPL39, siRPS15A).",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-07-14 00:02:09",
+    "record_count": 12,
+    "external_ids": {
+      "GEO": "GSE207658"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "41379537",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP385283",
+    "bioproject": "PRJNA856634",
+    "title": "Bacteria in pumpkin rhizosphere soil",
+    "abstract": "21 soil samples of pumkin",
+    "study_type": "Other",
+    "published": "2022-07-12 04:16:00",
+    "record_count": 21,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP249724",
+    "bioproject": "PRJNA606501",
+    "title": "Subgingival microbiome in periodontitis patients and their children",
+    "abstract": "Characterization of the subgingival microbiome is important for periodontitis comprehension. The early acquisition of oral pathogens since childhood can represent a risk for the development of the periodontal disease. Thus this project aimed to i) understand the subgingival microbiome of affected subjects and ii) analyze how the parents' microbiome can impact the microbiome of their children and how it could impact the oral health of periodontitis patients descendants.",
+    "study_type": "Metagenomics",
+    "published": "2021-04-19 08:52:08",
+    "record_count": 220,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP222763",
+    "bioproject": "PRJNA572587",
+    "title": "Characterization of T cells from the larval zebrafish tail via single-cell RNAseq",
+    "abstract": "We report single-cell RNA sequencing of cells from the Tg(lck:GFP) larval zebrafish tail, to identify cell types expressing the marker and to identify gene candidates related to T cell migration behaviors. We identified 330 putative T cells and 131 putative epithelial cells. Differential expression analysis between the two groups revealed genes related to actin cytoskeleton remodeling associated with the T cells, in addition to canonical T and ubiquitous immune cell markers. Overall design: Single cells (n=461) isolated from FACS of Tg(lck:GFP) Danio rerio (FITC+) were analyzed.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2020-05-14 16:59:12",
+    "record_count": 461,
+    "external_ids": {
+      "GEO": "GSE137770"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "32427565",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP411378",
+    "bioproject": "PRJNA908820",
+    "title": "1000 16S Sequencing Data of Human Vaginal Microorganisms",
+    "abstract": null,
+    "study_type": "Other",
+    "published": "2023-12-30 00:10:11",
+    "record_count": 1000,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP433800",
+    "bioproject": "PRJNA958249",
+    "title": "Genome sequencing of multiple samples of Mycobacterium tuberculosis collected by OCICB TB Portals (Ukraine - Borstel 09-2022)",
+    "abstract": null,
+    "study_type": "Other",
+    "published": "2023-04-21 19:42:46",
+    "record_count": 512,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP430360",
+    "bioproject": "PRJNA950990",
+    "title": "Draft genomes of 17 bacterial isolates from Louisiana sugarcane raw sugar factory juices and biofilms.",
+    "abstract": "We report the draft genomes for 17 bacterial isolates belonging to the genera Gluconobacter, Leuconostoc, and Pantoea that were obtained from Louisiana sugarcane raw sugar factory juice and biofilm samples.",
+    "study_type": "Other",
+    "published": "2023-03-31 18:32:10",
+    "record_count": 17,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP433798",
+    "bioproject": "PRJNA958204",
+    "title": "Maternal blood transcriptome reflects fetal maturation at the end of the organogenesis in cattle.",
+    "abstract": "In cattle, harnessing information from the maternal blood to predict fetal health and development is attractive yet scarcely explored. We hypothesised that variations in fetal growth at the end of the organogenesis period impact on the molecular profile of fetal organs and is reflected in the maternal blood transcriptome. The objectives were to determine the transcriptomic modifications in maternal blood and in fetal liver, gonads, and heart according to fetal weight and to model a molecular signature based on the fetal organs allowing the prediction of fetal weight from the maternal blood transcriptome. In addition to a contemporaneous maternal blood sample, organ samples were collected from 10 male fetuses at day 42 day of gestation for RNA-sequencing. Fetal weight ranged from 1.25 to 1.69 gr (mean 1.44 Â± 0.15 gr). Data were analysed through co-expression cluster analysis to identify biologically relevant genes dynamically changing according to fetal weight in each fetal organ and in maternal blood. Results revealed clusters of genes, the expression of which was positively correlated with fetal weight, and which enriched ontological terms involved in the organ functionality. For the heart, the 1346 co-expressed genes were involved in energy generation and protein synthesis. For the gonads, the 1042 co-expressed genes enriched seminiferous tubule development. The 459 co-expressed genes identified in the liver were associated with lipid synthesis and metabolism. Finally, the cluster of 571 co-expressed genes determined in maternal blood enriched oxidative phosphorylation and thermogenesis. The expression patterns of the common genes between the clusters in each fetal organ and the cluster in maternal blood were employed to construct a predictive regression model of fetal weight. The data from the fetal organs were used to train the model, and the data from the maternal blood were used to test it. The best prediction was achieved when the model was trained with the 35 common genes between heart and maternal blood (root mean square error=0.04, R-square=0.93). In conclusion, linking transcriptomic information from maternal blood with that from the fetal heart unveils maternal blood as a sensor of fetal development. Overall design: We used an asynchronous embryo transfer model to stimulate fetal growth physiologically, as demonstrated in our previous study (PMID: 36739669). Heifers were randomly assigned to one of the two groups: those receiving a Day 7 embryo on Day 7 of the cycle (synchronous; ET_D7, n=23) and those transferred a Day 7 embryo on Day 9 of the cycle (asynchronous; ET_D9, n=33). The synchronisation protocol was started two days earlier for heifers in the ET_D9 group, such that ET was done on the same day for both groups. Blood samples were collected in Tempus Tubes (Thermofisher Scientific, Waltham, MA USA) from pregnant heifers (n=25) on Day 42 of gestation, following which they were slaughtered in a commercial abattoir. The reproductive tract was recovered and held on ice until processing for sample collection, which was done in the first 30 min after slaughter. The pregnant uterine horn was opened along the major curvature to expose and retrieve the fetal membranes. Once the fetus was isolated, the liver, heart and gonads were dissected, placed in individual RNAse-free tubes and snap-frozen in liquid nitrogen. Blood and fetal organ samples were stored at -80 Â°C until processing for RNAseq. Samples corresponding to 10 male fetuses (equally derived from heifers in the ET_D7 and ET_D9 groups) were employed in the current study.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2023-10-06 07:37:28",
+    "record_count": 36,
+    "external_ids": {
+      "GEO": "GSE230294"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37658765",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP395883",
+    "bioproject": "PRJNA877251",
+    "title": "Epigenetic landscape of Human Brains by Single Nucleus DNA Methylation and Chromatin Conformation Profiling - pool130_h1930004_PN",
+    "abstract": "Illustrating the cellular architecture of the human brain is critical to understanding its diverse functions and complex animal behaviors. Single nucleus methylation sequencing was applied to regions of human brains. we identified distinct cell clusters and formed them in a hierarchical taxonomy. These clusters include known primary brain cell types and possible sub-types. We use these data to identify the epigenomic characteristics and to define specific regulatory elements for each cell cluster. Overall design: Apply snmC-seq3 to brain regions to identify epigenomic landcape of the adult human brains",
+    "study_type": "Other",
+    "published": "2023-07-07 02:20:57",
+    "record_count": 2801,
+    "external_ids": {
+      "GEO": "GSE212781"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP108737",
+    "bioproject": "PRJNA381268",
+    "title": "IMPACT OF RESPIRATORY VIRUS INFECTIONS AND BACTERIAL MICROBIOME SHIFTS ON LYMPHOCYTE AND RESPIRATORY FUNCTION IN INFANTS BORN PREMATURELY OR FULL TERM",
+    "abstract": "Public health importance: Babies born preterm, approximately 1 out of every 9 live births in the United States, have significant respiratory morbidity over the first two years of life, exacerbated by respiratory viral infections. Many (<50%) return to pediatricians, emergency rooms and pulmonologists with symptoms of respiratory dysfunction (SRD): intermittent or chronic wheezing, poor growth and an excess of upper and lower respiratory tract infections (LRTI). SRD correlate inversely with gestational age and weight at birth and is more common in those with chronic lung disease of prematurity, yet its incidence and severity varies widely among both the prematurely born and those born at term. There is evidence from clinical studies and animal models that risks of LRTI and recurrent wheezing is influenced by gut and respiratory flora and by T cell responses to infection. Information gained from this study will be used to identify characteristics, risk factors... (for more see dbGaP study page.)",
+    "study_type": "Other",
+    "published": "2017-09-20 15:54:12",
+    "record_count": 2938,
+    "external_ids": {
+      "dbGaP": "phs001347"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP407293",
+    "bioproject": "PRJNA900292",
+    "title": "Loss of p53 enhances the tumor-initiating potential and drug resistance of clonogenic multiple myeloma cells",
+    "abstract": "To understand the molecular and cellular impact of p53 loss on gene expression profile of multiple myeloma cells, we generated isogenic pairs of TP53 wild-type and knockout cells by CRISPR/Cas9. We then performed RNAseq analysis using data obtained from RNA-seq of three p53-KO clones and one scrambled control cells. Overall design: Comparative gene expression profiling analysis of RNA-seq data for MM.1S CRISPR p53-KO cells (A7, B6, B16 clones) and its non-targeted scrambled control (Scr) cells.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-11-15 00:00:34",
+    "record_count": 4,
+    "external_ids": {
+      "GEO": "GSE217769"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37042949",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP407290",
+    "bioproject": "PRJNA898833",
+    "title": "Malus hupehensis Raw sequence reads",
+    "abstract": "normal RNA-seq of Malus hupehensis Rehd",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2022-11-10 20:19:36",
+    "record_count": 18,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP132255",
+    "bioproject": "PRJEB47935",
+    "title": "Effects of a synbiotic infant formula intervention in early life gut microbiota profiles.",
+    "abstract": "The goal of the intervention study including 540 infants was to investigate the effects of a synbiotic intervention formula (IF) containing probiotic Limosilactobacillus fermentum CECT5716 (L. fermentum CECT5716) and prebiotic galactooligosaccharides (GOS) on the fecal microbiota. Microbiota profiles depended on age, with major differences in diversity and composition at the three time points studied: 4, 12, and 24 months.",
+    "study_type": "Other",
+    "published": "2022-04-11 22:26:51",
+    "record_count": 1352,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP147907",
+    "bioproject": "PRJEB62788",
+    "title": "Genomic vulnerability of kokanee salmon under climate change",
+    "abstract": "Climate change has already impacted many species, with the effects expected to worsen in the future. The potential of species to adapt to climate change has been estimated various ways, including based on levels of standing genetic variation, presence of potentially beneficial alleles, and/or severity of environmental change. Kokanee salmon, the non-migratory ecotype of sockeye salmon (Oncorhynchus nerka) is culturally and economically important, and has already been impacted by the effects of climate change. To assess its climate vulnerability moving forward, we integrated analyses of standing genetic variation, genotype-environment associations and climate modeling based on sequence and structural genomic variation from 224 whole genomes sampled from 22 lakes from British Columbia and Yukon (Canada). We found that extreme temperatures, particularly warmest, had the most pervasive signature of selection in the genome and were the strongest predictors of levels of standing variation and of putatively adaptive genomic variation, both sequence and structural. Genomic offset estimates, a measure of climate vulnerability, were significantly correlated with higher increases in extreme warm temperatures, further highlighting the risk of summer heat waves that are predicted to increase in frequency in the future. Levels of standing genetic variation, an important metric for population viability and resilience, were not correlated with genomic offset. Nonetheless, our combined approach showed the importance of integrating different sources of information and genomic data to formulate more comprehensive and accurate predictions on the vulnerability of populations and species to future climate change.",
+    "study_type": "Other",
+    "published": "2023-10-12 08:04:56",
+    "record_count": 264,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP146903",
+    "bioproject": "PRJEB61821",
+    "title": "CUT&Tag analysis of H3K9Me3 binding quiescent and activated primary mouse hepatic stellate cells",
+    "abstract": "Contrasting H3K9Me3 binding site number and localisation between activated and quiescent hepatic stellate cells to identify regulation of gene repression.",
+    "study_type": "Other",
+    "published": "2023-10-12 07:25:19",
+    "record_count": 4,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP142238",
+    "bioproject": "PRJEB57257",
+    "title": "Wild-type Sprague Dawley Rats sequencing data",
+    "abstract": "To unveil the rat lung microbiota for advancing human microbiome research and its translation. Six wild-type Sprague Dawley (SD) rat lung, heart, and thymus tissues, including 3 females and 3 males, were investigated by RNA-seq. Sequencing data were mapped to the rat reference genome (Rnor6.0) with STAR (v2.7.9a) aligner. Unmapped RNA-seq data was subjected to microbial taxonomic classification by Kraken (v2.0.8-beta). Uniquely mapped reads were counted using HTSeq (v0.13.5). Pasteurellales and Burkholderiales were among the most abundant taxa in healthy lungs. No significant species-level alpha and beta diversity were found between female and male rats. More in-depth integration with other datasets helped identify a number of interesting microbial targets for future investigations. The associated publication can be found in Lab Animal doi: 10.1038/s41684-023-01322-x",
+    "study_type": "Other",
+    "published": "2022-11-15 03:45:18",
+    "record_count": 17,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP465919",
+    "bioproject": "PRJNA1027064",
+    "title": "Bursaphelenchus xylophilus Raw sequence reads",
+    "abstract": "In order to search for effector secreted by Bursaphelenchus xylophilus after infecting Pinus massoniana.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2023-10-12 08:07:21",
+    "record_count": 4,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP268795",
+    "bioproject": "PRJNA641796",
+    "title": "Intestinal microbiome - Australian Aqucultured abalone",
+    "abstract": "This project aimed to characterise the microbiome of Australian aquaculture abalone",
+    "study_type": "Other",
+    "published": "2020-09-28 00:02:00",
+    "record_count": 270,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP308475",
+    "bioproject": "PRJNA705099",
+    "title": "Gut microbial divergence between three hadal amphipod species from the isolated hadal trenches",
+    "abstract": "These findings pointed to the enrichment of particular functional pathways in the gut microbiota of the different isolated Trench amphipods, and given the different carbon input information and geological characters of the isolated hadal trenches, which suggest that the differences in the community structure might be due to several selective factors, such as habitat environments, microbial interactions, and host genetic background.",
+    "study_type": "Other",
+    "published": "2021-10-09 03:16:20",
+    "record_count": 56,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP308473",
+    "bioproject": "PRJNA705203",
+    "title": "Lentiviral globin gene therapy with reduced intensity conditioning in adults with severe beta-thalassemia",
+    "abstract": null,
+    "study_type": "Other",
+    "published": "2021-02-27 10:47:34",
+    "record_count": 208,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP226486",
+    "bioproject": "PRJNA574003",
+    "title": "feces metagenome Raw sequence reads",
+    "abstract": "analysis discrete gut microbiota composition in neonates born after assisted reproductive technology",
+    "study_type": "Other",
+    "published": "2022-01-01 03:03:20",
+    "record_count": 468,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP226485",
+    "bioproject": "PRJNA578576",
+    "title": "Arabidopsis requires a stearoyl-ACP desaturase for proper interaction with beneficial rhizobacteria",
+    "abstract": "To explore the role of Arabidopsis GP1 in plant interactions with microbes, we investigated the rhizosphere and root endosphere microbiomes of gp1-1, wt, and the PGP1::GP1-FLAG complementation line. Because the wt plant is in the Col-0 background and contains a 35S::SUC2 transgene that encodes a sucrose transporter, the microbiomes associated with Col-0 were examined in parallel so as to further assess potential impacts of 35S::SUC2 on the root microbiome. The bacteria communities were profiled by 16s rDNA sequencing of DNA samples from the three compartments of bulk soil, rhizosphere, and endosphere.",
+    "study_type": "Other",
+    "published": "2020-11-16 00:00:14",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP226481",
+    "bioproject": "PRJNA578702",
+    "title": "RNA-seq of prostate cancer cell lines with acquired resistance to AKT inhibitors GDC-0068 (ATP competitive) or MK206 (allosteric)",
+    "abstract": "Goal: Study resistance mechanisms to ATP-competitive vs. allosteric AKT inhibitors, in prostate cancer Methods: RNA-sequencing Results: Resistance to the ATP-competitive inhibitor GDC-0068 was driven by compensatory activity of parallel signaling pathways Overall design: Duplicate results of RNA-seq of the LNCaP prostate cell line (untreated or treated with either AKT inhibitor) and derived clones with acquired resistance to either AKT inhibitor",
+    "study_type": "Transcriptome Analysis",
+    "published": "2020-01-25 11:06:29",
+    "record_count": 28,
+    "external_ids": {
+      "GEO": "GSE139178"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "35440108",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP242187",
+    "bioproject": "PRJNA590944",
+    "title": "Escherichia, Shigella, Salmonella, Listeria, Campylobacter, Vibrio Raw sequence reads",
+    "abstract": "Sequences associated with validation of sequencing reagents and platforms",
+    "study_type": "Other",
+    "published": "2020-01-16 08:16:12",
+    "record_count": 1631,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244514",
+    "bioproject": "PRJNA569966",
+    "title": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada - Uncultured microbe JGI_GLakes.ER15M.SYBR.02.I5 metagenome",
+    "abstract": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada",
+    "study_type": "Metagenomics",
+    "published": "2020-01-24 08:26:15",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244513",
+    "bioproject": "PRJNA569970",
+    "title": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada - Uncultured microbe JGI_GLakes.ER15M.SYBR.02.E6 metagenome",
+    "abstract": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada",
+    "study_type": "Metagenomics",
+    "published": "2020-01-24 08:26:15",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244512",
+    "bioproject": "PRJNA569969",
+    "title": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada - Uncultured microbe JGI_GLakes.ER15M.SYBR.02.D6 metagenome",
+    "abstract": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada",
+    "study_type": "Metagenomics",
+    "published": "2020-01-24 08:26:14",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244511",
+    "bioproject": "PRJNA569967",
+    "title": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada - Uncultured microbe JGI_GLakes.ER15M.SYBR.02.K5 metagenome",
+    "abstract": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada",
+    "study_type": "Metagenomics",
+    "published": "2020-01-24 08:26:14",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244510",
+    "bioproject": "PRJNA569965",
+    "title": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada - Uncultured microbe JGI_GLakes.ER15M.SYBR.02.H5 metagenome",
+    "abstract": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada",
+    "study_type": "Metagenomics",
+    "published": "2020-01-24 08:26:14",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244509",
+    "bioproject": "PRJNA569968",
+    "title": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada - Uncultured microbe JGI_GLakes.ER15M.SYBR.02.L5 metagenome",
+    "abstract": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada",
+    "study_type": "Metagenomics",
+    "published": "2020-01-24 08:26:14",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244508",
+    "bioproject": "PRJNA569983",
+    "title": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada - Uncultured microbe JGI_GLakes.ER15M.SYBR.02.F5 metagenome",
+    "abstract": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada",
+    "study_type": "Metagenomics",
+    "published": "2020-01-24 07:35:13",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244507",
+    "bioproject": "PRJNA569982",
+    "title": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada - Uncultured microbe JGI_GLakes.ER15M.SYBR.02.C5 metagenome",
+    "abstract": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada",
+    "study_type": "Metagenomics",
+    "published": "2020-01-24 07:35:13",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP244506",
+    "bioproject": "PRJNA569981",
+    "title": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada - Uncultured microbe JGI_GLakes.ER15M.SYBR.02.M4 metagenome",
+    "abstract": "Sorted cell/s from fresh water in Lake Erie, Ontario, Canada",
+    "study_type": "Metagenomics",
+    "published": "2020-01-24 07:16:19",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  }
+]

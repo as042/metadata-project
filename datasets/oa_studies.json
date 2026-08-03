@@ -1,0 +1,664 @@
+[
+  {
+    "accession": "SRP386081",
+    "bioproject": "PRJNA824309",
+    "title": "Leishmania amazonensis strain:PH8 | isolate:Promastigote cultures Genome sequencing and assembly",
+    "abstract": "Leishmania amazonensis is one of the etiological agents of cutaneous leishmaniasis, a disease that has 21,000 cases/year in Brazil. Different parasite molecules have been studied, as they play a crucial role in establishing the infection in the mammalian host. To understand the role of these virulence factors, it is important to obtain a fully assembled and fully annotated genome of different parasite strains. Once you have your genome complete, you can perform gene manipulation using the highly efficient CRISPR-Cas9 technology. Despite having been described in 2013, the genome of L. amazonensis has not yet been fully assembled and annotated. Thus, our main objective was to obtain and characterize the complete genome sequence of the PH8 strain of L. amazonensis, perform in silico analyzes of the main virulence factors involved in the parasite-host interaction and test CRISPR-Cas9 gene editing protocols.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2022-08-17 09:07:14",
+    "record_count": 2,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37263313",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP318511",
+    "bioproject": "PRJNA726928",
+    "title": "Candida theae strain:CBS 12239 Genome sequencing and assembly",
+    "abstract": "Candida theae Genome sequencing and assembly",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2022-04-19 17:51:09",
+    "record_count": 2,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "35438177",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP400953",
+    "bioproject": "PRJNA887026",
+    "title": "Chromatin accessibility and pioneer factor FOXA1 restrict glucocorticoid receptor action in prostate cancer (ChIP-Seq)",
+    "abstract": "Treatment of prostate cancer relies predominantly on the inhibition of androgen receptor (AR) signaling. Despite the initial effectiveness of the AR-targeted therapies, the cancer often develops resistance to the AR blockade. One mechanism of the resistance is glucocorticoid receptor (GR)-mediated replacement of AR. Nevertheless, the mechanistic ways and means how the GR-mediated antiandrogen resistance occurs has remained elusive. Here, we have discovered several crucial features of GR action in prostate cancer cells through genome-wide techniques. We detected that the replacement of AR by GR in antiandrogen-exposed prostate cancer cells occurs almost exclusively at pre-accessible chromatin sites displaying FOXA1 occupancy. Counterintuitively to the classical pioneer factor model, silencing of FOXA1 potentiated the chromatin binding and transcriptional activity of GR. This was attributed to FOXA1-mediated repression of the NR3C1 (gene encoding GR) expression via the corepressor TLE3. In comparison to FOXA1, inhibition of coregulator activity efficiently restricted GR-mediated gene regulation and cell proliferation. Overall, we identified chromatin pre-accessibility and FOXA1-mediated repression as important regulators of GR action in prostate cancer, pointing out new avenues to oppose steroid receptor-mediated drug resistance. Overall design: Examination of AR, GR, and FOXA1 chromatin binding by ChIP-seq from VCaP and 22Rv1 prostate cancer cells grown in the presence or absence of ENZ. Examination of H3K27ac chromatin occurrence by ChIP-seq from 22Rv1 prostate cancer cells grown in the presence or absence of ENZ. Examination of GR and TLE3 chromatin binding before and after FOXA1 depletion by ChIP-seq from VCaP prostate cancer cells grown in the presence or absence of ENZ.  Examination of GR chromatin binding before and after AR-V7 depletion by ChIP-seq from 22Rv1 prostate cancer cells grown in the presence or absence of ENZ. All sequencing was done with Illumina NextSeq 500 or Illumine NextSeq 2000.",
+    "study_type": "Other",
+    "published": "2023-11-07 11:44:26",
+    "record_count": 97,
+    "external_ids": {
+      "GEO": "GSE214754"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "38015476",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      },
+      {
+        "id": "40456604",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP215190",
+    "bioproject": "PRJNA555187",
+    "title": "Construction of Human Primary Epidermal Organoids and Modeling of Dermatophyte Infection",
+    "abstract": "Despite the strong need for the large-scale generation of human epidermal cells for cell therapy of extensive and severe skin injury, tissue-engineered skin construction and dermatological investigation, the effectiveness of current culture methods is limited and have yet to meet the huge demands sufficiently. Here, we report the establishment of a simple and robust 3D culture system using chemical defined, serum-free medium supplemented with small molecules and growth factors, tailored for human epidermal organoids generation and expansion. The conditions allowed 10,000-fold expansion of the primary epidermal cells within 6 weeks, with the cell architecture and gene expression preserved. We further noticed that only Integrin a6-positive basal stem cells freshly isolated from human epidermis could form expandable epidermal organoids. The epidermal cells inside of the organoids also have the potential to reconstruct multi-layered human epidermis equivalents under classical air-liquid interface condition. Remarkably, the epidermal organoids enable to model the anthropophilic and epidermis-restricted Trichophyton Rubrum infection. This model faithfully mimics and reflects the clinical pathological reactions of reinforced physical barrier by promoting keratinocytes differentiation and accelerated formation of the stratum corneum for adaptation and resistance to infection. Furthermore, the infection model also suggested that constraining host IL-1 signaling may underline the high degree of adaptation of Trichophyton Rubrum to human skin, and the tendency to be chronic and recurrent infection. Thus, human epidermal organoids present a powerful platform for modeling human dermatology, skin tissue engineering and cell therapy. Overall design: Evaluation of whole transcriptome of cells in 2 groups, each of them include 2 replication",
+    "study_type": "Transcriptome Analysis",
+    "published": "2020-03-02 17:21:05",
+    "record_count": 4,
+    "external_ids": {
+      "GEO": "GSE134403"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "33414472",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP215416",
+    "bioproject": "PRJNA555411",
+    "title": "Hippocampal gene expression profiling in mice treated with stigmasterol",
+    "abstract": "Anxiety and stress-related conditions represent a significant health burden in modern society. Unfortunately, most of the drugs currently used in the clinic modulate neurotransmission and are prone to side effects, limiting their long-term use. We used bioinformatics screening to find small molecules mimicking the transcriptional profile recently reported in hippocampi of importin a5 mutant anxiolytic mice, identifying the plant sterol Ã-sitosterol as a top candidate. Behavioral analyses confirmed anxiolytic properties of Ã-sitosterol, but did not show anxiolytic activity for stigmasterol, a related plant sterol. The present RNA-seq experiment characterizes the hippocampal transcriptome in mice 1 hr and 6 hrs after after intraperitoneal injection of 100 mg/kg stigmasterol or vehicle. Overall design: RNA-seq performed on: 2 treatment groups (stigmasterol; vehicle), 2 time points per treatment (1hr; 6hrs), 3 animals per each group and replicate",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-05-19 18:24:19",
+    "record_count": 12,
+    "external_ids": {
+      "GEO": "GSE134460"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34095883",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP447402",
+    "bioproject": "PRJNA991510",
+    "title": "Microbial communities in sediment core GS13-CC2 on the west flank of the central Mohns Ridge",
+    "abstract": "This project studies the archaeal and bacterial communities in 24 selected sediment layers in a 21-m long core (GS13-CC2) retrieved from the west flank of the central Mohns Ridge. The extracted DNA were amplified using universal primers targeting the 16S rRNA genes of both archaeal and bacterial domains, and the libraries were sequenced using the IonTorrent platform.",
+    "study_type": "Other",
+    "published": "2023-07-05 11:42:57",
+    "record_count": 24,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "10.1128/aem.00800-23",
+        "type": "eDOI",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP372334",
+    "bioproject": "PRJNA832259",
+    "title": "RNAseq of livers from High Fat Diet and Low Fat Diet fed mice, sampled every 4 hours over one full cycle, living in either short light, long light, or equal light photoperiods",
+    "abstract": "RNAseq of livers from High Fat Diet and Low Fat Diet fed mice, sampled every 4 hours over one full cycle, living in either short light, long light, or equal light photoperiods Overall design: RNAseq of livers from High Fat Diet and Low Fat Diet fed mice, sampled every 4 hours over one full cycle, living in either short light, long light, or equal light photoperiods",
+    "study_type": "Transcriptome Analysis",
+    "published": "2023-09-10 00:51:58",
+    "record_count": 123,
+    "external_ids": {
+      "GEO": "GSE201584"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37689069",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP372339",
+    "bioproject": "PRJNA832269",
+    "title": "An efficacious and safe rescue of GM3 synthase deficiency in mice by spatially regulated AAV-mediated ST3GAL5 delivery",
+    "abstract": "The first-generation rAAV-ST3GAL5 replacement vector employing a ubiquitous promoter led to hepatic injury and death caused by high off-target ST3GAL5 expression when administered systemically. In contract, a seconed-geneeration vector optimized for CNS-restricted expression of ST3GAL5 eliminated liver toxicity while preserving neurotherapeutic effects. Overall design: Comparative gene expression profiling analysis of RNA-seq data for wildtype mouse livers treated with PBS, or AAV9.empty, or AAV9.CB.EGFP, or AAV9.CB.hST3GAL5, or AAV9.CB.hST3GAL5_E332K or AAV9.Syn1.hST3GAL5.miR122BS vectors",
+    "study_type": "Transcriptome Analysis",
+    "published": "2023-01-01 00:05:56",
+    "record_count": 22,
+    "external_ids": {
+      "GEO": "GSE201587"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37014712",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP346022",
+    "bioproject": "PRJNA780310",
+    "title": "Multiplex genomic recording of enhancer and  signal transduction activity in mammalian cells",
+    "abstract": "Sequencing and processed data related to ENGRAM",
+    "study_type": "Other",
+    "published": "2023-12-02 00:00:09",
+    "record_count": 1784,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "39020177",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP094905",
+    "bioproject": "PRJNA356989",
+    "title": "Whole genome sequences of Juglandaceae species",
+    "abstract": null,
+    "study_type": "Other",
+    "published": "2017-12-18 11:43:33",
+    "record_count": 1800,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "29178135",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      },
+      {
+        "id": "10.1093/molbev/msz112",
+        "type": "eDOI",
+        "accessibility_type": null
+      },
+      {
+        "id": "34687315",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "10.1093/molbev/msad121",
+        "type": "eDOI",
+        "accessibility_type": null
+      },
+      {
+        "id": "37325551",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP331936",
+    "bioproject": "PRJNA753511",
+    "title": "The NF?B pathway promotes endocrine therapy tolerance through activation of integrated stress response in ER positive breast cancer",
+    "abstract": "While estrogen receptor positive breast tumors generally respond well to endocrine therapy (ET), up to 40% of patients will experience relapse, either while on endocrine therapy or after ET is completed. We have previously shown that the selective pressure of tamoxifen activates the pro-survival NFkB pathway in patient tumors, breast cancer cell lines, and breast cancer xenograft tumors, and that this activation allows for survival of a population of ET-tolerant cells, which can contribute to relapse after ET withdrawal. Here, we utilized single cell RNA-sequencing to characterize survival pathways in NFkB+, ET-tolerant cells and identified activation of the integrated stress response as a critical survival mechanism. Moreover, we found key players in this pathway are regulated by ET in patient derived organoids. In addition, we developed an ET-tolerant gene signature that can be found in metastatic cell populations and that predicts poor outcome to ET. Our findings suggest that co-targeting of ER and key players in the integrated stress response may be a viable therapeutic strategy to eliminate cells that survive the selective pressure of ET. Overall design: scRNA-seq (OneCellBio)",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-03-18 13:06:13",
+    "record_count": 3,
+    "external_ids": {
+      "GEO": "GSE181812"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "35264224",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP309200",
+    "bioproject": "PRJNA705737",
+    "title": "Agave amaniensis Raw sequence reads",
+    "abstract": "chloroplast assembly",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2021-03-03 23:58:26",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "10.1080/23802359.2022.2109440",
+        "type": "eDOI",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP307481",
+    "bioproject": "PRJNA703772",
+    "title": "Genome Sequencing of Mangrove trees",
+    "abstract": "Epigenome and Transcriptome study of Bruguiera gymnorhiza",
+    "study_type": "Other",
+    "published": "2021-11-17 21:20:14",
+    "record_count": 38,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34532854",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP309197",
+    "bioproject": "PRJNA706474",
+    "title": "Dosage-dependent differential transcriptomic changes in the prefrontal cortex of heterozygous and homozygous Shank2-mutant mice",
+    "abstract": "Shank2 is an abundant postsynaptic scaffolding protein known to regulate excitatory synaptic assembly and function and is implicated in autism spectrum disorders (ASD). Whereas patient Shank2 mutations in autistic individuals are heterozygous, Shank2 functions studied in mice have mainly relied on the results from homozygous mutant mice, largely because of relatively strong synaptic and behavioral phenotypes. Moreover, although synaptic changes at juvenile and adult Shank2-mutant mice seem to be largely similar, it remains unclear whether there are any age-dependent changes across these stages at the molecular level. To address these questions, we attempted RNA-Seq analyses of the transcriptomes in the prefrontal cortex of both heterozygous and homozygous Shank2-mutant mice lacking exons 6 and 7 at juvenile and adult stages. The results indicate that heterozygous, but not homozygous, juvenile Shank2-mutant mice show strong transcriptomic changes that promote excitatory synaptic transmission and suppress ASD-related gene expressions. In contrast, adult Shank2-mutant mice show largely similar and dosage-dependent transcriptomic changes. Overall design: Transcriptome analysis of Shank2 heterozygote and homozygous mutant and wild-type mice at ages of 3 week and 12 week",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-05-27 19:11:12",
+    "record_count": 27,
+    "external_ids": {
+      "GEO": "GSE168211"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34177464",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP307693",
+    "bioproject": "PRJNA704268",
+    "title": "T follicular helper 17 (Tfh17) cells are superior for immunological memory maintenance",
+    "abstract": "A defining feature of successful vaccination is the ability to induce long-lived antigen-specific memory cells. T follicular helper (Tfh) cells specialize in providing help to B cells in mounting protective humoral immunity in infection and after vaccination. Memory Tfh cells that retain the CXCR5 expression can confer protection through enhancing humoral response upon antigen re-exposure but how they are maintained is poorly understood. CXCR5+ memory Tfh cells in human blood are divided into Tfh1, Tfh2 and Tfh17 cells by the expression of chemokine receptors CXCR3 and CCR6 associated with Th1 and Th17 respectively. Here, we developed a new method to induce Tfh1, Tfh2 and Tfh17-like (iTfh1, iTfh2 and iTfh17) mouse cells in vitro. Although all three iTfh subsets efficiently support antibody responses in recipient mice with immediate immunization, iTfh17 cells are superior to iTfh1 and iTfh2 cells in supporting antibody response to a later immunization after extended resting in vivo to mimic memory maintenance. Notably, the counterpart human Tfh17 cells are selectively enriched in CCR7+ central memory Tfh cells with survival and proliferative advantages. Furthermore, the analysis of multiple human cohorts that received different vaccines for HBV, influenza virus, tetanus toxin or measles revealed that vaccine-specific Tfh17 cells outcompete Tfh1 or Tfh2 cells for the persistence in memory phase. Therefore, the complementary mouse and human results showing the advantage of Tfh17 cells in maintenance and memory function supports the notion that Tfh17-induced immunization might be preferable in vaccine development to confer long-term protection. Overall design: NaÃ¯ve, TCM, TEM, TfhCM, TfhEM CD4 subsets were FACS purified from 2 healthy blood donors to perform total RNA extraction and RNA-Seq",
+    "study_type": "Transcriptome Analysis",
+    "published": "2023-01-20 15:56:21",
+    "record_count": 10,
+    "external_ids": {
+      "GEO": "GSE167309"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36655976",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP307689",
+    "bioproject": "PRJNA704270",
+    "title": "Multimeric nanobodies from camelid mice and llamas neutralize SARS-CoV-2 variants",
+    "abstract": "Since the start of the coronavirus disease-2019 (COVID-19) pandemic, severe acute respiratory syndrome coronavirus-2 (SARS-CoV-2) has caused more than 2 million deaths worldwide. Many vaccines have been deployed to date; however, the continual evolution of the viral receptor binding domain (RBD) has recently challenged their efficacy. In particular, SARS-CoV-2 variants originating in South Africa (B.1.351) and the U.K. (B.1.1.7) have reduced plasma neutralization activity and crippled antibody cocktails that received emergency use authorization1-3. Whereas vaccines can be updated periodically to account for emerging variants, complementary strategies are urgently needed to overcome viral escape. One potential alternative are camelid VHHs (also known as nanobodies), which can access conserved epitopes often hidden to conventional antibodies4-6. We here isolate anti-RBD nanobodies from llamas and mice engineered to produce VHHs from alpacas, dromedaries and camels. Through neutralization assays and cryo-electron microscopy we identify two ânanomouseâ VHHs that circumvent RBD antigenic drift by recognizing a domain conserved in coronaviruses, away from the ACE2 binding motif. Conversely, llama nanobodies recognize the RBD-ACE2 interphase and as monomers they are ineffective against E484K or N501Y substitutions. Notably, as homotrimers those same VHHs neutralize RBD variants with ultrahigh (pM) affinity, rivaling the most potent antibodies produced to date against SARS-CoV-2. We conclude that multivalent nanobodies can avert SARS-CoV-2 escape mutants and thus they represent promising tools to prevent COVID-19 mortality when vaccines are compromised. Overall design: VHH gene sequence from llamas and camelid mice",
+    "study_type": "Other",
+    "published": "2021-05-18 17:11:15",
+    "record_count": 11,
+    "external_ids": {
+      "GEO": "GSE167310"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34098567",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP217713",
+    "bioproject": "PRJNA559157",
+    "title": "Epigenomic Landscape of Mouse Brain by Single Nucleus Methylation Sequencing [CEMBA190212_9J]",
+    "abstract": "Illustrating the cellular architecture of the mammalian brain is critical to understanding its diverse functions and complex animal behaviors. With support from NIMH and NINDS as part of the BRAIN Initiative Cell Census Network (BICCN), the Center for Epigenomics of the Mouse Brain Atlas (CEMBA) applied single nucleus methylation sequencing in 118 brain funtional regions across the whole adult male P56 C57BL/6J mouse brain. In each major brain regions, we identified distinct cell clusters and formed them in a hierarchical taxonomy. These clusters include known primary brain cell types and possible sub-types. We use these data to identify the epigenomic characteristics and to define specific regulatory elements for each cell cluster. We integrate the single cell methylome with single cell gene expression and chromatin accessibility profiles from the same brain region to further identify potential enhancers and their corresponding genes for several neuronal cell types. By brain region spacial comparisons, we found spatial specificity among excitatory neuronal clusters within the same cortical layer. We identify brain-region-specific transcription factors that may regulate cortical region development of excitatory neurons. These data define the landscape of cell type and spatial heterogeneity in the mouse brain and the underlining regulatory epigenomic basis. Overall design: Apply snmC-seq2 to 118 brain functional regions to identify epigenomic landcape of the adult mouse brain, this subseries consists of one single nucleus methylation sequencing experiment of brain region (DG).",
+    "study_type": "Other",
+    "published": "2020-10-02 17:45:48",
+    "record_count": 1385,
+    "external_ids": {
+      "GEO": "GSE135484"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "34616061",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP372756",
+    "bioproject": "PRJNA833140",
+    "title": "Genome-Wide CRISPR Screen Identifies Pharmacogenomic Determinants of Blinatumomab Resistance in Acute Lymphoblastic Leukemia [RNA-seq]",
+    "abstract": "Blinatumomab is an efficacious immunotherapeutic agent in B-cell acute lymphoblastic leukemia (ALL). However, pharmacogenomic basis of leukemia response to blinatumomab is unclear. Using genome-wide CRISPR, we comprehensively identified leukemia intrinsic factors of blinatumomab sensitivity, i.e., the loss of CD58 as a top driver for resistance, in addition to CD19. CD58 expression varied across 20 ALL moleuclar subtypes, with marked downregulation linked to PAX5 P80R mutation in leukemia. Genome editing confirmed the effects of this mutation on CD58 expression and blinatumomab sensitivity in B-ALL, with validation in patient leukemic blasts. We described a PAX5-driven enhancer at the CD58 locus, which was disrupted by PAX5 P80R. Without CD58 in B-ALL, blinatumomab-induced T cell activation was abolished with transcriptomic/ epigenomic reprogramming. Finally, we screened 1,639 transcription factor genes to systematically identify regulators of CD58/CD19 expression. In conclusion, we identified novel genetic mechanisms of blinatumomab resistance in B-ALL, suggesting strategies for genomics-guided treatment individualization. Overall design: Total RNA was purified from human pan T cells that were incubated with leukemia cells (Parental, CD58 knock out, or CD19 knock out Nalm6 cells) with or without blinatumomab treatment by using Qiagen Rneasy Mini Kit and subsquently used for RNA-sequencing.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-12-21 10:01:26",
+    "record_count": 12,
+    "external_ids": {
+      "GEO": "GSE201831"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36516256",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP255181",
+    "bioproject": "PRJNA622986",
+    "title": "Systematic analysis of imprinting defects in female and male mouse iPSCs",
+    "abstract": "Reprogramming of somatic cells into Induced Pluripotent Stem Cells (iPSCs) provided a major leap towards more personalized cellular models for disease modelling and offers great prospects for regenerative medicine. Despite their considerable success, we still lack the ability to control the state of iPSCs fully, especially at the epigenetic level. This can be appreciated at chromosomal regions regulated by genomic imprinting which provides a good read-out for epigenetic fidelity in iPSCs. Indeed, imprinting defects have already been reported in both mouse and human iPSCs. However, the extent, nature, causes and consequences of these defects still remain to be analysed in a systematic manner. To fill this gap in knowledge, we used a controlled secondary reprogramming system whereby the donor mouse embryonic fibroblasts (MEFs) contain a doxycycline (DOX)-inducible Yamanaka cassette and also Single Nucleotide Polymorphisms (SNPs) to distinguish between the two parental alleles. Several female and male isogenic mouse iPSCs (miPSCs) were obtained using independent culture conditions (defined versus serum) and screened by allelic-specific IMPLICON, a targeted next-generation method to measure DNA methylation at imprinted regions with unprecedented genomic coverage of 1000-fold. Our results showed that imprinting defects are remarkably common in miPSCs. Interestingly, we found important differences in gender responses to culture conditions. In particular, female iPSCs exhibit widespread hypomethylation defects regardless of culture conditions, while male miPSCs show tendency for hypomethylation defects under defined conditions, and hypermethylation defects under serum conditions in particular loci. As expected, methylation defects at imprinted regions resulted in dysregulation of monoallelic expression of imprinted genes. Our results are of utmost importance to devise future reprogramming strategies to generate epigenetic error-free iPSCs Overall design: RNA profiles of parental MEFs, female and male miPSCs, and mESCs were generated by deep sequencing, in triplicates, using Illumina HiSeq platform. Methylation profile of specific genomic regions in female and male miPSCs generated in two different culture conditions, parental MEFs and mESCs, using Illumina MiSeq platform.",
+    "study_type": "Other",
+    "published": "2022-07-18 00:47:12",
+    "record_count": 100,
+    "external_ids": {
+      "GEO": "GSE148067"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36114205",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP358245",
+    "bioproject": "PRJNA803355",
+    "title": "An epigenetic barrier sets the timing of human neuronal maturation",
+    "abstract": "A challenge for understanding the development of brain circuits is to identify the factors that instruct neurons to accomplish each developmental step at the appropriate stage. Neuronal maturation follows an intrinsic species-specific developmental pace that is extremely protracted in humans and that is retained during human pluripotent stem cells (hPSCs) differentiations. Using a novel platform that synchronized the generation of cortical neurons from hPSC, we established morphological, functional, and molecular roadmaps of maturation. We found that the temporal unfolding of maturation programs proceeds gradually and is limited by the retention of complex epigenetic signatures. Loss-of-function of multiple such epigenetic factors at the neuron stage triggered precocious molecular and functional maturation. Remarkably, transient pharmacological manipulation of a subset of epigenetic factors, including EZH2, EHMT1/2 and DOT1L, at the progenitor cell stage can prime precursors to reach enhanced molecular and functional signatures of maturity as neurons. Our results indicate that the rate at which neurons mature is set well before neurogenesis through the establishment of an âepigenetic barrierâ in progenitor cells that gets slowly erased in neurons, allowing the gradual onset of maturation programs. Overall design: Cleavage Under Targets and Release Using Nuclease (CUT&RUN) enriching for histone modifications in human pluripotent stem cell (hPSC)-derived neural progenitor cells and neurons. Cleavage Under Targets and Release Using Nuclease (CUT&RUN) enriching for histone modifications in human pluripotent stem cell (hPSC)-derived neural progenitor cells treated with DMSO or inhibitors of chromatin modifiers. RNA sequencing of WA09 (H9) human pluripotent stem cell (hPSC)-derived neurons at different stages of differentiation and treated with DMSO or inhibitors of chromatin modifiers. RNA sequencing of MSK_SRF001 induced human pluripotent stem cell (hPSC)-derived neurons at day 37 of differentiation and treated with DMSO or inhibitors of chromatin modifiers. RNA sequencing of induced human pluripotent stem cell (hPSC)-derived neurons at day 38 of differentiation and treated with DMSO or inhibitors of chromatin modifiers.",
+    "study_type": "Other",
+    "published": "2023-11-09 18:57:27",
+    "record_count": 125,
+    "external_ids": {
+      "GEO": "GSE196109"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "38297124",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP244468",
+    "bioproject": "PRJNA601241",
+    "title": "blood metagenome Raw sequence reads",
+    "abstract": "Results of an NGS-based metabarcoding study exploring the diversity of vector-borne pathogens in Cambodian canines across sites throughout the country. Our protocol targets the 16S rRNA gene of bacteria and the 18S rRNA gene of Apicomplexans and Kinetoplastids to provide a comprehensive characterisation of the principal blood-borne pathogens. This BioProject also includes optimisation data testing out blocking primer functionality to improve the sensitivity of bacterial 16S rRNA targeting as well as a comparison of DNA extraction kits for pathogen detection. This research is relevant as canines in regions of the tropics frequently succumb to vector-borne diseases with many of these also being zoonotic, posing a public-health risk.",
+    "study_type": "Other",
+    "published": "2020-01-24 05:01:12",
+    "record_count": 1750,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "31395073",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      },
+      {
+        "id": "31477800",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP344350",
+    "bioproject": "PRJNA777452",
+    "title": "Modelling pain states with hiPSC derived sensory neurons",
+    "abstract": "We report the development of a sensory neuron differentiation protocol which can be used to produce populations of nociceptive sensory neurons. Following transcriptomic and electrophysiological characterisation, we used cultures to investigate molecular pain pathways by exposing cells to three pain related stimuli: heat, cold and a migraine model. Samples were taken at four time points, up to 18 hours after stimulus exposure. Bulk RNA sequencing of samples showed that for temperature models, gene expression changes were dominated by those involved in cell stress and cell death mechanisms. For the migraine model, we obseved a complex pattern of exposure-associated gene expression changes, including the up-regulation of several genes and pathways involved in neuronal and synaptic function. Overall design: We processed 32 samples in total. Three replicates were taken for each treatment type at each exposure time point. Heat stimulus = 45degC; cold stimulus = 4degC; migraine stimulus = 10uM bradykinin, 1uM histamine, 1uM prostaglandin E2 and 500nM serotonin. Exposure times were Short = 20 mins, Mid = 50 mins, Long = 90 mins and Overnight = 18 hours.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-01-04 10:39:30",
+    "record_count": 32,
+    "external_ids": {
+      "GEO": "GSE187345"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36452863",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP303556",
+    "bioproject": "PRJNA371529",
+    "title": "Salmonella enterica subsp. enterica; genome sequencing and assembly",
+    "abstract": "Genome sequencing of Salmonella isolates recovered from livestock in Australia.",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2021-04-03 00:01:28",
+    "record_count": 1,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "28818900",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "ERP152374",
+    "bioproject": "PRJEB67337",
+    "title": "First report on the Leptospira species isolated from patients in Slovenia",
+    "abstract": "First report on the Leptospira species isolated from patients in Slovenia. Whole genome sequencing of isolates was performed as well as different methods for identification of Leptospira species.",
+    "study_type": "Other",
+    "published": "2023-10-25 01:42:02",
+    "record_count": 9,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "38004750",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "ERP119410",
+    "bioproject": "PRJEB36247",
+    "title": "Gene expression during bacterivorous growth of a widespread marine heterotrophic flagellate",
+    "abstract": "Phagocytosis is very important in marine ecosystems and is one of the few purely eukaryotic processes with trophic relevance that can be addressed investigated by gene expression. These studies in free-living phagocytizing protists are scarce, in part due to the lack of useful ecological models. A recent protist diversity survey has unveiled that the cultured heterotrophic flagellate Cafeteria roenbergensis is widespread in the global ocean, and this prompted us to design a gene expression study with this species, grown in batch cultures with a cultured flavobacterium. We compared the gene expression between exponential and stationary phases, which were complemented with a starvation by dilution state that appeared between both phases. We showed contrasted functional expression profiles dynamics for each phase and pointed identified 1196 differentially expressed genes, 776 upregulated and 420 downregulated in the exponential phase. Genes highly expressed during the exponential phase were related to the translational machinery, protein remodeling, respiration and phagocytosis, while genes upregulated in the stationary phase were involved in lipid metabolism, cell signaling and cell adhesion.",
+    "study_type": "Other",
+    "published": "2021-03-17 06:10:47",
+    "record_count": 22,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "32920602",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "ERP125421",
+    "bioproject": "PRJEB41618",
+    "title": "The indoor environment - a potent source for intact human-associated anaerobes",
+    "abstract": "People in westernized countries spend most of their time indoors. As interaction and exchange of microbes between the human body and its environment is crucial for a healthy human microbiome, the build environment (BE) might represent a potent source for commensal microbes. Especially anaerobic microbes are of interest, as acquisition routes of oxygen-sensitive microbes such as obligate or facultative anaerobes to the human microbiome are not sufficiently clarified yet. We sampled a total of ten bathroom floors and used propidium monoazide (PMA) to assess the viability of the collected prokaryotes. Quantitative and qualitative analysis revealed that most of the microbial taxa are of human origin, but less than 25% of the prokaryotic signatures originate from intact, and thus potentially living, cells with an apparent survival advantage for aerobic and stress resistant taxa. We could verify the presence of strictly anaerobic taxa - including methanogenic archaea - in PMA-treated samples, indicating a limited, but substantial capability of those taxa to survive in the BE. As methanogens are regarded as highly sensitive to aerobic conditions, oxygen tolerance experiments were performed with human isolates to validate their survival. We could confirm that human-associated methanogens are capable of surviving oxic conditions for at least 6h. In conclusion, we collected strong evidence supporting the notion that obligate anaerobic taxa are capable of surviving in the BE for a limited amount of time and thus, making the BE a potential source for anaerobic human commensals.",
+    "study_type": "Other",
+    "published": "2020-12-18 15:40:03",
+    "record_count": 342,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "29358754",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      },
+      {
+        "id": "28725009",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP385284",
+    "bioproject": "PRJNA856635",
+    "title": "Functional analysis across model systems implicates ribosomal proteins in growth and proliferation defects associated with hypoplastic left heart syndrome",
+    "abstract": "Hypoplastic left heart syndrome (HLHS) is the most lethal congenital heart disease (CHD). The pathogenesis of HLHS is poorly understood and due to the likely oligogenic complexity of the disease, definitive HLHS-causing genes have not yet been identified. Postulating that impaired cardiomyocyte proliferation as a likely important contributing mechanism to HLHS pathogenesis, and we conducted a genome-wide siRNA screen to identify genes affecting proliferation of human iPSC-derived cardiomyocytes (hPSC-CMs). This yielded ribosomal protein (RP) genes as the most prominent class of effectors of CM proliferation. In parallel, whole genome sequencing and rare variant filtering of a cohort of 25 HLHS proband-parent trios with poor clinical outcome revealed enrichment of rare variants of RP genes. In addition, in another familial CHD case of HLHS proband we identified a rare, predicted-damaging promoter variant affecting RPS15A that was shared between the proband and a distant relative with CHD. Functional testing with an integrated multi-model system approach reinforced the idea that RP genes are major regulators of cardiac growth and proliferation, thus potentially contributing to hypoplastic phenotype observed in HLHS patients. Cardiac knockdown (KD) of RP genes with promoter or coding variants (RPS15A, RPS17, RPL26L1, RPL39, RPS15) reduced proliferation in generic hPSC-CMs and caused malformed hearts, heart-loss or even lethality in Drosophila. In zebrafish, diminished rps15a function caused reduced CM numbers, heart looping defects, or weakened contractility, while reduced rps17 or rpl39 function caused reduced ventricular size or systolic atrial dysfunction, respectively. Importantly, genetic interactions between RPS15A and core cardiac transcription factors TBX5 in CMs, Drosocross, pannier and tinman in flies, and tbx5 and nkx2-7 (nkx2-5 paralog) in fish, support a specific role for RP genes in heart development. Furthermore, RPS15A KD-induced heart/CM proliferation defects were significantly attenuated by p53 KD in both hPSC-CMs and zebrafish, and by Hippo activation (YAP/yorkie overexpression) in developing fly hearts. Based on these findings, we conclude that RP genes play critical roles in cardiogenesis and constitute an emerging novel class of gene candidates likely involved in HLHS and other CHDs. Overall design: Comparative gene expression profiling analysis of RNA-seq data from human induced pluripotent stem cells (hPSCs) and hPSC-derived cardiomyocytes (hPSC-CMs) and its KD derivatives (siRPL39, siRPS15A).",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-07-14 00:02:09",
+    "record_count": 12,
+    "external_ids": {
+      "GEO": "GSE207658"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "41379537",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP222763",
+    "bioproject": "PRJNA572587",
+    "title": "Characterization of T cells from the larval zebrafish tail via single-cell RNAseq",
+    "abstract": "We report single-cell RNA sequencing of cells from the Tg(lck:GFP) larval zebrafish tail, to identify cell types expressing the marker and to identify gene candidates related to T cell migration behaviors. We identified 330 putative T cells and 131 putative epithelial cells. Differential expression analysis between the two groups revealed genes related to actin cytoskeleton remodeling associated with the T cells, in addition to canonical T and ubiquitous immune cell markers. Overall design: Single cells (n=461) isolated from FACS of Tg(lck:GFP) Danio rerio (FITC+) were analyzed.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2020-05-14 16:59:12",
+    "record_count": 461,
+    "external_ids": {
+      "GEO": "GSE137770"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "32427565",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP433798",
+    "bioproject": "PRJNA958204",
+    "title": "Maternal blood transcriptome reflects fetal maturation at the end of the organogenesis in cattle.",
+    "abstract": "In cattle, harnessing information from the maternal blood to predict fetal health and development is attractive yet scarcely explored. We hypothesised that variations in fetal growth at the end of the organogenesis period impact on the molecular profile of fetal organs and is reflected in the maternal blood transcriptome. The objectives were to determine the transcriptomic modifications in maternal blood and in fetal liver, gonads, and heart according to fetal weight and to model a molecular signature based on the fetal organs allowing the prediction of fetal weight from the maternal blood transcriptome. In addition to a contemporaneous maternal blood sample, organ samples were collected from 10 male fetuses at day 42 day of gestation for RNA-sequencing. Fetal weight ranged from 1.25 to 1.69 gr (mean 1.44 Â± 0.15 gr). Data were analysed through co-expression cluster analysis to identify biologically relevant genes dynamically changing according to fetal weight in each fetal organ and in maternal blood. Results revealed clusters of genes, the expression of which was positively correlated with fetal weight, and which enriched ontological terms involved in the organ functionality. For the heart, the 1346 co-expressed genes were involved in energy generation and protein synthesis. For the gonads, the 1042 co-expressed genes enriched seminiferous tubule development. The 459 co-expressed genes identified in the liver were associated with lipid synthesis and metabolism. Finally, the cluster of 571 co-expressed genes determined in maternal blood enriched oxidative phosphorylation and thermogenesis. The expression patterns of the common genes between the clusters in each fetal organ and the cluster in maternal blood were employed to construct a predictive regression model of fetal weight. The data from the fetal organs were used to train the model, and the data from the maternal blood were used to test it. The best prediction was achieved when the model was trained with the 35 common genes between heart and maternal blood (root mean square error=0.04, R-square=0.93). In conclusion, linking transcriptomic information from maternal blood with that from the fetal heart unveils maternal blood as a sensor of fetal development. Overall design: We used an asynchronous embryo transfer model to stimulate fetal growth physiologically, as demonstrated in our previous study (PMID: 36739669). Heifers were randomly assigned to one of the two groups: those receiving a Day 7 embryo on Day 7 of the cycle (synchronous; ET_D7, n=23) and those transferred a Day 7 embryo on Day 9 of the cycle (asynchronous; ET_D9, n=33). The synchronisation protocol was started two days earlier for heifers in the ET_D9 group, such that ET was done on the same day for both groups. Blood samples were collected in Tempus Tubes (Thermofisher Scientific, Waltham, MA USA) from pregnant heifers (n=25) on Day 42 of gestation, following which they were slaughtered in a commercial abattoir. The reproductive tract was recovered and held on ice until processing for sample collection, which was done in the first 30 min after slaughter. The pregnant uterine horn was opened along the major curvature to expose and retrieve the fetal membranes. Once the fetus was isolated, the liver, heart and gonads were dissected, placed in individual RNAse-free tubes and snap-frozen in liquid nitrogen. Blood and fetal organ samples were stored at -80 Â°C until processing for RNAseq. Samples corresponding to 10 male fetuses (equally derived from heifers in the ET_D7 and ET_D9 groups) were employed in the current study.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2023-10-06 07:37:28",
+    "record_count": 36,
+    "external_ids": {
+      "GEO": "GSE230294"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37658765",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP407293",
+    "bioproject": "PRJNA900292",
+    "title": "Loss of p53 enhances the tumor-initiating potential and drug resistance of clonogenic multiple myeloma cells",
+    "abstract": "To understand the molecular and cellular impact of p53 loss on gene expression profile of multiple myeloma cells, we generated isogenic pairs of TP53 wild-type and knockout cells by CRISPR/Cas9. We then performed RNAseq analysis using data obtained from RNA-seq of three p53-KO clones and one scrambled control cells. Overall design: Comparative gene expression profiling analysis of RNA-seq data for MM.1S CRISPR p53-KO cells (A7, B6, B16 clones) and its non-targeted scrambled control (Scr) cells.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-11-15 00:00:34",
+    "record_count": 4,
+    "external_ids": {
+      "GEO": "GSE217769"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37042949",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP226481",
+    "bioproject": "PRJNA578702",
+    "title": "RNA-seq of prostate cancer cell lines with acquired resistance to AKT inhibitors GDC-0068 (ATP competitive) or MK206 (allosteric)",
+    "abstract": "Goal: Study resistance mechanisms to ATP-competitive vs. allosteric AKT inhibitors, in prostate cancer Methods: RNA-sequencing Results: Resistance to the ATP-competitive inhibitor GDC-0068 was driven by compensatory activity of parallel signaling pathways Overall design: Duplicate results of RNA-seq of the LNCaP prostate cell line (untreated or treated with either AKT inhibitor) and derived clones with acquired resistance to either AKT inhibitor",
+    "study_type": "Transcriptome Analysis",
+    "published": "2020-01-25 11:06:29",
+    "record_count": 28,
+    "external_ids": {
+      "GEO": "GSE139178"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "35440108",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  }
+]

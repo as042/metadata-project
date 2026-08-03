@@ -1,0 +1,19 @@
+# NCBI credentials — never commit these
+api_key.txt
+email.txt
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# tooling / editor
+.pytest_cache/
+.ruff_cache/
+.claude/settings.local.json*
+
+# scratch output
+test.json
+df.csv
+df2.csv

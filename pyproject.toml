@@ -1,0 +1,18 @@
+[project]
+name = "metadata-project"
+version = "0.1.0"
+description = "LLM-driven reconstruction of SRA study metadata"
+readme = "README.md"
+requires-python = ">=3.13"
+# project.py talks to NCBI E-utilities directly and does not use pysradb, which
+# was the only declared dependency; requests and pandas were pulled in only
+# transitively through it.
+dependencies = [
+    "requests>=2.31",
+    "pandas>=2.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
