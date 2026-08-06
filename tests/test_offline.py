@@ -117,6 +117,68 @@ def test_sleep_for_tracks_credentials():
         set_entrez_credentials()
 
 
+def _retry_harness(errors, sleep_calls=None):
+    """Run _request_with_retry against a stub that raises `errors` then succeeds."""
+    seq = list(errors)
+    attempts = []
+
+    def fake_get(url, params=None, timeout=None, **kw):
+        attempts.append(url)
+        if len(attempts) <= len(seq):
+            raise seq[len(attempts) - 1]
+        return _Resp("done")
+
+    orig_get, orig_sleep = P._SESSION.get, P.time.sleep
+    P._SESSION.get = fake_get
+    P.time.sleep = lambda s: (sleep_calls.append(s) if sleep_calls is not None else None)
+    try:
+        return P._request_with_retry("https://example.test/x", sleep=0.11), attempts
+    finally:
+        P._SESSION.get, P.time.sleep = orig_get, orig_sleep
+
+
+def test_retry_recovers_from_a_truncated_response_body():
+    # regression: a body that dies mid-stream raises ChunkedEncodingError, which is a
+    # *sibling* of ConnectionError under RequestException — not a subclass. It used to
+    # escape the retry loop and kill a whole harvest.
+    err = P.requests.exceptions.ChunkedEncodingError("Response ended prematurely")
+    backoff = []
+    r, attempts = _retry_harness([err, err], sleep_calls=backoff)
+    assert r.text == "done"
+    assert len(attempts) == 3  # two failures, then success
+    assert backoff == [0.34, 0.68]  # exponential, floored at the no-key pace
+
+
+def test_retry_covers_the_other_transient_body_failures():
+    for exc in (
+        P.requests.exceptions.ContentDecodingError("bad gzip"),
+        P.requests.ConnectionError("reset"),
+        P.requests.Timeout("slow"),
+    ):
+        r, attempts = _retry_harness([exc])
+        assert r.text == "done" and len(attempts) == 2, exc
+
+
+def test_retry_gives_up_after_five_attempts_and_reraises():
+    err = P.requests.exceptions.ChunkedEncodingError("always")
+    try:
+        _retry_harness([err] * 5)
+    except P.requests.exceptions.ChunkedEncodingError:
+        pass
+    else:
+        raise AssertionError("should re-raise once the attempts are exhausted")
+
+
+def test_retry_does_not_swallow_a_non_transient_error():
+    # a malformed URL is a bug, not a hiccup — fail immediately, don't burn 5 attempts
+    try:
+        _retry_harness([P.requests.exceptions.TooManyRedirects("loop")])
+    except P.requests.exceptions.TooManyRedirects:
+        pass
+    else:
+        raise AssertionError("non-transient errors must propagate on the first attempt")
+
+
 def test_common_omits_unset_credentials():
     try:
         set_entrez_credentials()
@@ -498,6 +560,162 @@ def test_publication_classes_caches_without_network():
     )
     # no stub installed: a network call here would raise
     assert p.publication_classes() == ["oa"]
+
+
+# --------------------------------------------------------------------------- #
+# search_studies page-failure handling (stubbed HTTP, no network)
+# --------------------------------------------------------------------------- #
+def _esummary_xml(*srps):
+    items = "".join(
+        f"<Item Name='ExpXml'>&lt;Study acc=\"{s}\" /&gt;</Item>" for s in srps
+    )
+    return f"<eSummaryResult><DocSum>{items}</DocSum></eSummaryResult>"
+
+
+def _search_stub(page_results):
+    """esearch returns a fixed history handle; esummary answers per page offset.
+
+    Results are keyed by page offset, not by call, so a page listed as an
+    exception fails *every* attempt. That matters: _request_with_retry sits
+    underneath and retries transient errors five times, so a page that fails only
+    once never reaches search_studies' own handler at all.
+    """
+    pages = list(page_results)
+    order = []
+
+    def fake(url, params=None, data=None, timeout=None, **kw):
+        p = params or data or {}
+        if "esearch" in url:
+            # a large count so _page_starts produces plenty of page offsets;
+            # a small one silently caps the loop and hides what we're testing
+            return _Resp(data={"esearchresult": {
+                "count": "1000000", "webenv": "W1", "querykey": "1"}})
+        start = p.get("retstart")
+        if start not in order:
+            order.append(start)
+        idx = order.index(start)
+        nxt = pages[idx] if idx < len(pages) else RuntimeError("no more pages")
+        if isinstance(nxt, Exception):
+            raise nxt
+        return _Resp(nxt)
+
+    return fake
+
+
+def _with_search_stub(page_results, fn):
+    orig_get, orig_post, orig_sleep = P._SESSION.get, P._SESSION.post, P.time.sleep
+    stub = _search_stub(page_results)
+    P._SESSION.get = P._SESSION.post = stub
+    P.time.sleep = lambda s: None
+    try:
+        return fn()
+    finally:
+        P._SESSION.get, P._SESSION.post, P.time.sleep = orig_get, orig_post, orig_sleep
+
+
+def test_search_studies_skips_a_failed_page_and_warns():
+    import warnings as _w
+
+    boom = P.requests.exceptions.ChunkedEncodingError("truncated")
+    pages = [_esummary_xml("SRP1", "SRP2"), boom, _esummary_xml("SRP3", "SRP4")]
+    with _w.catch_warnings(record=True) as caught:
+        _w.simplefilter("always")
+        got = _with_search_stub(
+            pages,
+            # max_scanned raised so max_pages doesn't cap the loop below 3 pages
+            lambda: P.search_studies(max_studies=4, sort="recent", max_scanned=100000),
+        )
+    # the surviving pages still yield their studies
+    assert got == ["SRP1", "SRP2", "SRP3", "SRP4"]
+    assert len(caught) == 1 and "1 esummary page(s) failed" in str(caught[0].message)
+
+
+def test_search_studies_stops_after_consecutive_page_failures():
+    import warnings as _w
+
+    boom = P.requests.exceptions.ChunkedEncodingError("truncated")
+    # one good page, then a wall of failures (an expired WebEnv looks like this)
+    pages = [_esummary_xml("SRP1")] + [boom] * 20
+    with _w.catch_warnings(record=True) as caught:
+        _w.simplefilter("always")
+        got = _with_search_stub(
+            pages, lambda: P.search_studies(max_studies=50, sort="recent")
+        )
+    # gives up rather than grinding through every remaining page, but keeps what
+    # it already enumerated instead of raising it all away
+    assert got == ["SRP1"]
+    assert len(caught) == 1
+    assert f"{P._MAX_CONSECUTIVE_PAGE_FAILURES} esummary page(s) failed" in str(
+        caught[0].message
+    )
+
+
+def test_a_page_that_fails_once_is_absorbed_by_the_retry_layer():
+    # the two mechanisms are layered: _request_with_retry handles the common case,
+    # and search_studies' page handler is only the last resort behind it. A page
+    # that recovers on retry must not be reported as a lost page.
+    import warnings as _w
+
+    calls = []
+
+    def flaky(url, params=None, data=None, timeout=None, **kw):
+        p = params or data or {}
+        if "esearch" in url:
+            return _Resp(data={"esearchresult": {
+                "count": "1000000", "webenv": "W1", "querykey": "1"}})
+        calls.append(p.get("retstart"))
+        if len(calls) == 1:  # first attempt at the first page dies mid-body
+            raise P.requests.exceptions.ChunkedEncodingError("truncated")
+        return _Resp(_esummary_xml("SRP1", "SRP2"))
+
+    orig = (P._SESSION.get, P._SESSION.post, P.time.sleep)
+    P._SESSION.get = P._SESSION.post = flaky
+    P.time.sleep = lambda s: None
+    try:
+        with _w.catch_warnings(record=True) as caught:
+            _w.simplefilter("always")
+            got = P.search_studies(max_studies=2, sort="recent")
+    finally:
+        P._SESSION.get, P._SESSION.post, P.time.sleep = orig
+    assert got == ["SRP1", "SRP2"]
+    assert calls == [0, 0]  # retried the same offset, not skipped to the next
+    assert caught == []
+
+
+def test_search_studies_is_silent_when_no_page_fails():
+    import warnings as _w
+
+    with _w.catch_warnings(record=True) as caught:
+        _w.simplefilter("always")
+        got = _with_search_stub(
+            [_esummary_xml("SRP1", "SRP2")],
+            lambda: P.search_studies(max_studies=2, sort="recent"),
+        )
+    assert got == ["SRP1", "SRP2"] and caught == []
+
+
+def test_scan_iter_yields_one_triple_per_accession():
+    calls = []
+
+    def fake_summary(acc, **kw):
+        calls.append(acc)
+        if acc == "BAD":
+            raise ValueError("no such study")
+        p = Project.from_dict({"accession": acc, "record_count": 10})
+        return p
+
+    orig, orig_sleep = P.Project.summary, P.time.sleep
+    P.Project.summary = staticmethod(fake_summary)
+    P.time.sleep = lambda s: None
+    try:
+        out = list(P.scan_iter(["A", "BAD", "B"]))
+    finally:
+        P.Project.summary, P.time.sleep = orig, orig_sleep
+    assert [acc for acc, _, _ in out] == ["A", "BAD", "B"]
+    assert out[0][1] is not None and out[0][2] is None
+    assert out[1][1] is None and isinstance(out[1][2], ValueError)
+    # and scan() is still exactly this collected into two dicts
+    assert calls == ["A", "BAD", "B"]
 
 
 # --------------------------------------------------------------------------- #

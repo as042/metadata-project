@@ -27,6 +27,7 @@ import os
 import random
 import re
 import time
+import warnings
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
 from datetime import date
@@ -40,6 +41,11 @@ UNPAYWALL = "https://api.unpaywall.org/v2"
 
 # Publication accessibility classes returned by classify_publication().
 PUBLICATION_CLASSES = ("oa", "partial", "paywall", "unknown")
+
+# Consecutive esummary page failures in search_studies before enumeration gives up.
+# Isolated failures are normal over a long harvest; a run of them means the shared
+# WebEnv session is gone, and no later page can succeed either.
+_MAX_CONSECUTIVE_PAGE_FAILURES = 5
 
 # --------------------------------------------------------------------------- #
 # Process-wide NCBI credentials
@@ -105,6 +111,19 @@ def _sleep_for(sleep=None, api_key=None) -> float:
 # small request's cost. Keep-alive through a shared Session removes it.
 _SESSION = requests.Session()
 
+# Transient failures worth another attempt. ChunkedEncodingError/ContentDecodingError
+# are *siblings* of ConnectionError under RequestException, not subclasses, so they
+# slip past the obvious `except (ConnectionError, Timeout)` — a body that dies
+# mid-stream ("Response ended prematurely") used to kill the whole run. E-utilities
+# truncates responses under load often enough that a multi-hour harvest will hit it.
+# Everything else (a bad URL, too many redirects) is a real error: fail fast.
+_TRANSIENT = (
+    requests.ConnectionError,
+    requests.Timeout,
+    requests.exceptions.ChunkedEncodingError,
+    requests.exceptions.ContentDecodingError,
+)
+
 
 def _request_with_retry(url, *, sleep: float = 0.34, post: bool = False, **params):
     """GET/POST with exponential backoff on rate-limit and transient server errors.
@@ -123,7 +142,7 @@ def _request_with_retry(url, *, sleep: float = 0.34, post: bool = False, **param
                 r = _SESSION.post(url, data=params, timeout=60)
             else:
                 r = _SESSION.get(url, params=params, timeout=60)
-        except (requests.ConnectionError, requests.Timeout):
+        except _TRANSIENT:
             if attempt == 4:
                 raise
             time.sleep(delay)
@@ -1030,6 +1049,7 @@ def search_studies(
     sleep: float | None = None,
     page_size: int = 500,
     max_scanned: int | None = None,
+    progress=None,
 ) -> list[str]:
     """Enumerate up to ``max_studies`` distinct study accessions (SRP/ERP/DRP).
 
@@ -1072,6 +1092,15 @@ def search_studies(
     the underlying studies (``max_scanned`` bounds how many experiment records are
     examined). Returns accessions in the order implied by ``sort``—feed them
     straight to :func:`scan`.
+
+    ``progress`` is an optional ``callable(found, scanned)`` invoked after each
+    page; enumerating thousands of studies reads thousands of pages over many
+    minutes, and this is the only window into that phase.
+
+    A page whose request fails after its retries is skipped rather than aborting
+    the enumeration, and a :mod:`warnings` warning is raised at the end reporting
+    how many were lost. Enumeration stops early after
+    ``_MAX_CONSECUTIVE_PAGE_FAILURES`` failures in a row.
     """
     if sort not in ("recent", "oldest", "random"):
         raise ValueError(
@@ -1104,6 +1133,7 @@ def search_studies(
     if max_scanned is None:
         max_scanned = max_studies * 200  # bound the experiment records examined
     wanted = publication.lower() if publication else None
+    page_failures: list[tuple[int, Exception]] = []
 
     def _candidates():
         """Yield distinct study accessions in `sort` order, bounded by max_scanned."""
@@ -1130,27 +1160,48 @@ def search_studies(
         seen: set[str] = set()
         scanned = 0
         max_pages = math.ceil(max_scanned / eff_page)
+        consecutive = 0
         for start in _page_starts(sort, count, eff_page, max_pages=max_pages):
             if scanned >= max_scanned:
                 return
             time.sleep(sleep)
-            xml = _eutils(
-                "esummary.fcgi",
-                sleep=sleep,
-                post=True,  # WebEnv/id payload -> POST to avoid a 414
-                db="sra",
-                WebEnv=webenv,
-                query_key=qkey,
-                retstart=start,
-                retmax=eff_page,
-                retmode="xml",
-                **common,
-            ).text
-            for srp in _srps_from_esummary(xml):
+            try:
+                xml = _eutils(
+                    "esummary.fcgi",
+                    sleep=sleep,
+                    post=True,  # WebEnv/id payload -> POST to avoid a 414
+                    db="sra",
+                    WebEnv=webenv,
+                    query_key=qkey,
+                    retstart=start,
+                    retmax=eff_page,
+                    retmode="xml",
+                    **common,
+                ).text
+                srps = _srps_from_esummary(xml)
+            except (requests.RequestException, ET.ParseError) as exc:
+                # A harvest of thousands reads thousands of pages over hours; one
+                # page failing its retries must not throw away everything already
+                # enumerated. Skip it — the sample is a random spread anyway, so a
+                # missing page costs a little breadth, not correctness.
+                page_failures.append((start, exc))
+                consecutive += 1
+                if consecutive >= _MAX_CONSECUTIVE_PAGE_FAILURES:
+                    # Not bad luck any more: the history session has almost
+                    # certainly expired (WebEnv is held across the whole
+                    # enumeration) or NCBI is down. Every later page would fail the
+                    # same way, so stop and let the caller keep what it has.
+                    return
+                scanned += eff_page
+                continue
+            consecutive = 0
+            for srp in srps:
                 if srp not in seen:
                     seen.add(srp)
                     yield srp
             scanned += eff_page
+            if progress is not None:
+                progress(len(seen), scanned)
 
     studies: list[str] = []
     for srp in _candidates():
@@ -1166,6 +1217,16 @@ def search_studies(
         studies.append(srp)
         if len(studies) >= max_studies:
             break
+    if page_failures:
+        # Never silent: fewer studies than asked for is a legitimate result here,
+        # but the caller has to be able to tell "SRA has no more" from "we lost
+        # pages", because only the second is worth retrying.
+        warnings.warn(
+            f"search_studies: {len(page_failures)} esummary page(s) failed and were "
+            f"skipped; returned {len(studies)} of {max_studies} requested studies. "
+            f"First failure at retstart={page_failures[0][0]}: {page_failures[0][1]!r}",
+            stacklevel=2,
+        )
     return studies
 
 
@@ -1226,10 +1287,44 @@ def scan(
     retries are handled inside ``Project``. Supply an ``api_key`` to raise
     NCBI's limit from 3 to 10 requests/second for faster bulk scans.
     """
-    sleep = _sleep_for(sleep, api_key)
     projects: dict[str, Project] = {}
     errors: dict[str, Exception] = {}
+    for acc, project, error in scan_iter(
+        accessions,
+        include_publications=include_publications,
+        max_records=max_records,
+        email=email,
+        api_key=api_key,
+        sleep=sleep,
+    ):
+        if error is not None:
+            errors[acc] = error
+        else:
+            projects[acc] = project
+    return projects, errors
+
+
+def scan_iter(
+    accessions,
+    include_publications: bool = False,
+    max_records: int | None = None,
+    email: str | None = None,
+    api_key: str | None = None,
+    sleep: float | None = None,
+):
+    """Streaming :func:`scan` — yields ``(accession, project, error)`` per study.
+
+    Exactly one of ``project``/``error`` is None. :func:`scan` is this collected
+    into two dicts; use this form directly when a long run needs to checkpoint or
+    report progress as it goes rather than only at the end::
+
+        for acc, project, error in scan_iter(accessions, max_records=5000):
+            ...
+    """
+    sleep = _sleep_for(sleep, api_key)
     for acc in accessions:
+        project: Project | None = None
+        error: Exception | None = None
         try:
             p = Project.summary(
                 acc,
@@ -1240,16 +1335,16 @@ def scan(
                 max_records=max_records,
             )
         except Exception as exc:  # noqa: BLE001 - collect, don't abort the batch
-            errors[acc] = exc
+            error = exc
         else:
             if max_records is not None and p.record_count and p.record_count > max_records:
-                errors[acc] = ValueError(
+                error = ValueError(
                     f"record_count {p.record_count} exceeds max_records {max_records}"
                 )
             else:
-                projects[acc] = p
+                project = p
+        yield acc, project, error
         time.sleep(sleep)
-    return projects, errors
 
 
 def filter_by_publication(
