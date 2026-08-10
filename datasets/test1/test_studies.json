@@ -1,0 +1,135 @@
+[
+  {
+    "accession": "SRP158700",
+    "bioproject": "PRJNA485502",
+    "title": "Erythroxylaceae phylogenomics and phylogeography",
+    "abstract": "This project uses DNA sequence data to resolve evolutionary relationships of species in the Coca family, Erythroxylaceae for analysis of global biogeography and diversification as well as the origins of the cultivated coca taxa. Sequence data are from nuclear loci targeted using custom RNA baits and the Hyb-Seq (hybridization-based target enrichment) DNA library preparation method. Sequences were generated on the Illumina NextSeq or HiSeq4000 platforms.",
+    "study_type": "Other",
+    "published": "2018-08-23 15:29:12",
+    "record_count": 514,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP343077",
+    "bioproject": "PRJNA774360",
+    "title": "Single-cell RNA sequencing of liver parenchymal cells from murine model of endotoxemia",
+    "abstract": "Liver has a crucial role in the regulation of immune defense in systemic infections. During endotoxemia, the liver transits from an immune-tolerant towards an immune-active state and forms the first line of defense against invading microorganisms. the role of liver parenchymal cells in endotoxemia remains unintelligible. To characterize the liver parenchymal cells in endotoxemia liver, we performed single-cell RNA sequencing of liver parenchymal cells from healthy C57BL/6J mice and murine model of endotoxemia at early or late stage. The single-cell RNA-seq analyses revealed the heterogeneity of liver parenchymal cells in endotoxemia liver. Overall design: Single-cell RNA sequencing of liver parenchymal cells from healthy C57BL/6J mice (n=6, eight weeks-age) using MGISEQ-2000.  Single-cell RNA sequencing of liver parenchymal cells from murine model of endotoxemia at 3-hour time point (n=6, eight weeks-age) using MGISEQ-2000.  Single-cell RNA sequencing of liver parenchymal cells from murine model of endotoxemia at 12-hour time point (n=6, eight weeks-age) using MGISEQ-2000.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-04-08 11:28:14",
+    "record_count": 3,
+    "external_ids": {
+      "GEO": "GSE186554"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "35276271",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP368036",
+    "bioproject": "PRJNA824452",
+    "title": "Titration-based normalization of antibody amount improves consistency of ChIP-seq experiment",
+    "abstract": "Chromatin immunoprecipitation (ChIP) is an antibody-based approach that is most frequently utilized in research areas of chromatin biology and epigenetics. The ENCODE Consortium provided guidelines about antibody but the fundamental aspect regarding antibody titer was not addressed. Here, we introduced a simple and quick DNA-based quantification of chromatin input, allowing to normalize the antibody amount in individual ChIP reaction to the optimal titer. We further demonstrated the titration-based normalization of antibody amount generates improved assay outcome with high consistency among samples in an experiment or recurrent experiments for a broad range of chromatin input amount. Chromatin immunoprecipitation-sequencing (ChIP-seq) was performed for histone H3K27ac mark in the conditions of various titer of antibody in ChIP reactions.. Overall design: Chromatin were prepared from fixed K562 cells. Chromatin amount was aliquoted into 312, 625, 1,250, 2,500, 5,000, 10,000, and 20,000 ng in final 1 ml of ChIP buffer. 0.25 Âµg of anti-H3K27ac antibody was added to create the ChIP reactions with various antibody titers (the ratios between antibody amount per chromatin amount). Or normalized amounts of the antibody to the optimal titer was added into each reaction.",
+    "study_type": "Other",
+    "published": "2023-04-12 18:20:26",
+    "record_count": 16,
+    "external_ids": {
+      "GEO": "GSE200404"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "37016279",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP368035",
+    "bioproject": "PRJNA824456",
+    "title": "Association study between gene expression and fiber type composition in skeletal muscle",
+    "abstract": "Total RNA-seq profiling of skeletal muscle. Overall design: Total RNA profiles from 24 skeletal muscle samples.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-12-30 00:01:57",
+    "record_count": 24,
+    "external_ids": {
+      "GEO": "GSE200398"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36497168",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "40713776",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "40869954",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP368034",
+    "bioproject": "PRJNA824460",
+    "title": "Transcription factor Creb3l1 maintains proteostasis in neuroendocrine cells [ChiP-seq]",
+    "abstract": "We have shown that the expression of the endoplasmic reticulum stress sensor Creb3l1 increases in magnocellular neurones (MCNs) in the rat hypothalamus in response to increased physiological demands for protein synthesis. Here we adopted a multiomic strategy to investigate specific roles of Creb3l1 in MCN homeostasis. We first performed chromatin immunoprecipitation followed by genome sequencing (ChIP-seq) to identify Creb3l1 genomic targets in the water deprived MCN enriched hypothalamic preparation. We then compared ChIP-seq gene targets with water deprived and Creb3l1 knockdown supraoptic nucleus RNA sequencing transcriptome datasets. This has provided an integrated signalling-gene regulation network for this transcription factor illuminating changes to cell pathways and function, an approach that has led us to understand the physiological changes that occur in MCNs to cope with excessive protein demands. Overall design: This study was performed on samples collected from Sprague Dawley rats (n=9 pooled).  The hypothalamic supraoptic and paraventricular nucleus were collected by tissue punching from rats that underwent 72 hours of water deprivation. We performed Creb3l1 chromatin immunoprecipitation DNA-sequencing (ChIP-seq) in these magnocellular neurone (MCN) enriched hypothalamic samples to describe the Creb3l1 target transcriptome.",
+    "study_type": "Other",
+    "published": "2022-07-12 07:35:23",
+    "record_count": 2,
+    "external_ids": {
+      "GEO": "GSE200400"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "35803572",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP368033",
+    "bioproject": "PRJNA824441",
+    "title": "Hepatic Transcriptomic Responses to Ethinylestradiol in Two Life Stages of Japanese Quail [embryonic day 9 RNA-seq]",
+    "abstract": "Chemical risk assessment for avian species typically depends on information from toxicity tests performed in adult birds. Early-life stage (ELS) toxicity tests have been proposed as an attractive alternative, but incorporation of these data into existing frameworks will require knowledge about the similarities/differences between ELS and adult responses. The present study uses transcriptomics to assess hepatic gene expression in ELS and adult Japanese quail following exposure to ethinylestradiol (EE2). ELS quail were dosed with 0, 3.33, and 33.3 Âµg EE2/g egg via air cell injection prior to incubation. Adult quail were fed a single dose of EE2 at 0, 0.5, and 5 mg/kg body weight by gavage. Liver tissue was collected from 5-6 individuals per dose group at mid-incubation for ELS quail, and 4 days after dosing for adult birds. A total of 283 and 111 differentially expressed genes (DEGs) were detected in ELS and adult quail, respectively, 16 of which were shared across life stages. Shared DEGs included estrogenic biomarkers such as vitellogenin genes and Apovitellenin-1. For the dose groups that resulted in the highest number of DEGs (ELS [3.3 Âµg/g]; adult [5 mg/kg]), 21 and 35 KEGG pathways were enriched, respectively. Ten of these pathways were shared between life stages, including pathways involved with signaling molecules and interaction, and endocrine system. Taken together, our results suggest conserved mechanisms of action following estrogenic exposure across two life stages, with evidence from differentially expressed genes and enriched pathways. This study contributes to the development and evaluation of toxicogenomic and ELS approaches as alternative toxicity testing methods and supports the use of the ELS test for screening estrogenic chemicals. Overall design: Liver mRNA profile of embryonic day 9 Japanese quail following single exposure to either solvent or ethinylestradiol",
+    "study_type": "Transcriptome Analysis",
+    "published": "2022-10-01 13:56:28",
+    "record_count": 15,
+    "external_ids": {
+      "GEO": "GSE200395"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "35975422",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "38116984",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  }
+]

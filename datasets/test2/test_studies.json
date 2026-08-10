@@ -1,0 +1,184 @@
+[
+  {
+    "accession": "SRP173217",
+    "bioproject": "PRJNA509149",
+    "title": "Ribosomal protein RPL26 is the principal target of UFMylation",
+    "abstract": "UFM1 is a small, metazoan-specific, ubiquitin-like protein modifier that is essential for embryonic development. Although loss-of-function mutations in UFM1 conjugation are linked to ER stress, neither the biological function nor the relevant cellular targets of this protein modifier are known. Here we show that a largely uncharacterized ribosomal protein, RPL26, is the principal target of UFM1 conjugation. RPL26 UFMylation and deUFMylation is catalyzed by enzyme complexes tethered to the cytoplasmic surface of the ER and UFMylated RPL26 is highly enriched on ER membrane-bound ribosomes and polysomes. Biochemical analysis and structural modeling establish that UFMylated RPL26 and the UFMylation machinery are in close proximity to the SEC61 translocon, suggesting that this modification plays a direct role in cotranslational protein translocation into the ER. These data suggest that UFMylation is a ribosomal modification specialized to facilitate metazoan-specific protein biogenesis at the ER. Overall design: ribosome profiling of membrane and cytosolic fractions of UFM1-KO, UFSP2-KO, and wild-type HEK cells in duplicate (12 samples); mRNA-seq of whole cell lysates of UFM1-KO, UFSP2-KO, and wild-type HEK cells in duplicate (6 samples)",
+    "study_type": "Other",
+    "published": "2018-12-17 11:03:11",
+    "record_count": 18,
+    "external_ids": {
+      "GEO": "GSE123539"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "30626644",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP173216",
+    "bioproject": "PRJNA509147",
+    "title": "RNA-seq of BM and Day 3 wound Gr-1+ cells from non-diabetic and diabetic mice",
+    "abstract": "Gr-1+ cells were isolated from non-diabetic (Lepr +/-) and diabetic (Lepr -/-) mouse bone marrow (BM) and dissociated wounds on day 3 following wounding. RNA was sequenced by GATC, and reads were mapped to mm9 genome. The prupose of the studey was to identify intrinsic factors (or Gr-1+ myelid cells) contributing to chronic inflammation in diabetic wounds. Overall design: 10 non-diabetic and 10 diabetic mice were used in this study. They were divided into 2 groups each: 2x 5 non-diabetic and 2x 5 diabetic mice. On Day 3 following wounding, Gr-1+ cells were isolated from enzymatically digested wounds and bone marrow. Each group of 5 was pooled to generate 2 non-diabetic BM RNA samples (HBM), 2 diabetic BM samples (DBM), 2 non-diabetic wound samples (HW) and 2 diabetic wound samples (DW).",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-12-10 11:31:00",
+    "record_count": 8,
+    "external_ids": {
+      "GEO": "GSE123536"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP173215",
+    "bioproject": "PRJNA509140",
+    "title": "High-throughput single-cell RNA sequencing of tumor-infiltrating NK cells",
+    "abstract": "High-throughput single-cell RNA-seq of tumor-infiltrating NK cells uncovered an NK subset, exhibiting elevated expression of activation markers, cytolytic molecules, chemokines and cytokines when Hif1a was absent in NK cells. Overall design: Single cell transcrptome profiling of tumor-infiltrating NK cells from NK-Hif1a defecient mice and WT mice.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2020-05-21 16:29:22",
+    "record_count": 2,
+    "external_ids": {
+      "GEO": "GSE123534"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "32445619",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP173214",
+    "bioproject": "PRJNA509141",
+    "title": "Cellular and viral transcription profiles in Equine Papillomavirus Type 2 positive squamous cell carcinomas",
+    "abstract": "Equine Papillomavirus Type 2 (EcPV2) appears to be a causal factor for the development of genital especially penile squamous cell carcinomas (SCC) and as such have an important clinical impact on horses. However, the pathomechanisms associated with this cancer transformation are not known, yet. To analyze the host's and viral transcriptome in EcPV2 affected horses, tissue samples were collected from horses with EcPV2-positive genital lesions as well as from healthy EcPV2-negative horses. Expression levels of host and viral genes were evaluated by RNA-Seq. Overall design: Expression levels of host and viral genes were evaluated by RNA-Seq.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2019-12-03 22:37:20",
+    "record_count": 8,
+    "external_ids": {
+      "GEO": "GSE123533"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "31084699",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP173213",
+    "bioproject": "PRJNA509134",
+    "title": "Analysis of the polyA+ RNA of LPS-treated human CD14+ monocytes",
+    "abstract": "This study aims to investigate the profile and the role of lncRNAs in the IFN response initiated by TLR4 activation of primary human monocytes and their implication in the immune dysregulation present in SSc patients. Overall design: PolyA+ RNA profiles of human primary CD14+ monocytes freshly isolated or treated with LPS (100 ng/mL) for 90min or 4h were generated by deep sequencing using Illumina HiSeq 2000.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2019-03-06 17:51:15",
+    "record_count": 6,
+    "external_ids": {
+      "GEO": "GSE123532"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "30804934",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP173212",
+    "bioproject": "PRJNA509132",
+    "title": "Transcriptional redirection of activated SKN-1/NRF2 abates the negative metabolic outcomes of a perceived pathogen infection",
+    "abstract": "Optimal health requires perpetual transcriptional fidelity of gene expression.  SKN-1/NRF2 is a cytoprotective transcription factor in C. elegans that regulates the expression of cellular defenses during stress, including: nutrient deprivation, redox imbalance, and xenobiotic and pathogen exposure. Constitutive activation of SKN-1 results in pleiotropic outcomes, including shortened lifespan and protective redistribution of somatic fat to the germline.  We measured lipid distribution between the soma and germ tissues after manipulation of SKN-1 activity.  Modulating the epigenetic landscape refines SKN-1 activity away from innate immunity targets and alleviates negative metabolic outcomes.  Similarly, paraquat exposure redirects SKN-1 activity toward oxidative stress responses and away from pathogen response genes, which restores lipid distribution across tissues.  Lastly, activating p38 MAPK signaling is sufficient to drive SKN-1-dependent loss of somatic fat.  These data reveal a coordination of organismal metabolic homeostasis with pathogen responses and identifies mechanisms for counteracting the pleiotropic consequences of aberrant transcriptional activity. Overall design: Our study aim to look at transcriptional signatures that changes in Day 3 adults, when loss of fat phenotype occurs in constitutively active SKN-1 worms compared to wild type. We are also interested in transcriptional changes when that loss of fat phenotype is suppressed by paraquat exposure or chromatin restriction.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2019-10-16 17:21:29",
+    "record_count": 15,
+    "external_ids": {
+      "GEO": "GSE123531"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "31611372",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP173211",
+    "bioproject": "PRJNA509131",
+    "title": "Transcriptomic profiling of brassinosteroids response genes in moso bamboo (Phyllostachys heterocycla)",
+    "abstract": "Brassinosteroids (BRs) are a group of plant steroid hormones that play crucial roles various of growth and developmental processes. Biological function and signal transduction pathway of BR has been well characterized in model plants like Arabidopsis and rice. However, their biological roles are still unclear in tree species, especially in an important non-timber plant moso bamboo, which has great ecological and economic value and distinguish fast-growth feature. Here we reported that reduce endogenous brassinosteroid by biosynthesis inhibitor propiconazole reduced both root and shoot growth in seedling stage. Exogenous BR application promoted shoot bract elongation and inclination of lamina joint and bract. Genome-wide transcriptome analysis were performed to identify hundreds of differential expressed genes by BR and propiconazole treatment in shoot and root parts of bamboo seedling, respectively. GO analysis revealed that BR regulates cell wall related genes, hydrogen peroxide catabolic genes and auxin related genes to promote bamboo root development and elongation. Our study identified BR response genes and provides a comprehensive resource for molecular mechanism research of bamboo growth. Overall design: 18-day moso bamboo seedlings were transferred to 10 ÂµM PPZ and mock medium for another 5 days. PPZ pre-treated seedlings were then treated with 1 ÂµM BL or mock solution for 4 hours. Harvested seedling shoot and root separately, then isolated RNA was sequenced using Illumina Hiseq2500.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2018-12-17 11:03:09",
+    "record_count": 18,
+    "external_ids": {
+      "GEO": "GSE123529"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP149561",
+    "bioproject": "PRJNA474216",
+    "title": "The 3' end processing factor PCF11 regulates gene expression based on gene size and intronic polyadenylation",
+    "abstract": "Genes with different sizes have distinct expression patterns and functions. Here we show that the 3' end processing PCF11 modulates gene expression according to gene size. Gene density and polyA site strength, but not orientation between neighboring genes, impact short gene regulation by PCF11. In contrast, long gene modulation involves intronic polyadenylation (IPA), which is widespread in large introns. Downregulation of PCF11, which takes place in cell differentiation, contributes to short and long gene expressions with functions related to cell proliferation, cell morphology, adhesion, and migration. Mild, exogenous upregulation of PCF11 perturbs the gene expression program in cell differentiation. Further, PCF11 is auto-regulated through a highly conserved IPA site, the removal of which leads to PCF11 overexpression and global activation of proximal PASs sites. Together, our data indicate that PCF11 level impacts gene expression based on size and its autoregulation maintains homeostasis of PAS usage in the cell. Overall design: In total 2 RNA-seq libraries from 3T3-L1 cells for gene expression analysis; In total 4 3'READS libraries for the analysis of APA during C2C12 cell differentiation; In total 4 3'READS libraries for analysis of APA isoform stability under siPcf11 using 4sU metabolic labeling in C2C12 cells; In total 4 3'READS libraries for analysis of APA under siPcf11 using total RNA from C2C12 cells; In total 4 3'READS libraries for analysis of APA under Pcf11-IPAKO using total RNA from 4T1 cells; In total 4 3'READS libraries for analysis of APA under siPcf11 using total RNA from NIH3T3 cells;",
+    "study_type": "Other",
+    "published": "2019-02-13 18:07:16",
+    "record_count": 22,
+    "external_ids": {
+      "GEO": "GSE115232"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "30840896",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "34289366",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP173210",
+    "bioproject": "PRJNA509126",
+    "title": "Differentially expressed genes in hematopoietic stem cells after loss of Mettl3",
+    "abstract": "Hematopoietic stem cells (HSCs) maintain balanced self-renewal and differentiation according to physiological demands, but how different facets of these functions are precisely regulated is not fully understood. N6-methyladenosine (m6A) mRNA methylation has emerged as an important mode of epitranscriptional gene expression regulation affecting many biological processes. We show that deleting the m6A methyltransferase, Mettl3, from the adult hematopoietic system led to an accumulation of HSCs in the bone marrow and marked reduction of HSC reconstitution potential due to a blockage of HSC differentiation. Interestingly, deleting Mettl3 from myeloid cells using Lysm-cre did not have any discernable impact on myeloid cell number or function. m6A sequencing on purified HSCs revealed 2,073 genes with significant m6A modification. In particular, Myc, a key regulator of HSC differentiation, was identified as a direct target of m6A in HSCs. Mettl3-deficient HSCs failed to up-regulate Myc expression upon stimulation to differentiate and enforced expression of Myc rescued differentiation defects of Mettl3-deficient HSCs. Our results thus revealed a key role of m6A in governing HSC differentiation by regulating Myc expression. This data includes RNA-Seq analysis to showing only minor gene expression changes in adult bone marrow murine hematopoietic stem cells 10 days after Mettl3 deletion by pIpC administration compared to pIpC treated controls. Overall design: 7 samples were sequenced, 3 control and 4 Mettl3-deficient mutants from different biological replicates of Mx1-cre; Mettl3fl/fl mice and cre-negative control littermates 10 days after Mettl3 deletion by pIpC administration.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2019-04-01 16:54:12",
+    "record_count": 7,
+    "external_ids": {
+      "GEO": "GSE123526"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "31061465",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  }
+]

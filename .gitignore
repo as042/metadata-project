@@ -1,6 +1,7 @@
-# NCBI credentials — never commit these
+# credentials — never commit these
 api_key.txt
 email.txt
+claude_api_key.txt
 
 # Python
 __pycache__/

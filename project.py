@@ -38,6 +38,7 @@ EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 EPMC_SEARCH = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 PMC_OA = "https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi"
 UNPAYWALL = "https://api.unpaywall.org/v2"
+EPMC_REST = "https://www.ebi.ac.uk/europepmc/webservices/rest"
 
 # Publication accessibility classes returned by classify_publication().
 PUBLICATION_CLASSES = ("oa", "partial", "paywall", "unknown")
@@ -125,7 +126,9 @@ _TRANSIENT = (
 )
 
 
-def _request_with_retry(url, *, sleep: float = 0.34, post: bool = False, **params):
+def _request_with_retry(
+    url, *, sleep: float = 0.34, post: bool = False, xml: bool = False, **params
+):
     """GET/POST with exponential backoff on rate-limit and transient server errors.
 
     Every network call in this module goes through here: NCBI allows only 3
@@ -134,6 +137,14 @@ def _request_with_retry(url, *, sleep: float = 0.34, post: bool = False, **param
     over a run of hundreds of studies one is near-certain, and it shouldn't end the
     run. Use ``post=True`` when passing a long id list (a GET URL would 414). Any
     non-retryable error status raises.
+
+    ``xml=True`` parses the body **inside** the retry loop and returns the parsed
+    root instead of the Response. E-utilities occasionally serves a body that is
+    complete at the HTTP level — 200, no ``ChunkedEncodingError`` — yet truncated
+    mid-token, and a full study build downloads hundreds of these. Parsed at the
+    call site, that ``ParseError`` escapes the retry layer entirely and kills the
+    build; observed once in 305 studies, where the same request succeeded on a
+    later attempt. Parsing here also keeps it to exactly one parse per response.
     """
     delay = max(sleep, 0.34)
     for attempt in range(5):
@@ -153,7 +164,15 @@ def _request_with_retry(url, *, sleep: float = 0.34, post: bool = False, **param
             delay = min(delay * 2, 5.0)
             continue
         r.raise_for_status()
-        return r
+        if not xml:
+            return r
+        try:
+            return ET.fromstring(r.text)
+        except ET.ParseError:
+            if attempt == 4:
+                raise
+            time.sleep(delay)
+            delay = min(delay * 2, 5.0)
 
 
 # --------------------------------------------------------------------------- #
@@ -360,9 +379,12 @@ class Project:
         # falls back to the process-wide credentials when they are None.
         return _common(self._email, self._api_key, **extra)
 
-    def _get(self, endpoint, **params):
+    def _get(self, endpoint, xml: bool = False, **params):
         return _request_with_retry(
-            f"{EUTILS}/{endpoint}", sleep=self._sleep, **self._common_params(**params)
+            f"{EUTILS}/{endpoint}",
+            sleep=self._sleep,
+            xml=xml,
+            **self._common_params(**params),
         )
 
     # -- build pipeline --------------------------------------------------- #
@@ -385,8 +407,7 @@ class Project:
             return
         webenv, qkey = self._epost(uids)
         for start in range(0, len(uids), self._batch):
-            xml = self._efetch_batch(webenv, qkey, start).text
-            self._parse_package_set(xml)
+            self._parse_package_set(self._efetch_batch(webenv, qkey, start))
             time.sleep(self._sleep)
 
     def _build_summary(self):
@@ -412,7 +433,7 @@ class Project:
         uids = res.get("idlist", [])
         if not uids:
             raise ValueError(f"No SRA records found for {self.accession}")
-        root = ET.fromstring(self._efetch_ids(uids))
+        root = self._efetch_ids(uids)
         pkg = next(root.iter("EXPERIMENT_PACKAGE"), None)
         if pkg is not None:
             self._parse_study(pkg.find("STUDY"))
@@ -446,7 +467,7 @@ class Project:
             return  # single-record study: its one date is already the earliest
         time.sleep(self._sleep)
         try:
-            root = ET.fromstring(self._efetch_batch(webenv, qkey, count - 1).text)
+            root = self._efetch_batch(webenv, qkey, count - 1)
         except (requests.RequestException, ET.ParseError):
             return  # keep the date we have rather than failing the whole build
         pkg = next(root.iter("EXPERIMENT_PACKAGE"), None)
@@ -463,22 +484,22 @@ class Project:
         )
         return r.json()["esearchresult"]["idlist"]
 
-    def _efetch_ids(self, ids) -> str:
+    def _efetch_ids(self, ids):
         return self._get(
-            "efetch.fcgi", db="sra", id=",".join(ids), retmode="xml"
-        ).text
+            "efetch.fcgi", db="sra", id=",".join(ids), retmode="xml", xml=True
+        )
 
     def _epost(self, uids):
         # POST, not GET: this is the whole point of epost — the id list is one per
         # record in the study, so a GET URL blows the ~8KB server limit and 414s
         # somewhere around a thousand records (SRP094905, 1800 records, failed).
-        r = _request_with_retry(
+        root = _request_with_retry(
             f"{EUTILS}/epost.fcgi",
             sleep=self._sleep,
             post=True,
+            xml=True,
             **self._common_params(db="sra", id=",".join(uids)),
         )
-        root = ET.fromstring(r.text)
         return _text(root, "WebEnv"), _text(root, "QueryKey")
 
     def _efetch_batch(self, webenv, qkey, start):
@@ -490,11 +511,11 @@ class Project:
             retstart=start,
             retmax=self._batch,
             retmode="xml",
+            xml=True,
         )
 
     # -- parsing ---------------------------------------------------------- #
-    def _parse_package_set(self, xml_text: str):
-        root = ET.fromstring(xml_text)
+    def _parse_package_set(self, root):
         for pkg in root.iter("EXPERIMENT_PACKAGE"):
             self._parse_study(pkg.find("STUDY"))
             self._note_published(pkg)  # cheap; independent of the include_* flags
@@ -653,8 +674,9 @@ class Project:
         if uid is None:
             return []
         try:
-            r = self._get("efetch.fcgi", db="bioproject", id=uid, retmode="xml")
-            root = ET.fromstring(r.text)
+            root = self._get(
+                "efetch.fcgi", db="bioproject", id=uid, retmode="xml", xml=True
+            )
         except (requests.RequestException, ET.ParseError):
             return []
         # Belt-and-braces against the misresolution above: if the record names
@@ -849,8 +871,9 @@ def _eutils(endpoint, sleep: float = 0.34, post: bool = False, **params):
 _STUDY_ACC_RE = re.compile(r'<Study\b[^>]*\bacc="([^"]+)"')
 
 
-def _srps_from_esummary(xml_text: str) -> list[str]:
-    root = ET.fromstring(xml_text)  # the outer esummary envelope is well-formed
+def _srps_from_esummary(root) -> list[str]:
+    # ``root`` is the outer esummary envelope, already parsed by the retry layer.
+    # Only the nested ExpXml blobs need the regex above.
     out = []
     for item in root.iter("Item"):
         if item.get("Name") == "ExpXml" and item.text:
@@ -906,10 +929,8 @@ def classify_publication(pub_id, sleep: float | None = None, email=None, api_key
     pmcid = art.get("pmcid")
     is_oa = art.get("isOpenAccess") == "Y"
     if pmcid:
-        root = ET.fromstring(
-            _request_with_retry(
-                PMC_OA, sleep=sleep, id=pmcid, **_common(email, api_key)
-            ).text
+        root = _request_with_retry(
+            PMC_OA, sleep=sleep, id=pmcid, xml=True, **_common(email, api_key)
         )
         if root.find(".//record") is not None:
             return "oa"  # PMC Open Access subset — authoritative
@@ -922,6 +943,93 @@ def classify_publication(pub_id, sleep: float | None = None, email=None, api_key
     if doi and _unpaywall_is_oa(doi, sleep=sleep, email=email):
         return "oa"
     return "paywall"
+
+
+# Sections worth sending to a model reconstructing sample metadata. Methods is
+# where the material, the strains, the treatments and the collection details
+# live; results and discussion are about findings, not provenance, and cost the
+# same per token.
+_METHODS_RE = re.compile(r"method|material|experimental|procedure", re.I)
+
+
+def fetch_open_access_text(
+    pub_id, max_chars: int = 30000, sleep: float | None = None, email=None, api_key=None
+) -> str | None:
+    """Plain text of an open-access paper, or None if it cannot be retrieved.
+
+    Resolves a PMID or DOI to a PMCID through Europe PMC, then pulls the JATS
+    full text from its REST service. Returns None — never raises — when the
+    paper is not in Europe PMC, has no PMC copy, or is not in the open subset;
+    a study without a retrievable paper is a normal outcome, not an error.
+
+    **This is the expensive input in the pipeline.** A full paper runs tens of
+    thousands of tokens, against ~540 for a sample's archive evidence, so the
+    text is trimmed rather than sent whole: title, abstract, then Methods-like
+    sections, then whatever else fits under ``max_chars``. Methods is where
+    sample provenance actually lives; results and discussion bill the same per
+    token and describe findings instead. Widen ``max_chars`` deliberately, not
+    by default.
+    """
+    pub_id = str(pub_id).strip()
+    sleep = _sleep_for(sleep, api_key)
+    is_doi = "/" in pub_id
+    query = f'DOI:"{pub_id}"' if is_doi else f"EXT_ID:{pub_id} AND SRC:MED"
+    try:
+        hits = (
+            _request_with_retry(
+                EPMC_SEARCH, sleep=sleep, query=query, format="json", resultType="core"
+            )
+            .json()
+            .get("resultList", {})
+            .get("result", [])
+        )
+    except (requests.RequestException, ValueError):
+        return None
+    if not hits:
+        return None
+    pmcid = hits[0].get("pmcid")
+    if not pmcid:
+        return None  # indexed but no PMC copy — nothing to fetch full text from
+    try:
+        root = _request_with_retry(
+            f"{EPMC_REST}/{pmcid}/fullTextXML", sleep=sleep, xml=True
+        )
+    except (requests.RequestException, ET.ParseError):
+        return None
+    return _jats_text(root, max_chars)
+
+
+def _jats_text(root, max_chars: int) -> str | None:
+    """Flatten a JATS article to plain text, Methods-first, under `max_chars`."""
+
+    def flat(el):
+        return " ".join("".join(el.itertext()).split()) if el is not None else ""
+
+    parts: list[str] = []
+    title = flat(root.find(".//article-title"))
+    if title:
+        parts.append(f"TITLE: {title}")
+    abstract = flat(root.find(".//abstract"))
+    if abstract:
+        parts.append(f"ABSTRACT: {abstract}")
+
+    body = root.find(".//body")
+    methods, other = [], []
+    for sec in body.findall("sec") if body is not None else []:
+        heading = flat(sec.find("title"))
+        text = flat(sec)
+        if not text:
+            continue
+        (methods if _METHODS_RE.search(heading) else other).append(text)
+
+    budget = max_chars - sum(len(p) for p in parts)
+    for text in methods + other:  # Methods first, so a tight budget keeps it
+        if budget <= 0:
+            break
+        parts.append(text[:budget])
+        budget -= len(text)
+    joined = "\n\n".join(parts).strip()
+    return joined or None
 
 
 def _unpaywall_is_oa(doi: str, sleep: float = 0.34, email: str | None = None) -> bool:
@@ -1176,8 +1284,9 @@ def search_studies(
                     retstart=start,
                     retmax=eff_page,
                     retmode="xml",
+                    xml=True,
                     **common,
-                ).text
+                )
                 srps = _srps_from_esummary(xml)
             except (requests.RequestException, ET.ParseError) as exc:
                 # A harvest of thousands reads thousands of pages over hours; one
