@@ -98,6 +98,9 @@ and most speculative.
 | 3 | **inferred_from_text** | ~$0.0035/record | A model reads the study's own free text (title, abstract, sample attributes) and infers what it implies. "Isolated from ileal biopsies" → `tissue_type: ileum`. |
 | 4 | **inferred_from_paper** | ~$0.013/study | A model reads up to 30,000 characters of the linked open-access paper — Methods section first — and fills what the archive never said. |
 
+The two paid figures are for the default model (Haiku 4.5, no thinking) and scale with whatever
+model you select — see [Choosing models per layer](#choosing-models-per-layer).
+
 The ordering is the whole design. **A layer never overwrites an earlier one**, so a value the
 archive stated directly can't be clobbered by a guess, and a paper can't overrule the submitter.
 
@@ -153,7 +156,26 @@ Two credential files at the repo root, both gitignored:
 
 * `api_key.txt` — an NCBI API key. Raises the E-utilities limit from 3 to 10 requests/second.
 * `email.txt` — a contact address. NCBI uses it to warn you before blocking your IP; Unpaywall requires one.
-* `claude_api_key.txt` — an Anthropic API key. **Only needed for layers 3 and 4.**
+
+### The Anthropic key
+
+**There is no default key file.** Layers 3 and 4 spend real money, so the account that pays is
+named per run with `claude_key_file=`; a run that turns a model layer on without naming one is
+refused before it does any work:
+
+```sh
+uv run python -c "import main; main.full_pipeline(claude_key_file='anton_claude_api_key.txt')"
+```
+
+Keep each key in its own gitignored file. The path is read and validated *first* — ahead of the
+output directory, ahead of NCBI, ahead of the harvest — so a missing file, an empty one, or one
+holding the wrong credential entirely (an NCBI key, say) costs a local file read rather than
+surfacing after stage 1 has already spent its requests. Reading the file spends nothing; the key
+is not used until layer 3 makes its first call. Each run prints `Billing Claude key: <file>` next
+to the cost estimate, so which account pays is visible before anything is spent.
+
+This selects *which* account pays; it does not raise `max_spend`, which caps every run regardless.
+Layers 1 and 2 are free and need no key at all.
 
 ```sh
 uv sync
@@ -164,8 +186,8 @@ uv run python main.py
 # Free run — layers 1 and 2 only, no API key needed, no spend
 uv run python -c "import main; main.full_pipeline(from_text=False, from_paper=False)"
 
-uv run pytest tests/                                        # everything (~100s)
-uv run pytest tests/test_offline.py tests/test_dataset.py   # no network, no tokens
+uv run pytest tests/                                        # 219 tests, ~50s (test_project.py hits NCBI)
+uv run pytest tests/test_offline.py tests/test_dataset.py   # 181 tests, ~1s, no network, no tokens
 ```
 
 `full_pipeline()` takes `file_location` and `dataset_prefix` to control output paths, and creates
@@ -208,6 +230,91 @@ the 346 are under 50 records — so the printed breakdown is how you pick an aff
 
 If a layer fails on one study (a refusal, an exhausted retry budget, an expired API key) that study
 falls back to its direct-only records and the run continues.
+
+Every run ends with what it actually billed, priced per call at that call's own model rate:
+
+```
+Claude usage: $1.25 | 61 calls | in 94,554 (+299,756 cached, 73,929 written) | out 81,786
+```
+
+Compare that against the estimate printed at the start. They should be close; a large gap means a
+multiplier in `dataset.THINKING_MULTIPLIER` needs replacing with the measured number.
+
+### Choosing models per layer
+
+Each model layer takes its own `model` / `effort` / `thinking`, because the two layers have
+opposite cost shapes: layer 3 makes one small call per *record*, layer 4 one large call per
+open-access *study*. Upgrading layer 4 alone is cheap; upgrading layer 3 is what scales.
+
+Models and effort levels have named constants in `claude.py`, so they autocomplete and a typo is an
+`AttributeError` at import rather than a string that travels until the cost estimate refuses it:
+
+```python
+import claude, main
+
+main.full_pipeline(
+    claude_key_file="anton_claude_api_key.txt",
+    paper_model=claude.OPUS_5, paper_effort=claude.EFFORT_MEDIUM, paper_thinking=True)
+```
+
+`claude.MODELS` and `claude.EFFORT_LEVELS` list what is available. The constants are the API's own
+IDs, so the equivalent raw strings (`"claude-opus-5"`, `"medium"`) still work everywhere — including
+in datasets and checkpoints already on disk.
+
+**The cost estimate follows these settings**, so `max_spend` keeps protecting the run — the
+per-unit figures are measured on Haiku 4.5 and scaled by the model's price and by thinking.
+Relative to that baseline (`test2` = 52 records / 5 papers; full harvest = 102,227 records / 305
+papers):
+
+| layer settings | multiplier | test2 | full harvest |
+|---|---|---|---|
+| `claude-haiku-4-5` (default) | 1.0× | $0.25 | $362 |
+| `claude-sonnet-5`, no thinking | 2.0× | $0.49 | $724 |
+| `claude-opus-5`, no thinking | 5.0× | $1.24 | $1,809 |
+| `claude-opus-5`, `medium` + thinking | 9.5× | $2.35 | $3,437 |
+| `claude-opus-5`, `xhigh` + thinking | 20.0× | $4.94 | $7,235 |
+
+Price scaling is exact — every model here bills output at 5× input, so the ratio is unambiguous.
+The thinking multipliers are partly measured (Opus 5 `medium` = 1.9×; Sonnet 5 at default effort =
+2.5×) and partly interpolated, rounded up so the guard errs toward refusing too early. Every run
+now prints its actual dollar spend, which is the measurement — replace a multiplier as soon as you
+have a run at that setting.
+
+> **`thinking=False` used to be a lie on Sonnet 5 and Opus 5.** Omitting the `thinking` field runs
+> *adaptive* thinking on those models, so a run configured "thinking off" thought anyway and billed
+> $1.25 against a $0.49 estimate and a $1.00 cap. The flag now sends an explicit `disabled`, and an
+> unset `effort` is priced as the API's real default (`high`) rather than as cheap.
+
+Combinations the API rejects are refused before the harvest, not at the first request: `effort` or
+thinking on Haiku 4.5, and `thinking=False` on Opus 5 above `high` effort. A model with no entry in
+`claude.PRICES` is refused outright rather than costed at the baseline.
+
+### Auditing the confidence label
+
+`confidence` records **where a value came from**, not how likely it is to be right:
+
+| level | meaning |
+|---|---|
+| `high` | quoted — appears in the evidence word for word |
+| `medium` | rephrased, or one of several spans the model could have quoted |
+| `low` | inferred — the evidence does not carry the value |
+
+The point of a mechanical axis is that the top level is *checkable*. `audit.py` verifies it by
+string matching — no gold set, no model, **no spend**:
+
+```sh
+uv run python audit.py datasets/test3/test_reconstructed.json                        # offline
+uv run python audit.py datasets/test2/test_reconstructed2.json \
+                       datasets/test2/test_filtered.json                             # exact
+```
+
+The offline mode is blind to the sample attribute bag (it is not saved in the output), so it can
+prove a value was quoted but not disprove it — non-matches come back `unknown`, never as failures.
+Passing a studies file re-fetches from SRA to rebuild the exact evidence string, which costs NCBI
+requests and no tokens. Layer 4 is **not auditable**: paper text is not persisted.
+
+A quoted value can still be wrong — the model may have quoted the wrong span. This measures how
+far the model reached, not whether it landed; accuracy still needs a labelled set.
 
 ---
 

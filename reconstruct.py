@@ -286,16 +286,29 @@ If the evidence does not settle a field, leave it out of your answer entirely.
 A later stage will try it. Only include fields you can actually answer.
 
 CONFIDENCE
-Every answer carries one of high, medium, or low. Confidence is in the answer
-being correct, not in having found something:
+Every answer carries one of high, medium, or low. This records *where the value
+came from*, not how likely you think it is to be right. It describes what you
+did, not a belief about the outcome:
 
-  high    the evidence states it outright - you are copying, not deciding
-  medium  the evidence clearly implies it, but you are interpreting
-  low     you are choosing between plausible readings, or working from
-          indirect signals
+  high    you copied it. The value appears in the evidence word for word and you
+          could point at the exact span it came from.
+  medium  you rephrased it. The evidence carries this value in different words -
+          a unit normalised, a phrase tidied, a synonym chosen.
+  low     you inferred it. The evidence does not carry the value; you concluded
+          it from what is there.
 
-Most answers are not high. If you had to decide anything at all, it is medium
-at best. If you would not be surprised to be wrong, say low.
+Two rules decide the common edge cases:
+
+  Copied but chosen is medium. If the evidence offered more than one span you
+  could have quoted and you picked one, that is a decision - label it medium
+  even though your answer is word for word.
+
+  A missing-value term is high only if the evidence says it. If the attributes
+  literally read "not collected", that is a quote. If you concluded the field
+  does not apply, that is an inference - label it low.
+
+Do not use this to hedge. A value you copied exactly is high even if you suspect
+the submitter was wrong: whether the archive is correct is not what this records.
 
 MISSING VALUES
 Where one of these applies, answer with the exact string rather than omitting
@@ -574,11 +587,61 @@ merely could not fill."""
 # where the evidence is thin is what the confidence levels are there to express.
 #
 # Haiku 4.5 predates adaptive thinking and the effort parameter and rejects
-# both, hence None/False. Moving to an Opus- or Sonnet-tier model means setting
-# TEXT_EFFORT (e.g. "low") and TEXT_THINKING = True alongside TEXT_MODEL.
-TEXT_MODEL = "claude-haiku-4-5"
+# both, hence None/False — :func:`dataset.validate_model_settings` refuses the
+# combination locally rather than letting it 400 mid-run.
+#
+# Don't edit these to change a run: pass ``text_model=`` / ``paper_model=`` to
+# the pipeline stages, or call :func:`configure_models`. Both routes reprice the
+# spend estimate to match, which editing the constants directly does not.
+#
+# Measured on the 52-record set, layers 3 and 4 together: Haiku no-thinking
+# $0.25, Sonnet 5 no-thinking ~$0.49, Sonnet 5 thinking $1.25. Thinking was the
+# worst of the three — it cost 2.5x more than the same model without it, filled
+# *fewer* real values, and pushed a third of its answers onto layer 4 where
+# :mod:`audit` cannot check them. Measure before assuming more is better.
+TEXT_MODEL = claude.HAIKU_4_5
 TEXT_EFFORT: str | None = None
 TEXT_THINKING = False
+
+# Layer 4 gets its own three. They defaulted to layer 3's settings because the
+# two layers started identical, but the work is not: layer 3 asks a small
+# question about ~540 characters of archive evidence tens of thousands of times,
+# while layer 4 asks one question per study carrying up to PAPER_MAX_CHARS of
+# full text. That is the call where a better model has the most to read and the
+# fewest chances to bill, so it is the one worth paying more for — and pinning
+# them together meant upgrading the cheap layer to upgrade the expensive one.
+PAPER_MODEL = TEXT_MODEL
+PAPER_EFFORT: str | None = TEXT_EFFORT
+PAPER_THINKING = TEXT_THINKING
+
+
+def configure_models(text_model=None, text_effort=None, text_thinking=None,
+                     paper_model=None, paper_effort=None, paper_thinking=None) -> None:
+    """Override the per-layer model settings for this process.
+
+    ``None`` leaves a setting alone, so a caller can change the paper model
+    without restating layer 3's. Mirrors :func:`claude.set_api_key`: the
+    pipeline stages take these as arguments and call this once, before any
+    paid work, rather than reaching into module globals themselves.
+
+    Validation lives in :func:`dataset.validate_model_settings`, which runs
+    before the spend estimate — a rejected combination has to fail on a local
+    check, not on a 400 partway through a run that has already billed.
+    """
+    global TEXT_MODEL, TEXT_EFFORT, TEXT_THINKING
+    global PAPER_MODEL, PAPER_EFFORT, PAPER_THINKING
+    if text_model is not None:
+        TEXT_MODEL = text_model
+    if text_effort is not None:
+        TEXT_EFFORT = text_effort
+    if text_thinking is not None:
+        TEXT_THINKING = text_thinking
+    if paper_model is not None:
+        PAPER_MODEL = paper_model
+    if paper_effort is not None:
+        PAPER_EFFORT = paper_effort
+    if paper_thinking is not None:
+        PAPER_THINKING = paper_thinking
 
 # Fields per call. `None` asks the whole open set at once, which is what the
 # answer-list schema below makes possible. This is the dial for the
@@ -832,10 +895,15 @@ You are now reading the study's publication rather than its archive record. Two
 things change.
 
 First, a paper describes the *study*. It will say "we sequenced tumour and
-adjacent normal tissue" without telling you which sample is which. Answer
-study-wide facts confidently; do not invent a per-sample distinction the paper
-does not draw. If a value clearly differs between samples and the paper does not
-say which is which, leave the field alone.
+adjacent normal tissue" without telling you which sample is which. Do answer
+study-wide facts; do not invent a per-sample distinction the paper does not
+draw. If a value clearly differs between samples and the paper does not say
+which is which, leave the field alone.
+
+The paper text is "the evidence" for the confidence rules above. One addition:
+a fact the paper states about the study as a whole, which you are applying to
+this sample, is medium at best - you are generalising, not copying, even when
+the words match.
 
 Second, you are shown what earlier stages already established. Treat those as
 settled and do not restate them - they are context to reason from, not fields to
@@ -958,7 +1026,7 @@ def infer_from_paper(project, records, open_by_id):
     for chunk in _chunks(wanted):
         reply = claude.extract(
             evidence, _answer_schema(chunk), system=PAPER_SYSTEM,
-            model=TEXT_MODEL, effort=TEXT_EFFORT, thinking=TEXT_THINKING,
+            model=PAPER_MODEL, effort=PAPER_EFFORT, thinking=PAPER_THINKING,
         )
         for answer in reply.get("answers") or []:
             answers[answer["field"]] = answer

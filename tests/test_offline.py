@@ -21,6 +21,7 @@ from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import audit as A  # noqa: E402
 import claude as C  # noqa: E402
 import dataset as D  # noqa: E402
 import main as M  # noqa: E402
@@ -2238,13 +2239,24 @@ def test_usage_accounting_separates_cached_from_fresh_tokens():
         _with_claude_stub(_Reply([_Block("text", "hi")], input_tokens=100, output_tokens=20,
                           cache_creation_input_tokens=0, cache_read_input_tokens=900))
         C.complete("b")
-        assert {k: v for k, v in C.USAGE.items() if not k.startswith("batch")} == {
-            "calls": 2, "input": 200, "output": 40,
-            "cache_write": 900, "cache_read": 900}
+        tokens = {k: v for k, v in C.USAGE.items()
+                  if not k.startswith("batch") and k != "cost"}
+        assert tokens == {"calls": 2, "input": 200, "output": 40,
+                          "cache_write": 900, "cache_read": 900}
+        # The dollar figure is the point of tracking any of this: cache writes
+        # bill at 125% and reads at 10%, so the same 900 tokens cost 12.5x more
+        # to write than to read and the token totals alone say nothing.
+        rate_in, rate_out = C.PRICES[C.MODEL]
+        expected = (
+            (200 * rate_in + 900 * rate_in * C.CACHE_WRITE_RATE
+             + 900 * rate_in * C.CACHE_READ_RATE + 40 * rate_out) / 1e6
+        )
+        assert abs(C.USAGE["cost"] - expected) < 1e-9
         # batched tokens are counted apart — the 50% discount is a billing rate,
         # not a token reduction, so mixing them would overstate a batch run 2x
         assert C.USAGE["batch_calls"] == 0
-        assert "2 calls" in C.usage_report() and "900" in C.usage_report()
+        report = C.usage_report()
+        assert "2 calls" in report and "900" in report and "$" in report
     finally:
         C.reset_usage()
         C._client_instance, C._api_key = saved
@@ -2597,6 +2609,556 @@ def test_pipeline_passes_all_four_layer_flags_through():
         with _StagesStub() as stub:
             M.full_pipeline(file_location=tmp, from_paper=False)
         assert stub.calls["reconstruct"]["from_paper"] is False
+
+
+def test_pipeline_bills_the_default_key_file_unless_told_otherwise():
+    # the common case must not touch the credential machinery at all — a run
+    # that says nothing about keys keeps whatever key is already loaded
+    with tempfile.TemporaryDirectory() as tmp:
+        saved = (C._api_key, C._client_instance)
+        try:
+            with _StagesStub():
+                M.full_pipeline(file_location=tmp)
+            assert (C._api_key, C._client_instance) == saved   # untouched
+        finally:
+            C._api_key, C._client_instance = saved
+
+
+def test_pipeline_can_be_pointed_at_a_different_claude_key():
+    # layers 3 and 4 are the only things that spend, so which account pays is a
+    # per-run choice, not a constant in claude.py
+    with tempfile.TemporaryDirectory() as tmp:
+        key_file = os.path.join(tmp, "other_key.txt")
+        with open(key_file, "w", encoding="utf-8") as fh:
+            fh.write("  sk-ant-other\n")             # padded: stripping is the point
+        saved = (C._api_key, C._client_instance)
+        try:
+            with _StagesStub():
+                M.full_pipeline(file_location=tmp, claude_key_file=key_file)
+            assert _fp(C._api_key) == _fp("sk-ant-other")
+            # and the cached client is dropped, or the *old* key would keep
+            # billing for the rest of the process
+            assert C._client_instance is None
+        finally:
+            C._api_key, C._client_instance = saved
+
+
+def _fp(text):
+    """Fingerprint a credential for assertions.
+
+    Tests compare keys by hash, never by value: an assertion on the raw string
+    prints both sides when it fails, and a test that accidentally reads the
+    real key file would then dump a live credential into the output. That is
+    not hypothetical — it is how this file's first draft failed.
+    """
+    import hashlib
+    return hashlib.sha256(text.encode()).hexdigest()[:12]
+
+
+def test_there_is_no_default_credential_file():
+    # the whole point: an implicit default meant "I named no key" and "no key
+    # was used" were different things, and a stale claude_api_key.txt in the
+    # repo root silently became the account that paid
+    assert C.API_KEY_FILE is None
+    saved = (C._api_key, C._client_instance, C._api_key_source)
+    try:
+        C._api_key, C._client_instance, C._api_key_source = None, None, None
+        with pytest.raises(C.MissingAPIKeyError):
+            C.set_api_key()                    # neither key= nor path=
+        assert C._api_key is None              # and nothing was resolved
+        assert C.key_source() == "(none configured)"
+    finally:
+        C._api_key, C._client_instance, C._api_key_source = saved
+        _offline_guard()
+
+
+def test_client_refuses_to_build_without_a_key_instead_of_hunting_for_one():
+    saved = (C._api_key, C._client_instance, C._api_key_source)
+    try:
+        C._api_key, C._client_instance, C._api_key_source = None, None, None
+        with pytest.raises(C.MissingAPIKeyError) as exc:
+            C._client()
+        assert "nothing has been spent" in str(exc.value).lower()
+    finally:
+        C._api_key, C._client_instance, C._api_key_source = saved
+        _offline_guard()
+
+
+def test_a_malformed_credential_is_rejected_at_load_not_at_first_request():
+    # catching it here costs a file read; catching it at the first call costs
+    # the whole harvest that ran before it
+    cases = {
+        "sk-ant-has space": "whitespace",       # authenticates as a different string
+        "not-an-anthropic-key": "Anthropic",    # wrong file entirely (NCBI key? email?)
+        "": "empty",
+    }
+    with tempfile.TemporaryDirectory() as tmp:
+        saved = (C._api_key, C._client_instance, C._api_key_source)
+        try:
+            for content, expected in cases.items():
+                path = os.path.join(tmp, "k.txt")
+                with open(path, "w", encoding="utf-8") as fh:
+                    fh.write(content + "\n")
+                with pytest.raises(C.MissingAPIKeyError) as exc:
+                    C.set_api_key(path=path)
+                assert expected in str(exc.value)
+        finally:
+            C._api_key, C._client_instance, C._api_key_source = saved
+            _offline_guard()
+
+
+def test_naming_both_a_key_and_a_file_is_refused_as_ambiguous():
+    with pytest.raises(ValueError):
+        C.set_api_key(key="sk-ant-x", path="some_file.txt")
+
+
+def test_api_key_file_is_read_at_call_time_not_import_time():
+    # binding path=API_KEY_FILE as a parameter default froze it at import, so
+    # reassigning claude.API_KEY_FILE silently kept billing the original account
+    with tempfile.TemporaryDirectory() as tmp:
+        redirected = os.path.join(tmp, "redirected.txt")
+        with open(redirected, "w", encoding="utf-8") as fh:
+            fh.write("sk-ant-redirected\n")
+        saved = (C._api_key, C._client_instance, C._api_key_source, C.API_KEY_FILE)
+        try:
+            C.API_KEY_FILE = redirected
+            C.set_api_key()
+            assert _fp(C._api_key) == _fp("sk-ant-redirected")
+        finally:
+            (C._api_key, C._client_instance, C._api_key_source,
+             C.API_KEY_FILE) = saved
+            _offline_guard()
+
+
+def test_key_source_reports_without_leaking_the_key():
+    saved = (C._api_key, C._client_instance, C._api_key_source)
+    try:
+        C.set_api_key(key="sk-ant-secret-value")
+        assert "secret" not in C.key_source()     # never the credential itself
+        assert C.key_source() == "(passed directly)"
+        # with nothing loaded it says so, rather than naming a file that may
+        # not be the one that ends up paying
+        C._api_key_source = None
+        assert C.key_source() == "(none configured)"
+    finally:
+        C._api_key, C._client_instance, C._api_key_source = saved
+        _offline_guard()
+
+
+def test_reconstruct_stage_can_select_its_own_key():
+    # main.full_pipeline is not the only entry point — running the stage
+    # directly (as README suggests) must be able to choose the account too
+    with tempfile.TemporaryDirectory() as tmp:
+        key_file = os.path.join(tmp, "other_key.txt")
+        with open(key_file, "w", encoding="utf-8") as fh:
+            fh.write("sk-ant-stage-key\n")
+        in_path = os.path.join(tmp, "studies.json")
+        with open(in_path, "w", encoding="utf-8") as fh:
+            fh.write("[]")
+        saved = (C._api_key, C._client_instance, C._api_key_source)
+        try:
+            D.save_reconstructed_records(
+                in_path=in_path, out_path=os.path.join(tmp, "out.json"),
+                expand=False, claude_key_file=key_file,
+            )
+            assert _fp(C._api_key) == _fp("sk-ant-stage-key")
+        finally:
+            C._api_key, C._client_instance, C._api_key_source = saved
+            _offline_guard()
+
+
+def test_paid_layers_refuse_to_start_without_a_key():
+    # the guard must fire before load_studies, so a keyless run costs nothing
+    # at all — not a harvest, not an expansion, not a request
+    with tempfile.TemporaryDirectory() as tmp:
+        in_path = os.path.join(tmp, "studies.json")
+        with open(in_path, "w", encoding="utf-8") as fh:
+            fh.write("[]")
+        saved = (C._api_key, C._client_instance, C._api_key_source)
+        try:
+            C._api_key, C._client_instance, C._api_key_source = None, None, None
+            for layers in ({"from_text": True}, {"from_paper": True},
+                           {"from_text": True, "from_paper": True}):
+                with pytest.raises(C.MissingAPIKeyError):
+                    D.save_reconstructed_records(
+                        in_path=in_path, out_path=os.path.join(tmp, "out.json"),
+                        expand=False, **layers,
+                    )
+                assert not os.path.exists(os.path.join(tmp, "out.json"))
+        finally:
+            C._api_key, C._client_instance, C._api_key_source = saved
+            _offline_guard()
+
+
+def test_a_free_run_does_not_claim_to_be_billing_a_key(capsys):
+    # harmonize is layer 2 — a synonym table, no model. Testing `any(layers)`
+    # instead of the paid layers made a free run print
+    # "Billing Claude key: (none configured)", which reads as though a run with
+    # no credential were about to bill one.
+    with tempfile.TemporaryDirectory() as tmp:
+        in_path = os.path.join(tmp, "studies.json")
+        with open(in_path, "w", encoding="utf-8") as fh:
+            fh.write("[]")
+        saved = (C._api_key, C._client_instance, C._api_key_source)
+        try:
+            C._api_key, C._client_instance, C._api_key_source = None, None, None
+            D.save_reconstructed_records(
+                in_path=in_path, out_path=os.path.join(tmp, "out.json"),
+                expand=False, harmonize=True, from_text=False, from_paper=False)
+            out = capsys.readouterr().out
+            assert "Billing Claude key" not in out
+            assert "Claude usage" not in out
+        finally:
+            C._api_key, C._client_instance, C._api_key_source = saved
+            _offline_guard()
+
+
+def test_a_free_run_still_needs_no_key_at_all():
+    # layers 1 and 2 cost nothing, so requiring a credential for them would
+    # break the one mode that is safe to run with no account configured
+    with tempfile.TemporaryDirectory() as tmp:
+        in_path = os.path.join(tmp, "studies.json")
+        with open(in_path, "w", encoding="utf-8") as fh:
+            fh.write("[]")
+        saved = (C._api_key, C._client_instance, C._api_key_source)
+        try:
+            C._api_key, C._client_instance, C._api_key_source = None, None, None
+            D.save_reconstructed_records(              # must not raise
+                in_path=in_path, out_path=os.path.join(tmp, "out.json"),
+                expand=False, harmonize=True, from_text=False, from_paper=False,
+            )
+        finally:
+            C._api_key, C._client_instance, C._api_key_source = saved
+            _offline_guard()
+
+
+def test_full_pipeline_refuses_a_keyless_paid_run_before_touching_anything():
+    # not even the output directory should be created — the credential is the
+    # first thing checked, ahead of NCBI and ahead of stage 1
+    with tempfile.TemporaryDirectory() as tmp:
+        target = os.path.join(tmp, "datasets", "nokey")
+        saved = (C._api_key, C._client_instance, C._api_key_source)
+        try:
+            C._api_key, C._client_instance, C._api_key_source = None, None, None
+            with _StagesStub() as stub:
+                with pytest.raises(C.MissingAPIKeyError):
+                    M.full_pipeline(file_location=target, from_text=True)
+            assert stub.calls == {}                 # no harvest, no filter
+            assert not os.path.exists(target)       # not even a mkdir
+        finally:
+            C._api_key, C._client_instance, C._api_key_source = saved
+            _offline_guard()
+
+
+def test_pipeline_refuses_a_missing_claude_key_before_harvesting():
+    # same reasoning as the missing-directory check: a typo'd key path must cost
+    # nothing, not surface after stage 1 has spent its requests
+    with tempfile.TemporaryDirectory() as tmp:
+        saved = (C._api_key, C._client_instance)
+        try:
+            with _StagesStub() as stub:
+                try:
+                    M.full_pipeline(file_location=tmp, claude_key_file="/nonexistent/nope.txt")
+                except FileNotFoundError as exc:
+                    assert "nope.txt" in str(exc)
+                else:
+                    raise AssertionError("a missing key file should be refused")
+            assert stub.calls == {}          # nothing harvested
+        finally:
+            C._api_key, C._client_instance = saved
+
+
+# --------------------------------------------------------------------------- #
+# per-layer model settings and the model-aware cost estimate
+# --------------------------------------------------------------------------- #
+class _ModelSettings:
+    """Restore reconstruct's model globals — configure_models mutates them."""
+
+    def __enter__(self):
+        self._saved = (R.TEXT_MODEL, R.TEXT_EFFORT, R.TEXT_THINKING,
+                       R.PAPER_MODEL, R.PAPER_EFFORT, R.PAPER_THINKING)
+        return self
+
+    def __exit__(self, *exc):
+        (R.TEXT_MODEL, R.TEXT_EFFORT, R.TEXT_THINKING,
+         R.PAPER_MODEL, R.PAPER_EFFORT, R.PAPER_THINKING) = self._saved
+        return False
+
+
+def test_thinking_false_actually_disables_thinking_on_models_that_default_to_it():
+    # the $1.25-on-a-$0.49-estimate bug: omitting `thinking` means *adaptive*
+    # on Sonnet 5 and Opus 5, so thinking=False has to say "disabled" out loud
+    for model in C.THINKS_BY_DEFAULT:
+        body = C._body("p", "sys", None, model, None, 1000, False, False)
+        assert body["thinking"] == {"type": "disabled"}, model
+    # ...and must not be sent to models that predate the field and reject it
+    body = C._body("p", "sys", None, C.HAIKU_4_5, None, 1000, False, False)
+    assert "thinking" not in body
+    # thinking=True is adaptive everywhere it is accepted
+    body = C._body("p", "sys", None, C.SONNET_5, None, 1000, True, False)
+    assert body["thinking"] == {"type": "adaptive"}
+
+
+def test_an_unset_effort_is_priced_as_the_api_default_not_as_cheap():
+    # `None` means the API's own default, which is `high`. Pricing it at the
+    # `low` rate is what let a $1.25 run through a $1.00 cap.
+    assert D.THINKING_MULTIPLIER[None] == D.THINKING_MULTIPLIER[C.EFFORT_HIGH]
+    assert D.THINKING_MULTIPLIER[None] > D.THINKING_MULTIPLIER[C.EFFORT_LOW]
+
+
+def test_the_estimate_now_covers_the_run_that_overspent():
+    # the exact configuration that billed $1.25: Sonnet 5, effort unset,
+    # thinking on. The estimate must land at or above that, not under it.
+    studies = [_cost_study(f"SRP{i}", n) for i, n in
+               enumerate((2, 6, 15, 22, 7))]          # the real test2 shape
+    total, _ = D.estimate_reconstruction_cost(
+        studies, from_text=True, from_paper=True,
+        text_model=C.SONNET_5, text_thinking=True,
+        paper_model=C.SONNET_5, paper_thinking=True)
+    assert total >= 1.25, f"estimate {total:.2f} is below the measured $1.25"
+
+
+def test_call_cost_prices_cache_reads_and_writes_apart():
+    class _U:
+        input_tokens = 1_000_000
+        output_tokens = 0
+        cache_read_input_tokens = 0
+        cache_creation_input_tokens = 0
+
+    rate_in, _ = C.PRICES[C.SONNET_5]
+    assert abs(C.call_cost(_U(), C.SONNET_5) - rate_in) < 1e-9
+    _U.input_tokens, _U.cache_read_input_tokens = 0, 1_000_000
+    assert abs(C.call_cost(_U(), C.SONNET_5) - rate_in * C.CACHE_READ_RATE) < 1e-9
+    _U.cache_read_input_tokens, _U.cache_creation_input_tokens = 0, 1_000_000
+    assert abs(C.call_cost(_U(), C.SONNET_5) - rate_in * C.CACHE_WRITE_RATE) < 1e-9
+
+
+def test_every_named_model_is_priced():
+    # the constants exist so a model is chosen by name, and a named model that
+    # cannot be costed would fail at the spend guard instead of at import —
+    # this keeps claude.MODELS and claude.PRICES from drifting apart
+    assert set(C.MODELS) == set(C.PRICES)
+    assert C.MODEL in C.PRICES                       # the transport default too
+    assert R.TEXT_MODEL in C.PRICES and R.PAPER_MODEL in C.PRICES
+
+
+def test_named_effort_levels_match_the_cost_table():
+    # a level with no multiplier would raise a KeyError deep inside the
+    # estimate rather than being rejected by validate_model_settings
+    assert set(C.EFFORT_LEVELS) <= set(D.THINKING_MULTIPLIER)
+    assert C.DEFAULT_EFFORT in C.EFFORT_LEVELS
+
+
+def test_the_constants_are_the_api_ids_so_raw_strings_still_work():
+    # the constants are for the caller; the wire format is unchanged, and every
+    # dataset and checkpoint already written names models as plain strings
+    assert C.HAIKU_4_5 == "claude-haiku-4-5"
+    assert C.OPUS_5 == "claude-opus-5"
+    assert D.cost_multiplier(C.OPUS_5, C.EFFORT_MEDIUM, True) == \
+           D.cost_multiplier("claude-opus-5", "medium", True)
+
+
+def test_the_estimate_follows_the_model_instead_of_assuming_the_baseline():
+    # the whole point: a hardcoded per-record cost meant switching to a pricier
+    # model left max_spend guarding a number with no relation to the bill
+    studies = [_cost_study("SRP1", 1000)]
+    cheap, _ = D.estimate_reconstruction_cost(
+        studies, from_text=True, text_model="claude-haiku-4-5")
+    dear, _ = D.estimate_reconstruction_cost(
+        studies, from_text=True, text_model="claude-opus-5",
+        text_effort="medium", text_thinking=True)
+    assert dear > cheap * 9        # 5x price, ~1.9x thinking
+    assert D.cost_multiplier("claude-haiku-4-5", None, False) == 1.0
+
+
+def test_the_two_layers_are_priced_on_their_own_models():
+    # layer 4 on Opus while layer 3 stays on Haiku is the whole reason the
+    # settings are split; the estimate has to reflect that, not average them
+    studies = [_cost_study("SRP1", 100)]
+    total, report = D.estimate_reconstruction_cost(
+        studies, from_text=True, from_paper=True,
+        text_model="claude-haiku-4-5",
+        paper_model="claude-opus-5", paper_effort="medium", paper_thinking=True)
+    expected = (100 * D.COST_PER_RECORD_TEXT
+                + D.COST_PER_STUDY_PAPER * D.cost_multiplier("claude-opus-5", "medium", True))
+    assert abs(total - expected) < 1e-9
+    assert "claude-haiku-4-5" in report and "claude-opus-5" in report
+
+
+def test_an_unpriced_model_stops_the_run_rather_than_guessing():
+    # falling back to the baseline price would hand max_spend a meaningless
+    # number — the same way a $1.00 cap once let a $7.00 run through
+    with pytest.raises(D.UnpricedModelError) as exc:
+        D.estimate_reconstruction_cost(
+            [_cost_study("SRP1", 10)], from_text=True, text_model="claude-made-up-9")
+    assert "max_spend cannot protect it" in str(exc.value)
+
+
+def test_combinations_the_api_rejects_are_refused_before_any_work():
+    # each of these is a 400 at request time, which would land after the
+    # harvest and after earlier studies had already billed
+    with pytest.raises(ValueError) as exc:      # Haiku predates both parameters
+        D.validate_model_settings("claude-haiku-4-5", "medium", False,
+                                  "claude-haiku-4-5", None, False)
+    assert "400" in str(exc.value)
+    with pytest.raises(ValueError):             # Opus 5 won't disable thinking that high
+        D.validate_model_settings("claude-opus-5", "xhigh", False,
+                                  "claude-opus-5", None, True)
+    with pytest.raises(ValueError):             # not an effort level at all
+        D.validate_model_settings("claude-opus-5", "turbo", True,
+                                  "claude-opus-5", None, True)
+    # ...and the same settings are fine on a layer that is switched off
+    D.validate_model_settings("claude-haiku-4-5", "medium", True,
+                              "claude-opus-5", None, False,
+                              from_text=False, from_paper=False)
+
+
+def test_configure_models_leaves_unset_layers_alone():
+    # so changing the paper model doesn't silently reset layer 3's settings
+    with _ModelSettings():
+        R.configure_models(text_model="claude-sonnet-5", text_thinking=True)
+        R.configure_models(paper_model="claude-opus-5")
+        assert R.TEXT_MODEL == "claude-sonnet-5" and R.TEXT_THINKING is True
+        assert R.PAPER_MODEL == "claude-opus-5"
+
+
+def test_the_stage_refuses_a_bad_combination_before_loading_studies():
+    with tempfile.TemporaryDirectory() as tmp:
+        in_path = os.path.join(tmp, "studies.json")
+        with open(in_path, "w", encoding="utf-8") as fh:
+            fh.write("[]")
+        with _ModelSettings():
+            with pytest.raises(ValueError):
+                D.save_reconstructed_records(
+                    in_path=in_path, out_path=os.path.join(tmp, "out.json"),
+                    expand=False, from_text=True,
+                    text_model="claude-haiku-4-5", text_effort="max",
+                )
+            assert not os.path.exists(os.path.join(tmp, "out.json"))
+
+
+# --------------------------------------------------------------------------- #
+# audit — the verbatim checker (no network, no tokens)
+# --------------------------------------------------------------------------- #
+def _audited(**fields):
+    """A record whose fields all came from layer 3, so all are auditable."""
+    record = TargetSchema(id=fields.pop("id", "SRX1"))
+    for name, value in fields.items():
+        setattr(record, name, value)
+        record.provenance[name] = "inferred_from_text"
+        record.confidence[name] = "high"
+    return record
+
+
+def test_normalize_survives_the_json_attribute_bag():
+    # the evidence carries the bag as json.dumps, so the answer "8 weeks" has to
+    # match `{"age": "8 weeks"}` through the quoting and punctuation
+    assert A.is_verbatim("8 weeks", 'SAMPLE ATTRIBUTES: {"age": "8 weeks"}')
+    assert A.is_verbatim("CD4+ T cell", "SAMPLE TITLE: sorted CD4+ T cell, donor 3")
+    assert A.is_verbatim("Mus musculus", "ORGANISM: mus musculus")   # casefolded
+
+
+def test_normalize_respects_token_boundaries():
+    # the padding in normalize() is what stops a substring hit inside a word
+    assert not A.is_verbatim("male", "SAMPLE TITLE: female liver")
+    assert A.is_verbatim("male", "SAMPLE TITLE: adult male liver")
+    assert not A.is_verbatim("", "anything")          # an empty answer is not a quote
+
+
+def test_offline_mode_reports_unknown_never_not_verbatim():
+    # offline evidence is missing the attribute bag, so a non-match proves
+    # nothing — calling it a failure would invent one for most of the dataset
+    record = _audited(tissue_type="liver", sex="male", sample_title="mouse liver")
+    result = A.audit_records([record])
+    assert result["exact"] is False
+    assert result["real_verdicts"][("high", A.NOT_VERBATIM)] == 0
+    assert result["real_verdicts"][("high", A.VERBATIM)] == 1        # 'liver' is in the title
+    # 'male' is not in the recoverable evidence, and sample_title is excluded
+    # from its own evidence rather than trivially quoting itself
+    assert result["real_verdicts"][("high", A.UNKNOWN)] == 2
+
+
+def test_a_field_cannot_quote_itself_in_offline_mode():
+    # description is part of the evidence string *and* a field layer 3 fills,
+    # so without the exclusion it would verify against itself every time and
+    # inflate the offline rate on exactly the fields it can say least about
+    record = _audited(description="a study of mouse liver")
+    assert A.audit_records([record])["real_verdicts"][("high", A.VERBATIM)] == 0
+
+
+def test_exact_mode_can_fail_a_value():
+    # with the real evidence in hand, a non-match *is* a finding
+    record = _audited(tissue_type="liver", sex="male")
+    evidence = {record.id: ("", "SAMPLE ATTRIBUTES: {\"tissue\": \"liver\"}")}
+    result = A.audit_records([record], evidence)
+    assert result["exact"] is True
+    assert result["real_verdicts"][("high", A.VERBATIM)] == 1
+    assert result["real_verdicts"][("high", A.NOT_VERBATIM)] == 1
+    assert result["real_verdicts"][("high", A.UNKNOWN)] == 0
+
+
+def test_study_level_fields_are_checked_against_the_study_evidence():
+    # infer_from_text asks study fields in their own call, against text that
+    # never includes sample attributes — auditing them against the sample
+    # string would credit a quote the model could not have seen
+    record = _audited(study_title="Liver atlas", tissue_type="liver")
+    evidence = {record.id: ("STUDY TITLE: Liver atlas", "SAMPLE ATTRIBUTES: {}")}
+    result = A.audit_records([record], evidence)
+    assert result["real_verdicts"][("high", A.VERBATIM)] == 1        # study_title
+    assert result["real_verdicts"][("high", A.NOT_VERBATIM)] == 1    # tissue_type
+
+
+def test_missing_value_terms_are_counted_apart_from_real_values():
+    # they are determinations, not quotes: mixing them in made every per-field
+    # offender simply "a field answered not applicable"
+    record = _audited(cell_line="not applicable", tissue_type="liver")
+    evidence = {record.id: ("", "SAMPLE ATTRIBUTES: {\"tissue\": \"liver\"}")}
+    result = A.audit_records([record], evidence)
+    assert result["missing_values"][("high", A.NOT_VERBATIM)] == 1
+    assert sum(result["real_by_level"].values()) == 1                # only tissue_type
+    assert "cell_line" not in result["per_field"]
+
+
+def test_a_quoted_missing_value_term_is_recognised_as_a_quote():
+    # if the bag literally says "not collected", that is a quote and the new
+    # rules call it high — the checker has to agree
+    record = _audited(sex="not collected")
+    evidence = {record.id: ("", 'SAMPLE ATTRIBUTES: {"sex": "not collected"}')}
+    result = A.audit_records([record], evidence)
+    assert result["missing_values"][("high", A.VERBATIM)] == 1
+
+
+def test_paper_layer_is_reported_unauditable_not_dropped():
+    # PAPER_MAX_CHARS of full text is never persisted, so layer 4 cannot be
+    # checked — saying so is different from quietly excluding it
+    record = TargetSchema(id="SRX2")
+    record.tissue_type = "liver"
+    record.provenance["tissue_type"] = "inferred_from_paper"
+    record.confidence["tissue_type"] = "high"
+    result = A.audit_records([record])
+    assert result["unauditable"] == 1
+    assert sum(result["by_level"].values()) == 0
+    assert "not persisted" in A.format_report(result)
+
+
+def test_direct_and_harmonized_fields_are_not_audited():
+    # neither carries a confidence to check; only the inferred_* classes do
+    record = TargetSchema(id="SRX3")
+    record.tissue_type = "liver"
+    record.provenance["tissue_type"] = "harmonized"
+    result = A.audit_records([record])
+    assert sum(result["by_level"].values()) == 0
+    assert result["unauditable"] == 0
+
+
+def test_report_renders_without_a_crash_on_an_empty_audit():
+    assert "nothing to audit" in A.format_report(A.audit_records([]))
+
+
+def test_expand_without_a_studies_path_is_refused():
+    with pytest.raises(ValueError) as exc:
+        A.verbatim_report("whatever.json", expand=True)
+    assert "studies_path" in str(exc.value)
 
 
 # --------------------------------------------------------------------------- #

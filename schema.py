@@ -82,20 +82,36 @@ PROVENANCE_CLASSES = (
     "inferred_from_paper",
 )
 
-# How sure the model is that it picked the *right answer* for a field — not how
-# sure it is that it found something. "Not applicable" is an answer like any
-# other, so `sex` on a soil metagenome should be reported `high`: the model is
-# confident the field genuinely does not apply. Low confidence means the model
-# had to choose between plausible readings, whatever it settled on.
+# **Where the value came from**, not how likely it is to be right:
 #
-# Deliberately ordinal rather than a 0–1 float. Verbalized model confidence is a
-# generated token, not a read-off probability: it skews overconfident, clusters
-# on round numbers, and tracks how fluent the source text is more than whether
-# the inference is right. Models rank their uncertainty far better than they put
-# an absolute number on it, and three buckets don't imply precision that isn't
-# there. Validate before trusting: bucket a labelled sample by reported level and
-# check the accuracy actually separates. If it doesn't, the level is worse than
-# nothing, because it invites trust it hasn't earned.
+#   high    quoted     the value appears in the evidence word for word
+#   medium  rephrased  the evidence carries it in different words, or the model
+#                      picked one of several spans it could have quoted
+#   low     inferred   the evidence does not carry the value at all
+#
+# This used to be an epistemic scale — how sure the model was of being correct —
+# and it did not work. Measured over four runs the label never separated: `high`
+# took 68–94% of every answer and `low` was emitted **zero** times in two of
+# them, so there was no variance for accuracy to correlate with. The prompt was
+# also asking for two things at once, defining the buckets mechanically while
+# framing them as correctness, and the correctness half is the half models are
+# worst at.
+#
+# The mechanical axis earns its keep by being *checkable*. "Appears in the
+# evidence word for word" is a claim :mod:`audit` can verify by string matching —
+# no gold set, no model, no spend — which is something no confidence scale could
+# ever offer. Run :func:`audit.verbatim_report` over a finished dataset before
+# trusting the label.
+#
+# Note what this does **not** measure: a quoted value can still be wrong (the
+# model quoted the wrong span — see the `host` bug in `reconstruct`), and an
+# inferred one can be right. Do not read `high` as "probably correct". If you
+# want per-field error rates, score against a labelled set; this tells you how
+# far the model reached, not whether it landed.
+#
+# Still ordinal, still three buckets, and deliberately not a 0–1 float:
+# verbalized numeric confidence is a generated token rather than a read-off
+# probability, and three named operations don't imply precision that isn't there.
 CONFIDENCE_LEVELS = ("high", "medium", "low")
 
 # INSDC's missing-value vocabulary. Each is a *stated reason* a field has no

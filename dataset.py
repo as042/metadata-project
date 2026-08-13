@@ -60,6 +60,46 @@ CLASSIFY_SLEEP = 0.34
 COST_PER_RECORD_TEXT = 0.0035   # layer 3
 COST_PER_STUDY_PAPER = 0.013    # layer 4: one paper fetch + one call per study
 
+# The model those two figures were measured on. Everything below scales them
+# from here — change the model and the estimate has to move with it, or the
+# max_spend guard silently stops protecting anything.
+COST_BASELINE_MODEL = claude.HAIKU_4_5
+
+# Thinking bills as output tokens, so turning it on multiplies the unit cost on
+# top of the model's own price.
+#
+# Two data points, both measured:
+#
+#   * Opus 5 at `medium` cost $0.0164/sample against Haiku's $0.0017 — 9.6x, of
+#     which 5x is price, leaving ~1.9x for thinking.
+#   * Sonnet 5 thinking at the API's default effort cost $1.25 on the 52-record
+#     set where the Haiku baseline is $0.25 — 5.0x, of which 2x is price,
+#     leaving **2.5x** for thinking. 1,341 output tokens per call.
+#
+# The second one is why `None` is not a low number. **An unset effort means the
+# API's own default, which is `high` — not "barely thinks".** Pricing it at 1.4x
+# is what let a $1.25 run through a $1.00 cap on a $0.49 estimate, so `None`
+# now costs what `high` costs.
+#
+# The rest of the ladder is still interpolated and deliberately rounded **up**.
+# An over-estimate costs a run that stops and asks to be re-authorised; an
+# under-estimate costs money that is already gone. Replace each with a measured
+# number as runs at that setting accumulate — the spend line printed at the end
+# of every run is the measurement.
+THINKING_MULTIPLIER = {None: 2.8, claude.EFFORT_LOW: 1.4, claude.EFFORT_MEDIUM: 1.9,
+                       claude.EFFORT_HIGH: 2.8, claude.EFFORT_XHIGH: 4.0,
+                       claude.EFFORT_MAX: 6.0}
+
+# Models that reject `effort` and adaptive `thinking` outright (they predate
+# both and answer with a 400). Caught locally so the run refuses at the top
+# rather than on the first request of a paid layer.
+NO_EFFORT_MODELS = (claude.HAIKU_4_5, "claude-sonnet-4-5")
+
+# Effort levels at which Claude Opus 5 refuses `thinking={"type": "disabled"}`
+# with a 400. Thinking is on by default on that model, so the combination only
+# arises when a caller explicitly turns it off and asks for deep effort.
+_OPUS_5_NO_DISABLED_THINKING = (claude.EFFORT_XHIGH, claude.EFFORT_MAX)
+
 # A run estimated above this refuses to start. The number that prompted it: a
 # 20-study harvest yielding just 2 open-access studies looked cheap and cost $7,
 # because one of those studies held 1,664 experiments. Studies are the unit you
@@ -73,8 +113,89 @@ class SpendLimitExceeded(RuntimeError):
     """Raised before any paid work when the estimate exceeds ``max_spend``."""
 
 
+class UnpricedModelError(RuntimeError):
+    """A model was selected that the cost estimate cannot price.
+
+    Its own error because the safe response is to *stop*, not to guess. Falling
+    back to the baseline model's price would hand ``max_spend`` a number with no
+    relationship to what the run will bill — which is exactly how a $1.00 cap
+    let through a $7.00 run once already.
+    """
+
+
+def validate_model_settings(text_model, text_effort, text_thinking,
+                            paper_model, paper_effort, paper_thinking,
+                            from_text=True, from_paper=True) -> None:
+    """Reject model/effort/thinking combinations the API answers with a 400.
+
+    Checked here, before the estimate and before any request, because these are
+    per-call errors: a run would harvest, expand, and start billing layer 3
+    before the first 400 surfaced, and the studies already reconstructed would
+    still have cost money.
+
+    Only the layers actually enabled are checked — a free run should not be
+    blocked by a paper-layer setting it will never use.
+    """
+    checks = []
+    if from_text:
+        checks.append(("text", text_model, text_effort, text_thinking))
+    if from_paper:
+        checks.append(("paper", paper_model, paper_effort, paper_thinking))
+
+    for layer, model, effort, thinking in checks:
+        if effort is not None and effort not in THINKING_MULTIPLIER:
+            raise ValueError(
+                f"{layer} effort {effort!r} is not a valid level; expected one of "
+                f"{', '.join(str(k) for k in THINKING_MULTIPLIER if k)}"
+            )
+        if model in NO_EFFORT_MODELS and (effort or thinking):
+            raise ValueError(
+                f"{model} predates the effort and adaptive-thinking parameters and "
+                f"rejects both with a 400 — set {layer}_effort=None and "
+                f"{layer}_thinking=False, or choose a newer model"
+            )
+        # Opus 5 thinks by default; switching it off is only accepted up to
+        # `high` effort. The pairing 400s, and it 400s per request, so a later
+        # call could fail after earlier ones have billed.
+        if model == claude.OPUS_5 and not thinking and effort in _OPUS_5_NO_DISABLED_THINKING:
+            raise ValueError(
+                f"claude-opus-5 rejects thinking=False at {layer}_effort={effort!r} "
+                f"(disabling thinking is only accepted at 'high' or below) — either "
+                f"set {layer}_thinking=True or lower the effort"
+            )
+
+
+def cost_multiplier(model, effort, thinking):
+    """How much more than the baseline one unit of paid work costs.
+
+    The measured per-record and per-study figures are for
+    :data:`COST_BASELINE_MODEL`. Two things move them: the model's price, and
+    whether it thinks. Returns the factor to multiply those figures by, so
+    ``1.0`` means "exactly what was measured".
+
+    Price scales cleanly because every model this project prices bills output at
+    5x input, so the input and output ratios against the baseline come to the
+    same number. The ``max`` keeps that honest if a future model breaks the
+    pattern: it takes the worse of the two ratios rather than the average,
+    because an estimate that is too low is the dangerous direction.
+    """
+    if model not in claude.PRICES:
+        raise UnpricedModelError(
+            f"no price on record for {model!r}, so the run cannot be costed and "
+            f"max_spend cannot protect it. Add it to claude.PRICES (input, output "
+            f"$/MTok) before running a paid layer on it. Known: "
+            f"{', '.join(sorted(claude.PRICES))}"
+        )
+    base_in, base_out = claude.PRICES[COST_BASELINE_MODEL]
+    model_in, model_out = claude.PRICES[model]
+    price_ratio = max(model_in / base_in, model_out / base_out)
+    return price_ratio * (THINKING_MULTIPLIER[effort] if thinking else 1.0)
+
+
 def estimate_reconstruction_cost(studies, harmonize=False, from_text=False,
-                                 from_paper=False, max_records=MAX_RECORDS):
+                                 from_paper=False, max_records=MAX_RECORDS,
+                                 text_model=None, text_effort=None, text_thinking=None,
+                                 paper_model=None, paper_effort=None, paper_thinking=None):
     """``(dollars, report)`` for reconstructing ``studies``. Costs nothing to call.
 
     Everything it needs is already in the saved summaries: ``record_count`` per
@@ -83,7 +204,28 @@ def estimate_reconstruction_cost(studies, harmonize=False, from_text=False,
     Studies over ``max_records`` are counted as one stub record, matching what
     :func:`_expand` actually does with them, and layer 4 is counted only for
     studies that have a publication classified ``oa`` — the rest never fetch.
+
+    **The estimate follows the model.** The per-unit figures were measured on
+    :data:`COST_BASELINE_MODEL`; each layer's is scaled by
+    :func:`cost_multiplier` for the model, effort, and thinking that layer will
+    actually run with. Omitted settings fall back to what :mod:`reconstruct`
+    currently holds, so the estimate always describes the run that is about to
+    happen rather than the one the constants were written for. Without this,
+    switching layer 3 to Opus 5 left the estimate quoting Haiku's price while
+    the run billed 5-10x more — and ``max_spend`` would have waved it through.
     """
+    text_model = reconstruct.TEXT_MODEL if text_model is None else text_model
+    text_effort = reconstruct.TEXT_EFFORT if text_effort is None else text_effort
+    text_thinking = reconstruct.TEXT_THINKING if text_thinking is None else text_thinking
+    paper_model = reconstruct.PAPER_MODEL if paper_model is None else paper_model
+    paper_effort = reconstruct.PAPER_EFFORT if paper_effort is None else paper_effort
+    paper_thinking = reconstruct.PAPER_THINKING if paper_thinking is None else paper_thinking
+
+    per_record = COST_PER_RECORD_TEXT * cost_multiplier(
+        text_model, text_effort, text_thinking) if from_text else 0.0
+    per_paper = COST_PER_STUDY_PAPER * cost_multiplier(
+        paper_model, paper_effort, paper_thinking) if from_paper else 0.0
+
     lines, records, oa_studies = [], 0, 0
     for study in studies:
         count = study.record_count or 0
@@ -91,22 +233,39 @@ def estimate_reconstruction_cost(studies, harmonize=False, from_text=False,
         has_oa = any(p.accessibility_type == "oa" for p in study.publications)
         records += billable
         oa_studies += bool(has_oa)
-        per = billable * COST_PER_RECORD_TEXT * bool(from_text)
-        per += COST_PER_STUDY_PAPER * bool(from_paper) * bool(has_oa)
+        per = billable * per_record + per_paper * bool(has_oa)
         lines.append(
             f"  {study.accession:12} {billable:>7,} records"
             f"{'  (oversized -> stub)' if billable != count else '':<22}"
             f"{'  +paper' if has_oa and from_paper else '':<8} ${per:7.3f}"
         )
-    total = (records * COST_PER_RECORD_TEXT * bool(from_text)
-             + oa_studies * COST_PER_STUDY_PAPER * bool(from_paper))
+    total = records * per_record + oa_studies * per_paper
     header = (f"Estimated cost: ${total:.2f}  "
-              f"({records:,} records x ${COST_PER_RECORD_TEXT} layer 3"
-              f"{f' + {oa_studies} papers x ${COST_PER_STUDY_PAPER} layer 4' if from_paper else ''})")
-    if not (from_text or from_paper):
+              f"({records:,} records x ${per_record:.4f} layer 3"
+              f"{f' + {oa_studies} papers x ${per_paper:.4f} layer 4' if from_paper else ''})")
+    # Name the settings the estimate is priced for. The number alone is not
+    # checkable — the same record count costs 10x on a different model, and the
+    # only way to catch a wrong model before it bills is to read it back.
+    if from_text or from_paper:
+        detail = []
+        if from_text:
+            detail.append(f"  layer 3: {_setting_line(text_model, text_effort, text_thinking)}")
+        if from_paper:
+            detail.append(f"  layer 4: {_setting_line(paper_model, paper_effort, paper_thinking)}")
+        lines = [*detail, *lines]
+    else:
         header = "Estimated cost: $0.00 (no model layers enabled)"
         lines = []
     return total, "\n".join([header, *lines])
+
+
+def _setting_line(model, effort, thinking):
+    """One printable line describing what a layer will run with, and its markup."""
+    multiplier = cost_multiplier(model, effort, thinking)
+    bits = [model]
+    bits.append(f"effort={effort}" if effort else "effort=default")
+    bits.append("thinking=on" if thinking else "thinking=off")
+    return f"{', '.join(bits)}  ({multiplier:.1f}x baseline)"
 
 
 def _checkpoint_path(path):
@@ -398,6 +557,13 @@ def save_reconstructed_records(
     from_text=False,
     from_paper=False,
     max_spend=MAX_SPEND,
+    claude_key_file=None,
+    text_model=None,
+    text_effort=None,
+    text_thinking=None,
+    paper_model=None,
+    paper_effort=None,
+    paper_thinking=None,
 ):
     """Reconstruct saved studies into target-schema records and save them.
 
@@ -436,10 +602,39 @@ def save_reconstructed_records(
     raised having spent nothing. Pass a higher number to authorise a larger run,
     or ``None`` to disable the check. It is a hard stop rather than a prompt so
     that an unattended run fails instead of hanging.
+
+    ``claude_key_file`` names which Anthropic credential the model layers bill.
+    It is **required whenever a model layer is on** — there is no default file,
+    so a run that names no credential is refused here, before the studies are
+    even loaded, rather than failing at the first request. Free runs (both model
+    layers off) need no key and are unaffected. Whichever key is in play is
+    printed next to the cost estimate, because "which account pays" is not
+    something to infer from an error message afterwards.
     """
+    if claude_key_file is not None:
+        claude.set_api_key(path=claude_key_file)
+    if from_text or from_paper:
+        claude.require_api_key()    # refuses before any work — nothing spent
+
+    # Model settings before the estimate, because the estimate is priced from
+    # them. Validate first: a combination the API rejects should cost a local
+    # check, not a 400 raised after earlier studies have already billed.
+    reconstruct.configure_models(
+        text_model=text_model, text_effort=text_effort, text_thinking=text_thinking,
+        paper_model=paper_model, paper_effort=paper_effort, paper_thinking=paper_thinking,
+    )
+    validate_model_settings(
+        reconstruct.TEXT_MODEL, reconstruct.TEXT_EFFORT, reconstruct.TEXT_THINKING,
+        reconstruct.PAPER_MODEL, reconstruct.PAPER_EFFORT, reconstruct.PAPER_THINKING,
+        from_text=from_text, from_paper=from_paper,
+    )
     studies = load_studies(in_path)
     layers = {"harmonize": bool(harmonize), "from_text": bool(from_text),
               "from_paper": bool(from_paper)}
+    # The two that cost money. `layers` also carries `harmonize`, which is a
+    # synonym table with no model behind it, so anything about spend or
+    # credentials has to test this rather than `any(layers.values())`.
+    paid = bool(from_text or from_paper)
     params = {
         "in_path": str(in_path),
         "expand": bool(expand),
@@ -454,6 +649,12 @@ def save_reconstructed_records(
         from_paper=from_paper, max_records=max_records,
     )
     print(report, flush=True)
+    # Keyed on the *paid* layers, not `any(layers)`: harmonize is layer 2, which
+    # is a synonym table and costs nothing. Including it made a free run print
+    # "Billing Claude key: (none configured)", which reads as though a run with
+    # no credential was about to bill one.
+    if paid:
+        print(f"Billing Claude key: {claude.key_source()}", flush=True)
     if max_spend is not None and estimate > max_spend:
         raise SpendLimitExceeded(
             f"estimated ${estimate:.2f} exceeds max_spend=${max_spend:.2f} — "
@@ -495,7 +696,7 @@ def save_reconstructed_records(
     if filled:
         print("Fields filled per layer: "
               + ", ".join(f"{cls} {n:,}" for cls, n in sorted(filled.items())))
-    if any(layers.values()):
+    if paid:
         print("Claude usage:", claude.usage_report())
     if rows:
         n_fields = len(TargetSchema.field_names())
@@ -504,7 +705,7 @@ def save_reconstructed_records(
         # `runs` as schema fields inflated this by exactly 2 per record.
         sidecars = {"provenance", "confidence", "runs"}
         mean = sum(len(set(row) - sidecars) for row in rows) / len(rows)
-        tail = ("" if any(layers.values())
+        tail = ("" if paid
                 else " — the remainder is what the model layers would fill")
         print(f"Mean coverage: {mean:.1f}/{n_fields} fields ({mean / n_fields:.0%}){tail}")
 
