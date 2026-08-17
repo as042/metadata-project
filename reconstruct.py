@@ -175,7 +175,6 @@ _SYNONYMS: dict[str, str] = {
     "biosamplemodel": "ncbi_reporting_standard",
     "host_taxid": "host_tax_id",
     "specific_host": "host_scientific_name",
-    "host_scientific_name": "host_scientific_name",
     "description": "sample_description",
     "ena_checklist": "checklist",
     # `age`, `cell line`, `treatment` and `dev_stage` normalize straight onto
@@ -186,10 +185,35 @@ _SYNONYMS: dict[str, str] = {
     # moving it here makes it free and deterministic instead of a paid guess.
     "agent": "treatment",
     "development_stage": "dev_stage",
-    "library_construction_protocol": "library_construction_protocol",
 }
 
 _TRANSFORMS = {"country": _country_from_geo_loc}
+
+# Synonym rows whose key is *itself* a schema field name. These need calling out
+# because the exact-name match in :func:`_harmonized` resolves first, so without
+# this the row could never fire — the table would carry a mapping that silently
+# did nothing.
+#
+# That is what happened to ``description``. It is a submitter's *sample*
+# attribute, but ``description`` is also the name of the STUDY-level field (the
+# abstract), so the exact match won and 87 sample descriptions across the corpus
+# were being written into the study abstract instead of ``sample_description``.
+#
+# Derived from the table rather than listed by hand, so a future row cannot
+# reintroduce the same silent shadowing. Identity rows (key == target) are
+# excluded, which is what makes them fail the drift test rather than pass it
+# unnoticed: such a row is unreachable dead weight, since the exact-name match
+# already routes the key to the same place.
+#
+# Note this is deliberately *not* a blanket "a sample attribute may not fill a
+# STUDY-level field" rule. ``project_name`` is STUDY-level too and is legitimately
+# filled from the sample bag 8,109 times; the problem is only a key that collides
+# with a *different* field's name.
+_SHADOWED_SYNONYMS = {
+    key
+    for key, target in _SYNONYMS.items()
+    if key != target and key in set(TargetSchema.field_names())
+}
 
 # Deliberately absent from _SYNONYMS: `source_name`, the single most common
 # unmapped key (60 of 175 occurrences). It has no fixed target — observed values
@@ -204,9 +228,11 @@ def _harmonized(attributes: dict[str, str]) -> dict[str, str]:
 
     An exact (normalized) hit on a schema field name wins over a synonym, so a
     bag carrying both ``tissue_type`` and ``tissue`` keeps the submitter's own
-    ``tissue_type``. Blank values are skipped — :func:`project._attrs_bag`
-    records a TAG with no VALUE as ``None``, which is "present but empty", not
-    an answer.
+    ``tissue_type``. The exception is :data:`_SHADOWED_SYNONYMS` — a key that is
+    itself a field name *and* the table maps elsewhere, where deferring to the
+    field name would make the row unreachable. Blank values are skipped —
+    :func:`project._attrs_bag` records a TAG with no VALUE as ``None``, which is
+    "present but empty", not an answer.
     """
     fields = set(TargetSchema.field_names())
     out: dict[str, str] = {}
@@ -214,7 +240,10 @@ def _harmonized(attributes: dict[str, str]) -> dict[str, str]:
         if not value or not str(value).strip():
             continue
         key = _normalize_key(raw_key)
-        target = key if key in fields else _SYNONYMS.get(key)
+        if key in _SHADOWED_SYNONYMS:
+            target = _SYNONYMS[key]
+        else:
+            target = key if key in fields else _SYNONYMS.get(key)
         if target is None or target == "id":
             continue
         transformed = _TRANSFORMS.get(target, lambda v: v)(str(value).strip())
@@ -818,11 +847,21 @@ def infer_from_text(project, records, open_by_id):
     proposal outside the open set. A field the model omits is simply not
     proposed; that is how it declines and leaves the field for the paper layer.
 
+    **Does not ask what the archive assigns.** Run-, submission- and
+    record-level fields are dropped from the ask entirely (see
+    :data:`_TEXT_BLIND`), mirroring what :func:`infer_from_paper` does with
+    :data:`_PAPER_BLIND`. Without it this layer invented run and submission
+    accessions and answered "not provided" thousands of times at full price.
+
     With :data:`TEXT_BATCH` the whole study's calls are submitted as one batch at
     half price; the work is planned identically either way, so the two paths
     differ only in how the requests are sent.
     """
     study_level = set(TargetSchema.fields_at_level(STUDY))
+
+    # Drop what this layer cannot answer before anything is planned, so the
+    # blind fields never reach a schema, a token budget, or an answer.
+    open_by_id = {rid: open_ - _TEXT_BLIND for rid, open_ in open_by_id.items()}
 
     # Plan every call first — the same plan feeds the live and batched paths.
     jobs: list[tuple[str, list, str, list[str]]] = []
@@ -945,6 +984,34 @@ _PAPER_BLIND = (
     | set(TargetSchema.fields_at_level(SUBMISSION))
     | set(TargetSchema.fields_at_level(RECORD))
     | set(PAPER_BLIND_FIELDS)
+)
+
+# The same three levels are equally unanswerable from a study's own text, and
+# layer 3 had no guard at all. Run accessions, submission accessions, upload
+# formats and the submitting centre are assigned by the archive at deposition —
+# an abstract and a sample attribute bag state none of them.
+#
+# Measured on the 1,782-record and 52-record runs, layer 3 filled 4,342 of these
+# and the results were exactly as good as that description predicts:
+#
+#   submission_accession  PRJNA293224 on 146 records — a *BioProject* accession,
+#                         not a submission accession; wrong identifier entirely
+#   run_accession         CFSAN100605 — a strain id, not an SRR
+#   the rest              "not provided" x thousands, at full token price
+#
+# Those "not provided" answers are not harmless either: they are written as
+# determinations with provenance, so they read as settled facts, inflate the
+# coverage metric, and were a large share of the missing-value terms that the
+# confidence audit found flooding the `high` bucket.
+#
+# Deliberately *not* including PAPER_BLIND_FIELDS: `checklist`,
+# `ncbi_reporting_standard` and the aliases are sample- and experiment-level
+# facts that the attribute bag genuinely can carry, even though a manuscript
+# cannot. This layer reads that bag; layer 4 does not.
+_TEXT_BLIND = (
+    set(TargetSchema.fields_at_level(RUN))
+    | set(TargetSchema.fields_at_level(SUBMISSION))
+    | set(TargetSchema.fields_at_level(RECORD))
 )
 
 

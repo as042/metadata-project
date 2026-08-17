@@ -70,6 +70,69 @@ def test_page_starts_max_pages_caps_without_materializing_everything():
     assert _page_starts("oldest", 1000, 500, max_pages=1) == [500]
 
 
+def test_within_years_reaches_entrez_as_a_pdat_reldate(monkeypatch):
+    """The date window must actually be sent, not merely accepted as an argument.
+
+    Live tests cannot cover this. ``search_studies`` bounds how far it scans, so
+    it returns the same accessions with and without a date window; and the field
+    the filter applies to — the Entrez record date — now reads as the current
+    month for effectively every record, because NCBI bumps it on re-index. Both
+    were checked by deleting the date parameters and watching the live
+    assertions still pass. Capturing the outgoing request is what is left.
+    """
+    calls = []
+
+    class _Res:
+        def json(self):
+            return {"esearchresult": {"count": "0"}}  # stop after the first call
+
+    def fake_eutils(endpoint, **params):
+        calls.append((endpoint, params))
+        return _Res()
+
+    monkeypatch.setattr(P, "_eutils", fake_eutils)
+
+    P.search_studies(organism="Homo sapiens", within_years=5, max_studies=1)
+    assert calls, "search_studies made no request at all"
+    endpoint, params = calls[0]
+    assert endpoint == "esearch.fcgi"
+    assert params["datetype"] == "pdat"
+    # 5 years in days, which is what reldate takes - passing 5 would ask for a
+    # five-day window and silently return almost nothing
+    assert params["reldate"] == 1826
+
+    calls.clear()
+    P.search_studies(organism="Homo sapiens", max_studies=1)
+    assert "reldate" not in calls[0][1], "an unfiltered search must send no window"
+    assert "datetype" not in calls[0][1]
+
+
+def test_explicit_date_range_reaches_entrez_as_min_and_maxdate(monkeypatch):
+    # The other branch: after_date/before_date become an explicit pdat window,
+    # with open ends filled in rather than omitted.
+    from datetime import date
+
+    calls = []
+
+    class _Res:
+        def json(self):
+            return {"esearchresult": {"count": "0"}}
+
+    monkeypatch.setattr(P, "_eutils",
+                        lambda endpoint, **params: (calls.append(params), _Res())[1])
+
+    P.search_studies(after_date=date(2022, 1, 1), before_date=date(2024, 6, 30),
+                     max_studies=1)
+    assert calls[0]["datetype"] == "pdat"
+    assert calls[0]["mindate"] == "2022/01/01"
+    assert calls[0]["maxdate"] == "2024/06/30"
+
+    calls.clear()
+    P.search_studies(after_date=date(2022, 1, 1), max_studies=1)
+    assert calls[0]["mindate"] == "2022/01/01"
+    assert calls[0]["maxdate"] == "3000/01/01"  # open-ended, not absent
+
+
 def test_to_entrez_date():
     from datetime import date
 
@@ -1237,7 +1300,8 @@ def test_not_applicable_is_normalized_and_survives_a_round_trip():
 def test_every_insdc_missing_value_is_accepted_and_normalized():
     r = TargetSchema(id="SRX1")
     assert schema.MISSING_VALUES == ("not applicable", "not collected",
-                                     "not provided", "restricted access")
+                                     "not provided", "restricted access",
+                                     "missing")
     for term in schema.MISSING_VALUES:
         r.host = term.upper()
         assert r.host == term, term
@@ -1253,10 +1317,57 @@ def test_missing_value_aliases_are_left_as_ordinary_text():
     # "NA" is a plausible strain, region or country code; reinterpreting it as a
     # missing-value declaration would destroy real data
     r = TargetSchema(id="SRX1")
-    for alias in ("N/A", "NA", "none", "unknown", "missing", "not reported"):
+    # `missing` was on this list and is not any more: it is an INSDC vocabulary
+    # term, not a submitter's own shorthand, and unlike "NA" there is no
+    # plausible strain, region or country called "missing". It was the single
+    # commonest value layer 2 stored — 20,804 across the corpus — recorded as
+    # though a sample's country were named "missing".
+    for alias in ("N/A", "NA", "none", "unknown", "not reported"):
         r.strain = alias
         assert r.strain == alias, alias
         assert r.declared_missing() == {}
+
+
+def test_bare_missing_is_a_declared_absence_not_a_value():
+    # The commonest term in the corpus by a wide margin: 20,804 harmonized
+    # values, against 15,403 for the four reasoned terms combined. Storing it as
+    # ordinary text asserted that a sample's country was called "missing".
+    r = TargetSchema(id="SRX1")
+    r.country = "Missing"
+    assert r.country == "missing"                      # canonical case
+    assert schema._is_missing_value(r.country)
+    assert r.declared_missing() == {"country": "missing"}
+
+
+def test_a_harmonized_missing_term_is_never_reopened():
+    # The GenomeTrakr rule. A term layer 2 recorded is the submitter's own
+    # declaration, so no later layer may infer over it however confident it
+    # sounds — 369 of 380 countries were wrong the last time that happened.
+    # Adding `missing` to the vocabulary must not put those records back at risk.
+    r = TargetSchema(id="SRX1")
+    r.country = "missing"
+    r.provenance["country"] = "harmonized"
+    assert "country" not in R.open_fields(r, overwrite_missing=True)
+
+
+def test_a_model_written_missing_term_stays_revisable():
+    # The other half of the same rule: a model's verdict is not the submitter's,
+    # and the paper layer is the thing most likely to overturn it.
+    r = TargetSchema(id="SRX1")
+    r.country = "missing"
+    r.provenance["country"] = "inferred_from_text"
+    assert "country" in R.open_fields(r, overwrite_missing=True)
+    assert "country" not in R.open_fields(r, overwrite_missing=False)
+
+
+def test_missing_cannot_be_stored_in_a_typed_field():
+    # Unchanged, and the reason the Rust port needed a different shape: a typed
+    # column has no room for a sentinel, so `collection_date: missing` is still
+    # dropped rather than recorded. Rust's Field<T> carries the reason instead.
+    r = TargetSchema(id="SRX1")
+    with pytest.raises(ValueError, match="cannot be stored"):
+        r.collection_date = "missing"
+    assert R._storable("collection_date", "missing") is False
 
 
 def test_none_is_not_a_missing_value_term():
@@ -1893,6 +2004,56 @@ def test_paper_layer_never_asks_about_archive_bookkeeping():
         assert reachable in stub.asked, reachable
 
 
+def test_text_layer_never_asks_about_archive_bookkeeping():
+    # layer 3 had no guard at all and filled 4,342 of these across the measured
+    # runs: `PRJNA293224` as a submission_accession on 146 records (a BioProject
+    # accession, the wrong identifier entirely), `CFSAN100605` as a run
+    # accession, and "not provided" thousands of times at full token price.
+    asked = []
+
+    def stub(prompt, schema_, system=None, **kw):
+        asked.extend(
+            schema_["properties"]["answers"]["items"]["properties"]["field"]["enum"]
+        )
+        return {"answers": []}
+
+    saved = C.extract, R.claude.extract
+    C.extract = R.claude.extract = stub
+    try:
+        project = P.Project.from_dict({
+            "accession": "SRP1", "title": "t", "abstract": "a",
+            "samples": {"SRS1": {"accession": "SRS1",
+                                 "attributes": {"tissue": "liver"}}},
+            "experiments": [{"accession": "SRX1", "sample_ids": ["SRS1"], "runs": []}],
+        })
+        records = TargetSchema.from_project(project)
+        R.infer_from_text(project, records,
+                          {r.id: R.open_fields(r) for r in records})
+    finally:
+        C.extract, R.claude.extract = saved
+
+    for blind in ("run_accession", "run_alias", "submitted_format",
+                  "submitted_read_type", "submission_accession", "broker_name",
+                  "center_name", "datahub", "tag", "read_count", "base_count"):
+        assert blind not in asked, blind
+    # ...while the sample biology this layer exists for is still asked
+    for reachable in ("tissue_type", "treatment", "dev_stage", "age", "sex",
+                      "isolation_source"):
+        assert reachable in asked, reachable
+
+
+def test_text_blind_set_is_built_from_the_schema_not_hand_listed():
+    from schema import RECORD, RUN, SUBMISSION
+    assert set(TargetSchema.fields_at_level(RUN)) <= R._TEXT_BLIND
+    assert set(TargetSchema.fields_at_level(SUBMISSION)) <= R._TEXT_BLIND
+    assert set(TargetSchema.fields_at_level(RECORD)) <= R._TEXT_BLIND
+    # the sample- and experiment-level identifiers a paper cannot state but an
+    # attribute bag genuinely can — layer 3 reads that bag, so it still asks
+    for reachable in ("checklist", "ncbi_reporting_standard", "sample_alias",
+                      "experiment_alias", "tissue_type"):
+        assert reachable not in R._TEXT_BLIND, reachable
+
+
 def test_paper_blind_set_is_built_from_the_schema_not_hand_listed():
     # levels move as fields are added; deriving the set means a new run- or
     # submission-level field is excluded automatically
@@ -2305,6 +2466,43 @@ def test_harmonization_prefers_the_submitters_own_field_name():
     assert R._harmonized({"tissue_type": "hepatic", "tissue": "liver"}) == {
         "tissue_type": "hepatic"
     }
+
+
+def test_a_sample_description_is_not_written_into_the_study_abstract():
+    # `description` is a submitter's *sample* attribute, but it is also the name
+    # of the STUDY-level field (the abstract). The exact-name match used to win,
+    # so the synonym row `description -> sample_description` could never fire and
+    # 87 sample descriptions across the corpus landed in the study abstract.
+    assert R._harmonized({"description": "Venezuelan Equine Encephalitis virus/BE508"}) == {
+        "sample_description": "Venezuelan Equine Encephalitis virus/BE508"
+    }
+
+
+def test_a_shadowed_row_still_loses_to_its_own_exact_field_name():
+    # The exception is narrow: it redirects `description` to the field the table
+    # names, but an explicit `sample_description` key is still the submitter's
+    # own and wins, in either bag order.
+    assert R._harmonized(
+        {"description": "from the synonym", "sample_description": "from the field"}
+    ) == {"sample_description": "from the field"}
+    assert R._harmonized(
+        {"sample_description": "from the field", "description": "from the synonym"}
+    ) == {"sample_description": "from the field"}
+
+
+def test_no_synonym_row_is_unreachable():
+    # The shadow set is derived from the table so a future row cannot silently
+    # do nothing. Every row must be able to fire.
+    fields = set(schema.TargetSchema.field_names())
+    for key, target in R._SYNONYMS.items():
+        # No identity-row exemption. A row whose key is its own target is
+        # unreachable too - the exact-name match gets there first - and is dead
+        # weight rather than documentation.
+        assert key not in fields or key in R._SHADOWED_SYNONYMS, (
+            f"synonym {key!r} is also a field name and is not shadow-handled, "
+            f"so the row can never fire"
+        )
+    assert R._SHADOWED_SYNONYMS == {"description"}
 
 
 def test_harmonized_values_carry_no_confidence():
@@ -2866,6 +3064,87 @@ def test_pipeline_refuses_a_missing_claude_key_before_harvesting():
             assert stub.calls == {}          # nothing harvested
         finally:
             C._api_key, C._client_instance = saved
+
+
+# --------------------------------------------------------------------------- #
+# corpus — the expanded, self-contained dump (no network)
+# --------------------------------------------------------------------------- #
+class _Esearch:
+    """Minimal stand-in for the esearch JSON response."""
+
+    def __init__(self, uids):
+        self._uids = uids
+
+    def json(self):
+        return {"esearchresult": {"idlist": self._uids}}
+
+
+def test_biosample_fetch_discards_accessions_it_did_not_ask_for(monkeypatch):
+    # E-utilities matches BioSample ids on the numeric part and ignores the
+    # archive prefix: asking for DDBJ's SAMD00041293 returns NCBI's
+    # SAMN00041293 — a different sample, from a different study, with a 200 and
+    # no warning. Observed returning Human Microbiome Project metadata for a
+    # honey-bee study. Anything keyed by request order would have stored it.
+    xml = ET.fromstring(
+        '<BioSampleSet><BioSample accession="SAMN00041293">'
+        '<Attributes><Attribute attribute_name="host_sex">female</Attribute>'
+        '</Attributes></BioSample></BioSampleSet>')
+    # esearch resolves the uid; efetch returns the wrong-prefix record
+    monkeypatch.setattr(P, "_request_with_retry",
+                        lambda url, **k: _Esearch(["4112774"]) if "esearch" in url else xml)
+    got = P.fetch_biosample_attributes(["SAMD00041293"])
+    assert got == {}, "a mismatched accession must never be stored"
+
+
+def test_biosample_fetch_keeps_accessions_it_did_ask_for(monkeypatch):
+    xml = ET.fromstring(
+        '<BioSampleSet><BioSample accession="SAMN10538065">'
+        '<Attributes><Attribute attribute_name="host_sex">female</Attribute>'
+        '<Attribute attribute_name="blank"> </Attribute></Attributes>'
+        '</BioSample></BioSampleSet>')
+    monkeypatch.setattr(P, "_request_with_retry",
+                        lambda url, **k: _Esearch(["10538065"]) if "esearch" in url else xml)
+    got = P.fetch_biosample_attributes(["SAMN10538065"])
+    assert got == {"SAMN10538065": {"host_sex": "female"}}   # blank value dropped
+
+
+def test_biosample_attributes_stay_separate_from_the_sra_bag():
+    # merging would erase which archive said what — the distinction a benchmark
+    # needs — and would change what layer 3 is credited with inferring
+    s = P.Sample(accession="SRS1", biosample="SAMN1")
+    s.attributes = {"tissue": "liver"}
+    s.biosample_attributes = {"tissue": "liver", "host_sex": "female"}
+    rebuilt = P.Sample(**{**s.__dict__})
+    assert rebuilt.attributes == {"tissue": "liver"}
+    assert "host_sex" in rebuilt.biosample_attributes
+
+
+def test_corpus_round_trips_and_refuses_an_unknown_format_version():
+    import corpus
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "c.json")
+        payload = {
+            "format_version": corpus.FORMAT_VERSION, "created": "x", "params": {},
+            "counts": {}, "papers": {"1": {"id": "1", "type": "ePubmed",
+                                           "chars": 3, "text": "abc"}},
+            "studies": [{"accession": "SRP1", "title": "t",
+                         "samples": {"SRS1": {"accession": "SRS1",
+                                              "biosample_attributes": {"sex": "male"}}},
+                         "experiments": [], "publications": [], "paper_id": "1"}],
+        }
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump(payload, fh)
+        projects, papers, meta = corpus.load_full_corpus(path)
+        assert projects[0].accession == "SRP1"
+        assert projects[0].samples["SRS1"].biosample_attributes == {"sex": "male"}
+        assert papers["1"]["text"] == "abc"
+
+        payload["format_version"] = corpus.FORMAT_VERSION + 99
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump(payload, fh)
+        with pytest.raises(ValueError) as exc:
+            corpus.load_full_corpus(path)
+        assert "format_version" in str(exc.value)
 
 
 # --------------------------------------------------------------------------- #

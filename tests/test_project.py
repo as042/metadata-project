@@ -19,12 +19,14 @@ from functools import lru_cache
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from project import (  # noqa: E402
+    EUTILS,
     Project,
     Publication,
     Run,
     Sample,
     _common,
     _record_count,
+    _request_with_retry,
     _to_entrez_date,
     classify_publication,
     filter_by_publication,
@@ -65,21 +67,54 @@ def test_summary_small_study():
     assert len(p.experiments) == 0
 
 
-def test_search_within_years_yields_recent_published_dates():
-    # RUN @published is absent for some ENA-brokered / embargoed studies, so we
-    # only range-check the ones that expose it; the pdat filter is enforced
-    # server-side regardless. At least one hit should carry an in-range date.
-    from datetime import datetime
+def test_search_within_years_narrows_the_result_set_server_side():
+    """``within_years`` reaches Entrez and genuinely restricts the pool.
 
-    cutoff = datetime.now().year - 6  # 5 years + a year of slack for boundary/lag
-    checked = 0
-    for acc in search_studies(organism="Homo sapiens", within_years=5, max_studies=4):
-        p = Project.summary(acc)
-        if not p.published:
-            continue
-        assert int(p.published[:4]) >= cutoff, f"{acc} published {p.published}"
-        checked += 1
-    assert checked >= 1
+    An earlier version of this test range-checked ``Project.published`` — the
+    earliest RUN\u0040published — against the window. That was wrong rather than
+    merely flaky: the filter is ``datetype=pdat``, the Entrez *record* date,
+    which is unrelated to when the data was released and which NCBI bumps on
+    re-index. ``SRP223534`` has RUN\u0040published ``2019-09-28`` and an Entrez
+    ``createdate`` of today, so it legitimately matches a five-year window while
+    reporting a 2019 release. The old assertion held only while the cutoff year
+    sat below 2019.
+
+    Checking ``createdate`` instead does not work either: NCBI has bumped it to
+    the current month for effectively every record, so it is recent whatever the
+    filter does. Nor can this go through ``search_studies``, whose ``max_scanned``
+    bound returns the same accessions with and without a date window — verified
+    by deleting the date params and watching the assertions still pass.
+
+    What is left, and what actually holds, is the count: the same query with a
+    narrower window must match strictly fewer records.
+    """
+    def count(**extra):
+        res = _request_with_retry(
+            f"{EUTILS}/esearch.fcgi", db="sra", term="Homo sapiens[Organism]",
+            retmode="json", retmax=0, **extra,
+        )
+        return int(json.loads(res.text)["esearchresult"]["count"])
+
+    unfiltered = count()
+    five_years = count(datetype="pdat", reldate=int(round(5 * 365.25)))
+    one_year = count(datetype="pdat", reldate=365)
+
+    assert unfiltered > 0
+    # Strict: a five-year window must exclude something, and one year must
+    # exclude more still. Measured 2026-08: 7.15M / 4.46M / 0.90M.
+    assert five_years < unfiltered, f"5-year window matched everything ({five_years})"
+    assert one_year < five_years, f"1-year {one_year} not below 5-year {five_years}"
+
+
+def test_search_within_years_returns_usable_accessions():
+    # The end-to-end smoke test the one above deliberately does not attempt:
+    # that the filter does not break the search, only that it runs and yields
+    # real study accessions. Their dates are not asserted, for the reasons in
+    # the docstring above.
+    accessions = search_studies(organism="Homo sapiens", within_years=5, max_studies=4)
+    assert accessions
+    assert all(a[:3] in ("SRP", "ERP", "DRP") for a in accessions), accessions
+    assert len(set(accessions)) == len(accessions), "duplicate accessions returned"
 
 
 def test_summary_is_o1_on_large_study():

@@ -1,0 +1,281 @@
+[
+  {
+    "accession": "SRP148477",
+    "bioproject": "PRJNA472098",
+    "title": "Single cell RNA sequencing of B cells from allergic individuals",
+    "abstract": "IgE antibodies mediate the symptoms of allergic reactions, yet these antibodies and the cells that produce them remain enigmatic due to their scarcity in humans. To address this, we have isolated single B cells of all isotypes, including rare IgE producing B cells, from the peripheral blood of food allergic individuals. Using single cell RNA sequencing (scRNA-seq) we have characterized the gene expression, splicing, and heavy and light chain antibody sequences of these cells.",
+    "study_type": "Other",
+    "published": "2018-12-14 01:36:51",
+    "record_count": 973,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "30545888",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP070120",
+    "bioproject": "PRJNA293224",
+    "title": "GenomeTrakr Project: Thakur Molecular Epidemiology Laboratory, NC State University",
+    "abstract": "Whole genome sequencing of cultured Salmonella as part of the US Food and Drug Administration surveillance project for the rapid detection of outbreaks of foodborne illnesses.",
+    "study_type": "Other",
+    "published": "2016-02-15 12:20:30",
+    "record_count": 1664,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "32437966",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP061987",
+    "bioproject": "PRJNA271470",
+    "title": "GenomeTrakr Project: Maryland Department of Health and Mental Hygiene",
+    "abstract": "Whole genome sequencing of cultured Salmonella enterica as part of the FDA GenomeTrakr surveillance project for rapid source tracking of foodborne illness outbreaks.",
+    "study_type": "Other",
+    "published": "2015-08-04 12:04:33",
+    "record_count": 1118,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP101451",
+    "bioproject": "PRJNA368991",
+    "title": "GenomeTrakr Project: Michigan Department of Agriculture and Rural Development | Geagley Laboratory",
+    "abstract": "Whole genome sequencing of cultured E. coli as part of the US Food and Drug Administration's WGS surveillance effort for the rapid traceback of foodborne pathogens.",
+    "study_type": "Other",
+    "published": "2017-03-06 16:03:10",
+    "record_count": 804,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP147970",
+    "bioproject": "PRJNA471603",
+    "title": "Galeruca daurica Assembly",
+    "abstract": "To gain insight into the molecular mechanism of summer diapause, high-throughput sequencing was utilized in pre-diapause, diapause, and post-diapausing G. daurica . A total of 82292 unigenes were assembled using the Illumina HiSeq2500 platform. Through pairwise comparisons, 3099 and 81 significantly regulated transcripts were identified between pre-and diapause and diapause and post-diapause insects.",
+    "study_type": "Other",
+    "published": "2018-12-31 00:25:52",
+    "record_count": 9,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP148476",
+    "bioproject": "PRJNA472096",
+    "title": "whole-genome resequencing data of Pseudocrenilabrus philander",
+    "abstract": "To study demographic history, selection and sex chromosome evolution in the cichlid fish Pseudocrenilabrus philander, we sequenced the genomes of 12 individuals sampled in the Lake Chila and 12 individuals sampled in the Mbulu Creek.",
+    "study_type": "Other",
+    "published": "2018-05-18 22:02:11",
+    "record_count": 24,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP148475",
+    "bioproject": "PRJNA472095",
+    "title": "Novel transcripts in transcriptome of Triticum aestivum L. cv. Guizi 1",
+    "abstract": "In order to explore the molecular mechanism of anthocyanin synthesis in purple wheat and the effect of stresses on the purple wheat, the transcriptomes were sequenced in different periods and under different stress treatments, compared with reference genomes, and some new transcripts were obtained.",
+    "study_type": "Other",
+    "published": "2019-06-17 00:58:07",
+    "record_count": 9,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP344044",
+    "bioproject": "PRJNA776845",
+    "title": "ETV6 Deficiency and Microsatellite Enhancers Drive Transcriptional Dysregulation in B-Lymphoblastic Leukemia: ATAC-Seq data",
+    "abstract": "Distal enhancers play critical roles in sustaining oncogenic gene expression programs. We obtained ATAC-Seq data and ChIP-Seq data using antibodies against the H3K27ac histone mark, transcription factors ERG and ETV6, and input chromatin from B-ALL cell lines and comparator B-cell cancer cell lines, including B-ALL with biallelic ETV6 inactivation, ETV6-RUNX1, and intact ETV6. We identify aberrant enhancer-like activation of GGAA tandem repeats as a characteristic feature of B-cell acute lymphoblastic leukemia (B-ALL) with genetic defects of the ETV6 transcriptional repressor, including ETV6-RUNX1+ and ETV6-null B-ALL. We show that GGAA repeat enhancers are direct activators of previously identified ETV6-RUNX1+ B-ALL âsignatureâ genes, including likely oncogenic drivers. When restored to ETV6-deficient B-ALL cells, ETV6 directly binds to GGAA repeat enhancers, represses their acetylation, downregulates adjacent genes, and inhibits B-ALL growth. In ETV6-deficient B-ALL cells, we find that the ETS transcription factor ERG directly binds to GGAA microsatellite enhancers and is required for sustained activation of many repeat enhancer-activated genes. Together, our findings reveal a novel epigenetic gatekeeper function of the ETV6 tumor suppressor gene and establish microsatellite enhancers as a key mechanism underlying the unique gene expression program of ETV6-RUNX1+ B-ALL. Overall design: ATAC-Seq peaks from B-cell cancer cell lines were merged into a consensus set of peaks for differential analysis of NFR-associated histone acetylation. Differential chromatin accessibility signal was also compared between cell lines at loci of interest.",
+    "study_type": "Other",
+    "published": "2022-11-10 21:16:30",
+    "record_count": 26,
+    "external_ids": {
+      "GEO": "GSE186938"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "36350827",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "SRP404499",
+    "bioproject": "PRJNA894191",
+    "title": "Epigenetic landscape of Human Brains by Single Nucleus DNA Methylation and Chromatin Conformation Profiling - pool110_h1930004_Pro",
+    "abstract": "Illustrating the cellular architecture of the human brain is critical to understanding its diverse functions and complex animal behaviors. Single nucleus methylation sequencing was applied to regions of human brains. we identified distinct cell clusters and formed them in a hierarchical taxonomy. These clusters include known primary brain cell types and possible sub-types. We use these data to identify the epigenomic characteristics and to define specific regulatory elements for each cell cluster. Overall design: Apply snmC-seq3 to brain regions to identify epigenomic landcape of the adult human brains",
+    "study_type": "Other",
+    "published": "2023-07-07 02:27:26",
+    "record_count": 2937,
+    "external_ids": {
+      "GEO": "GSE216539"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP332946",
+    "bioproject": "PRJNA755688",
+    "title": "Hydroxymethylation profile of cell free DNA is a biomarker for early colorectal cancer",
+    "abstract": "Early detection of colorectal cancer (CRC) will improve survival rates. We created a classifier to detect CRC, based on 5-hydroxymethylcytosine levels in cell free DNA isolated from blood samples of 2198 individuals. Our classifier discriminated CRC samples from controls with an area under the receiver operating characteristic curve (AUC) of 90% (sensitivity was 55% at 95% specificity). Performance was similar for early stage 1 (AUC 89%) and late stage 4 CRC (AUC 94%). Performance was independent of the proportion of tumor-DNA in the cell free DNA. We expanded the classifier to include information about cell free DNA fragment size and abundance across the genome. Overall performance was similar (AUC 91%), with gains in sensitivity (63% at 95% specificity). The 5-hydroxymethylcytosine signal allows detection of CRC, even in cell free DNA samples with undetectable tumor DNA. Including 5-hydroxymethylcytosine in multi-analyte screening, will improve sensitivity for early-stage cancer.",
+    "study_type": "Other",
+    "published": "2022-07-17 00:00:14",
+    "record_count": 2802,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP166422",
+    "bioproject": "PRJNA497961",
+    "title": "Eospalax fontanierii cansus Transcriptome or Gene expression",
+    "abstract": "Hypoxia adaptation is an important and necessary trait for many subterranean mammals to conduct activities underground. Eospalax fontanierii cansus (E. cansus) (synonm: Myospalax cansus) is one kind of subterranean rodent distributing in China. To survey the potential molecular mechanisms underlying hypoxia tolerance in E. cansus, transcriptome sequencing were performed under three different oxygen conditions with variant duration: normoxia (21% O2), chronic hypoxia (10.5% O2 44 hours), and acute hypoxia (6.5% O2 4 hours).",
+    "study_type": "Other",
+    "published": "2018-12-31 00:27:59",
+    "record_count": 36,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP293715",
+    "bioproject": "PRJNA679419",
+    "title": "Vicia faba Raw sequence reads",
+    "abstract": "Transcriptome sequencing data of 102 excellent faba bean germplasm resources flowers and leaves",
+    "study_type": "Whole Genome Sequencing",
+    "published": "2021-06-07 00:51:48",
+    "record_count": 196,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP293776",
+    "bioproject": "PRJNA680619",
+    "title": "RNA seq of cell in microgravity environment",
+    "abstract": "We report the gene expression alteration in microgravity",
+    "study_type": "Other",
+    "published": "2021-12-01 05:52:37",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP293980",
+    "bioproject": "PRJNA680617",
+    "title": "Transcriptome analysis the two color skins of Taiwanese loach",
+    "abstract": "Comparative transcriptome analysis of molecular mechanism underlying golden red color in mutant type of Taiwanese loach",
+    "study_type": "Other",
+    "published": "2021-12-31 02:56:19",
+    "record_count": 6,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP293759",
+    "bioproject": "PRJNA680616",
+    "title": "The DISARM study: effects of inhaled corticosteroids on bronchial epithelial cell gene expression in COPD",
+    "abstract": "The Differential Effects of Inhaled Symbicort and AdvaiR on Lung Microbiota (DISARM) study aimed to determine the effects of inhaled corticosteroids (ICS) on the lung microbiome. The full trial protocol is registered at clinicaltrials.gov (NCT02833480) and the study was approved by the Human Research Ethics Committee of the University of British Columbia and Providence Health Care (H14-02277). Participants were randomized to receive inhaled long-acting beta agonist (LABA) treatment with formoterol, or LABA/ICS combination treatment with formoterol/budesonide or salmeterol/fluticasone propionate, for 12 weeks. Bronchoscopy was performed before and after treatment, and bronchoalveolar lavage fluid and bronchial brushes (6th-8th generation) were collected. This dataset contains RNA-seq data from the bronchial brushes. RNA was extracted from cytological brush specimens stored in QIAzol RNA lysis buffer (QIAGEN, Stockach, Germany) using the RNeasy Plus kit (QIAGEN) according to the manufacturer's instructions, and specimens were submitted for sequencing at the University of British Columbia Biomedical Research Centre. Sample quality control was performed using the Agilent 2100 Bioanalyzer (Agilent, Santa Clara, CA, USA). Qualifying samples were then prepared following the standard protocol for the NEBnext Ultra ii Stranded mRNA (New England Biolabs, Ipswich, MA, USA). Sequencing was performed on the Illumina NextSeq 500 (Illumina, San Diego, CA, USA) with paired end 42bp Ã 42bp reads. Samples were sequenced in batches of 24, with batches formed by random selection of samples. Overall design: Randomized controlled trial. No placebo group was included in the DISARM trial due to the risk of acute exacerbation of COPD during the treatment period. FOR monotherapy is considered the control group. 63 participants with mild to very severe COPD were randomised into 3 groups: FOR (n=21), FOR/BUD (20), or SAL/FLU (n=22). 61 participants have pre-treatment sequencing data available, and 54 participants have both pre- and post-treatment sequencing data available.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-03-23 17:08:30",
+    "record_count": 118,
+    "external_ids": {
+      "GEO": "GSE162120"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "33795322",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "34464242",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "35625847",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "35740433",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  },
+  {
+    "accession": "ERP138533",
+    "bioproject": "PRJEB53718",
+    "title": "Effect of amoxicillin clavulanate on the intestinal microbiota and metabolomes of mice administered yogurt and Bifidobacterium animalis subsp. lactis BB-12",
+    "abstract": "To study the effects of BB-12, yogurt and AMC, three cohorts of mice were used, and treatments were given through oral route in drinking water. Overall, even after recommended dose of AMC was administered, antibiotics impacted severely on 16S rRNA cell counts, BB-12 cells in yogurt, gut microbial community and on cecal metabolites specifically SCFA and amino acids",
+    "study_type": "Other",
+    "published": "2022-08-30 20:51:26",
+    "record_count": 309,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "ERP122949",
+    "bioproject": "PRJEB39433",
+    "title": "Identifying crossover locations in Arabidopsis thaliana msh2 Col-0 x Ct-1 F2 populations using genotyping-by-sequencing",
+    "abstract": "Genomic DNA from 320 msh2 Col x Ct F2 individuals was extracted by CTAB and used to generate sequencing libraries as previously described (Hennig et al, 2018 G3). Sequencing data was analysed to identify crossovers using the TIGER pipeline as previously described (Rowan et al, 2015 G3; Yelina et al, 2015 Genes & Dev).",
+    "study_type": "Other",
+    "published": "2020-09-03 09:39:35",
+    "record_count": 320,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  },
+  {
+    "accession": "SRP142140",
+    "bioproject": "PRJNA451359",
+    "title": "Individuality and convergence of the infant gut microbiota during the first year of life",
+    "abstract": "16S rRNA amplicon sequences of the V4 region of 225 faecal samples collected from one infant (ID9) during the first year of life. 2x250bp paired end Illumina reads.",
+    "study_type": "Other",
+    "published": "2018-04-22 16:32:17",
+    "record_count": 250,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": []
+  }
+]

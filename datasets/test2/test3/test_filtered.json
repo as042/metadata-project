@@ -1,0 +1,57 @@
+[
+  {
+    "accession": "SRP070120",
+    "bioproject": "PRJNA293224",
+    "title": "GenomeTrakr Project: Thakur Molecular Epidemiology Laboratory, NC State University",
+    "abstract": "Whole genome sequencing of cultured Salmonella as part of the US Food and Drug Administration surveillance project for the rapid detection of outbreaks of foodborne illnesses.",
+    "study_type": "Other",
+    "published": "2016-02-15 12:20:30",
+    "record_count": 1664,
+    "external_ids": {},
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "32437966",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      }
+    ]
+  },
+  {
+    "accession": "SRP293759",
+    "bioproject": "PRJNA680616",
+    "title": "The DISARM study: effects of inhaled corticosteroids on bronchial epithelial cell gene expression in COPD",
+    "abstract": "The Differential Effects of Inhaled Symbicort and AdvaiR on Lung Microbiota (DISARM) study aimed to determine the effects of inhaled corticosteroids (ICS) on the lung microbiome. The full trial protocol is registered at clinicaltrials.gov (NCT02833480) and the study was approved by the Human Research Ethics Committee of the University of British Columbia and Providence Health Care (H14-02277). Participants were randomized to receive inhaled long-acting beta agonist (LABA) treatment with formoterol, or LABA/ICS combination treatment with formoterol/budesonide or salmeterol/fluticasone propionate, for 12 weeks. Bronchoscopy was performed before and after treatment, and bronchoalveolar lavage fluid and bronchial brushes (6th-8th generation) were collected. This dataset contains RNA-seq data from the bronchial brushes. RNA was extracted from cytological brush specimens stored in QIAzol RNA lysis buffer (QIAGEN, Stockach, Germany) using the RNeasy Plus kit (QIAGEN) according to the manufacturer's instructions, and specimens were submitted for sequencing at the University of British Columbia Biomedical Research Centre. Sample quality control was performed using the Agilent 2100 Bioanalyzer (Agilent, Santa Clara, CA, USA). Qualifying samples were then prepared following the standard protocol for the NEBnext Ultra ii Stranded mRNA (New England Biolabs, Ipswich, MA, USA). Sequencing was performed on the Illumina NextSeq 500 (Illumina, San Diego, CA, USA) with paired end 42bp Ã 42bp reads. Samples were sequenced in batches of 24, with batches formed by random selection of samples. Overall design: Randomized controlled trial. No placebo group was included in the DISARM trial due to the risk of acute exacerbation of COPD during the treatment period. FOR monotherapy is considered the control group. 63 participants with mild to very severe COPD were randomised into 3 groups: FOR (n=21), FOR/BUD (20), or SAL/FLU (n=22). 61 participants have pre-treatment sequencing data available, and 54 participants have both pre- and post-treatment sequencing data available.",
+    "study_type": "Transcriptome Analysis",
+    "published": "2021-03-23 17:08:30",
+    "record_count": 118,
+    "external_ids": {
+      "GEO": "GSE162120"
+    },
+    "samples": {},
+    "experiments": [],
+    "publications": [
+      {
+        "id": "33795322",
+        "type": "ePubmed",
+        "accessibility_type": "oa"
+      },
+      {
+        "id": "34464242",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "35625847",
+        "type": "ePubmed",
+        "accessibility_type": null
+      },
+      {
+        "id": "35740433",
+        "type": "ePubmed",
+        "accessibility_type": null
+      }
+    ]
+  }
+]

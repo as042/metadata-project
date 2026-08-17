@@ -1,0 +1,1027 @@
+{
+ "format_version": 2,
+ "created": "2026-08-16T04:42:51+00:00",
+ "params": {
+  "source": "datasets/oa_corpus.json",
+  "max_records": 5000,
+  "biosample": true,
+  "bioproject": true,
+  "papers": true,
+  "study_count": 3,
+  "format_version": 2
+ },
+ "counts": {
+  "studies": 3,
+  "records": 4,
+  "samples": 4,
+  "papers": 3,
+  "papers_empty": 1,
+  "summary_only": 0
+ },
+ "papers": {
+  "10.1038/s41598-020-72888-6": {
+   "id": "10.1038/s41598-020-72888-6",
+   "type": "eDOI",
+   "chars": 280,
+   "text": "TITLE: Spidroin profiling of cribellate spiders provides insight into the evolution of spider prey capture strategies\n\nABSTRACT: AbstractOrb-weaving spiders have two main methods of prey capture: cribellate spiders use dry, sticky capture threads, and ecribellate spiders use visc",
+   "oa_status": "gold",
+   "truncated": true
+  },
+  "32973264": {
+   "id": "32973264",
+   "type": "ePubmed",
+   "chars": 280,
+   "text": "TITLE: Spidroin profiling of cribellate spiders provides insight into the evolution of spider prey capture strategies\n\nABSTRACT: AbstractOrb-weaving spiders have two main methods of prey capture: cribellate spiders use dry, sticky capture threads, and ecribellate spiders use visc",
+   "oa_status": "gold",
+   "truncated": true
+  },
+  "36223455": {
+   "id": "36223455",
+   "type": "ePubmed",
+   "chars": 280,
+   "text": "TITLE: 1000 spider silkomes: Linking sequences to silk physical properties\n\nABSTRACT: Spider silks are among the toughest known materials and thus provide models for renewable, biodegradable, and sustainable biopolymers. However, the entirety of their diversity still remains elus",
+   "oa_status": "gold",
+   "truncated": true
+  },
+  "27650512": {
+   "id": "27650512",
+   "type": "ePubmed",
+   "chars": 0,
+   "text": null,
+   "oa_status": "green",
+   "truncated": false
+  }
+ },
+ "studies": [
+  {
+   "accession": "DRP006604",
+   "bioproject": "PRJDB7399",
+   "title": "1,000 Spider Transcriptomes",
+   "abstract": "1,000 Spider Project provides de novo transcriptome assembly of spiders sampled from around the world.",
+   "study_type": "Other",
+   "published": "2020-10-14 14:48:43",
+   "record_count": 2,
+   "external_ids": {},
+   "study_alias": "DRP006604",
+   "center_name": "KEIO-IAB",
+   "center_project_name": null,
+   "xrefs": {},
+   "submission": {
+    "accession": "DRA012147",
+    "alias": "DRA012147",
+    "center_name": "KEIO-IAB",
+    "broker_name": null,
+    "lab_name": "Institute for Advanced Biosciences, Keio University",
+    "comment": null,
+    "organization": {
+     "name": "KEIO-IAB",
+     "abbreviation": "KEIO-IAB",
+     "org_type": "center",
+     "contact_email": null,
+     "contact_first": null,
+     "contact_last": null
+    }
+   },
+   "bioproject_record": {
+    "accession": "PRJDB7399",
+    "uid": "668301",
+    "title": "1,000 Spider Transcriptomes",
+    "description": "1,000 Spider Project provides de novo transcriptome assembly of spiders sampled from around the world.",
+    "name": "Araneae",
+    "relevance": "Evolution",
+    "model_organism": null,
+    "target_organism": "Araneae",
+    "target_taxid": "6893",
+    "target_sample_scope": "eMonoisolate",
+    "target_material": "eTranscriptome",
+    "target_capture": "eWhole",
+    "method_type": "eSequencing",
+    "data_types": [
+     "Transcriptome or Gene expression"
+    ],
+    "objectives": [
+     "eRawSequenceReads"
+    ],
+    "submitting_organization": "Institue for Advanced Biosciences, Keio University",
+    "submitted": "2018-09-05",
+    "last_update": null,
+    "external_links": {}
+   },
+   "samples": {
+    "DRS640458": {
+     "accession": "DRS640458",
+     "biosample": "SAMD00325957",
+     "taxon_id": "3696121",
+     "scientific_name": "Gigathele gigas",
+     "title": "Macrothele gigas DirectRNA, Abdomen",
+     "attributes": {
+      "sample_name": "Macrothele gigas DirectRNA",
+      "biological_replicate": "1",
+      "collection_date": "2017-06-28",
+      "geo_loc_name": "Japan: Okinawa",
+      "tissue": "Abdomen"
+     },
+     "external_ids": {},
+     "biosample_attributes": {
+      "sample_name": "Macrothele gigas DirectRNA",
+      "biological_replicate": "1",
+      "collection_date": "2017-06-28",
+      "geo_loc_name": "Japan: Okinawa",
+      "tissue": "Abdomen"
+     },
+     "alias": "SAMD00325957",
+     "xrefs": {},
+     "biosample_record": {
+      "accession": "SAMD00325957",
+      "title": "Macrothele gigas DirectRNA, Abdomen",
+      "organism_name": "Gigathele gigas",
+      "taxonomy_id": "3696121",
+      "package": "Generic",
+      "models": [
+       "Generic"
+      ],
+      "owner": "Institute for Advanced Biosciences, Keio University",
+      "contact_first": null,
+      "contact_last": null,
+      "status": "live",
+      "status_when": "2025-12-25T18:06:15.963",
+      "access": "public",
+      "submission_date": "2025-12-25T17:06:15.386",
+      "publication_date": "2025-12-25T00:00:00.000",
+      "last_update": "2026-03-18T21:10:05.217",
+      "ids": {
+       "BioSample": "SAMD00325957",
+       "SRA": "DRS640458"
+      },
+      "links": {},
+      "harmonized": {
+       "sample_name": "Macrothele gigas DirectRNA",
+       "collection_date": "2017-06-28",
+       "geo_loc_name": "Japan: Okinawa",
+       "tissue": "Abdomen"
+      }
+     }
+    },
+    "DRS640457": {
+     "accession": "DRS640457",
+     "biosample": "SAMD00325956",
+     "taxon_id": "2337546",
+     "scientific_name": "Oxyopes macilentus",
+     "title": "Oxyopes macilentus DirectRNA, Abdomen",
+     "attributes": {
+      "sample_name": "Oxyopes macilentus DirectRNA",
+      "biological_replicate": "4",
+      "collection_date": "2017-08-23",
+      "geo_loc_name": "Japan: Kagoshima",
+      "tissue": "Abdomen"
+     },
+     "external_ids": {},
+     "biosample_attributes": {
+      "sample_name": "Oxyopes macilentus DirectRNA",
+      "biological_replicate": "4",
+      "collection_date": "2017-08-23",
+      "geo_loc_name": "Japan: Kagoshima",
+      "tissue": "Abdomen"
+     },
+     "alias": "SAMD00325956",
+     "xrefs": {},
+     "biosample_record": {
+      "accession": "SAMD00325956",
+      "title": "Oxyopes macilentus DirectRNA, Abdomen",
+      "organism_name": "Oxyopes macilentus",
+      "taxonomy_id": "2337546",
+      "package": "Generic",
+      "models": [
+       "Generic"
+      ],
+      "owner": "Institute for Advanced Biosciences, Keio University",
+      "contact_first": null,
+      "contact_last": null,
+      "status": "live",
+      "status_when": "2025-12-25T18:06:15.940",
+      "access": "public",
+      "submission_date": "2025-12-25T17:06:15.366",
+      "publication_date": "2025-12-25T00:00:00.000",
+      "last_update": "2025-12-25T08:01:09.000",
+      "ids": {
+       "BioSample": "SAMD00325956",
+       "SRA": "DRS640457"
+      },
+      "links": {},
+      "harmonized": {
+       "sample_name": "Oxyopes macilentus DirectRNA",
+       "collection_date": "2017-08-23",
+       "geo_loc_name": "Japan: Kagoshima",
+       "tissue": "Abdomen"
+      }
+     }
+    }
+   },
+   "experiments": [
+    {
+     "accession": "DRX288311",
+     "sample_ids": [
+      "DRS640458"
+     ],
+     "title": "MinION sequencing of SAMD00325957",
+     "library_strategy": "RNA-Seq",
+     "library_source": "TRANSCRIPTOMIC",
+     "library_selection": "Oligo-dT",
+     "library_layout": "SINGLE",
+     "platform": "OXFORD_NANOPORE",
+     "instrument_model": "MinION",
+     "attributes": {},
+     "runs": [
+      {
+       "accession": "DRR298868",
+       "total_spots": 841205,
+       "total_bases": 549533579,
+       "published": "2025-12-25 16:53:05",
+       "files": [
+        {
+         "url": "https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos9/sra-pub-run-936/DRR000/298/DRR298868/DRR298868.1",
+         "md5": "1664b7b135cd53397b31c677f70ceafc",
+         "size": 494392114,
+         "source": "public",
+         "filename": "DRR298868",
+         "file_date": "2025-12-25 17:05:16",
+         "semantic_name": "SRA Normalized",
+         "supertype": "Primary ETL",
+         "sratoolkit": "1",
+         "alternatives": [
+          {
+           "url": "https://sra-pub-run-odp.s3.amazonaws.com/sra/DRR298868/DRR298868",
+           "org": "AWS",
+           "access_type": "anonymous",
+           "free_egress": "worldwide"
+          },
+          {
+           "url": "https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos9/sra-pub-run-936/DRR000/298/DRR298868/DRR298868.1",
+           "org": "NCBI",
+           "access_type": "anonymous",
+           "free_egress": "worldwide"
+          },
+          {
+           "url": "gs://sra-pub-run-108/DRR298868/DRR298868.1",
+           "org": "GCP",
+           "access_type": "gcp identity",
+           "free_egress": "gs.us-east1"
+          }
+         ]
+        }
+       ],
+       "alias": "DRR298868",
+       "is_public": true,
+       "size_bytes": 494390884,
+       "cluster_name": "public",
+       "submitter_id": "DRR298868",
+       "statistics": {
+        "n_reads": 1,
+        "n_spots": 841205,
+        "reads": [
+         {
+          "index": 0,
+          "count": 841205,
+          "average": 653.27,
+          "stdev": 516.67
+         }
+        ]
+       },
+       "base_composition": {
+        "A": 167673378,
+        "C": 107552962,
+        "G": 119186332,
+        "T": 155120907,
+        "N": 0
+       },
+       "cloud_files": [
+        {
+         "provider": "gs",
+         "location": "gs.us-east1",
+         "filetype": "run"
+        },
+        {
+         "provider": "s3",
+         "location": "s3.us-east-1",
+         "filetype": "run"
+        }
+       ]
+      }
+     ],
+     "alias": "DRX288311",
+     "design_description": null,
+     "library_name": "Direct RNA sequencing library",
+     "library_construction_protocol": "SQK-RNA001",
+     "xrefs": {},
+     "pool_members": [
+      {
+       "accession": "DRS640458",
+       "member_name": "",
+       "sample_name": "SAMD00325957",
+       "sample_title": "Macrothele gigas DirectRNA, Abdomen",
+       "organism": "Gigathele gigas",
+       "tax_id": "3696121",
+       "spots": 841205,
+       "bases": 549533579
+      }
+     ]
+    },
+    {
+     "accession": "DRX288310",
+     "sample_ids": [
+      "DRS640457"
+     ],
+     "title": "MinION sequencing of SAMD00325956",
+     "library_strategy": "RNA-Seq",
+     "library_source": "TRANSCRIPTOMIC",
+     "library_selection": "Oligo-dT",
+     "library_layout": "SINGLE",
+     "platform": "OXFORD_NANOPORE",
+     "instrument_model": "MinION",
+     "attributes": {},
+     "runs": [
+      {
+       "accession": "DRR298867",
+       "total_spots": 1296086,
+       "total_bases": 736173025,
+       "published": "2025-12-25 16:53:05",
+       "files": [
+        {
+         "url": "https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos9/sra-pub-run-936/DRR000/298/DRR298867/DRR298867.1",
+         "md5": "494251ebb2632a96cd9b9229d3fa2b0c",
+         "size": 661667150,
+         "source": "public",
+         "filename": "DRR298867",
+         "file_date": "2025-12-25 17:05:12",
+         "semantic_name": "SRA Normalized",
+         "supertype": "Primary ETL",
+         "sratoolkit": "1",
+         "alternatives": [
+          {
+           "url": "https://sra-pub-run-odp.s3.amazonaws.com/sra/DRR298867/DRR298867",
+           "org": "AWS",
+           "access_type": "anonymous",
+           "free_egress": "worldwide"
+          },
+          {
+           "url": "https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos9/sra-pub-run-936/DRR000/298/DRR298867/DRR298867.1",
+           "org": "NCBI",
+           "access_type": "anonymous",
+           "free_egress": "worldwide"
+          },
+          {
+           "url": "gs://sra-pub-run-108/DRR298867/DRR298867.1",
+           "org": "GCP",
+           "access_type": "gcp identity",
+           "free_egress": "gs.us-east1"
+          }
+         ]
+        }
+       ],
+       "alias": "DRR298867",
+       "is_public": true,
+       "size_bytes": 661665920,
+       "cluster_name": "public",
+       "submitter_id": "DRR298867",
+       "statistics": {
+        "n_reads": 1,
+        "n_spots": 1296086,
+        "reads": [
+         {
+          "index": 0,
+          "count": 1296086,
+          "average": 568.0,
+          "stdev": 558.48
+         }
+        ]
+       },
+       "base_composition": {
+        "A": 241191818,
+        "C": 126456907,
+        "G": 142758945,
+        "T": 225765355,
+        "N": 0
+       },
+       "cloud_files": [
+        {
+         "provider": "gs",
+         "location": "gs.us-east1",
+         "filetype": "run"
+        },
+        {
+         "provider": "s3",
+         "location": "s3.us-east-1",
+         "filetype": "run"
+        }
+       ]
+      }
+     ],
+     "alias": "DRX288310",
+     "design_description": null,
+     "library_name": "Direct RNA sequencing library",
+     "library_construction_protocol": "SQK-RNA001",
+     "xrefs": {},
+     "pool_members": [
+      {
+       "accession": "DRS640457",
+       "member_name": "",
+       "sample_name": "SAMD00325956",
+       "sample_title": "Oxyopes macilentus DirectRNA, Abdomen",
+       "organism": "Oxyopes macilentus",
+       "tax_id": "2337546",
+       "spots": 1296086,
+       "bases": 736173025
+      }
+     ]
+    }
+   ],
+   "publications": [
+    {
+     "id": "10.1038/s41598-020-72888-6",
+     "type": "eDOI",
+     "accessibility_type": "oa",
+     "date": "2020-12-01T00:00:00Z",
+     "status": "ePublished",
+     "reference": "10.1038/s41598-020-72888-6",
+     "paper_ids": [
+      "10.1038/s41598-020-72888-6"
+     ],
+     "oa_status": null
+    },
+    {
+     "id": "32973264",
+     "type": "ePubmed",
+     "accessibility_type": "oa",
+     "date": "2020-09-24T00:00:00Z",
+     "status": null,
+     "reference": null,
+     "paper_ids": [
+      "32973264"
+     ],
+     "oa_status": null
+    },
+    {
+     "id": "36223455",
+     "type": "ePubmed",
+     "accessibility_type": "oa",
+     "date": "2022-10-14T00:00:00Z",
+     "status": "ePublished",
+     "reference": null,
+     "paper_ids": [
+      "36223455"
+     ],
+     "oa_status": null
+    }
+   ],
+   "build_note": null
+  },
+  {
+   "accession": "DRP003937",
+   "bioproject": "PRJDB4784",
+   "title": "Transcriptome analysis of columnar and noncolumnar apples",
+   "abstract": "To identify the Co gene controlling a columnar growth phenotype in apple (Malus ? domestica), the four mRNA samples of shoot apexes of a columnar cultivar 'McIntosh Wijcik' (two biological replicates) and a noncolumnar cultivar 'McIntosh' (two biological replicates) were analyzed using next generation sequencing.",
+   "study_type": "Other",
+   "published": "2017-12-08 03:42:38",
+   "record_count": 1,
+   "external_ids": {},
+   "study_alias": "DRP003937",
+   "center_name": "NIFTS",
+   "center_project_name": "Malus domestica",
+   "xrefs": {
+    "pubmed": "27650512"
+   },
+   "submission": {
+    "accession": "DRA004679",
+    "alias": "DRA004679",
+    "center_name": "NIFTS",
+    "broker_name": null,
+    "lab_name": "Apple Research Station",
+    "comment": null,
+    "organization": {
+     "name": "NIFTS",
+     "abbreviation": "NIFTS",
+     "org_type": "center",
+     "contact_email": null,
+     "contact_first": null,
+     "contact_last": null
+    }
+   },
+   "bioproject_record": {
+    "accession": "PRJDB4784",
+    "uid": "421098",
+    "title": "Transcriptome analysis of columnar and noncolumnar apples",
+    "description": "To identify the Co gene controlling a columnar growth phenotype in apple (Malus \u00c3\u0097 domestica), the four mRNA samples of shoot apexes of a columnar cultivar 'McIntosh Wijcik' (two biological replicates) and a noncolumnar cultivar 'McIntosh' (two biological replicates) were analyzed using next generation sequencing.",
+    "name": "Malus domestica",
+    "relevance": "Agricultural",
+    "model_organism": null,
+    "target_organism": "Malus domestica",
+    "target_taxid": "3750",
+    "target_sample_scope": "eMonoisolate",
+    "target_material": "eTranscriptome",
+    "target_capture": "eWhole",
+    "method_type": "eSequencing",
+    "data_types": [
+     "Transcriptome or Gene expression"
+    ],
+    "objectives": [
+     "eRawSequenceReads"
+    ],
+    "submitting_organization": "Institute of Fruit Tree and Tea Science, NARO",
+    "submitted": "2016-04-27",
+    "last_update": null,
+    "external_links": {}
+   },
+   "samples": {
+    "DRS056266": {
+     "accession": "DRS056266",
+     "biosample": "SAMD00051336",
+     "taxon_id": "3750",
+     "scientific_name": "Malus domestica",
+     "title": "Transcriptome 2 isolated from shoot apex of columnar apple cultivar McIntosh Wijcik",
+     "attributes": {
+      "sample_name": "McIntosh Wijcik 2",
+      "cultivar": "McIntosh\\Wijcik",
+      "genotype": "Co/co",
+      "phenotype": "columnar",
+      "replicate": "biological replicate 2",
+      "tissue_type": "shoot apex"
+     },
+     "external_ids": {},
+     "biosample_attributes": {
+      "sample_name": "McIntosh Wijcik 2",
+      "cultivar": "McIntosh\\Wijcik",
+      "genotype": "Co/co",
+      "phenotype": "columnar",
+      "replicate": "biological replicate 2",
+      "tissue_type": "shoot apex"
+     },
+     "alias": "SAMD00051336",
+     "xrefs": {
+      "bioproject": "421098"
+     },
+     "biosample_record": {
+      "accession": "SAMD00051336",
+      "title": "Transcriptome 2 isolated from shoot apex of columnar apple cultivar McIntosh Wijcik",
+      "organism_name": "Malus domestica",
+      "taxonomy_id": "3750",
+      "package": "Generic",
+      "models": [
+       "Generic"
+      ],
+      "owner": "Institute of Fruit Tree and Tea Science, NARO",
+      "contact_first": null,
+      "contact_last": null,
+      "status": "live",
+      "status_when": "2017-12-06T01:00:30.591",
+      "access": "public",
+      "submission_date": "2017-12-06T01:00:30.590",
+      "publication_date": "2017-12-04T00:00:00.000",
+      "last_update": "2024-06-02T02:53:23.200",
+      "ids": {
+       "BioSample": "SAMD00051336",
+       "SRA": "DRS056266"
+      },
+      "links": {
+       "entrez": "PRJDB4784"
+      },
+      "harmonized": {
+       "sample_name": "McIntosh Wijcik 2",
+       "cultivar": "McIntosh\\Wijcik",
+       "genotype": "Co/co",
+       "phenotype": "columnar",
+       "tissue": "shoot apex"
+      }
+     }
+    }
+   },
+   "experiments": [
+    {
+     "accession": "DRX054413",
+     "sample_ids": [
+      "DRS056266"
+     ],
+     "title": "Illumina HiSeq 2500 paired end sequencing of SAMD00051336",
+     "library_strategy": "RNA-Seq",
+     "library_source": "TRANSCRIPTOMIC",
+     "library_selection": "RANDOM",
+     "library_layout": "PAIRED",
+     "platform": "ILLUMINA",
+     "instrument_model": "Illumina HiSeq 2500",
+     "attributes": {},
+     "runs": [
+      {
+       "accession": "DRR060103",
+       "total_spots": 46285208,
+       "total_bases": 9349612016,
+       "published": "2017-12-08 03:42:39",
+       "files": [
+        {
+         "url": "https://sra-pub-run-odp.s3.amazonaws.com/sra/DRR060103/DRR060103",
+         "md5": "95007dcedea3fd1c03090d8c3c15cb9c",
+         "size": 6066162304,
+         "source": "public",
+         "filename": "DRR060103",
+         "file_date": "2017-12-07 23:31:54",
+         "semantic_name": "SRA Normalized",
+         "supertype": "Primary ETL",
+         "sratoolkit": "1",
+         "alternatives": [
+          {
+           "url": "https://sra-pub-run-odp.s3.amazonaws.com/sra/DRR060103/DRR060103",
+           "org": "AWS",
+           "access_type": "anonymous",
+           "free_egress": "worldwide"
+          }
+         ]
+        },
+        {
+         "url": "https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos12/sra-pub-zq-1211/DRR000/060/DRR060103/DRR060103.sralite.1",
+         "md5": "8d8b61d667500a41f59d9f6cbac4e60d",
+         "size": 2431970304,
+         "source": "public",
+         "filename": "DRR060103.sralite",
+         "file_date": "2020-06-20 20:03:51",
+         "semantic_name": "SRA Lite",
+         "supertype": "Primary ETL",
+         "sratoolkit": "1",
+         "alternatives": [
+          {
+           "url": "https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos12/sra-pub-zq-1211/DRR000/060/DRR060103/DRR060103.sralite.1",
+           "org": "NCBI",
+           "access_type": "anonymous",
+           "free_egress": "worldwide"
+          },
+          {
+           "url": "s3://sra-pub-zq-8/DRR060103/DRR060103.sralite.1",
+           "org": "AWS",
+           "access_type": "aws identity",
+           "free_egress": "s3.us-east-1"
+          },
+          {
+           "url": "gs://sra-pub-zq-107/DRR060103/DRR060103.zq.1",
+           "org": "GCP",
+           "access_type": "gcp identity",
+           "free_egress": "gs.us-east1"
+          }
+         ]
+        }
+       ],
+       "alias": "DRR060103",
+       "is_public": true,
+       "size_bytes": 6066160560,
+       "cluster_name": "public",
+       "submitter_id": "DRR060103",
+       "statistics": {
+        "n_reads": 2,
+        "n_spots": 46285208,
+        "reads": [
+         {
+          "index": 0,
+          "count": 46285208,
+          "average": 101.0,
+          "stdev": 0.0
+         },
+         {
+          "index": 1,
+          "count": 46285208,
+          "average": 101.0,
+          "stdev": 0.0
+         }
+        ]
+       },
+       "base_composition": {
+        "A": 2460277701,
+        "C": 2240657364,
+        "G": 2206326919,
+        "T": 2441846861,
+        "N": 503171
+       },
+       "cloud_files": [
+        {
+         "provider": "s3",
+         "location": "s3.us-east-1",
+         "filetype": "run"
+        },
+        {
+         "provider": "gs",
+         "location": "gs.us-east1",
+         "filetype": "run.zq"
+        },
+        {
+         "provider": "s3",
+         "location": "s3.us-east-1",
+         "filetype": "run.zq"
+        }
+       ]
+      }
+     ],
+     "alias": "DRX054413",
+     "design_description": null,
+     "library_name": null,
+     "library_construction_protocol": null,
+     "xrefs": {},
+     "pool_members": [
+      {
+       "accession": "DRS056266",
+       "member_name": "",
+       "sample_name": "SAMD00051336",
+       "sample_title": "Transcriptome 2 isolated from shoot apex of columnar apple cultivar McIntosh Wijcik",
+       "organism": "Malus domestica",
+       "tax_id": "3750",
+       "spots": 46285208,
+       "bases": 9349612016
+      }
+     ]
+    }
+   ],
+   "publications": [
+    {
+     "id": "27650512",
+     "type": "ePubmed",
+     "accessibility_type": "oa",
+     "date": null,
+     "status": "ePublished",
+     "reference": null,
+     "paper_ids": [],
+     "oa_status": null
+    }
+   ],
+   "build_note": null
+  },
+  {
+   "accession": "SRP999999",
+   "bioproject": "PRJDB4784",
+   "title": "Transcriptome analysis of columnar and noncolumnar apples",
+   "abstract": "To identify the Co gene controlling a columnar growth phenotype in apple (Malus ? domestica), the four mRNA samples of shoot apexes of a columnar cultivar 'McIntosh Wijcik' (two biological replicates) and a noncolumnar cultivar 'McIntosh' (two biological replicates) were analyzed using next generation sequencing.",
+   "study_type": "Other",
+   "published": "2017-12-08 03:42:38",
+   "record_count": 1,
+   "external_ids": {},
+   "study_alias": "DRP003937",
+   "center_name": "NIFTS",
+   "center_project_name": "Malus domestica",
+   "xrefs": {
+    "pubmed": "27650512"
+   },
+   "submission": {
+    "accession": "SRA900000",
+    "alias": "DRA004679",
+    "center_name": "NIFTS",
+    "broker_name": null,
+    "lab_name": "Apple Research Station",
+    "comment": null,
+    "organization": {
+     "name": "NIFTS",
+     "abbreviation": "NIFTS",
+     "org_type": "center",
+     "contact_email": null,
+     "contact_first": null,
+     "contact_last": null
+    }
+   },
+   "bioproject_record": {
+    "accession": "PRJDB4784",
+    "uid": "421098",
+    "title": "Transcriptome analysis of columnar and noncolumnar apples",
+    "description": "To identify the Co gene controlling a columnar growth phenotype in apple (Malus \u00c3\u0097 domestica), the four mRNA samples of shoot apexes of a columnar cultivar 'McIntosh Wijcik' (two biological replicates) and a noncolumnar cultivar 'McIntosh' (two biological replicates) were analyzed using next generation sequencing.",
+    "name": "Malus domestica",
+    "relevance": "Agricultural",
+    "model_organism": null,
+    "target_organism": "Malus domestica",
+    "target_taxid": "3750",
+    "target_sample_scope": "eMonoisolate",
+    "target_material": "eTranscriptome",
+    "target_capture": "eWhole",
+    "method_type": "eSequencing",
+    "data_types": [
+     "Transcriptome or Gene expression"
+    ],
+    "objectives": [
+     "eRawSequenceReads"
+    ],
+    "submitting_organization": "Institute of Fruit Tree and Tea Science, NARO",
+    "submitted": "2016-04-27",
+    "last_update": null,
+    "external_links": {}
+   },
+   "samples": {
+    "SRS900000": {
+     "accession": "SRS900000",
+     "biosample": "SAMD00051336",
+     "taxon_id": "3750",
+     "scientific_name": "Malus domestica",
+     "title": "Transcriptome 2 isolated from shoot apex of columnar apple cultivar McIntosh Wijcik",
+     "attributes": {
+      "sample_name": "McIntosh Wijcik 2",
+      "cultivar": "McIntosh\\Wijcik",
+      "genotype": "Co/co",
+      "phenotype": "columnar",
+      "replicate": "biological replicate 2",
+      "tissue_type": "shoot apex"
+     },
+     "external_ids": {},
+     "biosample_attributes": {
+      "sample_name": "McIntosh Wijcik 2",
+      "cultivar": "McIntosh\\Wijcik",
+      "genotype": "Co/co",
+      "phenotype": "columnar",
+      "replicate": "biological replicate 2",
+      "tissue_type": "shoot apex"
+     },
+     "alias": "SAMD00051336",
+     "xrefs": {
+      "bioproject": "421098"
+     },
+     "biosample_record": {
+      "accession": "SAMD00051336",
+      "title": "Transcriptome 2 isolated from shoot apex of columnar apple cultivar McIntosh Wijcik",
+      "organism_name": "Malus domestica",
+      "taxonomy_id": "3750",
+      "package": "Generic",
+      "models": [
+       "Generic"
+      ],
+      "owner": "Institute of Fruit Tree and Tea Science, NARO",
+      "contact_first": null,
+      "contact_last": null,
+      "status": "live",
+      "status_when": "2017-12-06T01:00:30.591",
+      "access": "public",
+      "submission_date": "2017-12-06T01:00:30.590",
+      "publication_date": "2017-12-04T00:00:00.000",
+      "last_update": "2024-06-02T02:53:23.200",
+      "ids": {
+       "BioSample": "SAMD00051336",
+       "SRA": "DRS056266"
+      },
+      "links": {
+       "entrez": "PRJDB4784"
+      },
+      "harmonized": {
+       "sample_name": "McIntosh Wijcik 2",
+       "cultivar": "McIntosh\\Wijcik",
+       "genotype": "Co/co",
+       "phenotype": "columnar",
+       "tissue": "shoot apex"
+      }
+     }
+    }
+   },
+   "experiments": [
+    {
+     "accession": "SRX900000",
+     "sample_ids": [
+      "SRS900000"
+     ],
+     "title": "Illumina HiSeq 2500 paired end sequencing of SAMD00051336",
+     "library_strategy": "RNA-Seq",
+     "library_source": "TRANSCRIPTOMIC",
+     "library_selection": "RANDOM",
+     "library_layout": "PAIRED",
+     "platform": "ILLUMINA",
+     "instrument_model": "Illumina HiSeq 2500",
+     "attributes": {},
+     "runs": [
+      {
+       "accession": "SRR9000000",
+       "total_spots": 46285208,
+       "total_bases": 9349612016,
+       "published": "2017-12-08 03:42:39",
+       "files": [
+        {
+         "url": "https://sra-pub-run-odp.s3.amazonaws.com/sra/DRR060103/DRR060103",
+         "md5": "95007dcedea3fd1c03090d8c3c15cb9c",
+         "size": 6066162304,
+         "source": "public",
+         "filename": "DRR060103",
+         "file_date": "2017-12-07 23:31:54",
+         "semantic_name": "SRA Normalized",
+         "supertype": "Primary ETL",
+         "sratoolkit": "1",
+         "alternatives": [
+          {
+           "url": "https://sra-pub-run-odp.s3.amazonaws.com/sra/DRR060103/DRR060103",
+           "org": "AWS",
+           "access_type": "anonymous",
+           "free_egress": "worldwide"
+          }
+         ]
+        },
+        {
+         "url": "https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos12/sra-pub-zq-1211/DRR000/060/DRR060103/DRR060103.sralite.1",
+         "md5": "8d8b61d667500a41f59d9f6cbac4e60d",
+         "size": 2431970304,
+         "source": "public",
+         "filename": "DRR060103.sralite",
+         "file_date": "2020-06-20 20:03:51",
+         "semantic_name": "SRA Lite",
+         "supertype": "Primary ETL",
+         "sratoolkit": "1",
+         "alternatives": [
+          {
+           "url": "https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos12/sra-pub-zq-1211/DRR000/060/DRR060103/DRR060103.sralite.1",
+           "org": "NCBI",
+           "access_type": "anonymous",
+           "free_egress": "worldwide"
+          },
+          {
+           "url": "s3://sra-pub-zq-8/DRR060103/DRR060103.sralite.1",
+           "org": "AWS",
+           "access_type": "aws identity",
+           "free_egress": "s3.us-east-1"
+          },
+          {
+           "url": "gs://sra-pub-zq-107/DRR060103/DRR060103.zq.1",
+           "org": "GCP",
+           "access_type": "gcp identity",
+           "free_egress": "gs.us-east1"
+          }
+         ]
+        }
+       ],
+       "alias": "DRR060103",
+       "is_public": true,
+       "size_bytes": 6066160560,
+       "cluster_name": "public",
+       "submitter_id": "DRR060103",
+       "statistics": {
+        "n_reads": 2,
+        "n_spots": 46285208,
+        "reads": [
+         {
+          "index": 0,
+          "count": 46285208,
+          "average": 101.0,
+          "stdev": 0.0
+         },
+         {
+          "index": 1,
+          "count": 46285208,
+          "average": 101.0,
+          "stdev": 0.0
+         }
+        ]
+       },
+       "base_composition": {
+        "A": 2460277701,
+        "C": 2240657364,
+        "G": 2206326919,
+        "T": 2441846861,
+        "N": 503171
+       },
+       "cloud_files": [
+        {
+         "provider": "s3",
+         "location": "s3.us-east-1",
+         "filetype": "run"
+        },
+        {
+         "provider": "gs",
+         "location": "gs.us-east1",
+         "filetype": "run.zq"
+        },
+        {
+         "provider": "s3",
+         "location": "s3.us-east-1",
+         "filetype": "run.zq"
+        }
+       ]
+      }
+     ],
+     "alias": "DRX054413",
+     "design_description": null,
+     "library_name": null,
+     "library_construction_protocol": null,
+     "xrefs": {},
+     "pool_members": [
+      {
+       "accession": "DRS056266",
+       "member_name": "",
+       "sample_name": "SAMD00051336",
+       "sample_title": "Transcriptome 2 isolated from shoot apex of columnar apple cultivar McIntosh Wijcik",
+       "organism": "Malus domestica",
+       "tax_id": "3750",
+       "spots": 46285208,
+       "bases": 9349612016
+      }
+     ]
+    }
+   ],
+   "publications": [
+    {
+     "id": "27650512",
+     "type": "ePubmed",
+     "accessibility_type": "oa",
+     "date": null,
+     "status": null,
+     "reference": null,
+     "oa_status": "green",
+     "paper_ids": [
+      "27650512"
+     ]
+    }
+   ],
+   "build_note": null
+  }
+ ]
+}

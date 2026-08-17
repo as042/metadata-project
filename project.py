@@ -127,7 +127,8 @@ _TRANSIENT = (
 
 
 def _request_with_retry(
-    url, *, sleep: float = 0.34, post: bool = False, xml: bool = False, **params
+    url, *, sleep: float = 0.34, post: bool = False, xml: bool = False,
+    attempts: int = 5, **params
 ):
     """GET/POST with exponential backoff on rate-limit and transient server errors.
 
@@ -147,19 +148,20 @@ def _request_with_retry(
     later attempt. Parsing here also keeps it to exactly one parse per response.
     """
     delay = max(sleep, 0.34)
-    for attempt in range(5):
+    last = attempts - 1
+    for attempt in range(attempts):
         try:
             if post:
                 r = _SESSION.post(url, data=params, timeout=60)
             else:
                 r = _SESSION.get(url, params=params, timeout=60)
         except _TRANSIENT:
-            if attempt == 4:
+            if attempt == last:
                 raise
             time.sleep(delay)
             delay = min(delay * 2, 5.0)
             continue
-        if r.status_code in (429, 500, 502, 503, 504) and attempt < 4:
+        if r.status_code in (429, 500, 502, 503, 504) and attempt < last:
             time.sleep(delay)
             delay = min(delay * 2, 5.0)
             continue
@@ -169,7 +171,7 @@ def _request_with_retry(
         try:
             return ET.fromstring(r.text)
         except ET.ParseError:
-            if attempt == 4:
+            if attempt == last:
                 raise
             time.sleep(delay)
             delay = min(delay * 2, 5.0)
@@ -179,11 +181,58 @@ def _request_with_retry(
 # Leaf data classes
 # --------------------------------------------------------------------------- #
 @dataclass
+class FileAlternative:
+    """The same file at a different host, with its own access terms.
+
+    Not redundant with :attr:`FileRef.url`: a submitter's original upload often
+    has no `url` at all and exists only via requester-pays cloud delivery, so
+    collapsing alternatives into the parent would lose the only way to reach it.
+    """
+
+    url: str | None = None
+    org: str | None = None            # NCBI / AWS / GCP
+    access_type: str | None = None    # anonymous / aws identity / Use Cloud Data Delivery
+    free_egress: str | None = None    # worldwide / s3.us-east-1 / -
+
+
+@dataclass
 class FileRef:
-    url: str
+    url: str | None = None
     md5: str | None = None
     size: int | None = None
     source: str | None = None  # e.g. "sra", "s3", "gs"
+    filename: str | None = None
+    file_date: str | None = None      # SRAFile@date, raw
+    semantic_name: str | None = None
+    supertype: str | None = None      # "Original" / "Primary ETL"
+    sratoolkit: str | None = None
+    alternatives: list[FileAlternative] = field(default_factory=list)
+
+
+@dataclass
+class CloudFile:
+    """RUN/CloudFiles/CloudFile — a compact index of cloud copies by provider."""
+
+    provider: str | None = None       # s3 / gs
+    location: str | None = None
+    filetype: str | None = None
+
+
+@dataclass
+class ReadStat:
+    """One read's statistics within a run (Statistics/Read)."""
+
+    index: int | None = None
+    count: int | None = None
+    average: float | None = None
+    stdev: float | None = None
+
+
+@dataclass
+class RunStatistics:
+    n_reads: int | None = None
+    n_spots: int | None = None
+    reads: list[ReadStat] = field(default_factory=list)
 
 
 @dataclass
@@ -195,6 +244,15 @@ class Run:
     total_bases: int | None = None
     published: str | None = None  # release date, e.g. "2017-06-07 10:30:09"
     files: list[FileRef] = field(default_factory=list)
+    alias: str | None = None
+    is_public: bool | None = None
+    size_bytes: int | None = None
+    cluster_name: str | None = None
+    submitter_id: str | None = None
+    statistics: RunStatistics | None = None
+    # Bases/Base: {@value: @count} — nucleotide composition of the run.
+    base_composition: dict[str, int] = field(default_factory=dict)
+    cloud_files: list[CloudFile] = field(default_factory=list)
 
 
 @dataclass
@@ -212,6 +270,31 @@ class Experiment:
     instrument_model: str | None = None
     attributes: dict[str, str] = field(default_factory=dict)  # EXPERIMENT_ATTRIBUTES
     runs: list[Run] = field(default_factory=list)
+    alias: str | None = None
+    design_description: str | None = None
+    library_name: str | None = None
+    library_construction_protocol: str | None = None
+    xrefs: dict[str, str] = field(default_factory=dict)  # EXPERIMENT_LINKS
+    pool_members: list["PoolMember"] = field(default_factory=list)
+
+
+@dataclass
+class PoolMember:
+    """Pool/Member — how reads split across samples in a multiplexed run.
+
+    Present on every experiment, with exactly one member when nothing is pooled.
+    It is why :attr:`Experiment.sample_ids` is a list: sample-to-experiment is
+    many-to-many in SRA, and collapsing it would lose a pooled study's split.
+    """
+
+    accession: str | None = None
+    member_name: str | None = None
+    sample_name: str | None = None
+    sample_title: str | None = None
+    organism: str | None = None
+    tax_id: str | None = None
+    spots: int | None = None
+    bases: int | None = None
 
 
 @dataclass
@@ -225,6 +308,51 @@ class Sample:
     title: str | None = None
     attributes: dict[str, str] = field(default_factory=dict)  # SAMPLE_ATTRIBUTES
     external_ids: dict[str, str] = field(default_factory=dict)  # e.g. {"GEO": "GSM..."}
+    # The BioSample record's own attribute bag, when it has been fetched
+    # (:func:`fetch_biosample_attributes`). **Kept apart from `attributes`
+    # deliberately.** The two overlap heavily but not completely — measured
+    # across five studies, BioSample carried `host_sex`, `sex`,
+    # `isolation_source`, `body site`, `is tumor` and `histological type` that
+    # the SRA SAMPLE block had dropped. Merging them would erase which archive
+    # said what, which is exactly the distinction a benchmark needs, and would
+    # silently change what layer 3 is credited with inferring.
+    biosample_attributes: dict[str, str] = field(default_factory=dict)
+    alias: str | None = None
+    xrefs: dict[str, str] = field(default_factory=dict)  # SAMPLE_LINKS
+    # The BioSample record's non-attribute fields, when fetched.
+    biosample_record: "BioSampleRecord | None" = None
+
+
+@dataclass
+class BioSampleRecord:
+    """Everything on a BioSample record except its attribute bag.
+
+    The bag stays on :attr:`Sample.biosample_attributes` so the two attribute
+    views (SRA's and BioSample's) sit side by side. `package` is the one most
+    worth having: it names the checklist governing the record, which decides
+    which attributes were *mandatory* — signal about why one is absent.
+    """
+
+    accession: str
+    title: str | None = None
+    organism_name: str | None = None
+    taxonomy_id: str | None = None
+    package: str | None = None
+    models: list[str] = field(default_factory=list)
+    owner: str | None = None
+    contact_first: str | None = None
+    contact_last: str | None = None
+    status: str | None = None
+    status_when: str | None = None
+    access: str | None = None
+    submission_date: str | None = None
+    publication_date: str | None = None
+    last_update: str | None = None
+    ids: dict[str, str] = field(default_factory=dict)
+    links: dict[str, str] = field(default_factory=dict)
+    # Attribute@harmonized_name — NCBI's normalisation, a separate view of the
+    # same data rather than a replacement for the submitter's spelling.
+    harmonized: dict[str, str] = field(default_factory=dict)
 
 
 @dataclass
@@ -235,6 +363,73 @@ class Publication:
     # by classification and persisted so it need not be recomputed. None = not yet
     # classified (determining it costs a network lookup).
     accessibility_type: str | None = None
+    date: str | None = None       # BioProject Publication@date — the one zoned date
+    status: str | None = None
+    reference: str | None = None
+    # Keys into the corpus's shared `papers` map for text retrieved for *this*
+    # publication. A list, not a single id, so a second copy of the same article
+    # (a repository version alongside the PMC one) can be added without a
+    # format change. Usually empty: most publications yield no retrievable text.
+    paper_ids: list[str] = field(default_factory=list)
+    # Unpaywall's route: gold/hybrid reach PMC, bronze and green do not. Explains
+    # why a publication can be genuinely open access and still yield no text.
+    oa_status: str | None = None
+
+
+@dataclass
+class Organization:
+    """EXPERIMENT_PACKAGE/Organization — who deposited the submission."""
+
+    name: str | None = None
+    abbreviation: str | None = None
+    org_type: str | None = None
+    contact_email: str | None = None
+    contact_first: str | None = None
+    contact_last: str | None = None
+
+
+@dataclass
+class Submission:
+    """The SRA SUBMISSION block. Carries `broker_name`, which maps to a target field."""
+
+    accession: str | None = None
+    alias: str | None = None
+    center_name: str | None = None
+    broker_name: str | None = None
+    lab_name: str | None = None
+    comment: str | None = None
+    organization: Organization | None = None
+
+
+@dataclass
+class BioProjectRecord:
+    """The BioProject record beyond its publication list.
+
+    ``uid`` is stored alongside the accession because efetch does not resolve
+    accessions — it strips the PRJ?? prefix and treats the digits as an internal
+    uid, which coincides for PRJNA and is wrong for PRJEB/PRJDB. Keeping the real
+    uid is what makes that mis-resolution detectable later.
+    """
+
+    accession: str
+    uid: str | None = None
+    title: str | None = None
+    description: str | None = None
+    name: str | None = None
+    relevance: str | None = None
+    model_organism: str | None = None
+    target_organism: str | None = None
+    target_taxid: str | None = None
+    target_sample_scope: str | None = None
+    target_material: str | None = None
+    target_capture: str | None = None
+    method_type: str | None = None
+    data_types: list[str] = field(default_factory=list)
+    objectives: list[str] = field(default_factory=list)
+    submitting_organization: str | None = None
+    submitted: str | None = None
+    last_update: str | None = None
+    external_links: dict[str, str] = field(default_factory=dict)
 
 
 # --------------------------------------------------------------------------- #
@@ -257,6 +452,27 @@ def _attrs_bag(el, container_tag, item_tag):
         if tag:
             out[tag] = val
     return out
+
+
+def _xref_bag(el, container_tag):
+    """Flatten a *_LINKS block of XREF_LINK DB/ID pairs into a dict."""
+    out: dict[str, str] = {}
+    block = el.find(container_tag) if el is not None else None
+    if block is None:
+        return out
+    for xref in block.iter("XREF_LINK"):
+        db = _text(xref, "DB")
+        ident = _text(xref, "ID")
+        if db:
+            out[db] = ident
+    return out
+
+
+def _float(v):
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return None
 
 
 def _int(v):
@@ -320,6 +536,14 @@ class Project:
         self.samples: dict[str, Sample] = {}  # keyed by SRS (canonical store)
         self.experiments: list[Experiment] = []
         self.publications: list[Publication] = []
+        # STUDY@alias / @center_name / CENTER_PROJECT_NAME — stated in the XML and
+        # mapping onto target fields the model was otherwise inferring.
+        self.study_alias: str | None = None
+        self.center_name: str | None = None
+        self.center_project_name: str | None = None
+        self.xrefs: dict[str, str] = {}          # STUDY_LINKS
+        self.submission: Submission | None = None
+        self.bioproject_record: BioProjectRecord | None = None
         self.record_count: int | None = None  # # of SRA (experiment) records in the study
 
         self._study_parsed = False  # STUDY block is repeated in every package
@@ -518,6 +742,8 @@ class Project:
     def _parse_package_set(self, root):
         for pkg in root.iter("EXPERIMENT_PACKAGE"):
             self._parse_study(pkg.find("STUDY"))
+            self._parse_submission(pkg.find("SUBMISSION"))
+            self._parse_organization(pkg.find("Organization"))
             self._note_published(pkg)  # cheap; independent of the include_* flags
             if self._include_samples:
                 sample = self._parse_sample(pkg.find("SAMPLE"))
@@ -553,6 +779,42 @@ class Project:
         st = descr.find("STUDY_TYPE") if descr is not None else None
         if st is not None:
             self.study_type = st.get("existing_study_type") or (st.text or None)
+        # These three are stated outright in the XML and map to target fields the
+        # model was otherwise paying to guess: study_alias, project_name and
+        # center_name. The audit found `project_name` scored "high" on 44/44
+        # records with zero of them quoted — it was inventing what is written here.
+        self.study_alias = study_el.get("alias")
+        self.center_name = study_el.get("center_name")
+        self.center_project_name = _text(descr, "CENTER_PROJECT_NAME")
+        self.xrefs.update(_xref_bag(study_el, "STUDY_LINKS"))
+
+    def _parse_submission(self, sub_el):
+        if sub_el is None or self.submission is not None:
+            return  # repeated in every package, like STUDY
+        self.submission = Submission(
+            accession=sub_el.get("accession"),
+            alias=sub_el.get("alias"),
+            center_name=sub_el.get("center_name"),
+            broker_name=sub_el.get("broker_name"),
+            lab_name=sub_el.get("lab_name") or None,
+            comment=sub_el.get("submission_comment"),
+        )
+
+    def _parse_organization(self, org_el):
+        if org_el is None or self.submission is None:
+            return
+        if self.submission.organization is not None:
+            return
+        name_el = org_el.find("Name")
+        contact = org_el.find("Contact")
+        self.submission.organization = Organization(
+            name=(name_el.text or "").strip() or None if name_el is not None else None,
+            abbreviation=name_el.get("abbr") if name_el is not None else None,
+            org_type=org_el.get("type"),
+            contact_email=contact.get("email") if contact is not None else None,
+            contact_first=_text(contact, "Name/First"),
+            contact_last=_text(contact, "Name/Last"),
+        )
 
     def _parse_sample(self, sample_el) -> Sample | None:
         if sample_el is None:
@@ -568,6 +830,8 @@ class Project:
             elif ns:
                 s.external_ids[ns] = ext.text
         s.attributes = _attrs_bag(sample_el, "SAMPLE_ATTRIBUTES", "SAMPLE_ATTRIBUTE")
+        s.alias = sample_el.get("alias")
+        s.xrefs = _xref_bag(sample_el, "SAMPLE_LINKS")
         return s
 
     def _parse_experiment(self, pkg) -> Experiment:
@@ -575,11 +839,19 @@ class Project:
         e = Experiment(accession=exp_el.get("accession"))
         e.title = _text(exp_el, "TITLE")
 
+        e.alias = exp_el.get("alias")
+        e.design_description = _text(exp_el, "DESIGN/DESIGN_DESCRIPTION")
+
         lib = exp_el.find("DESIGN/LIBRARY_DESCRIPTOR")
         if lib is not None:
             e.library_strategy = _text(lib, "LIBRARY_STRATEGY")
             e.library_source = _text(lib, "LIBRARY_SOURCE")
             e.library_selection = _text(lib, "LIBRARY_SELECTION")
+            e.library_name = _text(lib, "LIBRARY_NAME")
+            # Maps to the library_construction_protocol target field; the audit
+            # flagged the model quoting this one wrong when it could not see it.
+            e.library_construction_protocol = _text(
+                lib, "LIBRARY_CONSTRUCTION_PROTOCOL")
             layout = lib.find("LIBRARY_LAYOUT")
             if layout is not None and len(layout):
                 e.library_layout = layout[0].tag  # SINGLE / PAIRED
@@ -592,9 +864,29 @@ class Project:
         e.attributes = _attrs_bag(
             exp_el, "EXPERIMENT_ATTRIBUTES", "EXPERIMENT_ATTRIBUTE"
         )
+        e.xrefs = _xref_bag(exp_el, "EXPERIMENT_LINKS")
         e.sample_ids = self._sample_ids(exp_el, pkg)
+        e.pool_members = self._parse_pool(pkg.find("Pool"))
         e.runs = self._parse_runs(pkg.find("RUN_SET")) if self._include_runs else []
         return e
+
+    @staticmethod
+    def _parse_pool(pool_el) -> list[PoolMember]:
+        if pool_el is None:
+            return []
+        return [
+            PoolMember(
+                accession=m.get("accession"),
+                member_name=m.get("member_name"),
+                sample_name=m.get("sample_name"),
+                sample_title=m.get("sample_title"),
+                organism=m.get("organism"),
+                tax_id=m.get("tax_id"),
+                spots=_int(m.get("spots")),
+                bases=_int(m.get("bases")),
+            )
+            for m in pool_el.findall("Member")
+        ]
 
     @staticmethod
     def _sample_ids(exp_el, pkg) -> list[str]:
@@ -623,17 +915,65 @@ class Project:
             r.total_spots = _int(run_el.get("total_spots"))
             r.total_bases = _int(run_el.get("total_bases"))
             r.published = run_el.get("published")
+            r.alias = run_el.get("alias")
+            r.cluster_name = run_el.get("cluster_name")
+            r.size_bytes = _int(run_el.get("size"))
+            pub = run_el.get("is_public")
+            r.is_public = None if pub is None else pub.lower() == "true"
+            r.submitter_id = _text(run_el, "IDENTIFIERS/SUBMITTER_ID")
+
+            stats_el = run_el.find("Statistics")
+            if stats_el is not None:
+                stats = RunStatistics(
+                    n_reads=_int(stats_el.get("nreads")),
+                    n_spots=_int(stats_el.get("nspots")),
+                )
+                for read in stats_el.findall("Read"):
+                    stats.reads.append(ReadStat(
+                        index=_int(read.get("index")),
+                        count=_int(read.get("count")),
+                        average=_float(read.get("average")),
+                        stdev=_float(read.get("stdev")),
+                    ))
+                r.statistics = stats
+
+            bases_el = run_el.find("Bases")
+            if bases_el is not None:
+                for b in bases_el.findall("Base"):
+                    if b.get("value"):
+                        r.base_composition[b.get("value")] = _int(b.get("count"))
+
             sra_files = run_el.find("SRAFiles")
             if sra_files is not None:
                 for f in sra_files.findall("SRAFile"):
-                    r.files.append(
-                        FileRef(
-                            url=f.get("url"),
-                            md5=f.get("md5"),
-                            size=_int(f.get("size")),
-                            source=f.get("cluster") or f.get("semantic_name"),
-                        )
+                    ref = FileRef(
+                        url=f.get("url"),
+                        md5=f.get("md5"),
+                        size=_int(f.get("size")),
+                        source=f.get("cluster") or f.get("semantic_name"),
+                        filename=f.get("filename"),
+                        file_date=f.get("date"),
+                        semantic_name=f.get("semantic_name"),
+                        supertype=f.get("supertype"),
+                        sratoolkit=f.get("sratoolkit"),
                     )
+                    for alt in f.findall("Alternatives"):
+                        ref.alternatives.append(FileAlternative(
+                            url=alt.get("url"),
+                            org=alt.get("org"),
+                            access_type=alt.get("access_type"),
+                            free_egress=alt.get("free_egress"),
+                        ))
+                    r.files.append(ref)
+
+            cloud_el = run_el.find("CloudFiles")
+            if cloud_el is not None:
+                for c in cloud_el.findall("CloudFile"):
+                    r.cloud_files.append(CloudFile(
+                        provider=c.get("provider"),
+                        location=c.get("location"),
+                        filetype=c.get("filetype"),
+                    ))
             runs.append(r)
         return runs
 
@@ -778,6 +1118,13 @@ class Project:
             "published": self.published,
             "record_count": self.record_count,
             "external_ids": self.external_ids,
+            "study_alias": self.study_alias,
+            "center_name": self.center_name,
+            "center_project_name": self.center_project_name,
+            "xrefs": self.xrefs,
+            "submission": asdict(self.submission) if self.submission else None,
+            "bioproject_record": (asdict(self.bioproject_record)
+                                  if self.bioproject_record else None),
             "samples": {k: asdict(v) for k, v in self.samples.items()},
             "experiments": [asdict(e) for e in self.experiments],
             "publications": [asdict(p) for p in self.publications],
@@ -805,15 +1152,32 @@ class Project:
         samples/experiments) and older JSON without ``record_count`` both load.
         """
 
+        def _file(fd):
+            fd = dict(fd)
+            alts = [FileAlternative(**a) for a in fd.pop("alternatives", []) or []]
+            return FileRef(**fd, alternatives=alts)
+
         def _run(rd):
             rd = dict(rd)
-            files = [FileRef(**f) for f in rd.pop("files", []) or []]
-            return Run(**rd, files=files)
+            files = [_file(f) for f in rd.pop("files", []) or []]
+            clouds = [CloudFile(**c) for c in rd.pop("cloud_files", []) or []]
+            stats = rd.pop("statistics", None)
+            if stats:
+                stats = dict(stats)
+                reads = [ReadStat(**r) for r in stats.pop("reads", []) or []]
+                stats = RunStatistics(**stats, reads=reads)
+            return Run(**rd, files=files, cloud_files=clouds, statistics=stats)
 
         def _experiment(ed):
             ed = dict(ed)
             runs = [_run(r) for r in ed.pop("runs", []) or []]
-            return Experiment(**ed, runs=runs)
+            pool = [PoolMember(**m) for m in ed.pop("pool_members", []) or []]
+            return Experiment(**ed, runs=runs, pool_members=pool)
+
+        def _sample(sd):
+            sd = dict(sd)
+            rec = sd.pop("biosample_record", None)
+            return Sample(**sd, biosample_record=BioSampleRecord(**rec) if rec else None)
 
         p = cls.__new__(cls)  # bypass __init__ so nothing is fetched
         p.accession = d["accession"]
@@ -824,7 +1188,21 @@ class Project:
         p.published = d.get("published")
         p.record_count = d.get("record_count")
         p.external_ids = dict(d.get("external_ids") or {})
-        p.samples = {k: Sample(**v) for k, v in (d.get("samples") or {}).items()}
+        p.study_alias = d.get("study_alias")
+        p.center_name = d.get("center_name")
+        p.center_project_name = d.get("center_project_name")
+        p.xrefs = dict(d.get("xrefs") or {})
+        sub = d.get("submission")
+        if sub:
+            sub = dict(sub)
+            org = sub.pop("organization", None)
+            p.submission = Submission(**sub,
+                                      organization=Organization(**org) if org else None)
+        else:
+            p.submission = None
+        bpr = d.get("bioproject_record")
+        p.bioproject_record = BioProjectRecord(**bpr) if bpr else None
+        p.samples = {k: _sample(v) for k, v in (d.get("samples") or {}).items()}
         p.experiments = [_experiment(e) for e in (d.get("experiments") or [])]
         p.publications = [Publication(**pub) for pub in (d.get("publications") or [])]
         # networking config: no per-instance override -> use process-wide creds,
@@ -881,6 +1259,217 @@ def _srps_from_esummary(root) -> list[str]:
             if m:
                 out.append(m.group(1))
     return out
+
+
+def fetch_biosample_attributes(
+    biosample_ids, *, batch: int = 300, sleep: float | None = None,
+    email=None, api_key=None, progress=None,
+) -> dict[str, dict[str, str]]:
+    """``{SAMN accession: {attribute: value}}`` straight from the BioSample DB.
+
+    The SRA SAMPLE block mirrors *most* of a BioSample record, so this is not a
+    replacement for :attr:`Sample.attributes` — it is the part SRA drops.
+    Measured over five studies from three archives, four carried extra fields
+    and the extras were the ones this project most wants: ``host_sex``, ``sex``,
+    ``isolation_source``, ``body site``, ``is tumor``, ``histological type``.
+    (One study matched exactly, so the gain is real but not universal.) Many of
+    the rest are dbGaP registry artefacts — ``gap_consent_code``,
+    ``submitted_subject_id`` — which are bookkeeping rather than biology.
+
+    **Batched, because per-sample fetching would dominate a corpus build.** At
+    300 ids per request the whole 102,227-record reference corpus costs minutes
+    rather than hours; one id at a time measured 8 ms/record even on a warm
+    connection, and that is before per-request pacing.
+
+    ``progress(done, total)`` is called after each batch. Ids that BioSample
+    does not return are simply absent from the result rather than raising —
+    a withdrawn or suppressed sample must not end a corpus build.
+    """
+    return {acc: attrs for acc, (attrs, _rec)
+            in fetch_biosample_records(biosample_ids, batch=batch, sleep=sleep,
+                                       email=email, api_key=api_key,
+                                       progress=progress).items()}
+
+
+def fetch_biosample_records(
+    biosample_ids, *, batch: int = 300, sleep: float | None = None,
+    email=None, api_key=None, progress=None,
+) -> dict[str, tuple[dict[str, str], "BioSampleRecord"]]:
+    """``{SAMN: (attributes, BioSampleRecord)}`` — the bag and everything else.
+
+    Split because the two are used differently: the attribute bag sits beside
+    SRA's own bag on the sample, while the record's other fields (package,
+    owner, status, dates) describe the deposit rather than the biology.
+
+    Same batching and same accession-prefix defence as described above.
+    """
+    ids = [i for i in dict.fromkeys(biosample_ids) if i]
+    wanted = set(ids)
+    out: dict[str, tuple[dict[str, str], BioSampleRecord]] = {}
+    pause = _sleep_for(sleep, api_key)
+    for start in range(0, len(ids), batch):
+        chunk = ids[start:start + batch]
+        # Accession -> uid first, then fetch by uid. **Fetching by accession is
+        # not safe**: efetch strips the archive prefix and treats the digits as
+        # an internal uid, which coincides only for SAMN. Asking for DDBJ's
+        # SAMD00041293 that way returns NCBI's SAMN00041293 — a different sample
+        # from a different study, 200 OK, no warning; a honey-bee request came
+        # back with Human Microbiome Project metadata. esearch resolves all three
+        # archives correctly, which is why there is no separate EBI path here.
+        uid_root = _request_with_retry(
+            "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+            sleep=pause, post=True,
+            **_common(email, api_key, db="biosample", retmode="json",
+                      retmax=len(chunk),
+                      term=" OR ".join(f"{a}[Accession]" for a in chunk)),
+        )
+        uids = uid_root.json().get("esearchresult", {}).get("idlist") or []
+        time.sleep(pause)
+        if uids:
+            # POST: a 300-id GET URL runs past what E-utilities accepts.
+            root = _request_with_retry(
+                "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+                sleep=pause, post=True, xml=True,
+                **_common(email, api_key, db="biosample", id=",".join(uids),
+                          rettype="full", retmode="xml"),
+            )
+            for doc in root.iter("BioSample"):
+                acc = doc.get("accession")
+                # Key on the *returned* accession and keep only what was asked
+                # for. esearch can rank in an order unrelated to the query, so
+                # never zip(chunk, docs) — and this is the second line of defence
+                # against the prefix collapse described above.
+                if not acc or acc not in wanted:
+                    continue
+                bag, harmonized = {}, {}
+                for attr in doc.iter("Attribute"):
+                    # `attribute_name` is the submitter's spelling;
+                    # `harmonized_name` is NCBI's normalisation. Keep both —
+                    # they are different views, not alternatives.
+                    value = (attr.text or "").strip()
+                    if not value:
+                        continue
+                    if attr.get("attribute_name"):
+                        bag[attr.get("attribute_name")] = value
+                    if attr.get("harmonized_name"):
+                        harmonized[attr.get("harmonized_name")] = value
+                status = doc.find("Status")
+                org = doc.find("Description/Organism")
+                owner = doc.find("Owner")
+                contact = doc.find("Owner/Contacts/Contact")
+                pkg_el = doc.find("Package")
+                rec = BioSampleRecord(
+                    accession=acc,
+                    title=_text(doc, "Description/Title"),
+                    organism_name=(org.get("taxonomy_name") if org is not None else None)
+                    or _text(org, "OrganismName"),
+                    taxonomy_id=org.get("taxonomy_id") if org is not None else None,
+                    package=(pkg_el.get("display_name") or (pkg_el.text or "").strip()
+                             if pkg_el is not None else None),
+                    models=[(m.text or "").strip() for m in doc.iter("Model")
+                            if (m.text or "").strip()],
+                    owner=_text(owner, "Name"),
+                    contact_first=_text(contact, "Name/First"),
+                    contact_last=_text(contact, "Name/Last"),
+                    status=status.get("status") if status is not None else None,
+                    status_when=status.get("when") if status is not None else None,
+                    access=doc.get("access"),
+                    submission_date=doc.get("submission_date"),
+                    publication_date=doc.get("publication_date"),
+                    last_update=doc.get("last_update"),
+                    ids={i.get("db"): (i.text or "").strip()
+                         for i in doc.iter("Id") if i.get("db")},
+                    links={l.get("type") or l.get("target") or "link":
+                           (l.get("label") or (l.text or "").strip())
+                           for l in doc.iter("Link")},
+                    harmonized=harmonized,
+                )
+                out[acc] = (bag, rec)
+            time.sleep(pause)
+        if progress:
+            progress(min(start + batch, len(ids)), len(ids))
+
+    return out
+
+
+def fetch_bioproject_record(
+    accession: str, sleep: float | None = None, email=None, api_key=None
+):
+    """``(BioProjectRecord, [Publication])`` for a BioProject accession, or None.
+
+    Resolves accession -> uid via esearch before fetching, because
+    ``efetch db=bioproject`` does **not** resolve accessions: it strips the
+    ``PRJ??`` prefix and uses the digits as an internal uid. That coincides for
+    PRJNA (PRJNA646996 really is uid 646996) and is wrong for PRJEB/PRJDB —
+    PRJEB13694 fetched by accession returns PRJNA13694, an unrelated project.
+    The returned record's own ArchiveID is checked against what was asked for.
+    """
+    pause = _sleep_for(sleep, api_key)
+    try:
+        r = _request_with_retry(
+            "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi", sleep=pause,
+            **_common(email, api_key, db="bioproject",
+                      term=f"{accession}[Project Accession]", retmode="json"))
+        uids = r.json().get("esearchresult", {}).get("idlist") or []
+    except Exception:  # noqa: BLE001
+        return None
+    if not uids:
+        return None
+    time.sleep(pause)
+    try:
+        root = _request_with_retry(
+            "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+            sleep=pause, xml=True,
+            **_common(email, api_key, db="bioproject", id=uids[0], retmode="xml"))
+    except Exception:  # noqa: BLE001
+        return None
+
+    archive_id = root.find(".//Project/ProjectID/ArchiveID")
+    if archive_id is None or archive_id.get("accession") != accession:
+        return None                      # mis-resolved; better nothing than wrong
+    descr = root.find(".//Project/ProjectDescr")
+    target = root.find(".//ProjectTypeSubmission/Target")
+    method = root.find(".//ProjectTypeSubmission/Method")
+    sub = root.find(".//Submission")
+    org = root.find(".//Submission/Description/Organization/Name")
+    organism = root.find(".//ProjectTypeSubmission/Target/Organism")
+
+    rec = BioProjectRecord(
+        accession=accession,
+        uid=archive_id.get("id") or uids[0],
+        title=_text(descr, "Title"),
+        description=_text(descr, "Description"),
+        name=_text(descr, "Name"),
+        relevance=(", ".join((e.tag for e in descr.find("Relevance")))
+                   if descr is not None and descr.find("Relevance") is not None else None),
+        model_organism=_text(descr, "Relevance/ModelOrganism"),
+        target_organism=_text(organism, "OrganismName"),
+        target_taxid=organism.get("taxID") if organism is not None else None,
+        target_sample_scope=target.get("sample_scope") if target is not None else None,
+        target_material=target.get("material") if target is not None else None,
+        target_capture=target.get("capture") if target is not None else None,
+        method_type=method.get("method_type") if method is not None else None,
+        data_types=[(d.text or "").strip() for d in root.iter("DataType")
+                    if (d.text or "").strip()],
+        objectives=[d.get("data_type") for d in root.iter("Data") if d.get("data_type")],
+        submitting_organization=(org.text or "").strip() if org is not None else None,
+        submitted=sub.get("submitted") if sub is not None else None,
+        last_update=sub.get("last_update") if sub is not None else None,
+        external_links={x.get("db"): _text(x, "ID")
+                        for x in root.iter("dbXREF") if x.get("db")},
+    )
+    pubs = []
+    for p in root.iter("Publication"):
+        if not p.get("id"):
+            continue
+        pubs.append(Publication(
+            id=p.get("id"),
+            type=_text(p, "DbType"),
+            date=p.get("date"),
+            status=p.get("status"),
+            reference=_text(p, "Reference"),
+        ))
+    return rec, pubs
 
 
 def classify_publication(pub_id, sleep: float | None = None, email=None, api_key=None) -> str:
@@ -999,6 +1588,42 @@ def fetch_open_access_text(
     return _jats_text(root, max_chars)
 
 
+def publication_oa_status(
+    pub_id, sleep: float | None = None, email=None, api_key=None
+) -> str | None:
+    """Unpaywall's open-access *route* for a PMID or DOI, or None.
+
+    ``bronze`` (free at the publisher, no licence) and ``green`` (repository
+    copy) almost never reach Europe PMC, which is the only source
+    :func:`fetch_open_access_text` reads; ``gold``/``hybrid`` usually do. See
+    :func:`_unpaywall_status` for the measured breakdown — the signal is strong
+    but one-directional.
+
+    Two of the 54 unretrievable papers come back ``closed``, meaning Unpaywall
+    sees no free copy at all. Those are candidates for a mis-classification by
+    our own publication classifier rather than a retrieval-route problem.
+
+    Resolves a PMID to its DOI through Europe PMC first, because Unpaywall is
+    DOI-only. Returns None when the DOI cannot be found or the lookup fails.
+    """
+    sleep = _sleep_for(sleep, api_key)
+    doi = pub_id if "/" in pub_id else None
+    if doi is None:
+        try:
+            hits = (
+                _request_with_retry(
+                    EPMC_SEARCH, sleep=sleep, query=f"EXT_ID:{pub_id} AND SRC:MED",
+                    format="json", resultType="core")
+                .json().get("resultList", {}).get("result", [])
+            )
+        except (requests.RequestException, ValueError):
+            return None
+        doi = hits[0].get("doi") if hits else None
+    if not doi:
+        return None
+    return _unpaywall_status(doi, sleep=sleep, email=email)[1]
+
+
 def _jats_text(root, max_chars: int) -> str | None:
     """Flatten a JATS article to plain text, Methods-first, under `max_chars`."""
 
@@ -1042,16 +1667,38 @@ def _unpaywall_is_oa(doi: str, sleep: float = 0.34, email: str | None = None) ->
     :func:`set_entrez_credentials`). Any lookup failure is treated as "not proven
     OA" rather than raising: this is a best-effort second opinion.
     """
+    return _unpaywall_status(doi, sleep=sleep, email=email)[0]
+
+
+def _unpaywall_status(doi: str, sleep: float = 0.34, email: str | None = None):
+    """``(is_oa, oa_status)`` from Unpaywall — the route, not just the verdict.
+
+    ``oa_status`` is Unpaywall's classification of *how* an article is open.
+    Measured against retrieval on the reference corpus (all 54 papers that
+    yielded no text, plus 30 sampled from the 272 that did):
+
+        bronze   0 with text / 20 without
+        green    2 / 19
+        gold    20 /  6
+        hybrid   8 /  7
+        closed   0 /  2
+
+    So it predicts well in one direction and not the other: ``bronze`` and
+    ``green`` almost never reach Europe PMC, while ``gold``/``hybrid`` usually
+    but not always do. Informative, not determinative — do not use it as a
+    substitute for checking whether text actually came back.
+
+    ``(False, None)`` on any failure: a best-effort second opinion must not raise.
+    """
     contact = email if email is not None else _DEFAULT_EMAIL
     if not contact:
-        return False
+        return False, None
     try:
-        r = _request_with_retry(
-            f"{UNPAYWALL}/{doi}", sleep=sleep, email=contact
-        )
-        return bool(r.json().get("is_oa"))
+        r = _request_with_retry(f"{UNPAYWALL}/{doi}", sleep=sleep, email=contact)
+        data = r.json()
+        return bool(data.get("is_oa")), data.get("oa_status")
     except (requests.RequestException, ValueError):
-        return False
+        return False, None
 
 
 def _publication_classes(srp, email=None, api_key=None, sleep=None) -> list[str]:

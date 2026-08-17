@@ -19,3 +19,26 @@ __pycache__/
 test.json
 df.csv
 df2.csv
+
+# generated datasets over GitHub's 100 MB hard limit
+#
+# Each is committed as its .tar.xz sibling instead — 600.8 MB -> 34.1 MB for the
+# corpus — so the data is still in the repo, just not as raw JSON. Regenerate
+# with `tar -xJf <name>.tar.xz`, or rebuild from scratch (the corpus takes hours
+# of NCBI calls, so prefer the archive).
+#
+# Sizes at time of writing: 600.8 MB, 255.7 MB, 193.5 MB.
+datasets/oa_corpus_full.json
+datasets/oa_corpus_full.v1.json
+datasets/dataset2/records2.json
+
+# Rust build artifacts
+#
+# `rust/target` reached 736 MB across 1,503 files and was once committed whole;
+# every one of them is reproducible from `cargo build`.
+rust/target/
+
+# Reconstruction runs written by main.rs. Small per run and worth keeping for
+# comparison, so this ignores nothing by default — but a full-corpus export is
+# 102,240 records and belongs in the datasets convention (.tar.xz), not here.
+# rust/runs/

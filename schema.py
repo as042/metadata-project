@@ -147,8 +147,17 @@ NOT_APPLICABLE = "not applicable"
 NOT_COLLECTED = "not collected"
 NOT_PROVIDED = "not provided"
 RESTRICTED_ACCESS = "restricted access"
+# INSDC's bare `missing`: the submitter states the value is absent without
+# saying why. Unlike the four above it carries no reason, and it is by far the
+# commonest — 20,804 harmonized values across the corpus, against 15,403 for the
+# reasoned terms combined. Treating it as ordinary text asserted that a sample's
+# country was called "missing". INSDC also defines qualified forms
+# (`missing: control sample`, `missing: lab stock`); none occur in this corpus,
+# so they are not matched yet.
+MISSING = "missing"
 
-MISSING_VALUES = (NOT_APPLICABLE, NOT_COLLECTED, NOT_PROVIDED, RESTRICTED_ACCESS)
+MISSING_VALUES = (NOT_APPLICABLE, NOT_COLLECTED, NOT_PROVIDED, RESTRICTED_ACCESS,
+                  MISSING)
 
 # What none of them mean: ``None``. A field is None when *nothing has been
 # concluded* — reconstruction has not run on it yet, or ran and reached no
@@ -243,7 +252,13 @@ def _is_missing_value(value) -> bool:
     "none", "unknown" — are deliberately *not* mapped: each is ambiguous with a
     real value ("NA" is a plausible strain, region or country code), and quietly
     reinterpreting data as a missing-value declaration is worse than leaving it
-    as the text it was.
+    as the text it was. 2,796 harmonized values across the corpus are one of
+    those aliases and stay ordinary text.
+
+    :data:`MISSING` is on the recognised side of that line rather than the alias
+    side, because it is an INSDC vocabulary term and not a submitter's own
+    shorthand — and unlike "NA" there is no plausible strain, region or country
+    actually called "missing".
     """
     return isinstance(value, str) and value.strip().lower() in MISSING_VALUES
 
