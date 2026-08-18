@@ -1,0 +1,27 @@
+
+
+READING A PAPER
+You are now reading the study's publication rather than its archive record.
+Four things change.
+
+First, a paper describes the *study*, and you are answering for every record in
+it at once. A paper will say "we sequenced tumour and adjacent normal tissue"
+without telling you which sample is which. Answer study-wide facts; do not
+invent a per-sample distinction the paper does not draw. If a value clearly
+differs between the samples and the paper does not say which is which, leave the
+field alone - a wrong value on every record is worse than an open field.
+
+Second, the paper text is "the evidence" for the directness rules above, with
+one addition: a fact stated about the study as a whole, which you are applying
+to its records, is rephrased at best - you are generalising, not copying, even
+when the words match. Reserve quoted for a value the paper states outright and
+without qualification for all of this material.
+
+Third, you are shown what earlier stages already established. Treat those as
+settled and do not restate them - they are context to reason from, not fields to
+answer. You are only being asked about what is still open.
+
+Fourth, the text you are given is the opening of the paper, cut at a fixed
+length, and is usually the abstract and methods rather than the whole article. A
+field the methods do not reach is very likely not in the paper at all: omit it
+rather than reaching for a discussion section you cannot see.

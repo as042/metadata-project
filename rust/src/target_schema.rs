@@ -1,4 +1,7 @@
+use std::collections::{BTreeMap, BTreeSet};
+
 use chrono::{NaiveDate, NaiveDateTime};
+use serde::{Deserialize, Serialize};
 
 use crate::{corpus::Corpus, layer::Layer, project::*};
 
@@ -28,7 +31,7 @@ use crate::{corpus::Corpus, layer::Layer, project::*};
 // on a `direct` field, or on a field with no value. Making the inferred
 // variants the only ones that carry a Directness deletes that whole class of
 // bug — `Direct` and `Harmonized` structurally cannot hold one.
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum Provenance {
     // The archive stated it outright.
     Direct,
@@ -42,7 +45,7 @@ pub enum Provenance {
 // Where an inferred value came from, not how likely it is to be right. The
 // distinction matters: `Quoted` is machine-checkable by string matching against
 // the evidence, which is the only reason the audit can verify anything.
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum Directness {
     // Appears in the evidence word for word.
     Quoted,
@@ -56,7 +59,7 @@ pub enum Directness {
 // INSDC's missing-value vocabulary. Each is a *stated reason* a field has no
 // ordinary value — an answer, not an absence — which is why these sit beside
 // `Known` rather than collapsing into `Unknown`.
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum MissingReason {
     // Cannot apply here: sex on a soil metagenome, host on a free-living isolate.
     NotApplicable,
@@ -76,6 +79,21 @@ pub enum MissingReason {
     Unspecified,
 }
 
+impl MissingReason {
+    // The INSDC term this stands for. The audit needs it: a stated absence
+    // claiming to be quoted is claiming *this string* appears in the evidence.
+    #[inline]
+    pub fn as_str(self) -> &'static str {
+        match self {
+            MissingReason::NotApplicable => "not applicable",
+            MissingReason::NotCollected => "not collected",
+            MissingReason::NotProvided => "not provided",
+            MissingReason::RestrictedAccess => "restricted access",
+            MissingReason::Unspecified => "missing",
+        }
+    }
+}
+
 // One field's value together with how it got there.
 //
 // `Unknown` is the only variant without a Provenance, and that is the point:
@@ -87,7 +105,7 @@ pub enum MissingReason {
 // Python cannot: its typed fields reject the sentinels outright, which it
 // documents as a known casualty — a cell line arguably has no collection date
 // and there is currently no way to record that.
-#[derive(Clone, Debug, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum Field<T> {
     #[default]
     Unknown,
@@ -145,14 +163,14 @@ impl<T> Field<T> {
 //
 // Ranges (`2019-05/2019-08`, 638 values, 0.8%) have no variant yet and parse to
 // nothing; add one if something needs to query them.
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum PartialDate {
     Year(i32),
     YearMonth(i32, u32),
     Date(NaiveDate),
 }
 
-#[derive(Clone, Debug, Default, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct TargetSchema {
     // The experiment accession. Not a Field: every record has one by
     // construction, nobody inferred it, and there is nothing to attribute.
@@ -294,6 +312,62 @@ pub struct TargetSchema {
 pub struct SchemaSettings {
     // Order matters. Each layer processes the data in the order of the vec.
     layers: Vec<Layer>,
+    // The evidence each record was shown, kept only when asked for.
+    //
+    // Off by default because it is large — a corpus run would store the
+    // attribute bag of every sample twice over — and useful only when something
+    // is going to read it back. The verbatim audit is that something: a
+    // `quoted` claim says a value appears in the evidence word for word, and
+    // without the evidence the claim cannot be checked at all.
+    evidence: Option<std::sync::Arc<std::sync::Mutex<BTreeMap<String, String>>>>,
+    // Volume ceilings, independent of the spend ceiling.
+    //
+    // A budget stops a run once it has cost too much, which needs the cost to
+    // be known — and the cost of a study is only known once it has been paid.
+    // These stop it before that: `SRP049009` plans 2,150 calls, and capping the
+    // records means the paid layers never see more than a handful of them
+    // whatever the ledger says. Two limits that fail independently.
+    max_studies: Option<usize>,
+    max_total_records: Option<usize>,
+    // Named studies rather than a prefix. `None` means every study; an empty
+    // set means none, which is a real configuration a caller can ask for and
+    // not the same thing as "unset".
+    only_studies: Option<BTreeSet<String>>,
+    // Where a layer reports something it could not do. `None` discards them,
+    // which is what the first version did unconditionally — and a paid call
+    // that failed then looked exactly like a layer that had nothing to say.
+    on_issue: Option<IssueSink>,
+}
+
+// Where issues go. Boxed because a run decides at construction what to do
+// with them, and Send + Sync so a run can still fan out over records.
+pub type IssueSink = Box<dyn Fn(&Issue) + Send + Sync>;
+
+// What separates one layer's evidence from another's inside a record's entry.
+//
+// A line rather than a nested map, so a run saved before layer 3 and layer 4
+// could differ still loads: the export's `evidence` field keeps its type, and a
+// file with no headers at all reads as one undifferentiated block, which is
+// exactly what it was.
+pub const EVIDENCE_HEADER: &str = "=== evidence: ";
+
+// Something a layer could not do, reported rather than swallowed.
+//
+// Not an error return: one sample failing must not abandon the other three
+// hundred, so the run continues and says so. The distinction that matters is
+// between "the model declined this field" (normal, silent) and "the call did
+// not happen" (worth knowing about).
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct Issue {
+    pub layer: &'static str,
+    pub context: String,
+    pub error: String,
+}
+
+impl std::fmt::Display for Issue {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "[{}] {}: {}", self.layer, self.context, self.error)
+    }
 }
 
 // Direct only, which is the one configuration that is free, offline and
@@ -306,14 +380,175 @@ pub struct SchemaSettings {
 impl Default for SchemaSettings {
     #[inline]
     fn default() -> Self {
-        Self { layers: vec![Layer::Direct] }
+        Self {
+            layers: vec![Layer::Direct],
+            evidence: None,
+            max_studies: None,
+            max_total_records: None,
+            only_studies: None,
+            on_issue: None,
+        }
     }
 }
 
 impl SchemaSettings {
     #[inline]
     pub fn new(layers: Vec<Layer>) -> Self {
-        Self { layers }
+        Self {
+            layers,
+            evidence: None,
+            max_studies: None,
+            max_total_records: None,
+            only_studies: None,
+            on_issue: None,
+        }
+    }
+
+
+
+
+
+
+
+
+
+    // Keep the evidence shown to each record, so a saved run can be audited
+    // without regenerating it from the corpus.
+    pub fn keep_evidence(mut self, keep: bool) -> Self {
+        self.evidence = keep.then(|| std::sync::Arc::new(std::sync::Mutex::new(BTreeMap::new())));
+        self
+    }
+
+    // Appends what one record was shown, tagged with the layer that showed it.
+    //
+    // A record can be covered by more than one call — the study-level one and
+    // its own — and the audit wants the union of what that layer saw.
+    //
+    // Tagged because the layers do not see the same thing. Layer 4 appends up
+    // to 30,000 characters of publication to the same record, and an audit that
+    // could not tell the blocks apart would check layer 3's `quoted` claims
+    // against a paper its call was never shown — turning a falsifiable claim
+    // back into an unfalsifiable one, quietly and in the flattering direction.
+    pub fn record_evidence(&self, id: &str, layer: &str, evidence: &str) {
+        let Some(store) = &self.evidence else { return };
+        let mut store = store.lock().expect("evidence store poisoned");
+        let entry = store.entry(id.to_string()).or_default();
+        if !entry.is_empty() {
+            entry.push('\n');
+        }
+        entry.push_str(EVIDENCE_HEADER);
+        entry.push_str(layer);
+        entry.push_str(" ===\n");
+        entry.push_str(evidence);
+    }
+
+    pub fn evidence(&self) -> Option<BTreeMap<String, String>> {
+        self.evidence.as_ref().map(|s| s.lock().expect("evidence store poisoned").clone())
+    }
+
+
+    // At most this many studies, taken from the front of the corpus.
+    pub fn max_studies(mut self, studies: usize) -> Self {
+        self.max_studies = Some(studies);
+        self
+    }
+
+    // Run only these studies, named by accession.
+    //
+    // The caps take a *prefix* of the corpus, which is the right shape for "a
+    // small cheap run" and the wrong shape for "the same studies as last time".
+    // A controlled comparison needs the second: re-running the five studies a
+    // Python run covered is the only way to tell an improved layer from an easy
+    // study, and coverage varies enough between studies (sd 3.8 fields/record on
+    // the model layers) to hide any effect smaller than that.
+    //
+    // Matches either the study accession (SRP/ERP/DRP) or the BioProject one
+    // (PRJNA/PRJEB/PRJDB), because which of the two names a study is an accident
+    // of where the list came from. Case-insensitive; whitespace trimmed.
+    //
+    // Selection happens before the caps, so the two compose: pick five studies
+    // and cap the records, and the cap applies to those five.
+    pub fn only_studies<S: AsRef<str>>(mut self, accessions: impl IntoIterator<Item = S>) -> Self {
+        self.only_studies = Some(
+            accessions
+                .into_iter()
+                .map(|a| a.as_ref().trim().to_ascii_uppercase())
+                .collect(),
+        );
+        self
+    }
+
+    // Whether this project is one the run was asked for. `true` for every
+    // project when no selection was made.
+    //
+    // One predicate, called by both the run and the estimate — the estimate is
+    // only a guard if it prices the studies that are actually going to run.
+    pub fn selects(&self, project: &Project) -> bool {
+        let Some(wanted) = &self.only_studies else {
+            return true;
+        };
+        let names = [
+            Some(project.accession.0.to_ascii_uppercase()),
+            project
+                .bioproject
+                .as_ref()
+                .map(|b| b.accession.0.to_ascii_uppercase()),
+        ];
+        names.iter().flatten().any(|name| wanted.contains(name))
+    }
+
+    // Accessions that were asked for and are not in the corpus.
+    //
+    // Reported rather than ignored: a mistyped accession otherwise produces a
+    // smaller run that looks exactly like a correct one, and the comparison it
+    // was for is quietly against a different study set.
+    pub fn unmatched<'a>(&self, projects: impl IntoIterator<Item = &'a Project>) -> Vec<String> {
+        let Some(wanted) = &self.only_studies else {
+            return Vec::new();
+        };
+        let mut missing = wanted.clone();
+        for project in projects {
+            missing.remove(&project.accession.0.to_ascii_uppercase());
+            if let Some(bioproject) = &project.bioproject {
+                missing.remove(&bioproject.accession.0.to_ascii_uppercase());
+            }
+        }
+        missing.into_iter().collect()
+    }
+
+    // At most this many records in total, across every study.
+    //
+    // Applied by trimming each study's experiments *before* its layers run, so
+    // it bounds what the paid layers are asked to do rather than only what is
+    // returned. A study is therefore delivered as a prefix of itself.
+    pub fn max_total_records(mut self, records: usize) -> Self {
+        self.max_total_records = Some(records);
+        self
+    }
+
+
+    #[inline]
+    pub fn study_limit(&self) -> Option<usize> {
+        self.max_studies
+    }
+
+    #[inline]
+    pub fn record_limit(&self) -> Option<usize> {
+        self.max_total_records
+    }
+
+    // Hand every issue to `sink`. Without this they are discarded, so a run
+    // that wants to know a call failed has to ask.
+    pub fn on_issue(mut self, sink: impl Fn(&Issue) + Send + Sync + 'static) -> Self {
+        self.on_issue = Some(Box::new(sink));
+        self
+    }
+
+    #[inline]
+    pub fn report(&self, issue: Issue) {
+        if let Some(sink) = &self.on_issue {
+            sink(&issue);
+        }
     }
 
     // Appends one layer, for building a sequence up from `default()`.
@@ -347,7 +582,7 @@ impl TargetSchema {
     pub fn from_project(project: Project, settings: &SchemaSettings) -> Vec<Self> {
         let mut schemas = Vec::new();
         for layer in settings.layers() {
-            layer.process(&project, &mut schemas);
+            layer.process(&project, &mut schemas, settings);
         }
 
         schemas
@@ -360,10 +595,48 @@ impl TargetSchema {
     #[inline]
     pub fn from_corpus(corpus: Corpus, settings: &SchemaSettings) -> Vec<TargetSchema> {
         let mut schemas = Vec::with_capacity(corpus.counts.records);
-        for project in corpus.projects {
-            schemas.extend(Self::from_project(project, settings));
+        let studies = settings.study_limit().unwrap_or(usize::MAX);
+
+        // Said once, before anything runs. A mistyped accession otherwise makes
+        // a run that looks correct and covers a different study set than the
+        // one it is going to be compared against.
+        for accession in settings.unmatched(&corpus.projects) {
+            settings.report(Issue {
+                layer: "corpus",
+                context: accession,
+                error: "study was selected but is not in this corpus".into(),
+            });
         }
 
+        // Selection first, then the caps, so `only_studies` and `max_studies`
+        // compose rather than fight: five named studies capped to thirty records
+        // is thirty records of those five.
+        for mut project in corpus
+            .projects
+            .into_iter()
+            .filter(|p| settings.selects(p))
+            .take(studies)
+        {
+            if let Some(limit) = settings.record_limit() {
+                let room = limit.saturating_sub(schemas.len());
+                if room == 0 {
+                    break;
+                }
+                // Trimmed before the layers run, so a paid layer is never asked
+                // about a record that is going to be discarded. One experiment
+                // yields one record except on a pooled study, which is why the
+                // result is trimmed again below.
+                if project.experiments.len() > room {
+                    project.experiments.truncate(room);
+                }
+            }
+
+            let mut built = Self::from_project(project, settings);
+            if let Some(limit) = settings.record_limit() {
+                built.truncate(limit.saturating_sub(schemas.len()));
+            }
+            schemas.extend(built);
+        }
         schemas
     }
 }
@@ -554,6 +827,244 @@ mod tests {
             .collect();
         let whole = TargetSchema::from_corpus(corpus, &settings);
         assert_eq!(whole, per_project);
+    }
+
+    // -- volume caps ---------------------------------------------------------
+
+    #[test]
+    fn max_studies_takes_a_prefix_of_the_corpus() {
+        let corpus = mini();
+        let all = TargetSchema::from_corpus(corpus.clone(), &SchemaSettings::default());
+        let one = TargetSchema::from_corpus(
+            corpus,
+            &SchemaSettings::default().max_studies(1),
+        );
+        assert!(one.len() < all.len());
+        assert!(one.iter().all(|r| r.study_accession == all[0].study_accession));
+    }
+
+    #[test]
+    fn max_total_records_is_exact_across_studies() {
+        let corpus = mini();
+        for limit in 0..=5 {
+            let records = TargetSchema::from_corpus(
+                corpus.clone(),
+                &SchemaSettings::default().max_total_records(limit),
+            );
+            assert!(records.len() <= limit, "asked for {limit}, got {}", records.len());
+        }
+    }
+
+    #[test]
+    fn the_two_caps_compose() {
+        let records = TargetSchema::from_corpus(
+            mini(),
+            &SchemaSettings::default().max_studies(2).max_total_records(1),
+        );
+        assert_eq!(records.len(), 1);
+    }
+
+    // -- selecting studies by name -----------------------------------------
+
+    fn accessions(records: &[TargetSchema]) -> std::collections::BTreeSet<String> {
+        records
+            .iter()
+            .filter_map(|r| r.study_accession.value().map(|a| a.0.clone()))
+            .collect()
+    }
+
+    #[test]
+    fn naming_a_study_runs_that_study_and_no_other() {
+        let records =
+            TargetSchema::from_corpus(mini(), &SchemaSettings::default().only_studies(["DRP003937"]));
+        assert_eq!(accessions(&records), ["DRP003937".to_string()].into());
+    }
+
+    #[test]
+    fn a_study_can_be_named_by_its_bioproject_instead() {
+        // Which of the two names a study is an accident of where the list came
+        // from: the Python runs to compare against recorded BioProject
+        // accessions, and this corpus is keyed by the SRP.
+        let records = TargetSchema::from_corpus(
+            mini(),
+            &SchemaSettings::default().only_studies(["PRJDB7399"]),
+        );
+        assert_eq!(accessions(&records), ["DRP006604".to_string()].into());
+    }
+
+    #[test]
+    fn one_bioproject_covering_two_studies_selects_both() {
+        // Real in this fixture and real in the corpus: the mapping is not 1:1,
+        // so selecting by BioProject can widen the run. Better to run both than
+        // to silently pick one.
+        let records = TargetSchema::from_corpus(
+            mini(),
+            &SchemaSettings::default().only_studies(["PRJDB4784"]),
+        );
+        assert_eq!(
+            accessions(&records),
+            ["DRP003937".to_string(), "SRP999999".to_string()].into()
+        );
+    }
+
+    #[test]
+    fn accessions_are_matched_case_insensitively_and_trimmed() {
+        // Pasted from a paper, a spreadsheet or a shell, an accession arrives
+        // with whatever whitespace and case it had.
+        let records = TargetSchema::from_corpus(
+            mini(),
+            &SchemaSettings::default().only_studies(["  drp003937  "]),
+        );
+        assert_eq!(accessions(&records), ["DRP003937".to_string()].into());
+    }
+
+    #[test]
+    fn no_selection_still_runs_everything() {
+        let all = TargetSchema::from_corpus(mini(), &SchemaSettings::default()).len();
+        assert!(all > 1);
+    }
+
+    #[test]
+    fn an_empty_selection_runs_nothing_rather_than_everything() {
+        // `None` and "an empty list" are different requests, and reading the
+        // second as the first would run the whole corpus on a paid layer.
+        let none: [&str; 0] = [];
+        let records = TargetSchema::from_corpus(mini(), &SchemaSettings::default().only_studies(none));
+        assert!(records.is_empty());
+    }
+
+    #[test]
+    fn a_selected_study_that_is_not_in_the_corpus_is_reported() {
+        // The failure this exists to prevent: a mistyped accession makes a run
+        // that looks correct and covers a different study set than the one it
+        // is about to be compared against.
+        use std::sync::{Arc, Mutex};
+        let seen = Arc::new(Mutex::new(Vec::new()));
+        let sink = Arc::clone(&seen);
+        let settings = SchemaSettings::default()
+            .only_studies(["DRP003937", "SRP000000", "PRJNA999999"])
+            .on_issue(move |i| sink.lock().unwrap().push(i.to_string()));
+
+        let records = TargetSchema::from_corpus(mini(), &settings);
+        assert_eq!(accessions(&records), ["DRP003937".to_string()].into());
+
+        let seen = seen.lock().unwrap();
+        assert_eq!(seen.len(), 2, "{seen:?}");
+        assert!(seen.iter().any(|i| i.contains("SRP000000")));
+        assert!(seen.iter().any(|i| i.contains("PRJNA999999")));
+        assert!(!seen.iter().any(|i| i.contains("DRP003937")), "a match was reported missing");
+    }
+
+    #[test]
+    fn selection_and_the_caps_compose() {
+        // Selection first, then the caps: "these studies, capped" rather than
+        // "the first N of the corpus, then filtered" — which would silently
+        // return nothing whenever a selected study sits past the cap.
+        let late = mini().projects.last().unwrap().accession.0.clone();
+        let records = TargetSchema::from_corpus(
+            mini(),
+            &SchemaSettings::default().only_studies([&late]).max_studies(1),
+        );
+        assert_eq!(accessions(&records), [late.clone()].into(), "the cap ate the selected study");
+
+        let capped = TargetSchema::from_corpus(
+            mini(),
+            &SchemaSettings::default()
+                .only_studies(["DRP006604"])
+                .max_total_records(1),
+        );
+        assert_eq!(capped.len(), 1);
+    }
+
+    #[test]
+    fn no_cap_means_everything() {
+        let corpus = mini();
+        let expected: usize = corpus.projects.iter().map(|p| p.experiments.len()).sum();
+        assert_eq!(
+            TargetSchema::from_corpus(corpus, &SchemaSettings::default()).len(),
+            expected
+        );
+    }
+
+    #[test]
+    fn the_record_cap_bounds_what_a_paid_layer_is_asked_to_do() {
+        // The safeguard, not the slice. Trimming only the returned list would
+        // let a 2,150-call study run in full and then throw most of it away —
+        // billed. So this counts the calls the model actually receives.
+        use crate::layer::Layer;
+        use crate::model::{Model, ModelError, Request, Response, Usage};
+        use std::sync::{Arc, Mutex};
+
+        struct Counting(Arc<Mutex<u32>>);
+        impl Model for Counting {
+            fn price(&self, _u: Usage) -> f64 {
+                0.0
+            }
+            fn complete(&self, _r: &Request) -> Result<Response, ModelError> {
+                *self.0.lock().unwrap() += 1;
+                let reply = serde_json::json!({"answers": []});
+                Ok(Response { text: reply.to_string(), json: Some(reply), stop_reason: None, usage: Usage::default() })
+            }
+        }
+
+        let calls_for = |limit: Option<usize>| {
+            let calls = Arc::new(Mutex::new(0));
+            let mut settings = SchemaSettings::new(vec![
+                Layer::Direct,
+                Layer::Harmonized,
+                Layer::LLMNaive {
+                model: Box::new(Counting(Arc::clone(&calls))),
+                config: crate::layer::ModelConfig::new("test", ""),
+            },
+            ]);
+            if let Some(limit) = limit {
+                settings = settings.max_total_records(limit);
+            }
+            let records = TargetSchema::from_corpus(mini(), &settings);
+            let calls = *calls.lock().unwrap();
+            (records.len(), calls)
+        };
+
+        let (capped_records, capped_calls) = calls_for(Some(1));
+        let (all_records, all_calls) = calls_for(None);
+
+        assert_eq!(capped_records, 1);
+        assert!(all_records > 1);
+        assert!(
+            capped_calls < all_calls,
+            "capped run made {capped_calls} calls, uncapped made {all_calls} — \
+             the cap is not reaching the paid layer"
+        );
+    }
+
+    #[test]
+    fn a_record_cap_of_zero_makes_no_calls_at_all() {
+        use crate::layer::Layer;
+        use crate::model::{Model, ModelError, Request, Response, Usage};
+        use std::sync::{Arc, Mutex};
+
+        struct Counting(Arc<Mutex<u32>>);
+        impl Model for Counting {
+            fn price(&self, _u: Usage) -> f64 {
+                0.0
+            }
+            fn complete(&self, _r: &Request) -> Result<Response, ModelError> {
+                *self.0.lock().unwrap() += 1;
+                panic!("a capped-to-zero run must not reach the model");
+            }
+        }
+        let calls = Arc::new(Mutex::new(0));
+        let settings = SchemaSettings::new(vec![
+            Layer::Direct,
+            Layer::LLMNaive {
+                model: Box::new(Counting(Arc::clone(&calls))),
+                config: crate::layer::ModelConfig::new("test", ""),
+            },
+        ])
+        .max_total_records(0);
+
+        assert!(TargetSchema::from_corpus(mini(), &settings).is_empty());
+        assert_eq!(*calls.lock().unwrap(), 0);
     }
 
     #[test]

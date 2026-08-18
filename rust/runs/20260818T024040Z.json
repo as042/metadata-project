@@ -1,0 +1,6999 @@
+{
+  "format_version": 4,
+  "created": "2026-08-18T02:40:40.954667172+00:00",
+  "params": {
+    "layers": [
+      "direct",
+      "harmonized"
+    ],
+    "max_studies": 5,
+    "max_total_records": 30,
+    "max_spend": 0.25,
+    "models": [],
+    "note": null
+  },
+  "counts": {
+    "records": 30,
+    "direct": 810,
+    "harmonized": 180,
+    "inferred_from_text": 0,
+    "inferred_from_paper": 0,
+    "quoted": 0,
+    "rephrased": 0,
+    "inferred": 0,
+    "declared_missing": 30,
+    "open": 870,
+    "calls": 0,
+    "usage": {
+      "input": 0,
+      "output": 0,
+      "cache_write": 0,
+      "cache_read": 0,
+      "thinking": 0
+    },
+    "spent": 0.0
+  },
+  "evidence": {},
+  "records": [
+    {
+      "id": "DRX055612",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041293",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029834",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Polaris productive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041293",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055612",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041293",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055612",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          44792,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          13437600,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-09-09"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055611",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041292",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029833",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Polaris productive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041292",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055611",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041292",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055611",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          136583,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          40974900,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-09-08"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055610",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041291",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029832",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Polaris nonproductive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041291",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055610",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041291",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055610",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          63094,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          18928200,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-09-07"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055609",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041290",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029831",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Polaris nonproductive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041290",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055609",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041290",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055609",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          154542,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          46362600,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-09-06"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055608",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041289",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029830",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Loma productive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041289",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055608",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041289",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055608",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          61208,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          18362400,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-09-01"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055607",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041288",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029829",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Loma productive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041288",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055607",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041288",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055607",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          44193,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          13257900,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-31"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055606",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041287",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029828",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Loma nonproductive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041287",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055606",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041287",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055606",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          235070,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          70521000,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-30"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055605",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041286",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029827",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Loma nonproductive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041286",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055605",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041286",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055605",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          35208,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          10562400,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-29"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055604",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041285",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029826",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Kerry's productive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041285",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055604",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041285",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055604",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          19695,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          5908500,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-28"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055603",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041284",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029825",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Kerry's productive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041284",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055603",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041284",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055603",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          28892,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          8667600,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-27"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055602",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041283",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029824",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Kerry's nonproductive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041283",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055602",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041283",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055602",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          172497,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          51749100,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-26"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055601",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041282",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029823",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Kerry's nonproductive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041282",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055601",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041282",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055601",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          95170,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          28551000,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-25"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055600",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041281",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029822",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Jacobson productive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041281",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055600",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041281",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055600",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          96526,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          28957800,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-24"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055599",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041280",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029821",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Jacobson productive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041280",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055599",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041280",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055599",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          247986,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          74395800,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-23"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055598",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041279",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029820",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Jacobson nonproductive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041279",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055598",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041279",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055598",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          128129,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          38438700,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-22"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055597",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041278",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029819",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Jacobson nonproductive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041278",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055597",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041278",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055597",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          11034,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          3310200,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-21"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055596",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041277",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029818",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Heidi's productive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041277",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055596",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041277",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055596",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          13893,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          4167900,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-20"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055595",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041276",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029817",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Heidi's productive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041276",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055595",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041276",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055595",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          112652,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          33795600,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-19"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055594",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041275",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029816",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Heidi's nonproductive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041275",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055594",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041275",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055594",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          85052,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          25515600,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-18"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055593",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041274",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029815",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Heidi's nonproductive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041274",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055593",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041274",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055593",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          283616,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          85084800,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-17"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055592",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041273",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029814",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Hnoey Hollow productive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041273",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055592",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041273",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055592",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          51826,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          15547800,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-16"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055591",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041272",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029813",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Hnoey Hollow productive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041272",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055591",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041272",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055591",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          145335,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          43600500,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-15"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055590",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041271",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029812",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Honey Hollow nonproductive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041271",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055590",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041271",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055590",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          1565691,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          469707300,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-14"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055589",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041270",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029811",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Honey Hollow nonproductive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041270",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055589",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041270",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055589",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          144535,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          43360500,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-13"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055588",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041269",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029810",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Fawn Hill productive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041269",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055588",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041269",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055588",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          180987,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          54296100,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-12"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055587",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041268",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029809",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Fawn Hill productive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041268",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055587",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041268",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055587",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          385,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          115500,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-11"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055586",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041267",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029808",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Fawn Hill nonproductive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041267",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055586",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041267",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055586",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          157063,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          47118900,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-10"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055585",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041266",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029807",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Fawn Hill nonproductive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041266",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055585",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041266",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055585",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          84070,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          25221000,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-09"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055584",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041265",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029806",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Drew productive 2",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041265",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055584",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041265",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055584",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          45393,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          13617900,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-08"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    },
+    {
+      "id": "DRX055583",
+      "bioproject_accession": {
+        "Known": [
+          "PRJDB4237",
+          "Direct"
+        ]
+      },
+      "study_accession": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "study_title": {
+        "Known": [
+          "Analysis of gut microbiome correlates with honey bee productivity",
+          "Direct"
+        ]
+      },
+      "abstract_text": {
+        "Known": [
+          "Gut microbiomes were sampled (using 16S rRNA gene amplicon sequencing) from paired colonies (productive and unproductive) across apiaries.",
+          "Direct"
+        ]
+      },
+      "study_alias": {
+        "Known": [
+          "DRP003130",
+          "Direct"
+        ]
+      },
+      "center_project_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "center_name": {
+        "Known": [
+          "CGBIU",
+          "Direct"
+        ]
+      },
+      "submission_accession": {
+        "Known": [
+          "DRA004750",
+          "Direct"
+        ]
+      },
+      "broker_name": "Unknown",
+      "biosample_accession": {
+        "Known": [
+          "SAMD00041264",
+          "Direct"
+        ]
+      },
+      "sample_accession": {
+        "Known": [
+          "DRS029805",
+          "Direct"
+        ]
+      },
+      "sample_title": {
+        "Known": [
+          "Drew productive 1",
+          "Direct"
+        ]
+      },
+      "sample_alias": {
+        "Known": [
+          "SAMD00041264",
+          "Direct"
+        ]
+      },
+      "scientific_name": {
+        "Known": [
+          "gut metagenome",
+          "Direct"
+        ]
+      },
+      "taxon_id": {
+        "Known": [
+          749906,
+          "Direct"
+        ]
+      },
+      "biosample_package": {
+        "Known": [
+          "MIMARKS: survey, host-associated; version 6.0",
+          "Direct"
+        ]
+      },
+      "experiment_accession": {
+        "Known": [
+          "DRX055583",
+          "Direct"
+        ]
+      },
+      "experiment_title": {
+        "Known": [
+          "Illumina MiSeq sequencing of SAMD00041264",
+          "Direct"
+        ]
+      },
+      "experiment_alias": {
+        "Known": [
+          "DRX055583",
+          "Direct"
+        ]
+      },
+      "library_strategy": {
+        "Known": [
+          "Amplicon",
+          "Direct"
+        ]
+      },
+      "library_source": {
+        "Known": [
+          "Metagenomic",
+          "Direct"
+        ]
+      },
+      "library_selection": {
+        "Known": [
+          "Pcr",
+          "Direct"
+        ]
+      },
+      "library_layout": {
+        "Known": [
+          "Single",
+          "Direct"
+        ]
+      },
+      "library_name": "Unknown",
+      "library_construction_protocol": "Unknown",
+      "platform": {
+        "Known": [
+          "Illumina",
+          "Direct"
+        ]
+      },
+      "instrument_model": {
+        "Known": [
+          "Illumina MiSeq",
+          "Direct"
+        ]
+      },
+      "total_spots": {
+        "Known": [
+          143671,
+          "Direct"
+        ]
+      },
+      "total_bases": {
+        "Known": [
+          43101300,
+          "Direct"
+        ]
+      },
+      "earliest_run_published": {
+        "Known": [
+          "2016-05-26T09:40:13",
+          "Direct"
+        ]
+      },
+      "age": "Unknown",
+      "broad_scale_environmental_context": {
+        "Known": [
+          "host-associated",
+          "Harmonized"
+        ]
+      },
+      "cell_line": "Unknown",
+      "cell_type": "Unknown",
+      "checklist": "Unknown",
+      "collected_by": "Unknown",
+      "collection_date": {
+        "Known": [
+          {
+            "Date": "2012-08-07"
+          },
+          "Harmonized"
+        ]
+      },
+      "country": {
+        "Known": [
+          "USA",
+          "Harmonized"
+        ]
+      },
+      "datahub": "Unknown",
+      "dev_stage": "Unknown",
+      "environment_biome": "Unknown",
+      "environment_feature": "Unknown",
+      "environment_material": "Unknown",
+      "environmental_medium": {
+        "Missing": [
+          "Unspecified",
+          "Harmonized"
+        ]
+      },
+      "first_created": "Unknown",
+      "host": {
+        "Known": [
+          "Apis mellifera",
+          "Harmonized"
+        ]
+      },
+      "host_scientific_name": "Unknown",
+      "host_sex": "Unknown",
+      "host_tax_id": "Unknown",
+      "isolation_source": "Unknown",
+      "last_updated": "Unknown",
+      "local_environmental_context": {
+        "Known": [
+          "digestive tract",
+          "Harmonized"
+        ]
+      },
+      "sample_capture_status": "Unknown",
+      "sample_description": "Unknown",
+      "sequencing_method": "Unknown",
+      "sex": "Unknown",
+      "strain": "Unknown",
+      "submitted_format": "Unknown",
+      "submitted_read_type": "Unknown",
+      "tag": "Unknown",
+      "tissue_type": "Unknown",
+      "treatment": "Unknown"
+    }
+  ]
+}
