@@ -53,9 +53,10 @@ all three appear in the wild.
 **3. "Missing" is ambiguous.** A blank field might mean the submitter didn't record it, didn't
 think it applied, or is withholding it. INSDC (the international body governing these archives)
 defines a vocabulary for saying which — `not applicable`, `not collected`, `not provided`,
-`restricted access` — and this project treats those as *real values worth preserving*, distinct
-from an unanswered field. Guessing over a submitter's deliberate "not provided" is a mistake, and
-one this pipeline made once at scale before it was caught (see [below](#what-has-been-measured)).
+`restricted access`, and the bare `missing` for an absence with no reason attached — and this
+project treats those as *real values worth preserving*, distinct from an unanswered field. Guessing
+over a submitter's deliberate "not provided" is a mistake, and one this pipeline made once at scale
+before it was caught (see [below](#what-has-been-measured)).
 
 ---
 
@@ -105,9 +106,13 @@ The ordering is the whole design. **A layer never overwrites an earlier one**, s
 archive stated directly can't be clobbered by a guess, and a paper can't overrule the submitter.
 
 Layer 3 costs scale with *records*; layer 4 with *studies* — one paper, one call, applied to every
-record in that study. Layer 4 is also blindfolded to 22 of the 65 fields (run identifiers,
-submission dates, checksums) that a paper could not possibly know, which cuts both noise and
-tokens.
+record in that study.
+
+Both model layers are blindfolded to fields they cannot answer. Layer 3 skips the 15 run-,
+submission- and record-level fields the archive assigns at deposition; layer 4 skips 22 — those
+same 15 plus seven submitter-chosen identifiers a paper could not possibly know. Each guard drops
+its fields *before* anything is planned, so a blind field never reaches a prompt, a token budget or
+an answer, which cuts noise and cost together.
 
 ---
 
@@ -186,8 +191,8 @@ uv run python main.py
 # Free run — layers 1 and 2 only, no API key needed, no spend
 uv run python -c "import main; main.full_pipeline(from_text=False, from_paper=False)"
 
-uv run pytest tests/                                        # 219 tests, ~50s (test_project.py hits NCBI)
-uv run pytest tests/test_offline.py tests/test_dataset.py   # 181 tests, ~1s, no network, no tokens
+uv run pytest tests/                                        # 236 tests, ~50s (test_project.py hits NCBI)
+uv run pytest tests/test_offline.py tests/test_dataset.py   # 197 tests, ~1s, no network, no tokens
 ```
 
 `full_pipeline()` takes `file_location` and `dataset_prefix` to control output paths, and creates
@@ -209,6 +214,26 @@ It de-duplicates by accession, preferring the copy with the most *classified* pu
 classification cost real requests to compute), sorts the output for a stable diff, and prints what
 reconstruction would cost. `datasets/oa_corpus.json` is the current one: **346 studies, 102,227
 records**, every one with an open-access paper.
+
+That file holds *summaries*. Everything a model layer actually reads — per-sample attribute bags,
+experiment and run rows, paper text — was re-fetched from SRA and Europe PMC on every run, which
+makes two runs a week apart different experiments. `corpus.py` expands a shortlist once into a
+self-contained file instead:
+
+```python
+import corpus
+corpus.build_full_corpus("datasets/oa_corpus.json", "datasets/oa_corpus_full.json")
+```
+
+`datasets/oa_corpus_full.json` is the current build: **346 studies, 102,240 records, 88,560
+samples, 330 papers** (61 of those turned out to have no retrievable text). It costs no tokens —
+NCBI, Europe PMC and Unpaywall only — and takes roughly two and a half hours, almost all of it
+waiting on SRA. Checkpointed, so an interrupted build resumes.
+
+Three things this buys: runs become reproducible, anything consuming reconstruction input only has
+to speak JSON rather than three archive APIs, and the paper text is persisted rather than
+discarded. Papers are stored once and keyed by publication id, since 17 of them serve more than one
+study.
 
 ### Cost control
 
@@ -311,7 +336,9 @@ uv run python audit.py datasets/test2/test_reconstructed2.json \
 The offline mode is blind to the sample attribute bag (it is not saved in the output), so it can
 prove a value was quoted but not disprove it — non-matches come back `unknown`, never as failures.
 Passing a studies file re-fetches from SRA to rebuild the exact evidence string, which costs NCBI
-requests and no tokens. Layer 4 is **not auditable**: paper text is not persisted.
+requests and no tokens. Layer 4 is **not auditable by `audit.py`**: reconstruction output does not
+persist the paper text a value was drawn from. The expanded corpus does store it, so the evidence
+now exists — `audit.py` has not been taught to read it from there.
 
 A quoted value can still be wrong — the model may have quoted the wrong span. This measures how
 far the model reached, not whether it landed; accuracy still needs a labelled set.
@@ -339,6 +366,20 @@ The fix was to make that rule provenance-aware: a missing-value verdict can only
 the layer that *made* it, never one that read it from the archive. Re-verified across 9,117
 ground-truth checks: **95.3% → 99.9%, wrong answers 416 → 0.**
 
+**A synonym key that collides with a field name silently wins.** `description` is a common
+submitter *sample* attribute and also the name of the STUDY-level abstract field, and the
+exact-name match resolved first — so 87 sample descriptions across the corpus were written into the
+study abstract instead of `sample_description`. The fix derives the shadowed keys from the synonym
+table rather than listing them, so a future row cannot reintroduce it. Note it is deliberately not
+a blanket "a sample attribute may not fill a study-level field" rule: `project_name` is study-level
+and is legitimately filled from the sample bag 8,109 times.
+
+**Layer 3 was answering questions the archive alone can settle.** Across the 1,782-record and
+52-record runs it filled 4,342 run-, submission- and record-level slots — a BioProject accession
+written into `submission_accession` on 146 records, a strain id into a run accession, and thousands
+of "not provided" at full token price. Those 15 fields are now dropped from the ask entirely,
+mirroring what layer 4 already did with its 22.
+
 **Prompt caching has a per-model floor.** Haiku 4.5 will not cache a prefix below 4,096 tokens, and
 a `cache_control` marker below that limit is silently ignored — no error, no warning, just full
 price on every call. [layer_3_haiku_findings.md](layer_3_haiku_findings.md) records this and the
@@ -346,24 +387,57 @@ rest of what the model layers cost and why.
 
 ---
 
+## Why there's also a Rust implementation
+
+`rust/` holds a port of the reconstruction side of this pipeline, and it is where the work
+continues. It is intended to be production-level, and it does not re-harvest anything: it starts
+from the expanded corpus file this Python code produces, so the two read the same input and their
+outputs are directly comparable.
+
+Three things the type system buys there that are runtime checks here:
+
+* **Provenance folded into the value.** `Field<T>` is `Unknown | Missing(reason, provenance) |
+  Known(value, provenance)`, so the sidecar dictionaries and the sweep that validates them are
+  gone. A confidence on a direct field is unrepresentable rather than caught.
+* **`Directness` in place of `confidence`.** It records *what the model did* — quoted, rephrased,
+  inferred — rather than how sure it claims to be. `quoted` is machine-checkable against stored
+  evidence, and because the corpus persists paper text, the Rust auditor can check both model
+  layers where `audit.py` can only check layer 3.
+* **Four independent spend guards** rather than one pre-flight estimate: an env var the paid layers
+  do not exist without, a typed confirmation that prices the real plan, a running ledger, and
+  volume caps.
+
+Run over the same five studies as a Python layers-1–4 run, compared on the 40 fields the two
+schemas share, the port fills **21% more real values per record** — and all of that comes from the
+free direct layer reading source objects Python was paying a model to infer. The two model layers
+are statistically indistinguishable between the implementations.
+
+Python remains the reference implementation and the comparison baseline, and this README remains
+the description of it. **[rust/README.md](rust/README.md)** documents the Rust crate: its cascade,
+its type model, the transport and its spend guards.
+
+---
+
 ## Layout
 
 | File | Purpose |
 |---|---|
-| `project.py` | SRA client and object model. `Project` (study → experiment → run → sample), `search_studies()`, `scan_iter()`, `classify_publication()`, `fetch_open_access_text()`. Every HTTP call to NCBI/EBI lives here. |
+| `project.py` | SRA client and object model. `Project` (study → experiment → run → sample), plus the Submission, BioSample and BioProject records, `search_studies()`, `scan_iter()`, `classify_publication()`, `publication_oa_status()`, `fetch_open_access_text()`. Every HTTP call to NCBI/EBI lives here. |
 | `schema.py` | `TargetSchema` — the 65 fields, the provenance/confidence sidecars and their validation, and `from_project()`, which is layer 1. |
 | `reconstruct.py` | The four-layer cascade. Synonym table, prompts, field routing, and the rules about what each layer may touch. |
 | `claude.py` | Anthropic API transport. Structured outputs, prompt caching, the Batch API, and token/cost accounting. Nothing pipeline-specific. |
+| `corpus.py` | Expands a study shortlist into a self-contained corpus file — attribute bags, experiments, runs and paper text — so reconstruction reads JSON instead of re-fetching three archives on every run. |
 | `dataset.py` | Pipeline orchestration — the three saved stages, checkpointing, `combine_studies()`, and the spend guard. |
 | `main.py` | Entry point: `full_pipeline()`. Supplies credentials and parameters, nothing else. |
-| `tests/test_offline.py` | 136 network-free tests. Cannot reach the API by construction, so no test can spend money. |
+| `tests/test_offline.py` | 190 network-free tests. Cannot reach the API by construction, so no test can spend money. |
 | `tests/test_project.py` | Live tests against NCBI. |
 | `tests/test_dataset.py` | Network-free tests for checkpoint and resume. |
 | `datasets/` | Harvest and reconstruction output. |
 
 **Further reading:** [PIPELINE.md](PIPELINE.md) (every API call the harvest makes) ·
 [layer_3_haiku_findings.md](layer_3_haiku_findings.md) (what the model layers cost and why) ·
-[metappuccino-findings.md](metappuccino-findings.md) (the prior work and the schema it implies).
+[metappuccino-findings.md](metappuccino-findings.md) (the prior work and the schema it implies) ·
+[rust/README.md](rust/README.md) (the Rust implementation).
 
 ---
 
