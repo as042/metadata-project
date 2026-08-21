@@ -388,7 +388,8 @@ which is off by default because a corpus run would store every sample's attribut
 | File | What it is |
 |---|---|
 | `main.rs` | the experiment harness: corpus path, caps, per-layer model settings, the confirmation prompt |
-| `lib.rs` | module list and `prelude` |
+| `lib.rs` | module list and `prelude` — one import (`use metadata_project::prelude::*;`) covering everything a run needs |
+| `utils.rs` | run wiring: `confirmation_prompt`, and the two named cascade constructors `dhnp_claude_layers` / `dhpn_claude_layers` (identical signatures, so a run switches by changing the name). `UniformClaude` builds a cascade from a spec string like `"D H P N"` for the experiment binaries |
 | `corpus.rs` | loading a harvested corpus, version-gated; `papers_of` |
 | `dto.rs` | wire types mirroring the corpus JSON, and their conversions into `project` |
 | `project.rs` | the input model — accession newtypes, controlled vocabularies, the archive object graph |
