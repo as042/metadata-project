@@ -171,11 +171,27 @@ impl<M: Model> Model for Budgeted<M> {
 
     fn complete(&self, request: &Request) -> Result<Response, ModelError> {
         self.budget.check()?;
-        let response = self.inner.complete(request)?;
-        // Recorded from the response's own usage rather than an estimate, so
-        // the ledger is the billed figure and not a second guess at it.
-        self.budget.record(self.price(response.usage), response.usage);
-        Ok(response)
+        match self.inner.complete(request) {
+            Ok(response) => {
+                // Recorded from the response's own usage rather than an
+                // estimate, so the ledger is the billed figure and not a
+                // second guess at it.
+                self.budget.record(self.price(response.usage), response.usage);
+                Ok(response)
+            }
+            Err(error) => {
+                // Failures are billed too. A refusal, a malformed reply and a
+                // clipped one all generated tokens the provider charged for,
+                // and a ledger that only counts successes is not a spend
+                // ceiling. This was measured: a run reported $0.05 against
+                // roughly $1.00 actually spent, because five failed paper calls
+                // never reached `record`.
+                if let Some(usage) = error.billed_usage() {
+                    self.budget.record(self.price(usage), usage);
+                }
+                Err(error)
+            }
+        }
     }
 }
 
@@ -184,6 +200,25 @@ mod tests {
     use std::sync::Arc;
 
     use super::*;
+
+    // A model whose every call fails *after* the provider has billed it.
+    struct BilledFailure {
+        usage: Usage,
+        calls: Mutex<u32>,
+    }
+
+    impl Model for BilledFailure {
+        fn price(&self, usage: Usage) -> f64 {
+            usage.output as f64 / 1000.0
+        }
+        fn complete(&self, _request: &Request) -> Result<Response, ModelError> {
+            *self.calls.lock().unwrap() += 1;
+            Err(ModelError::Truncated {
+                detail: "clipped".into(),
+                usage: self.usage,
+            })
+        }
+    }
 
     // A model that bills a fixed amount per call and never touches a network.
     struct Meter {
@@ -329,5 +364,42 @@ mod tests {
         });
         assert_eq!(budget.ledger().calls, 80);
         assert!((budget.spent() - 80.0).abs() < 1e-9);
+    }
+
+    #[test]
+    fn a_call_that_failed_after_being_billed_still_reaches_the_ledger() {
+        // Measured the hard way: a run reported $0.05 against roughly $1.00
+        // actually spent, because five paper calls that clipped at max_tokens
+        // returned early and never reached `record`. A ceiling that only counts
+        // successes is not a ceiling.
+        let usage = Usage { output: 16_000, ..Usage::default() };
+        let inner = BilledFailure { usage, calls: Mutex::new(0) };
+        let budget = Arc::new(Budget::new(100.0));
+        let model = Budgeted::new(inner, Arc::clone(&budget));
+
+        assert!(model.complete(&Request::new("p")).is_err());
+
+        let ledger = budget.ledger();
+        assert_eq!(ledger.calls, 1, "the failed call must be counted");
+        assert_eq!(ledger.usage.output, 16_000);
+        assert!((ledger.spent - 16.0).abs() < 1e-9, "spent {}", ledger.spent);
+    }
+
+    #[test]
+    fn a_failure_the_provider_did_not_bill_is_not_charged() {
+        // The complement: a refused *connection* generated no tokens, so
+        // recording one would invent spend.
+        struct Unbilled;
+        impl Model for Unbilled {
+            fn price(&self, _u: Usage) -> f64 { 1.0 }
+            fn complete(&self, _r: &Request) -> Result<Response, ModelError> {
+                Err(ModelError::Transport("connection reset".into()))
+            }
+        }
+        let budget = Arc::new(Budget::new(100.0));
+        let model = Budgeted::new(Unbilled, Arc::clone(&budget));
+        assert!(model.complete(&Request::new("p")).is_err());
+        assert_eq!(budget.ledger().calls, 0);
+        assert_eq!(budget.spent(), 0.0);
     }
 }

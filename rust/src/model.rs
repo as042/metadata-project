@@ -318,6 +318,8 @@ pub enum ModelError {
     // perfectly successful HTTP 200 whose content is empty or partial, so code
     // reading `content[0]` sees an index error rather than the real cause.
     Refused {
+        // Billed even though it failed; see `billed_usage`.
+        usage: Usage,
         category: Option<String>,
         explanation: Option<String>,
     },
@@ -338,7 +340,20 @@ pub enum ModelError {
     // The body arrived but did not have the shape a response has.
     Decode(String),
     // A schema was requested and the reply did not parse as JSON.
-    MalformedJson(String),
+    MalformedJson { detail: String, usage: Usage },
+    // A schema was requested and the reply was cut off at `max_tokens` before
+    // it could be closed.
+    //
+    // Its own variant rather than a MalformedJson, because the two need
+    // opposite handling: malformed output is a wrong answer and identical
+    // retries cannot fix it, while a clipped one is an *unfinished* answer and
+    // sampling varies enough that a second attempt usually fits.
+    //
+    // Retrying is not free. Every attempt bills a full `max_tokens` of output
+    // by definition, so `RetryPolicy::attempts` is a cost decision here and not
+    // only a latency one — and a model stuck in a repetition loop will clip
+    // every time.
+    Truncated { detail: String, usage: Usage },
     // The running ledger reached its ceiling. Raised *before* the call that
     // would have crossed it, so the figure reported is what has actually been
     // billed and not an estimate.
@@ -350,6 +365,9 @@ pub enum ModelError {
     // kept rather than replaced: "gave up after 5 attempts" without saying at
     // what is not a diagnosis.
     RetriesExhausted {
+        // Summed across every attempt: each one that reached the model was
+        // billed, so a single attempt's usage would under-count the give-up.
+        usage: Usage,
         attempts: u32,
         last: Box<ModelError>,
     },
@@ -365,7 +383,7 @@ impl fmt::Display for ModelError {
                  be passed explicitly"
             ),
             ModelError::InvalidApiKey(why) => write!(f, "API key rejected: {why}"),
-            ModelError::Refused { category, explanation } => {
+            ModelError::Refused { category, explanation, .. } => {
                 write!(f, "the model declined to answer")?;
                 if let Some(category) = category {
                     write!(f, " ({category})")?;
@@ -386,8 +404,11 @@ impl fmt::Display for ModelError {
             },
             ModelError::Transport(e) => write!(f, "transport error: {e}"),
             ModelError::Decode(e) => write!(f, "could not read the response: {e}"),
-            ModelError::MalformedJson(e) => {
-                write!(f, "a schema was requested but the reply is not JSON: {e}")
+            ModelError::MalformedJson { detail, .. } => {
+                write!(f, "a schema was requested but the reply is not JSON: {detail}")
+            }
+            ModelError::Truncated { detail, .. } => {
+                write!(f, "the reply was cut off before the schema was satisfied: {detail}")
             }
             ModelError::BudgetExceeded { spent, limit } => write!(
                 f,
@@ -395,7 +416,7 @@ impl fmt::Display for ModelError {
                  call was not made. Raise the ceiling to authorise more, or pass no \
                  ceiling to disable the check."
             ),
-            ModelError::RetriesExhausted { attempts, last } => {
+            ModelError::RetriesExhausted { attempts, last, .. } => {
                 write!(f, "gave up after {attempts} attempts; last failure: {last}")
             }
         }
@@ -407,6 +428,33 @@ impl std::error::Error for ModelError {}
 impl ModelError {
     // Whether retrying the identical request could succeed. A refusal or a bad
     // schema will not change on a second attempt; a 429 or a 529 might.
+    //
+    // `Truncated` was briefly listed here, on the reasoning that a clipped
+    // reply is unfinished rather than wrong and a resample would usually fit.
+    // Its first live encounter falsified that: a paper-layer call with adaptive
+    // thinking spent its whole `max_tokens` reasoning and returned zero answer
+    // tokens, five attempts running, because that outcome is deterministic and
+    // not a sampling accident. Each attempt billed a full ceiling of output.
+    // Truncation is a configuration problem; retrying it just pays for the
+    // configuration five times.
+    // Tokens the provider generated and charged for on a call that still
+    // failed.
+    //
+    // A refusal, a malformed reply and a clipped one all arrive as HTTP 200
+    // with the work already done and billed. An error that drops that figure
+    // makes the call invisible to `Budget`, which is how a run once reported
+    // $0.05 against roughly $1.00 actually spent.
+    #[inline]
+    pub fn billed_usage(&self) -> Option<Usage> {
+        match self {
+            ModelError::Refused { usage, .. }
+            | ModelError::MalformedJson { usage, .. }
+            | ModelError::Truncated { usage, .. }
+            | ModelError::RetriesExhausted { usage, .. } => Some(*usage),
+            _ => None,
+        }
+    }
+
     #[inline]
     pub fn is_retryable(&self) -> bool {
         matches!(

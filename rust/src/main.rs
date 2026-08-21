@@ -1,20 +1,14 @@
+// Configuration for one run, and nothing else.
+//
+// Every knob a run varies lives here as a constant rather than an argument or
+// an environment variable, so what a run did is legible from this file rather
+// than from how it was invoked. The wiring those constants feed lives in
+// `utils`.
+
 use std::fs;
-use std::io::{self, Write};
 use std::sync::Arc;
 
-use metadata_project::audit;
-use metadata_project::corpus::Corpus;
-use metadata_project::estimate;
-use metadata_project::export::{Export, Params};
-#[allow(unused_imports)]
-use metadata_project::layer::llm_naive::{TEXT_SYSTEM_FULL, TEXT_SYSTEM_SHORT, TEXT_SYSTEM_TARGETED};
-use metadata_project::layer::llm_paper::PAPER_SYSTEM;
-use metadata_project::layer::{Layer, ModelConfig};
-use metadata_project::model::budget::{Budget, Budgeted};
-use metadata_project::model::claude::{Claude, ModelId};
-use metadata_project::model::retry::{RetryPolicy, Retrying};
-use metadata_project::model::{Effort, Model, Thinking};
-use metadata_project::target_schema::{SchemaSettings, TargetSchema};
+use metadata_project::prelude::*;
 
 const CORPUS: &str = "../datasets/oa_corpus_full.json";
 const KEY_FILE: &str = "../anton_claude_api_key.txt";
@@ -23,7 +17,7 @@ const RUNS: &str = "runs";
 // Three limits that fail independently. The budget stops the run once it has
 // cost too much, which needs the cost to be known — and a study's cost is only
 // known once it has been paid. The other two stop it before that, on volume.
-const MAX_SPEND: f64 = 0.50;
+const MAX_SPEND: f64 = 1.00;
 const MAX_STUDIES: usize = 5;
 const MAX_RECORDS: usize = 60;
 
@@ -92,7 +86,7 @@ const TEXT_PROMPT: &str = TEXT_SYSTEM_FULL;
 const TEXT_EFFORT: Option<Effort> = Some(Effort::Medium);
 const TEXT_THINKING: Thinking = Thinking::Disabled;
 const TEXT_MAX_TOKENS: u32 = 16_000;
-const TEXT_BATCH: bool = true;
+const TEXT_BATCH: bool = false;
 
 const PAPER_MODEL: ModelId = ModelId::Sonnet5;
 const PAPER_PROMPT: &str = PAPER_SYSTEM;
@@ -101,12 +95,32 @@ const PAPER_THINKING: Thinking = Thinking::Disabled;
 const PAPER_MAX_TOKENS: u32 = 16_000;
 // One call per paper against a whole study, so there is far less to batch and
 // far less latency to trade away for the discount.
-const PAPER_BATCH: bool = true;
+const PAPER_BATCH: bool = false;
 
 fn main() {
     let corpus = Corpus::from_json(&fs::read_to_string(CORPUS).unwrap(), false).unwrap();
     let budget = Arc::new(Budget::new(MAX_SPEND));
-    let mut settings = SchemaSettings::new(layers(&budget))
+
+    let text = (
+        TEXT_MODEL,
+        ModelConfig::new(TEXT_MODEL.as_str(), TEXT_PROMPT)
+            .effort(TEXT_EFFORT)
+            .thinking(TEXT_THINKING)
+            .max_tokens(TEXT_MAX_TOKENS)
+            .batch(TEXT_BATCH),
+    );
+    let paper = READ_PAPERS.then(|| {
+        (
+            PAPER_MODEL,
+            ModelConfig::new(PAPER_MODEL.as_str(), PAPER_PROMPT)
+                .effort(PAPER_EFFORT)
+                .thinking(PAPER_THINKING)
+                .max_tokens(PAPER_MAX_TOKENS)
+                .batch(PAPER_BATCH),
+        )
+    });
+
+    let mut settings = SchemaSettings::new(dhpn_claude_layers(KEY_FILE, &budget, text, paper))
         .keep_evidence(KEEP_EVIDENCE)
         .max_studies(MAX_STUDIES)
         .max_total_records(MAX_RECORDS)
@@ -125,81 +139,4 @@ fn main() {
 
     let export = Export::new(records, &settings, &budget, Params::default());
     println!("{export}\n{}saved {}", audit::verbatim(&export), export.save(RUNS).unwrap().display());
-}
-
-// Prices the configured run before anything is sent, and makes the spend an
-// explicit decision.
-//
-// The preventative half of the spend guard. `max_spend` is the in-the-moment
-// one: it learns what a call cost only after paying for it, so the smallest
-// mistake it can catch has already cost a call — and it stops a run *part-way*,
-// which leaves a half-finished paid layer nobody can compare against anything.
-// This one runs over the same plan the run will execute, before the first call.
-//
-// Free runs are not interrupted: there is nothing to decide, and a prompt that
-// appears when the answer cannot matter is a prompt that gets typed through.
-//
-// Anything other than "y" declines, including end-of-input — so a piped or
-// unattended `cargo run` cannot spend by default.
-fn confirmation_prompt(corpus: &Corpus, settings: &SchemaSettings, budget: &Budget) -> bool {
-    let estimate = estimate::for_corpus(corpus, settings, budget);
-    if estimate.calls() == 0 {
-        return true;
-    }
-
-    println!("\n{estimate}");
-    print!("proceed with an estimated ${:.4}? [y/N] ", estimate.cost());
-    io::stdout().flush().unwrap();
-
-    let mut answer = String::new();
-    if io::stdin().read_line(&mut answer).unwrap_or(0) == 0 {
-        println!("no answer — nothing sent");
-        return false;
-    }
-    let yes = answer.trim().eq_ignore_ascii_case("y");
-    if !yes {
-        println!("declined — nothing sent");
-    }
-    yes
-}
-
-// The paid layers only exist when SPEND=1, so a bare `cargo run` is free by
-// construction rather than by a flag that could be read the wrong way.
-fn layers(budget: &Arc<Budget>) -> Vec<Layer> {
-    let mut layers = vec![Layer::Direct, Layer::Harmonized];
-    if std::env::var("SPEND").as_deref() != Ok("1") {
-        return layers;
-    }
-
-    layers.push(Layer::LLMNaive {
-        model: paid(TEXT_MODEL, budget),
-        config: ModelConfig::new(TEXT_MODEL.as_str(), TEXT_PROMPT)
-            .effort(TEXT_EFFORT)
-            .thinking(TEXT_THINKING)
-            .max_tokens(TEXT_MAX_TOKENS)
-            .batch(TEXT_BATCH),
-    });
-
-    if READ_PAPERS {
-        layers.push(Layer::LLMPaper {
-            model: paid(PAPER_MODEL, budget),
-            config: ModelConfig::new(PAPER_MODEL.as_str(), PAPER_PROMPT)
-                .effort(PAPER_EFFORT)
-                .thinking(PAPER_THINKING)
-                .max_tokens(PAPER_MAX_TOKENS)
-                .batch(PAPER_BATCH),
-        });
-    }
-    layers
-}
-
-// Budget outermost, so retries beneath it count as one billed call. Each layer
-// gets its own client but they share the one ledger, which is what makes
-// MAX_SPEND a limit on the run rather than on each layer separately.
-fn paid(model: ModelId, budget: &Arc<Budget>) -> Box<dyn Model> {
-    let claude = Claude::from_key_file(KEY_FILE, model).unwrap();
-    Box::new(Budgeted::new(
-        Retrying::new(claude, RetryPolicy::default()),
-        Arc::clone(budget),
-    ))
 }

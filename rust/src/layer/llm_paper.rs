@@ -562,7 +562,7 @@ mod tests {
                 0.0
             }
             fn complete(&self, _r: &Request) -> Result<Response, ModelError> {
-                Err(ModelError::Refused { category: None, explanation: None })
+                Err(ModelError::Refused { category: None, explanation: None, usage: Usage::default() })
             }
         }
         use std::sync::{Arc, Mutex};

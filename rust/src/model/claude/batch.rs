@@ -248,7 +248,7 @@ pub fn parse_results(jsonl: &str, keys: &[String]) -> BatchOutcome {
                         outcome.usage.add(response.usage);
                         outcome.results.insert(key, response);
                     }
-                    Err(ModelError::Refused { category, explanation }) => {
+                    Err(ModelError::Refused { category, explanation, .. }) => {
                         // Still billed, so still counted. Usage is re-read
                         // directly because the parse returned early.
                         outcome.usage.add(usage_of(&message));
@@ -256,9 +256,13 @@ pub fn parse_results(jsonl: &str, keys: &[String]) -> BatchOutcome {
                             .failures
                             .insert(key, BatchFailure::Refused { category, explanation });
                     }
-                    Err(ModelError::MalformedJson(e)) => {
+                    Err(ModelError::MalformedJson { detail, .. }
+                    | ModelError::Truncated { detail, .. }) => {
+                        // Both are billed — a clipped reply produced a full
+                        // `max_tokens` of output — so both must count. Retrying
+                        // does not apply here: a batch is forwarded whole.
                         outcome.usage.add(usage_of(&message));
-                        outcome.failures.insert(key, BatchFailure::MalformedJson(e));
+                        outcome.failures.insert(key, BatchFailure::MalformedJson(detail));
                     }
                     Err(e) => {
                         outcome

@@ -436,6 +436,8 @@ its type model, the transport and its spend guards.
 
 **Further reading:** [PIPELINE.md](PIPELINE.md) (every API call the harvest makes) ·
 [layer_3_haiku_findings.md](layer_3_haiku_findings.md) (what the model layers cost and why) ·
+[layer_order_findings.md](layer_order_findings.md) (every cascade ordering, measured) ·
+[cost_findings.md](cost_findings.md) (unit costs, archive-scale projections, what the guards bound) ·
 [metappuccino-findings.md](metappuccino-findings.md) (the prior work and the schema it implies) ·
 [rust/README.md](rust/README.md) (the Rust implementation).
 

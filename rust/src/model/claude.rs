@@ -195,6 +195,18 @@ impl Claude {
     }
 }
 
+// The beta this model needs enabled, as the header value the Messages API
+// reads it from.
+//
+// Separate from `body_for` because the two endpoints disagree about where a
+// beta goes: the Messages API takes a header, while a batch carries per-request
+// params and no headers of its own. Keeping it a pure function means the choice
+// is testable without a network, like everything else here.
+#[inline]
+pub fn beta_header(model: ModelId) -> Option<&'static str> {
+    model.supports_fallback().then_some(FALLBACK_BETA)
+}
+
 // Free function rather than a method so the tests can build a body for every
 // model without constructing a client (which would need a key).
 #[inline]
@@ -244,7 +256,10 @@ pub fn body_for(model: ModelId, request: &Request) -> Value {
     }
 
     if model.supports_fallback() {
-        map.insert("betas".into(), json!([FALLBACK_BETA]));
+        // `fallbacks` only. The beta itself is enabled by a header on the
+        // Messages API, which rejects a `betas` *field* outright — verified
+        // live: with the header set and `betas` in the body the call still
+        // 400s with "betas: Extra inputs are not permitted". See `beta_header`.
         map.insert("fallbacks".into(), json!("default"));
     }
 
@@ -375,6 +390,17 @@ pub fn parse(raw: &str, wants_json: bool) -> Result<Response, ModelError> {
     let wire: WireResponse =
         serde_json::from_str(raw).map_err(|e| ModelError::Decode(e.to_string()))?;
 
+    // Built before any error path. A refusal, a malformed reply and a clipped
+    // one are all HTTP 200s whose tokens were generated and charged, so an
+    // error that drops this figure hides a billed call from the ledger.
+    let usage = Usage {
+        input: wire.usage.input_tokens,
+        output: wire.usage.output_tokens,
+        cache_write: wire.usage.cache_creation_input_tokens,
+        cache_read: wire.usage.cache_read_input_tokens,
+        thinking: wire.usage.output_tokens_details.thinking_tokens,
+    };
+
     // Checked before reading content: a refusal arrives as a successful 200
     // whose content is empty, so reading it first yields an empty string and
     // hides the cause.
@@ -383,6 +409,7 @@ pub fn parse(raw: &str, wants_json: bool) -> Result<Response, ModelError> {
         return Err(ModelError::Refused {
             category: details.category,
             explanation: details.explanation,
+            usage,
         });
     }
 
@@ -404,28 +431,42 @@ pub fn parse(raw: &str, wants_json: bool) -> Result<Response, ModelError> {
         // live once: a 16,754-character answer to a 2,062-character ask, cut
         // mid-string, reported only as bad JSON.
         Some(serde_json::from_str(&text).map_err(|e| {
-            ModelError::MalformedJson(format!(
-                "{e} — stop_reason {}, {} characters of reply",
-                wire.stop_reason.as_deref().unwrap_or("absent"),
-                text.len()
-            ))
+            let clipped = wire.stop_reason.as_deref() == Some("max_tokens");
+            // Three outcomes, not two. The ceiling can be reached with a long
+            // answer cut mid-string, or with *no answer at all* — the whole
+            // budget spent reasoning. Thinking is billed as output and counted
+            // against `max_tokens`, so an adaptive budget on a long prompt can
+            // consume the lot before a single answer token is written. It is
+            // named separately because the fix is specific: raise max_tokens,
+            // or turn thinking off on this layer. Seen live on the paper layer
+            // at adaptive thinking and a 16,000-token ceiling.
+            let detail = if clipped && text.is_empty() {
+                format!(
+                    "no answer tokens at all — {} of {} output tokens were reasoning, and \
+                     thinking counts toward max_tokens. Raise max_tokens or disable \
+                     thinking on this layer.",
+                    usage.thinking, usage.output
+                )
+            } else {
+                format!(
+                    "{e} — stop_reason {}, {} characters of reply",
+                    wire.stop_reason.as_deref().unwrap_or("absent"),
+                    text.len()
+                )
+            };
+            // Split on the stop reason rather than on the parse error, which is
+            // identical either way.
+            if clipped {
+                ModelError::Truncated { detail, usage }
+            } else {
+                ModelError::MalformedJson { detail, usage }
+            }
         })?)
     } else {
         None
     };
 
-    Ok(Response {
-        text,
-        json,
-        stop_reason: wire.stop_reason,
-        usage: Usage {
-            input: wire.usage.input_tokens,
-            output: wire.usage.output_tokens,
-            cache_write: wire.usage.cache_creation_input_tokens,
-            cache_read: wire.usage.cache_read_input_tokens,
-            thinking: wire.usage.output_tokens_details.thinking_tokens,
-        },
-    })
+    Ok(Response { text, json, stop_reason: wire.stop_reason, usage })
 }
 
 // A non-2xx status, read as the error it is. Also pure.
@@ -586,12 +627,18 @@ impl Model for Claude {
             return Err(error);
         }
         let body = self.body(request);
-        let response = self
+        let mut post = self
             .http
             .post(self.url("/messages"))
             .header("x-api-key", &self.api_key)
             .header("anthropic-version", API_VERSION)
-            .header("content-type", "application/json")
+            .header("content-type", "application/json");
+        // Where the beta goes on this endpoint. The batch path needs none: it
+        // strips `fallbacks` from every request before submitting.
+        if let Some(beta) = beta_header(self.model) {
+            post = post.header("anthropic-beta", beta);
+        }
+        let response = post
             .json(&body)
             .send()
             .map_err(|e| ModelError::Transport(e.to_string()))?;
@@ -976,13 +1023,24 @@ mod tests {
     #[test]
     fn the_fallback_beta_is_offered_only_where_it_is_supported() {
         let opus = body_for(ModelId::Opus5, &req());
-        assert_eq!(opus["betas"][0], FALLBACK_BETA);
         assert_eq!(opus["fallbacks"], "default");
+        assert_eq!(beta_header(ModelId::Opus5), Some(FALLBACK_BETA));
 
         for model in [ModelId::Haiku45, ModelId::Sonnet5, ModelId::Opus48] {
             let body = body_for(model, &req());
-            assert!(body.get("betas").is_none(), "{model:?}");
             assert!(body.get("fallbacks").is_none(), "{model:?}");
+            assert_eq!(beta_header(model), None, "{model:?}");
+        }
+    }
+
+    #[test]
+    fn the_beta_never_travels_in_the_body() {
+        // Verified live: the Messages API rejects a `betas` field even with the
+        // header set — "betas: Extra inputs are not permitted". Sending it made
+        // every Opus call a 400, and no other model reaches this branch, so the
+        // whole class was invisible until the first Opus run.
+        for model in [ModelId::Haiku45, ModelId::Sonnet5, ModelId::Opus5, ModelId::Opus48] {
+            assert!(body_for(model, &req()).get("betas").is_none(), "{model:?}");
         }
     }
 
@@ -1065,7 +1123,9 @@ mod tests {
             "usage": {"input_tokens": 12, "output_tokens": 0}
         }"#;
         match parse(raw, false) {
-            Err(ModelError::Refused { category, explanation }) => {
+            Err(ModelError::Refused { category, explanation, usage }) => {
+                // A refusal is billed; the ledger has to be able to see it.
+                assert_eq!(usage.input, 12);
                 assert_eq!(category.as_deref(), Some("harmful_content"));
                 assert_eq!(explanation.as_deref(), Some("declined to answer"));
             }
@@ -1102,7 +1162,7 @@ mod tests {
     #[test]
     fn a_schema_request_that_returns_prose_is_an_error() {
         let raw = r#"{"content": [{"type": "text", "text": "I think it was May."}]}"#;
-        assert!(matches!(parse(raw, true), Err(ModelError::MalformedJson(_))));
+        assert!(matches!(parse(raw, true), Err(ModelError::MalformedJson { .. })));
     }
 
     #[test]
@@ -1113,11 +1173,32 @@ mod tests {
         // something anyone can act on.
         let raw = r#"{"stop_reason": "max_tokens",
                       "content": [{"type": "text", "text": "{\"answers\": [{\"value\": \"trunc"}]}"#;
-        let Err(ModelError::MalformedJson(message)) = parse(raw, true) else {
+        let Err(ModelError::Truncated { detail, .. }) = parse(raw, true) else {
             panic!("a clipped reply must not parse");
         };
-        assert!(message.contains("max_tokens"), "{message}");
-        assert!(message.contains("characters of reply"), "{message}");
+        assert!(detail.contains("max_tokens"), "{detail}");
+        assert!(detail.contains("characters of reply"), "{detail}");
+    }
+
+    #[test]
+    fn a_reply_that_spent_the_whole_ceiling_thinking_says_that_specifically() {
+        // The failure that cost a real run: adaptive thinking on the paper
+        // layer consumed all 16,000 tokens and returned no answer at all. It
+        // reads as a truncation, but "raise max_tokens or turn thinking off"
+        // is a different instruction from "the answer was long", and the
+        // generic message pointed at neither.
+        let raw = r#"{"stop_reason": "max_tokens",
+                      "content": [],
+                      "usage": {"input_tokens": 12211, "output_tokens": 16000,
+                                "output_tokens_details": {"thinking_tokens": 16000}}}"#;
+        let Err(ModelError::Truncated { detail, usage }) = parse(raw, true) else {
+            panic!("an empty clipped reply must not parse");
+        };
+        assert!(detail.contains("no answer tokens at all"), "{detail}");
+        assert!(detail.contains("thinking counts toward max_tokens"), "{detail}");
+        // And the tokens it burned are carried out, so the ledger sees them.
+        assert_eq!(usage.output, 16_000);
+        assert_eq!(usage.thinking, 16_000);
     }
 
     #[test]
@@ -1126,11 +1207,11 @@ mod tests {
         // separate them or it has not helped.
         let raw = r#"{"stop_reason": "end_turn",
                       "content": [{"type": "text", "text": "I think it was May."}]}"#;
-        let Err(ModelError::MalformedJson(message)) = parse(raw, true) else {
+        let Err(ModelError::MalformedJson { detail, .. }) = parse(raw, true) else {
             panic!("prose is not JSON");
         };
-        assert!(message.contains("end_turn"), "{message}");
-        assert!(!message.contains("max_tokens"), "{message}");
+        assert!(detail.contains("end_turn"), "{detail}");
+        assert!(!detail.contains("max_tokens"), "{detail}");
     }
 
     #[test]
@@ -1188,9 +1269,12 @@ mod tests {
         assert!(ModelError::Api { status: 500, kind: None, message: String::new() }.is_retryable());
 
         // Retrying these identically cannot help.
-        assert!(!ModelError::Refused { category: None, explanation: None }.is_retryable());
+        assert!(!ModelError::Refused { category: None, explanation: None, usage: Usage::default() }.is_retryable());
         assert!(!ModelError::MissingApiKey.is_retryable());
-        assert!(!ModelError::MalformedJson("x".into()).is_retryable());
+        assert!(!ModelError::MalformedJson { detail: "x".into(), usage: Usage::default() }.is_retryable());
+        // Truncation is a configuration problem, not a sampling accident: it
+        // recurred five attempts running when thinking ate the whole ceiling.
+        assert!(!ModelError::Truncated { detail: "x".into(), usage: Usage::default() }.is_retryable());
         assert!(!ModelError::Api { status: 400, kind: None, message: String::new() }.is_retryable());
     }
 
@@ -1235,6 +1319,7 @@ mod tests {
         let refused = ModelError::Refused {
             category: Some("x".into()),
             explanation: Some("y".into()),
+            usage: Usage::default(),
         };
         assert!(refused.to_string().contains("declined"));
     }

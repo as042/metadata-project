@@ -340,6 +340,16 @@ workload rather than a model of it. Its constants are measured, not assumed —
 billed 6,148 tokens for them; the folklore figure of four would have under-counted by a third,
 in the direction that matters least for a guard whose job is to prevent a surprise.
 
+`effort` is deliberately **not** modelled. An isolated probe suggested `Max` cost 1.64× medium
+on output, but two full runs measured 1.11× output and 0.99× cost against four at medium —
+inside the spread between runs at identical settings. See [cost_findings.md](../cost_findings.md) §1.
+
+The cached prefix is modelled as **written once per study** in both modes, with an extra write
+when a batch fan-out is wide enough to race a cold entry. Sequential was modelled as one write
+for the whole run until 2026-08-21, when eight runs measured 3.4–6.4 writes per prefix and
+never one — an error worth 18–21% on Opus, where a write bills at $6.25/MTok. See
+[cost_findings.md](../cost_findings.md) §4.
+
 ---
 
 ## Selecting studies, and comparing runs

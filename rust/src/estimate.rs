@@ -49,6 +49,20 @@ const SCHEMA_TOKENS_FIXED: u64 = 16;
 // either being right.
 const OUTPUT_TOKENS_PER_FIELD: u64 = 16;
 
+// Effort does not scale this, and was measured not to.
+//
+// `effort` is sent whatever the thinking setting, so it was reasonable to
+// suspect it moved output. An isolated probe — 8 calls per level on 4
+// hand-picked jobs — put `Max` at 1.64x medium on output per field, and a
+// multiplier was briefly added on the strength of it. It did not survive
+// contact with a full run: two 52-record runs at Max against four at Medium,
+// pure Sonnet, sequential, effort the only variable, came out at 1.11x output
+// and 0.99x cost — inside a within-effort spread running from 5,999 to 10,608
+// output tokens on identical settings.
+//
+// The probe generalised from four jobs to fifty-two and was wrong to. Run scale
+// is what an estimator has to predict, so there is no effort term here.
+
 // How many requests in one batch before its fan-out races an extra copy of the
 // instructions into the cache.
 //
@@ -214,10 +228,24 @@ impl Estimate {
             return self;
         }
         let prefix = tokens(prompt_chars);
+        // One write per study, in both modes. A batch fans out once per study
+        // and races a cold cache; a sequential run arrives at the same count by
+        // a different route, because `Layer::process` runs per project and the
+        // other layer's calls in between outlast the five-minute cache TTL.
+        //
+        // Sequential was modelled as a single write for the whole run until
+        // 2026-08-21, when eight five-study runs measured 3.4-6.4 writes per
+        // prefix and never one. On Sonnet the shortfall hid inside the
+        // deliberately loose output estimate; on Opus, where a write bills at
+        // $6.25/MTok against $2.50, it put two runs 18-21% *under* actual and
+        // broke the guarantee this whole function exists to provide.
+        //
+        // `wide_groups` stays batch-only: sequential calls cannot race each
+        // other for the same cold entry.
         let writes = if batch {
             (self.groups + self.wide_groups) as u64
         } else {
-            1
+            self.groups as u64
         }
         .clamp(1, self.calls as u64);
         self.usage.cache_write = prefix * writes;
@@ -471,18 +499,47 @@ mod tests {
     }
 
     #[test]
-    fn sequential_calls_share_one_warm_prefix_across_studies() {
-        // No fan-out, so the entry written by the first call serves every call
-        // after it whichever study it belongs to. Measured at 6,148 written for
-        // a 30-call sequential run.
+    fn a_sequential_layer_also_pays_for_the_prefix_once_per_study() {
+        // Not once for the run. `Layer::process` runs per project, so the other
+        // layer's calls sit between this layer's, and the five-minute cache TTL
+        // lapses in the gap. Measured over eight five-study runs: 3.4-6.4
+        // writes per prefix, mean 4.6, never one.
         let live = shaped(52, 5, 2, 16_652, false);
-        assert_eq!(live.usage.cache_write, tokens(16_652));
-        assert_eq!(live.usage.cache_read, tokens(16_652) * 51);
+        assert_eq!(live.usage.cache_write, tokens(16_652) * 5);
+        assert_eq!(live.usage.cache_read, tokens(16_652) * 47);
     }
 
     #[test]
-    fn a_batched_layer_pays_for_the_prefix_once_per_study() {
-        // The whole correction, end to end: three studies is three fan-outs.
+    fn effort_does_not_change_the_estimate() {
+        // Measured, not assumed. An isolated 8-call probe said `Max` cost 1.64x
+        // medium on output; two full runs said 1.11x on output and 0.99x on
+        // cost, well inside the spread between runs at the same setting.
+        let at = |effort: Option<crate::model::Effort>| {
+            of_jobs(
+                "llm_naive",
+                &jobs(30, 23_454 / 30, 22),
+                &Priced(ModelId::Sonnet5),
+                &ModelConfig::new("claude-sonnet-5", TEXT_SYSTEM_FULL)
+                    .thinking(Thinking::Disabled)
+                    .effort(effort),
+            )
+            .usage
+            .output
+        };
+        use crate::model::Effort;
+        let medium = at(Some(Effort::Medium));
+        assert!(medium > 0);
+        for other in [None, Some(Effort::Low), Some(Effort::High),
+                      Some(Effort::XHigh), Some(Effort::Max)] {
+            assert_eq!(at(other), medium, "{other:?} must price the same as medium");
+        }
+    }
+
+    #[test]
+    fn both_modes_pay_for_the_prefix_once_per_study_and_batching_may_race() {
+        // Both write once per study; batching can write a second time when a
+        // fan-out is wide enough to race a cold entry, and that race is the
+        // only thing that separates them.
         let mut layers = free();
         layers.push(naive(true));
         let batched = for_corpus(&mini(), &SchemaSettings::new(layers), &Budget::new(0.0));
@@ -493,10 +550,17 @@ mod tests {
 
         assert!(batched.studies > 1);
         assert_eq!(batched.layers[0].groups, batched.studies);
+
+        let per_study = live.layers[0].usage.cache_write / batched.studies as u64;
+        assert!(per_study > 0, "a sequential run still writes the prefix");
         assert_eq!(
-            batched.layers[0].usage.cache_write,
-            live.layers[0].usage.cache_write * batched.studies as u64,
-            "a batched run pays for the instructions once per study"
+            live.layers[0].usage.cache_write,
+            per_study * batched.studies as u64,
+            "a sequential run pays for the instructions once per study"
+        );
+        assert!(
+            batched.layers[0].usage.cache_write >= live.layers[0].usage.cache_write,
+            "racing a fan-out can only add writes, never remove them"
         );
     }
 
@@ -732,7 +796,7 @@ mod tests {
     }
 
     #[test]
-    fn the_cached_prefix_is_priced_once_for_the_run_not_once_per_study() {
+    fn every_call_after_a_write_reads_the_prefix_rather_than_rewriting_it() {
         // The instructions are written to the cache once and read back on every
         // later call, across studies. Accumulating the cache per project would
         // keep whichever figure the first study produced and under-count every
@@ -745,9 +809,14 @@ mod tests {
         let layer = &estimate.layers[0];
         assert!(estimate.studies > 1, "needs more than one study to be a test");
         assert!(layer.calls > estimate.studies, "needs more calls than studies");
+        // Reads are whatever the writes did not cover. Asserted as a
+        // relationship rather than a constant so it keeps holding if the write
+        // count is re-measured again.
+        let writes = estimate.studies as u64;
+        let per_write = layer.usage.cache_write / writes;
         assert_eq!(
             layer.usage.cache_read,
-            layer.usage.cache_write * (layer.calls as u64 - 1),
+            per_write * (layer.calls as u64 - writes),
             "{} calls over {} studies",
             layer.calls,
             estimate.studies

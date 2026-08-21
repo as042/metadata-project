@@ -103,11 +103,18 @@ impl<M: Model> Model for Retrying<M> {
     fn complete(&self, request: &Request) -> Result<Response, ModelError> {
         let attempts = self.policy.attempts.max(1);
         let mut last = None;
+        // Accumulated across attempts: each one that reached the model was
+        // billed on its own, so reporting only the final attempt's usage would
+        // under-count a give-up by however many tries preceded it.
+        let mut billed = Usage::default();
 
         for attempt in 0..attempts {
             match self.inner.complete(request) {
                 Ok(response) => return Ok(response),
                 Err(error) => {
+                    if let Some(usage) = error.billed_usage() {
+                        billed.add(usage);
+                    }
                     // Returned as itself rather than wrapped: a refusal should
                     // read as a refusal, not as "retries exhausted" on a
                     // request that was never going to be retried.
@@ -124,6 +131,7 @@ impl<M: Model> Model for Retrying<M> {
 
         Err(ModelError::RetriesExhausted {
             attempts,
+            usage: billed,
             last: Box::new(last.expect("a failed loop records its last error")),
         })
     }
@@ -199,8 +207,8 @@ mod tests {
         // Sending the identical request again cannot change a refusal, and on a
         // real provider it bills again for finding that out.
         for error in [
-            ModelError::Refused { category: None, explanation: None },
-            ModelError::MalformedJson("nope".into()),
+            ModelError::Refused { category: None, explanation: None, usage: Usage::default() },
+            ModelError::MalformedJson { detail: "nope".into(), usage: Usage::default() },
             ModelError::Api { status: 400, kind: None, message: String::new() },
             ModelError::MissingApiKey,
             ModelError::BudgetExceeded { spent: 2.0, limit: 1.0 },
@@ -218,6 +226,7 @@ mod tests {
         let script = Script::new(vec![Err(ModelError::Refused {
             category: Some("harmful_content".into()),
             explanation: None,
+            usage: Usage::default(),
         })]);
         let model = Retrying::new(script, instant(5));
         assert!(matches!(
@@ -236,7 +245,7 @@ mod tests {
         ]);
         let model = Retrying::new(script, instant(3));
         match model.complete(&Request::new("p")) {
-            Err(ModelError::RetriesExhausted { attempts, last }) => {
+            Err(ModelError::RetriesExhausted { attempts, last, .. }) => {
                 assert_eq!(attempts, 3);
                 assert!(matches!(*last, ModelError::RateLimited { .. }));
             }
